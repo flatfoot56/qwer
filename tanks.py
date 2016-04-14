@@ -7,24 +7,61 @@ class Player:
         self.color = max(255, int(math.sqrt(self.vx ** 2
             + self.vy ** 2)) + 100)
 
-    def __init__(self, x = 100, y = 100, vx = 0, vy = 0, a = 500, r = 20):
+    def __init__(self, x = 100, y = 100, vx = 0, vy = 0, a = 500, r = 20, pos = 'u'):
         """Constructor of Player class"""
         """self.a - acceleration"""
         """self.r - radius"""
-        self.x, self.y, self.vx, self.vy, self.a, self.r = \
-                x, y, vx, vy, a, r
+        self.x, self.y, self.vx, self.vy, self.a, self.r, self.pos = \
+                x, y, vx, vy, a, r, pos
         self.refresh_color()
 
     def update(self, game):
         """Update Player state"""
         if game.pressed[pygame.K_LEFT]:
+            if self.pos == 'u':
+                game.tank_image_up = pygame.transform.rotate(game.tank_image_up, 90)
+                self.pos = 'l'
+            if self.pos == 'r':
+                game.tank_image_up = pygame.transform.rotate(game.tank_image_up, 180)
+                self.pos = 'l'
+            if self.pos == 'd':
+                game.tank_image_up = pygame.transform.rotate(game.tank_image_up, -90)
+                self.pos = 'l'
             self.vx -= game.delta * self.a
-            #self.game.tank_image_up.rotate(90)
         if game.pressed[pygame.K_RIGHT]:
+            if self.pos == 'u':
+                game.tank_image_up = pygame.transform.rotate(game.tank_image_up, -90)
+                self.pos = 'r'
+            if self.pos == 'l':
+                game.tank_image_up = pygame.transform.rotate(game.tank_image_up, 180)
+                self.pos = 'r'
+            if self.pos == 'd':
+                game.tank_image_up = pygame.transform.rotate(game.tank_image_up, 90)
+                self.pos = 'r'
             self.vx += game.delta * self.a
+            
         if game.pressed[pygame.K_UP]:
+            if self.pos == 'r':
+                game.tank_image_up = pygame.transform.rotate(game.tank_image_up, 90)
+                self.pos = 'u'
+            if self.pos == 'l':
+                game.tank_image_up = pygame.transform.rotate(game.tank_image_up, -90)
+                self.pos = 'u'
+            if self.pos == 'd':
+                game.tank_image_up = pygame.transform.rotate(game.tank_image_up, 180)
+                self.pos = 'u'
             self.vy -= game.delta * self.a
+            
         if game.pressed[pygame.K_DOWN]:
+            if self.pos == 'r':
+                game.tank_image_up = pygame.transform.rotate(game.tank_image_up, -90)
+                self.pos = 'd'
+            if self.pos == 'l':
+                game.tank_image_up = pygame.transform.rotate(game.tank_image_up, 90)
+                self.pos = 'd'
+            if self.pos == 'u':
+                game.tank_image_up = pygame.transform.rotate(game.tank_image_up, 180)
+                self.pos = 'd'
             self.vy += game.delta * self.a
 
         self.vx -= game.delta * self.vx
