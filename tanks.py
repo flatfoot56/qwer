@@ -93,9 +93,9 @@ class Player:
     def render(self, game):
         """Draw Player on the Game window"""
         #pygame.image.load("tanks.bmp") 
-        pygame.draw.circle(game.screen,
-                (self.color, self.color, self.color),
-                (int(self.x), int(self.y)), self.r)
+        #pygame.draw.circle(game.screen,
+                #(self.color, self.color, self.color),
+                #(int(self.x), int(self.y)), self.r)
 
 class Game:
     def tick(self):
