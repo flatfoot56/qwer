@@ -7,7 +7,7 @@ class Player:
         self.color = max(255, int(math.sqrt(self.vx ** 2
             + self.vy ** 2)) + 100)
 
-    def __init__(self, x = 100, y = 100, vx = 0, vy = 0, a = 500, r = 20, pos = 'u'):
+    def __init__(self, x = 100, y = 100, vx = 0, vy = 0, a = 500, r = 10, pos = 'u'):
         """Constructor of Player class"""
         """self.a - acceleration"""
         """self.r - radius"""
@@ -73,20 +73,20 @@ class Player:
         """Do not let Player get out of the Game window"""
         if self.x < self.r:
             if self.vx < 0:
-                self.vx = -self.vx
+                self.vx = 0
             self.x = self.r
-        if self.y < self.r:
+        if self.y < 15:
             if self.vy < 0:
-                self.vy = -self.vy
-            self.y = self.r
-        if self.x > game.width - self.r:
+                self.vy = 0
+            self.y = 15
+        if self.x > game.width - 15:
             if self.vx > 0:
-                self.vx = -self.vx
-            self.x = game.width - self.r
-        if self.y > game.height - self.r:
+                self.vx = 0
+            self.x = game.width - 15
+        if self.y > (game.height - 15):
             if self.vy > 0:
-                self.vy = -self.vy
-            self.y = game.height - self.r
+                self.vy = 0
+            self.y = game.height - 15
 
        # self.refresh_color()
 
