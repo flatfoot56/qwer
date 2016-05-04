@@ -102,7 +102,8 @@ class Player:
         self.vy -= game.delta * self.vy * 20
         self.tank.rect.x += self.vx * game.delta
         self.tank.rect.y += self.vy * game.delta
-        
+        print(self.vy)
+        print(self.tank.rect.y)
         #self.x += self.vx * game.delta
         #self.y += self.vy * game.delta
         #if game.pressed[pygame.K_SPACE]:
