@@ -97,7 +97,12 @@ class Player:
             
             #self.vy += game.delta * self.a
           
-        
+        game.block_hit_list = pygame.sprite.spritecollide(self.tank, game.block_list, False)
+        if len(game.block_hit_list) > 0:
+            #print(1)
+            self.vx = 0
+            self.vy = 0
+            game.block_hit_list = []
         self.vx -= game.delta * self.vx * 20
         self.vy -= game.delta * self.vy * 20
         """rect.x and rect.y is int as they are pixel coordinates"""
