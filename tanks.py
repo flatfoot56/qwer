@@ -28,8 +28,10 @@ class Player:
         self.tank = Block((0,255,255), 80, 80)
         self.player_list = pygame.sprite.Group()
         self.player_list.add(self.tank)
-        self.tank.rect.x = 100
-        self.tank.rect.y = 100
+	self.x = 100.0
+	self.y = 100.0
+        self.tank.rect.x = self.x
+        self.tank.rect.y = self.y
         self.refresh_color()
 
     def update(self, game):
@@ -79,9 +81,7 @@ class Player:
             if self.pos == 'd':
                 game.tank_image_up = pygame.transform.rotate(game.tank_image_up, 180)
                 self.pos = 'u'
-            #self.vy = -200
-            
-            self.vy -= game.delta * self.a
+            self.vy = -200
             
         if game.pressed[pygame.K_DOWN]:
             if self.pos == 'r':
@@ -100,8 +100,12 @@ class Player:
         
         self.vx -= game.delta * self.vx * 20
         self.vy -= game.delta * self.vy * 20
-        self.tank.rect.x += self.vx * game.delta
-        self.tank.rect.y += self.vy * game.delta
+        """rect.x and rect.y is int as they are pixel coordinates"""
+        """these inacuracy results in your mistic coordinates errors"""
+        self.x += self.vx * game.delta
+        self.y += self.vy * game.delta
+        self.tank.rect.x = self.x
+        self.tank.rect.y = self.y
         print(self.vy)
         print(self.tank.rect.y)
         #self.x += self.vx * game.delta
