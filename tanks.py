@@ -20,29 +20,28 @@ class Player:
         self.color = max(0, int(math.sqrt(self.vx ** 2
             + self.vy ** 2)) + 100)
 
-    def __init__(self,  vx = 0, vy = 0, a = 500, pos = 'u', x_bul=0, y_bul=0, r_bul = 2):
+    def __init__(self,  x = 100, y = 100, vx = 0, vy = 0, a = 500, pos = 'u', x_bul=0, y_bul=0, r_bul = 2):
         """Constructor of Player class"""
         
-        self.vx, self.vy, self.a, self.pos, self.r_bul = \
-                vx, vy, a, pos, r_bul
-        self.tank = Block((0,255,255), 80, 80)
+        self.x, self.y, self.vx, self.vy, self.a, self.pos, self.r_bul = \
+                x, y, vx, vy, a, pos, r_bul
+        self.tank = Block((0,255,255), 28, 28)
         self.player_list = pygame.sprite.Group()
         self.player_list.add(self.tank)
-	self.x = 100.0
-	self.y = 100.0
+        self.x = 100
+        self.y = 100
         self.tank.rect.x = self.x
         self.tank.rect.y = self.y
         self.refresh_color()
 
     def update(self, game):
         """Update Player state"""
-        game.block_hit_list = pygame.sprite.spritecollide(self.tank, game.block_list, False)
+        """  game.block_hit_list = pygame.sprite.spritecollide(self.tank, game.block_list, False)
         
         if len(game.block_hit_list) > 0:
-            self.vx = -self.vx
-            self.vy = -self.vy
-            
-            game.block_hit_list = []
+            self.vx = 0
+            self.vy = 0
+            game.block_hit_list = [] """
         
         if game.pressed[pygame.K_LEFT]:
             if self.pos == 'u':
@@ -54,9 +53,9 @@ class Player:
             if self.pos == 'd':
                 game.tank_image_up = pygame.transform.rotate(game.tank_image_up, -90)
                 self.pos = 'l'
-            #self.vx = -200
+            self.vx = -200
             
-            self.vx -= game.delta * self.a
+            #self.vx -= game.delta * self.a
         if game.pressed[pygame.K_RIGHT]:
             if self.pos == 'u':
                 game.tank_image_up = pygame.transform.rotate(game.tank_image_up, -90)
@@ -83,6 +82,8 @@ class Player:
                 self.pos = 'u'
             self.vy = -200
             
+            #self.vy -= game.delta * self.a
+            
         if game.pressed[pygame.K_DOWN]:
             if self.pos == 'r':
                 game.tank_image_up = pygame.transform.rotate(game.tank_image_up, -90)
@@ -102,17 +103,21 @@ class Player:
             #print(1)
             self.vx = 0
             self.vy = 0
+            if self.pos == 'l':
+                self.x = self.x + 2
+            if self.pos == 'r':
+                self.x = self.x -2
+            
             game.block_hit_list = []
-        self.vx -= game.delta * self.vx * 20
-        self.vy -= game.delta * self.vy * 20
-        """rect.x and rect.y is int as they are pixel coordinates"""
-        """these inacuracy results in your mistic coordinates errors"""
+        (self.vx) -= (game.delta * self.vx * 10)
+        (self.vy) -= (game.delta * self.vy * 10)
         self.x += self.vx * game.delta
         self.y += self.vy * game.delta
         self.tank.rect.x = self.x
         self.tank.rect.y = self.y
-        print(self.vy)
-        print(self.tank.rect.y)
+        
+        #print(self.vy)
+        #print(self.tank.rect.y)
         #self.x += self.vx * game.delta
         #self.y += self.vy * game.delta
         #if game.pressed[pygame.K_SPACE]:
@@ -156,6 +161,7 @@ class Game:
         """Return time in seconds since previous call
         and limit speed of the game to 50 fps"""
         self.delta = self.clock.tick(50) / 1000.0
+        
 
     def __init__(self):
         """Constructor of the Game"""
@@ -196,6 +202,7 @@ class Game:
             if not k <= 400:
                 break
         
+        
 
     def event_handler(self, event):
         """Handling one pygame event"""
@@ -220,7 +227,7 @@ class Game:
         self.screen.blit(self.space, (0,0))
         self.player.render(self)
         self.tank_image_up.set_colorkey((0,0,0))
-        self.screen.blit(self.tank_image_up, ((self.player.tank.rect.x + 10), (self.player.tank.rect.y + 10)))
+        self.screen.blit(self.tank_image_up, ((self.player.tank.rect.x -5 ), (self.player.tank.rect.y - 5)))
         #self.screen.blit(self.tank_image_up, ((self.player.x), (self.player.y)))
         pygame.draw.rect(self.screen, (255, 0, 0), ((0,0),(20,20)), 0) 
         #self.ar[int(self.player.x/10.0),int(self.player.y/10.0)] = (200,200,200)
