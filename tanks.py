@@ -8,6 +8,19 @@ class Walls(pygame.sprite.Sprite):
         self.image = pygame.image.load("wall.bmp")#pygame.Surface([width, height])
         #self.image.fill((0, 0, 0))
         self.rect = self.image.get_rect()
+class Proof_Walls(pygame.sprite.Sprite):
+    def __init__(self, color, width, height):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load("proof_wall.bmp")#pygame.Surface([width, height])
+        #self.image.fill((0, 0, 0))
+        self.rect = self.image.get_rect()
+class Grace(pygame.sprite.Sprite):
+    def __init__(self, color, width, height):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load("grace.bmp")#pygame.Surface([width, height])
+        self.image.set_colorkey((0,0,0))
+        #self.image.fill((0, 0, 0))
+        self.rect = self.image.get_rect()
 class Block(pygame.sprite.Sprite):
     def __init__(self, color, width, height):
         pygame.sprite.Sprite.__init__(self)
@@ -20,7 +33,7 @@ class Player:
         self.color = max(0, int(math.sqrt(self.vx ** 2
             + self.vy ** 2)) + 100)
 
-    def __init__(self,  x = 100, y = 100, vx = 0, vy = 0, a = 500, pos = 'u', x_bul=0, y_bul=0, r_bul = 2):
+    def __init__(self,  x = 300, y = 400, vx = 0, vy = 0, a = 500, pos = 'u', x_bul=0, y_bul=0, r_bul = 2):
         """Constructor of Player class"""
         
         self.x, self.y, self.vx, self.vy, self.a, self.pos, self.r_bul = \
@@ -28,8 +41,8 @@ class Player:
         self.tank = Block((0,255,255), 28, 28)
         self.player_list = pygame.sprite.Group()
         self.player_list.add(self.tank)
-        self.x = 100
-        self.y = 100
+        self.x = 300
+        self.y = 300
         self.tank.rect.x = self.x
         self.tank.rect.y = self.y
         self.refresh_color()
@@ -107,6 +120,10 @@ class Player:
                 self.x = self.x + 2
             if self.pos == 'r':
                 self.x = self.x -2
+            if self.pos == 'd':
+                self.y = self.y -2
+            if self.pos == 'u':
+                self.y = self.y + 2
             
             game.block_hit_list = []
         (self.vx) -= (game.delta * self.vx * 10)
@@ -183,25 +200,84 @@ class Game:
         #self.ar = pygame.PixelArray(self.screen)
         self.tank_image_up = pygame.image.load('tanks_up.bmp')
         self.block_list = pygame.sprite.Group()
+        self.grace_list = pygame.sprite.Group()
+        
         i = 0
         while True:
             self.block = Walls((0,0,0), 40, 40)
             self.block.rect.x = 0#random.randrange(self.width)
             self.block.rect.y = i#random.randrange(self.height)
             self.block_list.add(self.block)
-            i = i + 10
+            i = i + 28
             if not i <= 400:
                 break
         k = 0    
         while True:
             self.block = Walls((0,0,0), 40, 40)
-            self.block.rect.x = self.width - 40#random.randrange(self.width)
+            self.block.rect.x = self.width - 35#random.randrange(self.width)
             self.block.rect.y = k#random.randrange(self.height)
             self.block_list.add(self.block)
-            k = k + 10
+            k = k + 28
             if not k <= 400:
                 break
-        
+        k=0
+        while True:
+            self.block = Walls((0,0,0), 40, 40)
+            self.block.rect.x = k#random.randrange(self.width)
+            self.block.rect.y = self.height - 20#random.randrange(self.height)
+            self.block_list.add(self.block)
+            k = k + 20
+            if not k <= 100:
+                break
+        k=0
+        while True:
+            self.block = Walls((0,0,0), 40, 40)
+            self.block.rect.x = 640 - k#random.randrange(self.width)
+            self.block.rect.y = self.height - 20#random.randrange(self.height)
+            self.block_list.add(self.block)
+            k = k + 10
+            if not k <= 150:
+                break
+        k=0
+        while True:
+            self.block = Proof_Walls((0,0,0), 40, 40)
+            self.block.rect.x = 320 + k
+            self.block.rect.y = 100
+            self.block_list.add(self.block)
+            k = k + 32
+            if not k <= 160:
+                break
+        k=0
+        while True:
+            self.block = Grace((0,0,0), 40, 40)
+            self.block.rect.x = self.height - 20 - k
+            self.block.rect.y = 50
+            self.grace_list.add(self.block)
+            k = k + 32
+            if not k <= 160:
+                break
+        k=0
+        while True:
+            self.block = Proof_Walls((0,0,0), 40, 40)
+            self.block.rect.x = 100
+            self.block.rect.y = 50 + k
+            self.block_list.add(self.block)
+            k = k + 32
+            if not k <= 100:
+                break
+        self.block = Grace((0,0,0), 40, 40)
+        self.block.rect.x = 100
+        self.block.rect.y = 177
+        self.grace_list.add(self.block)
+        k=0
+        while True:
+            self.block = Walls((0,0,0), 40, 40)
+            self.block.rect.x = 100
+            self.block.rect.y = 215 + k
+            self.block_list.add(self.block)
+            k = k + 30
+            if not k <= 100:
+                break
         
 
     def event_handler(self, event):
@@ -232,6 +308,7 @@ class Game:
         pygame.draw.rect(self.screen, (255, 0, 0), ((0,0),(20,20)), 0) 
         #self.ar[int(self.player.x/10.0),int(self.player.y/10.0)] = (200,200,200)
         self.block_list.draw(self.screen)
+        self.grace_list.draw(self.screen)
         pygame.display.flip()
 
     def exit(self):
