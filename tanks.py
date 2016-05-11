@@ -42,7 +42,7 @@ class Player:
         self.player_list = pygame.sprite.Group()
         self.player_list.add(self.tank)
         self.x = 300
-        self.y = 300
+        self.y = 350
         self.tank.rect.x = self.x
         self.tank.rect.y = self.y
         self.refresh_color()
@@ -278,6 +278,46 @@ class Game:
             k = k + 30
             if not k <= 100:
                 break
+        k=0
+        while True:
+            self.block = Walls((0,0,0), 40, 40)
+            self.block.rect.x = 170
+            self.block.rect.y = 180 + k
+            self.block_list.add(self.block)
+            k = k + 30
+            if not k <= 140:
+                break
+        k=0
+        while True:
+            self.block = Walls((0,0,0), 40, 40)
+            self.block.rect.x = 200 + k
+            self.block.rect.y = 300
+            self.block_list.add(self.block)
+            k = k + 30
+            if not k <= 250:
+                break
+        k=0
+        while True:
+            self.block = Walls((0,0,0), 40, 40)
+            self.block.rect.x = self.width - 60- k
+            self.block.rect.y = 135
+            self.block_list.add(self.block)
+            k = k + 30
+            if not k <= 100:
+                break
+        k=0
+        while True:
+            self.block = Walls((0,0,0), 40, 40)
+            self.block.rect.x = 490
+            self.block.rect.y = 165 + k
+            self.block_list.add(self.block)
+            k = k + 30
+            if not k <= 60:
+                break
+        self.block = Walls((0,0,0), 40, 40)
+        self.block.rect.x = 525
+        self.block.rect.y = 225
+        self.block_list.add(self.block)
         
 
     def event_handler(self, event):
