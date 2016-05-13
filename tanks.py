@@ -173,6 +173,151 @@ class Player:
                 #(self.color, self.color, self.color),
                 #(int(self.x), int(self.y)), self.r)
 
+
+class OpponentPlayer:
+    def refresh_color(self):
+        """Set color(it depens on the module of Player speed)"""
+        self.color = max(0, int(math.sqrt(self.vx ** 2
+            + self.vy ** 2)) + 100)
+
+    def __init__(self,  x = 300, y = 400, vx = 0, vy = 0, a = 500, pos = 'u', x_bul=0, y_bul=0, r_bul = 2):
+        """Constructor of Player class"""
+        
+        self.x, self.y, self.vx, self.vy, self.a, self.pos, self.r_bul = \
+                x, y, vx, vy, a, pos, r_bul
+        self.tank = Block((0,255,255), 28, 28)
+        self.player_list = pygame.sprite.Group()
+        self.player_list.add(self.tank)
+        self.x = 350
+        self.y = 350
+        self.tank.rect.x = self.x
+        self.tank.rect.y = self.y
+        self.refresh_color()
+
+    def update(self, game):
+        """Update Player state"""
+        
+        if game.pressed[pygame.K_a]:
+            if self.pos == 'u':
+                game.opposite_tank = pygame.transform.rotate(game.opposite_tank, 90)
+                self.pos = 'l'
+            if self.pos == 'r':
+                game.opposite_tank = pygame.transform.rotate(game.opposite_tank, 180)
+                self.pos = 'l'
+            if self.pos == 'd':
+                game.opposite_tank = pygame.transform.rotate(game.opposite_tank, -90)
+                self.pos = 'l'
+            self.vx = -200
+            
+            #self.vx -= game.delta * self.a
+        if game.pressed[pygame.K_d]:
+            if self.pos == 'u':
+                game.opposite_tank = pygame.transform.rotate(game.opposite_tank, -90)
+                self.pos = 'r'
+            if self.pos == 'l':
+                game.opposite_tank = pygame.transform.rotate(game.opposite_tank, 180)
+                self.pos = 'r'
+            if self.pos == 'd':
+                game.opposite_tank = pygame.transform.rotate(game.opposite_tank, 90)
+                self.pos = 'r'
+            self.vx = 200
+            
+            #self.vx += game.delta * self.a
+            
+        if game.pressed[pygame.K_w]:
+            if self.pos == 'r':
+                game.opposite_tank = pygame.transform.rotate(game.opposite_tank, 90)
+                self.pos = 'u'
+            if self.pos == 'l':
+                game.opposite_tank = pygame.transform.rotate(game.opposite_tank, -90)
+                self.pos = 'u'
+            if self.pos == 'd':
+                game.opposite_tank = pygame.transform.rotate(game.opposite_tank, 180)
+                self.pos = 'u'
+            self.vy = -200
+            
+            #self.vy -= game.delta * self.a
+            
+        if game.pressed[pygame.K_s]:
+            if self.pos == 'r':
+                game.opposite_tank = pygame.transform.rotate(game.opposite_tank, -90)
+                self.pos = 'd'
+            if self.pos == 'l':
+                game.opposite_tank = pygame.transform.rotate(game.opposite_tank, 90)
+                self.pos = 'd'
+            if self.pos == 'u':
+                game.opposite_tank = pygame.transform.rotate(game.opposite_tank, 180)
+                self.pos = 'd'
+            self.vy = 200
+            
+            #self.vy += game.delta * self.a
+          
+        game.block_hit_list = pygame.sprite.spritecollide(self.tank, game.block_list, False)
+        if len(game.block_hit_list) > 0:
+            #print(1)
+            self.vx = 0
+            self.vy = 0
+            if self.pos == 'l':
+                self.x = self.x + 2
+            if self.pos == 'r':
+                self.x = self.x -2
+            if self.pos == 'd':
+                self.y = self.y -2
+            if self.pos == 'u':
+                self.y = self.y + 2
+            
+            game.block_hit_list = []
+        (self.vx) -= (game.delta * self.vx * 10)
+        (self.vy) -= (game.delta * self.vy * 10)
+        self.x += self.vx * game.delta
+        self.y += self.vy * game.delta
+        self.tank.rect.x = self.x
+        self.tank.rect.y = self.y
+        
+        #print(self.vy)
+        #print(self.tank.rect.y)
+        #self.x += self.vx * game.delta
+        #self.y += self.vy * game.delta
+        #if game.pressed[pygame.K_SPACE]:
+            #self.x_bul = self.x
+            #self.y_bul = self.y
+        """Do not let Player get out of the Game window"""
+        if self.tank.rect.x < 15:
+            if self.vx < 0:
+                self.vx = 0
+            self.tank.rect.x = 15
+            #self.x = self.rect_x
+        if self.tank.rect.y < 15:
+            if self.vy < 0:
+                self.vy = 0
+            self.tank.rect.y = 15
+            #self.y = 15
+        if self.tank.rect.x > (game.width - 18):
+            if self.vx > 0:
+                self.vx = 0
+            self.tank.rect.x = game.width - 18
+            #self.x = game.width - 18
+        if self.tank.rect.y > (game.height - 13):#self.r:
+            if self.vy > 0:
+                self.vy = 0
+            self.tank.rect.y = game.height - 13
+            #self.y = game.height - 13#self.r
+
+
+       # self.refresh_color()
+
+    def render(self, game):
+        """Draw Player on the Game window"""
+        #self.player_list.draw(game.screen)
+        #pygame.image.load("tanks.bmp") 
+        #pygame.draw.circle(game.screen,
+                #(self.color, self.color, self.color),
+                #(int(self.x), int(self.y)), self.r)
+
+
+
+
+
 class Game:
     def tick(self):
         """Return time in seconds since previous call
@@ -186,7 +331,6 @@ class Game:
         self.size = self.width, self.height = 640, 400
         # create main display - 640x400 window
         # try to use hardware acceleration
-        #self.screen = pygame.display.set_mode(((width +margin)*n+margin,(height+margin)*n+margin))# создаём окно
         self.screen = pygame.display.set_mode(self.size, pygame.HWSURFACE)
         # set window caption
         pygame.display.set_caption('Tanks')
@@ -197,8 +341,10 @@ class Game:
         # set default tool
         self.tool = 'run'
         self.player = Player()
+        self.opposite_player = OpponentPlayer()
         #self.ar = pygame.PixelArray(self.screen)
         self.tank_image_up = pygame.image.load('tanks_up.bmp')
+        self.opposite_tank = pygame.image.load('opposite_tank.bmp')
         self.block_list = pygame.sprite.Group()
         self.grace_list = pygame.sprite.Group()
         
@@ -336,14 +482,18 @@ class Game:
         self.pressed = pygame.key.get_pressed()
 
         self.player.update(self)
+        self.opposite_player.update(self)
 
     def render(self):
         """Render the scene"""
         #self.screen.fill((255, 0, 0))
         self.screen.blit(self.space, (0,0))
         self.player.render(self)
+        self.opposite_player.render(self)
         self.tank_image_up.set_colorkey((0,0,0))
+        self.opposite_tank.set_colorkey((0,0,0))
         self.screen.blit(self.tank_image_up, ((self.player.tank.rect.x -5 ), (self.player.tank.rect.y - 5)))
+        self.screen.blit(self.opposite_tank, ((self.opposite_player.tank.rect.x -5 ), (self.opposite_player.tank.rect.y - 5)))
         #self.screen.blit(self.tank_image_up, ((self.player.x), (self.player.y)))
         pygame.draw.rect(self.screen, (255, 0, 0), ((0,0),(20,20)), 0) 
         #self.ar[int(self.player.x/10.0),int(self.player.y/10.0)] = (200,200,200)
