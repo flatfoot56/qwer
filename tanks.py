@@ -5,21 +5,21 @@ import random
 class Walls(pygame.sprite.Sprite):
     def __init__(self, color, width, height):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load("wall.bmp")#pygame.Surface([width, height])
+        self.image = pygame.image.load("wall.bmp")
         #self.image.fill((0, 0, 0))
         self.rect = self.image.get_rect()
 class Proof_Walls(pygame.sprite.Sprite):
     def __init__(self, color, width, height):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load("proof_wall.bmp")#pygame.Surface([width, height])
-        #self.image.fill((0, 0, 0))
+        self.image = pygame.image.load("proof_wall.bmp")
+
         self.rect = self.image.get_rect()
 class Grace(pygame.sprite.Sprite):
     def __init__(self, color, width, height):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load("grace.bmp")#pygame.Surface([width, height])
+        self.image = pygame.image.load("grace.bmp")
         self.image.set_colorkey((0,0,0))
-        #self.image.fill((0, 0, 0))
+
         self.rect = self.image.get_rect()
 class Block(pygame.sprite.Sprite):
     def __init__(self, color, width, height):
@@ -27,6 +27,12 @@ class Block(pygame.sprite.Sprite):
         self.image = pygame.Surface([width, height])
         self.image.fill((0, 0, 0))
         self.rect = self.image.get_rect()
+
+
+
+        
+            
+        
 class Player:
     def refresh_color(self):
         """Set color(it depens on the module of Player speed)"""
@@ -49,12 +55,7 @@ class Player:
 
     def update(self, game):
         """Update Player state"""
-        """  game.block_hit_list = pygame.sprite.spritecollide(self.tank, game.block_list, False)
-        
-        if len(game.block_hit_list) > 0:
-            self.vx = 0
-            self.vy = 0
-            game.block_hit_list = [] """
+
         
         if game.pressed[pygame.K_LEFT]:
             if self.pos == 'u':
@@ -67,8 +68,7 @@ class Player:
                 game.tank_image_up = pygame.transform.rotate(game.tank_image_up, -90)
                 self.pos = 'l'
             self.vx = -200
-            
-            #self.vx -= game.delta * self.a
+
         if game.pressed[pygame.K_RIGHT]:
             if self.pos == 'u':
                 game.tank_image_up = pygame.transform.rotate(game.tank_image_up, -90)
@@ -80,8 +80,7 @@ class Player:
                 game.tank_image_up = pygame.transform.rotate(game.tank_image_up, 90)
                 self.pos = 'r'
             self.vx = 200
-            
-            #self.vx += game.delta * self.a
+
             
         if game.pressed[pygame.K_UP]:
             if self.pos == 'r':
@@ -94,8 +93,7 @@ class Player:
                 game.tank_image_up = pygame.transform.rotate(game.tank_image_up, 180)
                 self.pos = 'u'
             self.vy = -200
-            
-            #self.vy -= game.delta * self.a
+
             
         if game.pressed[pygame.K_DOWN]:
             if self.pos == 'r':
@@ -108,12 +106,11 @@ class Player:
                 game.tank_image_up = pygame.transform.rotate(game.tank_image_up, 180)
                 self.pos = 'd'
             self.vy = 200
-            
-            #self.vy += game.delta * self.a
+
           
         game.block_hit_list = pygame.sprite.spritecollide(self.tank, game.block_list, False)
         if len(game.block_hit_list) > 0:
-            #print(1)
+            
             self.vx = 0
             self.vy = 0
             if self.pos == 'l':
@@ -126,6 +123,35 @@ class Player:
                 self.y = self.y + 2
             
             game.block_hit_list = []
+        game.opp_player_hit_list = pygame.sprite.spritecollide(self.tank, game.opposite_player.player_list, False)
+        if len(game.opp_player_hit_list) > 0:
+            self.vx = 0
+            game.opposite_player.vx = 0
+            game.opposite_player.vy = 0
+            self.vy = 0
+            if (self.pos == 'l') and (game.opposite_player.pos == 'l') and (self.x >= game.opposite_player.x):
+                self.x = self.x + 2
+                game.opposite_player.x = game.opposite_player.x - 2
+                
+            if self.pos == 'l':
+                self.x = self.x + 2
+                
+            if (self.pos == 'r') and (game.opposite_player.pos == 'r') and (self.x <= game.opposite_player.x):
+                self.x = self.x -2
+                game.opposite_player.x = game.opposite_player.x + 2
+                
+            if self.pos == 'r':
+                self.x = self.x -2
+                game.opp_player_hit_list = []
+            if (self.pos == 'd') and (game.opposite_player.pos == 'd') and (self.y <= game.opposite_player.y):
+                self.y = self.y - 2
+                game.opposite_player.y = game.opposite_player.y + 2
+
+            if (self.pos == 'u') and (game.opposite_player.pos == 'u') and (self.y >= game.opposite_player.y):
+                self.y = self.y + 2
+                game.opposite_player.y = game.opposite_player.y -2
+
+            game.opp_player_hit_list = []
         (self.vx) -= (game.delta * self.vx * 10)
         (self.vy) -= (game.delta * self.vy * 10)
         self.x += self.vx * game.delta
@@ -133,45 +159,32 @@ class Player:
         self.tank.rect.x = self.x
         self.tank.rect.y = self.y
         
-        #print(self.vy)
-        #print(self.tank.rect.y)
-        #self.x += self.vx * game.delta
-        #self.y += self.vy * game.delta
-        #if game.pressed[pygame.K_SPACE]:
-            #self.x_bul = self.x
-            #self.y_bul = self.y
+
         """Do not let Player get out of the Game window"""
         if self.tank.rect.x < 15:
             if self.vx < 0:
                 self.vx = 0
             self.tank.rect.x = 15
-            #self.x = self.rect_x
+            
         if self.tank.rect.y < 15:
             if self.vy < 0:
                 self.vy = 0
             self.tank.rect.y = 15
-            #self.y = 15
+            
         if self.tank.rect.x > (game.width - 18):
             if self.vx > 0:
                 self.vx = 0
             self.tank.rect.x = game.width - 18
-            #self.x = game.width - 18
-        if self.tank.rect.y > (game.height - 13):#self.r:
+           
+        if self.tank.rect.y > (game.height - 13):
             if self.vy > 0:
                 self.vy = 0
             self.tank.rect.y = game.height - 13
-            #self.y = game.height - 13#self.r
 
-
-       # self.refresh_color()
 
     def render(self, game):
         """Draw Player on the Game window"""
-        #self.player_list.draw(game.screen)
-        #pygame.image.load("tanks.bmp") 
-        #pygame.draw.circle(game.screen,
-                #(self.color, self.color, self.color),
-                #(int(self.x), int(self.y)), self.r)
+
 
 
 class OpponentPlayer:
@@ -209,7 +222,7 @@ class OpponentPlayer:
                 self.pos = 'l'
             self.vx = -200
             
-            #self.vx -= game.delta * self.a
+            
         if game.pressed[pygame.K_d]:
             if self.pos == 'u':
                 game.opposite_tank = pygame.transform.rotate(game.opposite_tank, -90)
@@ -222,9 +235,10 @@ class OpponentPlayer:
                 self.pos = 'r'
             self.vx = 200
             
-            #self.vx += game.delta * self.a
+            
             
         if game.pressed[pygame.K_w]:
+            
             if self.pos == 'r':
                 game.opposite_tank = pygame.transform.rotate(game.opposite_tank, 90)
                 self.pos = 'u'
@@ -236,7 +250,7 @@ class OpponentPlayer:
                 self.pos = 'u'
             self.vy = -200
             
-            #self.vy -= game.delta * self.a
+            
             
         if game.pressed[pygame.K_s]:
             if self.pos == 'r':
@@ -250,9 +264,10 @@ class OpponentPlayer:
                 self.pos = 'd'
             self.vy = 200
             
-            #self.vy += game.delta * self.a
+            
           
         game.block_hit_list = pygame.sprite.spritecollide(self.tank, game.block_list, False)
+        
         if len(game.block_hit_list) > 0:
             #print(1)
             self.vx = 0
@@ -267,6 +282,35 @@ class OpponentPlayer:
                 self.y = self.y + 2
             
             game.block_hit_list = []
+        game.player_hit_list = pygame.sprite.spritecollide(self.tank, game.player.player_list, False)
+        if len(game.player_hit_list) > 0:
+            self.vx = 0
+            game.player.vx = 0
+            game.player.vy = 0
+            self.vy = 0
+            if (self.pos == 'l') and (game.player.pos == 'l') and (self.x >= game.player.x):
+                self.x = self.x + 2
+                game.player.x = game.player.x - 2
+            if self.pos == 'l':
+                self.x = self.x + 2
+                game.player_hit_list = []
+            if (self.pos == 'r') and (game.player.pos == 'r') and (self.x <= game.player.x):
+                self.x = self.x - 2
+                game.player.x = game.player.x + 2
+            if self.pos == 'r':
+                self.x = self.x -2
+                game.player_hit_list = []
+            if (self.pos == 'd') and (game.player.pos == 'd') and (self.y <= game.player.y):
+                self.y = self.y - 2
+                game.player.y = game.player.y + 2
+            
+               
+            if (self.pos == 'u') and (game.player.pos == 'u') and (self.y >= game.player.y):
+                self.y = self.y + 4
+                game.player.y = game.player.y - 2
+            
+                
+            game.player_hit_list = []
         (self.vx) -= (game.delta * self.vx * 10)
         (self.vy) -= (game.delta * self.vy * 10)
         self.x += self.vx * game.delta
@@ -274,13 +318,7 @@ class OpponentPlayer:
         self.tank.rect.x = self.x
         self.tank.rect.y = self.y
         
-        #print(self.vy)
-        #print(self.tank.rect.y)
-        #self.x += self.vx * game.delta
-        #self.y += self.vy * game.delta
-        #if game.pressed[pygame.K_SPACE]:
-            #self.x_bul = self.x
-            #self.y_bul = self.y
+        
         """Do not let Player get out of the Game window"""
         if self.tank.rect.x < 15:
             if self.vx < 0:
@@ -308,11 +346,7 @@ class OpponentPlayer:
 
     def render(self, game):
         """Draw Player on the Game window"""
-        #self.player_list.draw(game.screen)
-        #pygame.image.load("tanks.bmp") 
-        #pygame.draw.circle(game.screen,
-                #(self.color, self.color, self.color),
-                #(int(self.x), int(self.y)), self.r)
+
 
 
 
@@ -342,17 +376,19 @@ class Game:
         self.tool = 'run'
         self.player = Player()
         self.opposite_player = OpponentPlayer()
-        #self.ar = pygame.PixelArray(self.screen)
+     
         self.tank_image_up = pygame.image.load('tanks_up.bmp')
         self.opposite_tank = pygame.image.load('opposite_tank.bmp')
         self.block_list = pygame.sprite.Group()
         self.grace_list = pygame.sprite.Group()
+        self.player_hit_list = pygame.sprite.Group()
+        self.opp_player_hit_list = pygame.sprite.Group()
         
         i = 0
         while True:
             self.block = Walls((0,0,0), 40, 40)
-            self.block.rect.x = 0#random.randrange(self.width)
-            self.block.rect.y = i#random.randrange(self.height)
+            self.block.rect.x = 0
+            self.block.rect.y = i
             self.block_list.add(self.block)
             i = i + 28
             if not i <= 400:
@@ -360,8 +396,8 @@ class Game:
         k = 0    
         while True:
             self.block = Walls((0,0,0), 40, 40)
-            self.block.rect.x = self.width - 35#random.randrange(self.width)
-            self.block.rect.y = k#random.randrange(self.height)
+            self.block.rect.x = self.width - 35
+            self.block.rect.y = k
             self.block_list.add(self.block)
             k = k + 28
             if not k <= 400:
@@ -369,8 +405,8 @@ class Game:
         k=0
         while True:
             self.block = Walls((0,0,0), 40, 40)
-            self.block.rect.x = k#random.randrange(self.width)
-            self.block.rect.y = self.height - 20#random.randrange(self.height)
+            self.block.rect.x = k
+            self.block.rect.y = self.height - 20
             self.block_list.add(self.block)
             k = k + 20
             if not k <= 100:
@@ -378,8 +414,8 @@ class Game:
         k=0
         while True:
             self.block = Walls((0,0,0), 40, 40)
-            self.block.rect.x = 640 - k#random.randrange(self.width)
-            self.block.rect.y = self.height - 20#random.randrange(self.height)
+            self.block.rect.x = 640 - k
+            self.block.rect.y = self.height - 20
             self.block_list.add(self.block)
             k = k + 10
             if not k <= 150:
@@ -486,7 +522,7 @@ class Game:
 
     def render(self):
         """Render the scene"""
-        #self.screen.fill((255, 0, 0))
+
         self.screen.blit(self.space, (0,0))
         self.player.render(self)
         self.opposite_player.render(self)
@@ -494,9 +530,9 @@ class Game:
         self.opposite_tank.set_colorkey((0,0,0))
         self.screen.blit(self.tank_image_up, ((self.player.tank.rect.x -5 ), (self.player.tank.rect.y - 5)))
         self.screen.blit(self.opposite_tank, ((self.opposite_player.tank.rect.x -5 ), (self.opposite_player.tank.rect.y - 5)))
-        #self.screen.blit(self.tank_image_up, ((self.player.x), (self.player.y)))
+        
         pygame.draw.rect(self.screen, (255, 0, 0), ((0,0),(20,20)), 0) 
-        #self.ar[int(self.player.x/10.0),int(self.player.y/10.0)] = (200,200,200)
+
         self.block_list.draw(self.screen)
         self.grace_list.draw(self.screen)
         pygame.display.flip()
