@@ -43,5 +43,87 @@
 \begin{center}
 	Econometrics 1. Problem Set 1.
 \end{center}
-\section{Problem 1}
+\section*{Problem 1}
+ Suppose your calculate estimates for $\beta_0$ and $\beta_1$ by finding the solution to the following minimization problem:
+ \begin{align*}
+ \underset{b_0, b_1}{\min}\ \sum_{i=1}^n \text{exp} \left\{(y_i - b_0 - b_1x_i)^2\right\}
+ \end{align*}
+ Write down first-order conditions for the estimates.
+ 
+ 
+ \textbf{Solution}
+ 
+ 
+ \begin{align*}
+ \frac{\partial}{\partial b_0}: -2 \sum_{i=1}^n (y_i - b_0 - b_ix_i)e^{(y_i - b_0 - b_ix_i)^2} = 0\\
+ \frac{\partial}{\partial b_1}: -2 \sum_{i=1}^n x_i(y_i - b_0 - b_ix_i)e^{(y_i - b_0 - b_ix_i)^2} = 0
+ \end{align*}
+ \section*{Problem 2}
+ In the simple linear regression model $y = \beta_0 + \beta_1x + u$, suppose that $\expect (u) \neq 0$. Letting $a_0 = \expect(u)$, show that the model can always be rewritten with the same slope, but a new
+ intercept and error, where the new error has a zero expected value.
+ 
+ 
+ 
+ \textbf{Solution}
+ Assume $u' = a_0 - u$. Then $\expect(u') = a_0 - a_0 = 0$ and moreover
+ \begin{align*}
+ &y = \beta_0 + \beta_1 x + a_0 - u' = \beta_0' + \beta_1 x + u''\\
+ &\text{where}\ \beta_0' = \beta_0 + a_0\\
+ &\ \ \ u'' = -u'\\
+ &\text{and}\ \ \expect(u'') = -\expect(u') = 0
+ \end{align*}
+ Q.E.D.
+ \section*{Problem 3}
+ Consider the standard simple linear regression model $y = \beta_0 + \beta_1 x + u$
+ When $n = 3$, is it possible that the data point with maximal value of $y$ is located below the
+ OLS regression line? If answer is yes, provide an example, if no, provide a proof.
+ 
+ 
+ \textbf{Solution}
+ 
+ 
+ Yes, it is possible. Assume $X = (1, 2, 5)$ and corresponded $Y = (2, 3, 4)$ then
+ \begin{align*}
+ b_1 = \frac{12}{26}\\
+ b_0 = \frac{23}{13}
+ \end{align*}
+ and
+ \begin{align*}
+ \frac{12}{26} \cdot 5 + \frac{23}{13} = \frac{53}{13} \approx 4.08 > 4
+ \end{align*}
+ which means that the regression line is lying above the point (5, 4).
+ 
+ 
+ \section*{Problem 4}
+  Consider the following relation:
+\begin{align*}
+y = \sqrt{x} + u
+\end{align*}
+ where $x$ is uniformly distributed on segment $[0; 1]$ and error term $u$ has zero mean
+ conditional on $x$. A random sample of size $n$ is collected: $\left\{x_i, y_i\right\}_{i=1}^n$. Some econometrician
+ performs OLS estimation based on a simple linear model 
+ \begin{align*}
+	y = \beta_0 + \beta_1x + e
+\end{align*}
+ Based on her estimates $\hat{\beta_0}, \hat{\beta_1}$, the econometrician constructs the predictor for the conditional mean of the dependent variable, i.e. for $\expect(y|x)$, as $\widehat{\expect(y|x)} = \hat{\beta_0} + \hat{\beta_1} x$.
+ \begin{enumerate}[a.]
+ \item Calculate the expected value of y.
+ \item Find the expected values of $\hat{\beta_0}, \hat{\beta_1}$ conditional on realized values of $x$.
+ \end{enumerate}
+
+
+\textbf{Solution}
+\begin{enumerate}[a.]
+	\item 
+	\begin{align*}
+	\expect[\sqrt{x}] = \int_{0}^1 \sqrt{x}dx = \frac{2}{3}\\
+	\expect[u] = \expect[\expect[u|X]] = \expect[0] = 0\\
+	\expect[y] = \frac{2}{3} + 0 = \frac{2}{3}
+	\end{align*}
+	\item
+	\begin{align*}
+	\expect[\hat{\beta_1}|x_1, \dots, x_n] = \expect \left[\frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}\bigg|x_1, \dots, x_n\right] =\\
+	= \expect \left[\frac{\sum_{i=1}^n (x_i - \bar{x})(\sqrt{x_i} + u_i - \overline{\sqrt{x}} -  \bar{u})}{\sum_{i=1}^n (x_i - \bar{x})^2}\bigg|x_1, \dots, x_n\right]
+	\end{align*}
+	\end{enumerate}
 \end{document}
