@@ -120,10 +120,74 @@ y = \sqrt{x} + u
 	\expect[u] = \expect[\expect[u|X]] = \expect[0] = 0\\
 	\expect[y] = \frac{2}{3} + 0 = \frac{2}{3}
 	\end{align*}
-	\item
+	\item Denote $\overline{\sqrt{x}} = \frac{1}{n}\sum_{i=1}^n \sqrt{x_i}$, then
 	\begin{align*}
 	\expect[\hat{\beta_1}|x_1, \dots, x_n] = \expect \left[\frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}\bigg|x_1, \dots, x_n\right] =\\
 	= \expect \left[\frac{\sum_{i=1}^n (x_i - \bar{x})(\sqrt{x_i} + u_i - \overline{\sqrt{x}} -  \bar{u})}{\sum_{i=1}^n (x_i - \bar{x})^2}\bigg|x_1, \dots, x_n\right]
 	\end{align*}
+	Since
+	\begin{align*}
+	\expect \left[ \sum_{i=1}^n (x_i - \bar{x})(u_i - \bar{u})\bigg|x_1, \dots, x_n\right] = \expect \left[\sum_{i=1}^n (x_i - \bar{x})u_i\bigg|x_1, \dots, x_n\right]
+	\end{align*}
+	assuming independence of the sample, for each $i$
+	\begin{align*}
+	\expect[(x_i - \bar{x})u_i|x_1, \dots, x_n] = \expect[(x_i - \bar{x})u_i|x_i] = 0
+	\end{align*}
+	Thus, 
+	\begin{align*}
+	\expect[\hat{\beta_1}|x_1, \dots, x_n] = \frac{\sum_{i=1}^n (x_i - \bar{x})(\sqrt{x_i} - \overline{\sqrt{x}})}{\sum_{i=1}^n (x_i - \bar{x})^2}
+	\end{align*}
+	Similarly,
+	\begin{align*}
+	\expect[\hat{\beta_0}|x_1, \dots, x_n] = \expect[\bar{y} - \hat{\beta_1}\bar{x}|x_1, \dots, x_n] = \expect[\overline{\sqrt{x}} + \bar{u} - \hat{\beta_1}\bar{x}|x_1, \dots, x_n] = \\
+	=\overline{\sqrt{x}} + \expect[\bar{u}|x_1, \dots, x_n] - \bar{x}\expect[\hat{\beta_1}|x_1, \dots, x_n] = \overline{\sqrt{x}} - \bar{x} \cdot \frac{\sum_{i=1}^n (x_i - \bar{x})(\sqrt{x_i} - \overline{\sqrt{x}})}{\sum_{i=1}^n (x_i - \bar{x})^2}
+	\end{align*}
 	\end{enumerate}
+\section*{Problem 5}
+ Using R, compute the sample mean and standard deviation of \textit{ahe} (average hourly earnings),
+\textit{yrseduc} (years of education), and \textit{female}.
+
+
+
+\textbf{Solution}
+
+
+\begin{align*}
+\text{mean(ahe)} = 15.19042\\
+\text{sd(ahe)} = 8.027257\\
+\text{mean(yrseduc)} = 13.46549\\
+\text{sd(yrseduc)} = 2.479692\\
+\text{mean(female)} = 0.4385083\\
+\text{sd(female)} = 0.49627
+\end{align*}
+\section*{Problem 6}
+ Estimate a regression of \textit{ahe} on \textit{yrseduc}.
+ \begin{enumerate}
+ 	\item What is the coefficient on \textit{yrseduc}? Explain in words what it means. Is the numerical
+value of your estimate large or small in an economic (real-world) sense?
+\item Graph the data points and the estimated regression line.
+\item Is the slope coefficient statistically significantly different from zero? Show how you reach
+this conclusion. Use heteroskedasticity-robust standard errors to answer this question.
+\item Report the 95\% confidence interval for $\beta_1$, the slope of the population regression line.
+Use heteroskedasticity-robust standard errors to answer this question.
+\item  What is the $R^2$ of this regression? What does this mean?
+\item  Compute the correlation coefficient between ahe and yrseduc, and compare its square to
+the $R^2$. How are the correlation coefficient and the $R^2$
+related?
+\item What is the root mean squared error of the regression? What does this mean?
+\item Based on your graph from (b), does the error term appear to be homoskedastic or
+heteroskedastic?
+
+\end{enumerate}
+
+
+\textbf{Solution}
+\begin{enumerate}
+	\item Coefficient on \textit{yrseduc} is 1.32186. That means that on each additional years of education the average size of the per-hour salary increases by 1.32186 dollars/hour.
+	\item \begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{Rplot}
+		\caption{Regression line and data points}
+	\end{figure}
+\end{enumerate}
 \end{document}
