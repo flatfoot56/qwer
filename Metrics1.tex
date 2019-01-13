@@ -11,6 +11,7 @@
 \usetikzlibrary{angles,quotes}
 \usepackage{graphicx}
 \usepackage{amssymb}
+\usepackage{float}
 \usepackage[section]{placeins}
 \usepackage[makeroom]{cancel}
 \usepackage{mathrsfs} % 
@@ -162,7 +163,7 @@ y = \sqrt{x} + u
 \end{align*}
 \section*{Problem 6}
  Estimate a regression of \textit{ahe} on \textit{yrseduc}.
- \begin{enumerate}
+ \begin{enumerate}[a.]
  	\item What is the coefficient on \textit{yrseduc}? Explain in words what it means. Is the numerical
 value of your estimate large or small in an economic (real-world) sense?
 \item Graph the data points and the estimated regression line.
@@ -182,12 +183,121 @@ heteroskedastic?
 
 
 \textbf{Solution}
-\begin{enumerate}
+
+
+
+The results of regression are depicted below
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{lm}
+	\caption{Results of regression}
+\end{figure}
+\begin{enumerate}[a.]
 	\item Coefficient on \textit{yrseduc} is 1.32186. That means that on each additional years of education the average size of the per-hour salary increases by 1.32186 dollars/hour.
 	\item \begin{figure}[h]
 		\centering
 		\includegraphics[width=0.7\textwidth]{Rplot}
 		\caption{Regression line and data points}
 	\end{figure}
+\newpage
+\item Using coeftest one can get:
+ \begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{coeftest}
+	\caption{t-test of coefficients}
+\end{figure}
+
+
+
+that is, the slope significantly differs from zero.
+\item Using confint one can get:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{confint}
+	\caption{Confidence intervals for coefficients}
+\end{figure}
+
+
+
+
+that is, the 95\% confidence interval for the slope is (1.227613, 1.416104).
+\item $R^2$ is equal to 0.1667. This number is rather close to zero that means that regression hardly explains the actual interaction between variables (this conclusion can be drawn just by the glance at the plot on the Fig. 2).
+\item Correlation coefficient between \textit{ahe} and \textit{yrseduc} is equal to 0.4083341, and 
+\begin{align*}
+0.4083341^2 = 0.1667 = R^2
+\end{align*}
+For the regression with the single regressor the square of the correlation coefficient is exactly equal to $R^2$.
+\item 
+\begin{align*}
+\text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^n u_i^2} = 7.326572
+\end{align*}
+where $u_i = \hat{y_i} - y_i$.
+\item As for me the error term is in fact heteroskedastic.
+\end{enumerate}
+
+
+\section*{Problem 7}
+Estimate a regression of \textit{ahe} on \textit{female}.
+\begin{enumerate}[a.]
+\item What is the coefficient on \textit{female}? Explain in words what this means. Is the numerical
+value of your estimate large or small in an economic (real-world) sense?
+\item Test the hypothesis that average hourly earnings are the same for male and female
+workers, against the alternative that they differ, at the 5\% significance level. Make sure to use
+heteroskedasticity-robust standard errors to answer this question.
+\item Compute the sample average of \textit{ahe} for women, and the sample average of \textit{ahe} for men;
+from this compute an estimate of the “gender gap” in earnings; and construct the t-statistic
+testing the hypothesis that the gender gap is zero. Make sure to use heteroskedasticity-robust
+standard errors to answer this question. Compare your results to those in parts (a) and (b).
+\end{enumerate}
+
+
+
+\textbf{Solution}
+
+
+Results of regression are depicted below
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{lm_female}
+	\caption{Results of regression}
+\end{figure}
+
+
+\begin{enumerate}[a.]
+	\item Coefficient on \textit{female} is -3.2026. That means that average per-hour salary falls by 3.2026 dollars per hour for women compare with the one for men.
+	\item If average hourly earnings for women and men are equal then the slope coefficient should be equal to zero. Hence, let us test the hypothesis whether the slope coefficient is equal to zero. Using coeftest one can get:
+	
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\textwidth]{coeftest_female}
+		\caption{Test of coefficients}
+	\end{figure}
+
+	that is, on the significance level of 5\% null is rejected that is, average hourly earnings are actually not the same for men and for women.
+	\item Means for women's $\bar{w}$ and men's $\bar{m}$ average hourly earnings are:
+	\begin{align*}
+	\bar{w} = 13.3922\\
+	\bar{m} = 16.59478\\
+	\end{align*}
+	and
+	\begin{align*}
+	s_w = 6.916653\\
+	s_m = 8.539754\\
+	\end{align*}
+	hence assuming normality of data
+	\begin{align*}
+	t = \frac{\bar{w} - \bar{m}}{\sqrt{\frac{s_m^2}{n_m} + \frac{s_w^2}{n_w}}}
+	\end{align*}
+	then using t.test() one can get the following results:
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\textwidth]{t_test}
+		\caption{Results of the t-test for testing the equality of means in two groups}
+	\end{figure}
+that is we can reject the null hypothesis which means that there is in fact a "gender gap". This conclusion is fully consistent with those were gotten in (a) and (b).
 \end{enumerate}
 \end{document}
