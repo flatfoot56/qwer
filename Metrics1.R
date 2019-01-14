@@ -15,8 +15,6 @@ summary(fit)
 
 #b
 library(ggplot2)
-test <- function(x) {1.32186 * x -2.60905}
-
 ggplot(df, aes(yrseduc, ahe)) + geom_point() + geom_smooth(method='lm', se = F)
 
 #c
