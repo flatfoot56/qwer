@@ -193,7 +193,10 @@ The results of regression are depicted below
 	\caption{Results of regression}
 \end{figure}
 \begin{enumerate}[a.]
-	\item Coefficient on \textit{yrseduc} is 1.32186. That means that on each additional years of education the average size of the per-hour salary increases by 1.32186 dollars/hour.
+	\item Coefficient on \textit{yrseduc} is 1.32186. That means that on each additional years of education the average size of the per-hour salary increases by 1.32186 dollars/hour. Or put it another way, we predict that ceteris paribus each additional year of education increases average hours earnings by 1.32186 dollars per hour. 
+	
+	
+	If a standard working week lasts 40-45 hours that means that in average each additional year of education gives about $4 \cdot 45 \cdot 1.32186 \approx \$238$ additional dollars per month which is a rather reasonable number, I suppose.
 	\item \begin{figure}[h]
 		\centering
 		\includegraphics[width=0.7\textwidth]{Rplot}
@@ -247,7 +250,8 @@ heteroskedasticity-robust standard errors to answer this question.
 \item Compute the sample average of \textit{ahe} for women, and the sample average of \textit{ahe} for men;
 from this compute an estimate of the “gender gap” in earnings; and construct the t-statistic
 testing the hypothesis that the gender gap is zero. Make sure to use heteroskedasticity-robust
-standard errors to answer this question. Compare your results to those in parts (a) and (b).
+standard errors to answer this question. Compare your results to those in parts (a) and (b).
+
 \end{enumerate}
 
 
@@ -267,7 +271,7 @@ Results of regression are depicted below
 
 
 \begin{enumerate}[a.]
-	\item Coefficient on \textit{female} is -3.2026. That means that average per-hour salary falls by 3.2026 dollars per hour for women compare with the one for men.
+	\item Coefficient on \textit{female} is -3.2026. That means that average per-hour salary falls by 3.2026 dollars per hour for women compare with the one for men. The number is also rather reasonable.
 	\item If average hourly earnings for women and men are equal then the slope coefficient should be equal to zero. Hence, let us test the hypothesis whether the slope coefficient is equal to zero. Using coeftest one can get:
 	
 	
