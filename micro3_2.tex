@@ -1,0 +1,119 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Microeconomics 3. Problem Set 2.
+\end{center}
+\section*{Problem 1}
+Suppose that as a function of factor prices $w = (w_1, w_2) >> 0$, the firms' cost for producing
+one unit of output are as follows:
+\begin{align*}
+c_1(w) = \left(\frac{w_1}{3/4}\right)^{3/4}\left(\frac{w_2}{1/4}\right)^{1/4}\\
+c_1(w) = \left(\frac{w_1}{1/4}\right)^{1/4}\left(\frac{w_2}{3/4}\right)^{3/4}
+\end{align*}
+Let $p_1 = 4$ and $p_2 = \frac{4}{\sqrt{3}}$ be the unit price of the firms' outputs, respectively. Furthermore, assume that the total endowment of the two factors are given by $\bar{z_1} = 1 + \frac{1}{3\sqrt{3}}$ and $\bar{z_2} = 1+\sqrt{3}$. Find the factor prices and allocation in an \textit{interior} equilibrium.
+
+
+
+\textbf{Solution}
+
+
+Since the solution should be interior that means that $c_1(w) = p_1, c_2(w) = p_2$. Hence, 
+\begin{align*}
+\frac{c_1(w)}{c_2(w)} = \frac{p_1}{p_2}\\
+\left(\frac{w_1}{w_2}\right)^{1/2} = \sqrt{3}\\
+w_1 = 3w_2\\
+\end{align*}
+Plugging it into $c_1(w) = p_1$ one can obtain:
+\begin{align*}
+4w_2 = 4 \to w_2 = 1, w_1 = 3\\
+\end{align*}
+Now let us find demand vectors for factors:
+\begin{align*}
+a_1(w) = \begin{pmatrix}
+\frac{\partial c_1(w)}{\partial w_1}\\
+\frac{\partial c_1(w)}{\partial w_2}
+\end{pmatrix} = \begin{pmatrix}
+\left(\frac{3w_2}{w_1}\right)^{1/4}\\
+\left(\frac{w_1}{3w_2}\right)^{3/4}
+\end{pmatrix} = \begin{pmatrix}
+1\\
+1
+\end{pmatrix}\\
+a_2(w) = \begin{pmatrix}
+\frac{\partial c_2(w)}{\partial w_1}\\
+\frac{\partial c_2(w)}{\partial w_2}
+\end{pmatrix} = \begin{pmatrix}
+\left(\frac{w_2}{3w_1}\right)^{3/4}\\
+\left(\frac{3w_1}{w_2}\right)^{1/4}
+\end{pmatrix} = \begin{pmatrix}
+\dfrac{1}{\sqrt{27}}\\
+\\
+\sqrt{3}
+\end{pmatrix}\\
+\end{align*}
+Since
+\begin{align*}
+\frac{a_{11}}{a_{21}} = 1 > \frac{\bar{z_1}}{\bar{z_2}} = \frac{1+3\sqrt{3}}{3\sqrt{3}(1 + \sqrt{3})} = \frac{8 - 2\sqrt{3}}{6\sqrt{3}} > \frac{a_{12}}{a_{22}} = \frac{1}{9}
+\end{align*}
+that means that solution is indeed interior.
+To find the optimal output level $(q_1^*, q_2^*)$ we need the market clearing condition to be satisfied, i.e. we need to solve the following linear system:
+\begin{align*}
+q_1 \begin{pmatrix}
+1\\
+1
+\end{pmatrix} + q_2 \begin{pmatrix}
+\frac{1}{\sqrt{27}}\\
+\sqrt{3}
+\end{pmatrix} = \begin{pmatrix}
+1 + \frac{1}{3\sqrt{3}}\\
+1 + \sqrt{3}
+\end{pmatrix}
+\end{align*}
+and the solution is obviously $q_2^* = 1, q_1^* = 1$. Thus, prices for factors are $w = (3, 1)$ and the equilibrium factors' allocation is:
+\begin{align*}
+\begin{pmatrix}
+1\\
+1
+\end{pmatrix}, \begin{pmatrix}
+\frac{1}{3\sqrt{3}}\\
+\sqrt{3}
+\end{pmatrix}
+\end{align*}
+\end{document}
