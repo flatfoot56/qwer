@@ -278,4 +278,83 @@ and the equilibrium allocation is
 \bar{z_2}
 \end{pmatrix}
 \end{align*}
+\section*{Problem 4}
+Consider the 2x2 production model with constant returns to scale. Suppose that as a
+function of factor prices $w = (w_1; w_2) >> 0$, the firms' cost of producing one unit of output
+are as follows:
+\begin{align*}
+c_1(w) = \left(\frac{w_1}{3/4}\right)^{3/4}\left(\frac{w_2}{1/4}\right)^{1/4}\\
+c_2(w) = \left(\frac{w_1}{1/2}\right)^{1/2}\left(\frac{w_2}{1/2}\right)^{1/2}
+\end{align*}
+The firms' output are sold in the international market at the following prices per unit,
+respectively:
+\begin{align*}
+p_1 = 4,\  p_2 = 2\sqrt{3}
+\end{align*}
+Furthermore, the total endowment of factors 1 and 2 are given as follows, respectively:
+\begin{align*}
+\bar{z_1} = 2 + \frac{1}{\sqrt{3}},\ \bar{z_2} = 2 + \sqrt{3}
+\end{align*}
+\begin{enumerate}[(i)]
+	\item Compute the factor prices, factor allocation, and firms' output in an interior equilibrium.
+	\item For which values of $\bar{z_1}$ and $\bar{z_2}$ would the firm 1 shut down in equilibrium? Briefly interpret
+	your answer to provide some intuition.
+\end{enumerate}
+
+
+
+\textbf{Solution}
+\begin{enumerate}[(i)]
+\item \begin{align*}
+\frac{c_1(w)}{c_2(w)} &= \frac{p_1}{p_2}\\
+\frac{2}{3^{3/4}}\left(\frac{w_1}{w_2}\right)^{1/4} &= \frac{4}{2\sqrt{3}}\\
+\frac{w_1}{w_2} = 3 &\to w_1 = 3w_2\\
+c_1(w) = p_1 \to 4w_2 = 4 &\to w_2 = 1, w_1 = 3
+\end{align*}
+\begin{align*}
+a_1(w) = \begin{pmatrix}
+\left(\frac{3w_2}{w_1}\right)^{1/4}\\
+\left(\frac{w_1}{3w_2}\right)^{3/4}\\
+\end{pmatrix} = \begin{pmatrix}
+1\\
+1
+\end{pmatrix}\\
+a_2(w) = \begin{pmatrix}
+\left(\frac{w_2}{w_1}\right)^{1/2}\\
+\left(\frac{w_1}{w_2}\right)^{1/2}\\
+\end{pmatrix} = \begin{pmatrix}
+\frac{1}{\sqrt{3}}\\
+\sqrt{3}
+\end{pmatrix}\\
+\end{align*}
+\begin{align*}
+q_1 \begin{pmatrix}
+1\\
+1
+\end{pmatrix} + q_2 \begin{pmatrix}
+\frac{1}{\sqrt{3}}\\
+\sqrt{3}
+\end{pmatrix} = \begin{pmatrix}
+2 + \frac{1}{\sqrt{3}}\\
+2 + \sqrt{3}
+\end{pmatrix}\\
+q_1^* = 2, q_2^* = 1\\
+\end{align*}
+Allocation:
+\begin{align*}
+\begin{pmatrix}
+2\\
+2
+\end{pmatrix}, \begin{pmatrix}
+\frac{1}{\sqrt{3}}\\
+\sqrt{3}
+\end{pmatrix}
+\end{align*}
+\item Firm 1 shuts down when:
+\begin{align*}
+\frac{a_{11}}{a_{21}} = 1 > \frac{a_{12}}{a_{22}} = \frac{1}{3} > \frac{\bar{z_1}}{\bar{z_2}}\\
+\text{i. e. } \bar{z_2} > 3 \bar{z_1}
+\end{align*}
+qualitatively this condition means that there exists tiny amount of factor $\bar{z_1}$ compare to the amount of factor $\bar{z_2}$, but the first firm disposes the first factor very wasteful: for each unit of factor 2 it needs a unit of factor 1. In the same time, the firm 2 is a prudent firm, it uses scarce resources more efficient, for each unit of factor 2 it needs only $\frac{1}{3}$ of factor 1. As a result in the equilibrium only the firm 2 produces.
+\end{enumerate}
 \end{document}
