@@ -140,8 +140,8 @@ truly optimal given the factor prices you determined.
 
 As in previous exercise:
 \begin{align*}
-\frac{c_1(w)}{c_2(w)} = \frac{p_1}{p_2}\\ \frac{6}{2^{\frac{2}{3}}}\left(\frac{w_1}{w_2}\right)^{1/6} = \frac{6}{2^{\frac{2}{3}}3}\\
-w_2 = 3^6w_1
+\frac{c_1(w)}{c_2(w)} = \frac{p_1}{p_2}\\ \frac{3}{2^{\frac{2}{3}}2}\left(\frac{w_1}{w_2}\right)^{1/6} = \frac{6}{2^{\frac{2}{3}}3}\\
+w_1 = \frac{4^6}{3^6}w_2
 \end{align*}
 Now let us find the demand for factors:
 \begin{align*}
@@ -152,8 +152,9 @@ a_1(w) = \begin{pmatrix}
 \left(\frac{2w_2}{w_1}\right)^{1/3}\\
 \left(\frac{w_1}{2w_2}\right)^{2/3}
 \end{pmatrix} = \begin{pmatrix}
-2^{\frac{1}{3}}9\\
-\frac{1}{2^{\frac{2}{3}}81}
+2^{\frac{1}{3}}\frac{9}{16}\\
+\\
+\frac{256}{2^{\frac{2}{3}}81}
 \end{pmatrix}\\
 a_2(w) = \begin{pmatrix}
 \frac{\partial c_2(w)}{\partial w_1}\\
@@ -162,14 +163,30 @@ a_2(w) = \begin{pmatrix}
 \left(\frac{w_2}{w_1}\right)^{1/2}\\
 \left(\frac{w_1}{w_2}\right)^{1/2}
 \end{pmatrix} = \begin{pmatrix}
-27\\
+\frac{27}{64}\\
 \\
-\frac{1}{27}
+\frac{64}{27}
 \end{pmatrix}\\
-\frac{a_{11}}{a_{21}} = 2\cdot 3^6 > \frac{a_{12}}{a_{22}} = 3^6 > \frac{\bar{z_1}}{\bar{z_2}} = 2
+\frac{\bar{z_1}}{\bar{z_2}}  = 2 > \frac{a_{11}}{a_{21}} = 2\cdot \frac{3^6}{4^6} > \frac{a_{12}}{a_{22}} = \frac{3^6}{4^6}
 \end{align*}
-That means that in the equilibrium firm 1 should shut down.
-
+That means that in the equilibrium firm 2 should indeed shut down. Thus, 
+\begin{align*}
+\begin{cases}
+c_1(w) = p_1\\
+\frac{a_{11}}{a_{21}} = \frac{\bar{z_1}}{\bar{z_2}}
+\end{cases}\ \to 2\frac{w_2}{w_1} = 2 \to w_1 = w_2 \to \frac{3w_1}{2^{2/3}} = \frac{6}{2^{2/3}} \to w_1 = 2 = w_2
+\end{align*}
+Allocation:
+\begin{align*}
+\begin{pmatrix}
+2\\
+1
+\end{pmatrix}, \begin{pmatrix}
+0\\
+0
+\end{pmatrix}
+\end{align*}
+If $w_1 = w_2 = 2$ then $c_2(2, 2) = 4$ that is to produce one unit firm 2 should spend 4 dollars, while the price of unit of its production is only 3, that is it is indeed optimal for the second firm not to produce. Firm's 1 decision is also optimal because with $w_1 = w_2 = 2$ its cost of producing 1 unit becomes equal to price of the output. 
 \section*{Problem 3}
 Suppose that for $w = (w_1, w_2) >> 0$, \begin{align*}
 a_{11} = \frac{2}{3w_1}\left(\frac{w_1}{2/3}\right)^{2/3}\left(\frac{w_2}{1/3}\right)^{1/3}\\
