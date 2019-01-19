@@ -28,6 +28,7 @@
 \newcommand{\prob}{\mathbb{P}}
 \newcommand{\norma}{\mathscr{N}}
 \newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
 \usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
 \usepackage{tikz} % 
 \def\myrad{2cm}% radius of the circle
@@ -89,4 +90,79 @@ Thus,
 \begin{align*}
 \expect \tilde{\beta_1} = \beta_1 + \beta_3\frac{\sum_{i=1}^n\hat{r_{i1}}x_{i3}}{\sum_{i=1}^n \hat{r_{i1}}^2}
 \end{align*}
+\section*{Problem 2}
+\begin{enumerate}[(i)]
+	\item Consider the simple regression model $y = \beta_0 +\beta_1x+u$ under the first four Gauss-Markov
+	assumptions. For some function $g(x)$, for example $g(x) = x^2$ or $g(x) = \ln (1 + x^2)$, define
+	$z_i = g(x_i)$. Define a slope estimator as
+	\begin{align*}
+	\tilde{\beta_1} = \frac{\sum_{i=1}^n (z_i - \bar{z})y_i}{\sum_{i=1}^n (z_i - \bar{z})x_i}
+	\end{align*}
+	Show that $\tilde{\beta_1}$ is linear and unbiased.
+	\item Add the homoskedasticity assumption, MLR.5. Show that
+	\begin{align*}
+	Var \tilde{\beta_1} = \sigma^2 \frac{\sum_{i=1}^n (z_i -  \bar{z})^2}{\left(\sum_{i=1}^n (z_i - \bar{z})x_i\right)^2}
+	\end{align*}
+	\item Show directly that, under the Gauss-Markov assumptions, $Var\hat{\beta_1} \le Var\tilde{\beta_1}$, where $\hat{\beta_1}$ is the OLS estimator.
+\end{enumerate}
+
+
+
+\textbf{Solution}
+
+\begin{enumerate}[(i)]
+	\item Since 
+	\begin{align*}
+	\tilde{\beta_1} = a_1 y_1 + \dots + a_ny_n
+	\end{align*}
+	is a linear function of $y_1, \dots, y_n$ with some coefficients, thus, it is a linear estimator. Now let us show unbiasedness  
+	\begin{align*}
+	\tilde{\beta_1} = \frac{\sum_{i=1}^n (z_i - \bar{z})(\beta_0 + \beta_1 x_i + u_i)}{\sum_{i=1}^n(z_i - \bar{z})x_i} = \beta_1 + \frac{\sum_{i=1}^n(z_i - \bar{z})u_i}{\sum_{i=1}^n(z_i - \bar{z})x_i}\\
+	\expect \tilde{\beta_1} = \beta_1 + \expect \left[\frac{\sum_{i=1}^n(z_i - \bar{z})u_i}{\sum_{i=1}^n(z_i - \bar{z})x_i}\right]
+	\end{align*}
+	\begin{align*}
+	\expect[(z_i - \bar{z})u_i] \underset{\expect u_i = 0}{ = } \expect[z_iu_i] = \expect[\expect[z_iu_i|x_1, \dots, x_n]] \underset{\text{i.i.d}}{ = } \expect[z_i\expect[u_i|x_i]] \underset{\text{G.-M. assump.}}{ = } 0 
+	\end{align*}
+	Hence 
+	\begin{align*}
+	\expect \tilde{\beta_1} = \beta_1
+	\end{align*}
+	i.e. the estimator is unbiased.
+	\item Assume $Var(u|x) = \sigma^2$ then
+	\begin{align*}
+	Var \tilde{\beta_1} &= Var\left[\frac{\sum_{i=1}^n (z_i - \bar{z})y_i}{\sum_{i=1}^n (z_i - \bar{z})x_i}\right] = \frac{1}{\left(\sum_{i=1}^n (z_i - \bar{z})x_i\right)^2} Var\left[\sum_{i=1}^n (z_i - \bar{z})y_i\right] \underset{\text{i.i.d}}{=}\\
+	&\underset{\text{i.i.d}}{=}\frac{1}{\left(\sum_{i=1}^n (z_i - \bar{z})x_i\right)^2} \sum_{i=1}^n Var((z_i - \bar{z})y_i)\\
+	&Var((z_i - \bar{z})y_i) = \expect[Var[((z_i - \bar{z})y_i)|x_1, \dots, x_n]] + Var(\expect[((z_i - \bar{z})y_i)|x_1, \dots, x_n]) = \\
+	&=\expect[(z_i - \bar{z})^2 Var(y_i|x_1, \dots, x_n)] + Var((z_i - \bar{z})\expect[y_i|x_1, \dots, x_n]) \underset{\text{i.i.d}}{=}\\
+	&\underset{\text{i.i.d}}{=} \expect[(z_i-\bar{z})^2 Var(y_i|x_i)] + Var((z_i - \bar{z})\expect[y_i|x_i])
+	\end{align*}
+	\begin{align*}
+	Var(y_i|x_i) = Var(\beta_0 + \beta_1x_i + u_i|x_i) = Var(u_i|x_i) = \sigma^2\\
+	\expect[y_i|x_i] = \expect[\beta_0 + \beta_1x_i + u_i|x_i] = \beta_0 + \beta_1x_i
+	\end{align*}
+	Hence
+	\begin{align*}
+	Var ((z_i - \bar{z})y_i) = (z_i - \bar{z})^2\sigma^2 + Var(const) = (z_i - \bar{z})^2\sigma^2
+	\end{align*}
+	Thus, 
+	\begin{align*}
+	Var \tilde{\beta_1} = \sigma^2 \frac{\sum_{i=1}^n (z_i -  \bar{z})^2}{\left(\sum_{i=1}^n (z_i - \bar{z})x_i\right)^2}
+	\end{align*}
+	\item 
+	\begin{align*}
+	\hat{\beta_1} = \frac{\sum_{i=1}^n(x_i - \bar{x})y_i}{\sum_{i=1}^n(x_i - \bar{x})^2}
+	\end{align*}
+	Similarly to (ii):
+	\begin{align*}
+	Var \hat{\beta_1} = \frac{ \sigma^2}{\sum_{i=1}^n(x_i - \bar{x})^2}
+	\end{align*}
+	By the Cauchy - Schwartz inequality:
+	\begin{align*}
+	\left(\sum_{i=1}^n (z_i - \bar{z})(x_i - \bar{x})\right)^2 = \left(\sum_{i=1}^n (z_i - \bar{z})x_i\right)^2 \le \left(\sum_{i=1}^n (x_i - \bar{x})^2\right) \left(\sum_{i=1}^n (z_i - \bar{z})^2\right)
+	\end{align*} 
+	hence
+	\begin{align*}
+	Var \tilde{\beta_1} \ge \sigma^2 \frac{\summa (z_i - \bar{z})^2}{\left(\sum_{i=1}^n (x_i - \bar{x})^2\right) \left(\sum_{i=1}^n (z_i - \bar{z})^2\right)} = \frac{ \sigma^2}{\sum_{i=1}^n(x_i - \bar{x})^2} = Var \hat{\beta_1}
+	\end{align*}
+\end{enumerate}
 \end{document}
