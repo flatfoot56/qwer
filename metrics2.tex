@@ -225,4 +225,38 @@ Is $\tilde{\beta_2} = \frac{1}{\hat{\gamma_2}}$ an unbiased estimate of $\beta_2
 	\hat{\gamma_2} = \frac{s^2_{yx_2} - s^2_{x_1x_2}}{s^2_{yy} - s^2_{yx_1}} \to \frac{1}{\hat{\gamma_2}} = \frac{s^2_{yy} - s^2_{yx_1}}{s^2_{yx_2} - s^2_{x_1x_2}}
 	\end{align*}
 \end{enumerate}
+\section*{Problem 4}
+Consider a simple regression model through the origin under the Gauss-Markov assumptions
+\begin{align*}
+y = \gamma x + \varepsilon
+\end{align*}
+and let
+\begin{align*}
+\tilde{\gamma} = \frac{\summa y_ix_i^3}{\summa x_i^4}
+\end{align*}
+be an estimator of the slope parameter $\gamma$.
+\begin{enumerate}[(a)]
+\item Under what condition this estimator is well defined?
+\item Show conditional unbiasness of $\tilde{\gamma}$.
+\item Derive conditional variance of the estimator.
+\end{enumerate}
+
+
+\textbf{Solution}
+
+
+\begin{enumerate}[(a)]
+	\item First of all $x_i \neq 0\ \forall i$ then the estimator is well-defined.
+	\item \begin{align*}
+	\expect[\tilde{\gamma}|x_1, \dots, x_n] = \expect\left[\frac{\summa (\gamma x_i + \varepsilon_i)x_i^3}{\summa x_i^4}\bigg|x_1, \dots, x_n\right] &= \gamma + \frac{1}{\summa x_i^4} \summa x_i^3\expect[\varepsilon_i|x_1, \dots, x_n] =\\
+	 &\underset{\text{G.-M. assump}}{=} \gamma + 0
+	\end{align*}
+	\item \begin{align*}
+	Var(\tilde{\gamma}|x_1, \dots, x_n) = Var\left[\frac{\summa (\gamma x_i + \varepsilon_i)x_i^3}{\summa x_i^4}\bigg|x_1, \dots, x_n\right] \underset{\text{i.i.d}}{=} \frac{\summa x_i^6 Var[\varepsilon_i|x_i]}{\left(\summa x_i^4\right)^2} 
+	\end{align*}
+	If $Var(\varepsilon|x) = const = \sigma^2$ then
+	\begin{align*}
+	Var(\tilde{\gamma}|x_1, \dots, x_2) = \sigma^2 \frac{\summa x_i^6}{\left(\summa x_i^4\right)^2} 
+	\end{align*}
+\end{enumerate}
 \end{document}
