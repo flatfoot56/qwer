@@ -165,4 +165,64 @@ Thus,
 	Var \tilde{\beta_1} \ge \sigma^2 \frac{\summa (z_i - \bar{z})^2}{\left(\sum_{i=1}^n (x_i - \bar{x})^2\right) \left(\sum_{i=1}^n (z_i - \bar{z})^2\right)} = \frac{ \sigma^2}{\sum_{i=1}^n(x_i - \bar{x})^2} = Var \hat{\beta_1}
 	\end{align*}
 \end{enumerate}
+\section*{Problem 3}
+Consider the standard linear multivariate regression model
+\begin{align*}
+y = \beta_0 + \beta_1x_1 + \beta_2x_2 + u
+\end{align*}
+under the Gauss-Markov assumptions.
+\begin{enumerate}[(a)]
+\item Derive the OLS estimate $\hat{\beta_2}$ in terms of sample variances and sample covariances of
+random variables $x_1$, $x_2$ and $y$.
+\item How would you get the OLS estimates $\hat{\beta_1}$ and $\hat{\beta_2}$ by computing a series of OLS estimates
+from simple regressions only?
+\item Suppose you have decided to get OLS estimates for $\gamma_0$, $\gamma_1$ and $\gamma_2$ from
+\begin{align*}
+x_2 = \gamma_0 + \gamma_1x_1 + \gamma_2 y + \nu.
+\end{align*}
+Is $\tilde{\beta_2} = \frac{1}{\hat{\gamma_2}}$ an unbiased estimate of $\beta_2$?
+\end{enumerate}
+
+
+\textbf{Solution}
+
+
+\begin{enumerate}[(a)]
+	\item Denote sample variances as $s^2_{ab}, a, b \in \left\{y, x_1, x_2\right\}$. To compute the OLS estimate we need to solve the following optimization problem:
+	\begin{align*}
+	\underset{b_0, b_1, b_2}{\min} \summa (y_i - b_0 - b_1x_{1i} - b_2x_{2i})^2\\
+	\text{FOCs:} \begin{cases}
+	\summa (y_i - b_0 - b_1x_{1i} - b_2x_{2i}) = 0\\
+	\summa (y_i - b_0 - b_1x_{1i} - b_2x_{2i})x_{1i} = 0\\
+	\summa (y_i - b_0 - b_1x_{1i} - b_2x_{2i})x_{2i} = 0
+	\end{cases}\\
+	b_0 = \bar{y} - b_1\bar{x_1} - b_2 \bar{x_2}\\
+	b_1\left(\summa x_{1i}^2\right) = \summa (y_i - \bar{y} + b_1\bar{x_1} + b_2\bar{x_2} - b_2x_{2i})x_{1i}
+	\end{align*}
+	\begin{align*}
+	b_1 = \frac{\summa (y_i - \bar{y} - b_2(x_{2i} - \bar{x}))x_{1i}}{\summa (x_{1i} - \bar{x})^2}&=\frac{\summa (y_i - \bar{y})(x_{1i} - \bar{x_1}) - b_2\summa(x_{2i} - \bar{x_2})(x_{1i} - \bar{x_1})}{\summa (x_{1i} - \bar{x})^2} =\\
+	&=\frac{s^2_{yx_1} - b_2s^2_{x_1x_2}}{s^2_{x_1x_1}}
+	\end{align*}
+	Similarly for $b_2$:
+	\begin{align}\label{eq2}
+	b_2 = \frac{s^2_{yx_2} - b_1s^2_{x_1x_2}}{s^2_{x_2x_2}} &= \frac{s^2_{yx_2} - s^2_{yx_1} + b_2s^2_{x_1x_2}}{s^2_{x_2x_2}} \nonumber\\
+	b_2 &= \frac{s^2_{yx_2} - s^2_{yx_1}}{s^2_{x_2x_2} - s^2_{x_1x_2}}
+	\end{align}
+	\item Performing simple linear regression of $y$ on $x_1$, $y$ on $x_2$, $x_1$ on $x_2$ and $x_2$ on $x_1$ denote OLS estimates for slope coefficients as $\alpha_1, \alpha_2, \alpha_3, \alpha_4$ respectively. It is known that
+	\begin{align*}
+	\alpha_1 = \frac{s^2_{yx_1}}{s^2_{x_1x_1}},\ \alpha_2 = \frac{s^2_{yx_2}}{s^2_{x_2x_2}},\ \alpha_3 = \frac{s^2_{x_1x_2}}{s^2_{x_2x_2}},\ \alpha_4 = \frac{s^2_{x_1x_2}}{s^2_{x_1x_1}}
+	\end{align*}
+	Divide numerator and denumerator of (\ref{eq2}) by $s^2_{x_1x_1}$ (assuming that it is not equal to 0):
+	\begin{align*}
+	b_2 = \frac{\alpha_2\frac{\alpha_4}{\alpha_3} - \alpha_1}{\frac{\alpha_4}{\alpha_3} - \alpha_4}
+	\end{align*}
+	Similarly for $b_1$:
+	\begin{align*}
+	b_1 = \frac{\alpha_1\frac{\alpha_3}{\alpha_4} - \alpha_2}{\frac{\alpha_3}{\alpha_4} - \alpha_3}
+	\end{align*}
+	\item From (\ref{eq2}):
+	\begin{align*}
+	\hat{\gamma_2} = \frac{s^2_{yx_2} - s^2_{x_1x_2}}{s^2_{yy} - s^2_{yx_1}} \to \frac{1}{\hat{\gamma_2}} = \frac{s^2_{yy} - s^2_{yx_1}}{s^2_{yx_2} - s^2_{x_1x_2}}
+	\end{align*}
+\end{enumerate}
 \end{document}
