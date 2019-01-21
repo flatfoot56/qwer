@@ -1,0 +1,186 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Macroeconomics 3. Problem Set 1.
+\end{center}
+\section*{Problem 1}
+Consider the following model
+\begin{align}\label{eq1}
+\underset{\left\{k(t+1), c(t)\right\}_{t=0}^{\infty}}{\max}\ \sum_{t=0}^{\infty} \beta^t u(c(t))\nonumber\\
+s.t.\ k(t+1) = k(t) - c(t) \\
+c(t) \ge 0, k(t) \ge 0, k(0) > 0\ \text{is given}\nonumber
+\end{align}
+\begin{enumerate}
+	\item Rewrite it recursively. Replace $\beta$ with $\frac{1}{1+\rho}$
+	and derive the asset pricing equations for the whole
+	cake and for the marginal piece of cake. Explain what are the “dividends” and the “capital gains”
+	in each case.
+	\item Does the value of the marginal piece of cake increase or decrease over time? Use the asset pricing
+	equation and explain the intuition.
+	\item Does the value of the whole cake increase or decrease over time? Explain the intuition.
+	\item At which rate does the “current value” of the marginal piece of cake change over time? What
+	about the “present value”? Use the optimality conditions and explain the intuition.
+	\item Assume CRRA utility function,
+	\begin{align*}
+	u(c(t)) = \frac{c(t)^{1 - \sigma}}{1 - \sigma}, \sigma > 0
+	\end{align*}
+	Derive the Euler equation. Explain the intuition of how the consumption path depends on the
+	intertemporal elasticity of substitution.
+	\item Now assume that the cake goes bad as the time goes on, that is the constraint \eqref{eq1} changes to
+	\begin{align*}
+	k (t + 1) = (1 - \delta) k (t) - c (t)
+	\end{align*}
+	where $0 < \delta < 1$. Explain how does it change your answers to the previous questions.
+	\item Assume $\sigma = 1$ and $\delta = 0$. Find the analytical solutions for the value and policy functions.
+\end{enumerate}
+
+
+\textbf{Solution}
+
+\begin{enumerate}
+	\item Let $V(k)$ be the value of the agent who acts optimally and possesses $k$ units of capital now. Then Bellman equation is:
+	\begin{align*}
+	V(k) = \underset{0 \le c \le k}{\max}\left\{u(c) + \beta V(k - c)\right\} \\
+	V(k) = \underset{0 \le c \le k}{\max}\left\{u(c) + \frac{1}{1+\rho} V(k - c)\right\} 
+	\end{align*}
+	Assume $c^*$ is the optimizer, then
+	\begin{align*}
+	V(k) = u(c^*) + \frac{1}{1+\rho}V(k-c^*)\\
+	\rho = \frac{V(k - c^*) - V(k) + u(c^*)}{V(k) - u(c^*)}
+	\end{align*}
+	here $V(k-c^*) - V(k)$ are "capital gains" and $u(c^*)$ are "dividends". By the envelope theorem
+	\begin{align*}
+	V'(k) = \frac{1}{1+\rho}V'(k-c^*)\\
+	\rho = \frac{V'(k-c^*) - V'(k)}{V'(k)}
+	\end{align*}
+	\item 
+	\item 
+	\item 
+	\item Assume 
+	\begin{align*}
+	u(c(t)) = \frac{c(t)^{1 - \sigma}}{1 - \sigma}, \sigma > 0
+\end{align*}
+then
+\begin{align*}
+&L = \sum_{t=0}^{\infty} \beta^t(u(c(t)) + \lambda(t)(k(t) - c(t) - k(t+1)))\\
+&\begin{cases}\frac{\partial}{\partial c(t)}: u'(c(t)) - \lambda(t) = 0\\
+\frac{\partial}{\partial k(t+1)}: -\beta^t \lambda(t) + \beta^{t+1}\lambda(t+1) = 0\\
+\end{cases}\\
+&\lambda(t) = \beta \lambda(t+1)\\
+&u'(c(t+1)) = \lambda(t+1)\\
+&\frac{u'(c(t))}{u'(c(t+1))} = \beta\\
+\end{align*}
+Thus, the Euler's equation is:
+\begin{align*}
+\left(\frac{c(t+1)}{c(t)}\right)^{\sigma} = \beta\\
+\frac{c(t+1)}{c(t)} = \beta^{\frac{1}{\sigma}}
+\end{align*}
+intertemporal elasticity of substitution is $\frac{1}{\sigma}$. If it is equal to 0 then any changes of interest rate have no effect on consumption growth. If the intertemporal elasticity becomes larger than 0, then the ratio $\frac{c(t+1)}{c(t)}$ becomes low, that is the price of consumption 
+\item 
+\item Assume $\sigma = 1, \delta = 0$ then
+from Euler's equation:
+\begin{align*}
+c(t+1) = \beta c(t)
+\end{align*}
+it remains to find $c(0)$,
+\begin{align*}
+&k(t) = k(t+1) + c(t) = k(t+2) + c(t+1) + c(t) = k(t+2) + \beta c(t) + c(t) = \\
+&=k(t+3) + c(t+2) + \beta c(t) + c(t) = k(t+3) + \beta^2 c(t) + \beta c(t) + c(t) = \dots =\\
+&=k(t + T) + c(t) \sum_{\tau = 0}^{T-1} \beta^{\tau} \\
+&\text{since the amount of cake cannot be negative hence for optimal consumption path } k\\
+&\text{ should tend to 0 at infinity, }\\
+&k(t + T) + c(t) \sum_{\tau = 0}^{T-1} \beta^{\tau} \underset{T \to \infty}{\to} \frac{c(t)}{1-\beta} \to c(0) = (1-\beta)k(0)
+\end{align*}
+Thus, optimal consumption path is:
+\begin{align*}
+c(t+1) = \beta c(t), c(0) = (1-\beta)k(0)
+\end{align*}
+capital:
+\begin{align*}
+k(t+1) = k(t) - c(t)
+\end{align*}
+and the value function is:
+\begin{align*}
+\sum_{t=0}^{\infty} \beta^t \ln c(t) = \sum_{t=0}^{\infty} \beta^{t} \ln (\beta^t c(0)) = \sum_{t=0}^{\infty} \beta^t t \ln \beta + \sum_{t=0}^{\infty} \beta^t \ln c(0) = \frac{\beta \ln \beta}{(1-\beta)^2} + \frac{\ln c(0)}{1 - \beta } = \\
+=\frac{\beta \ln \beta}{(1-\beta)^2} + \frac{\ln((1-\beta)k(0))}{1-\beta}
+\end{align*}
+\end{enumerate}
+
+\section*{Problem 2}
+Problem:
+\begin{align*}
+\underset{\left\{k(t+1), c(t)\right\}_{t=1}^{\infty}}{\max}\ \sum_{t=1}^{\infty} 0.96^t \ln c(t)\\
+\text{s.t.\ } k(t+1) = Ak(t)^{1/3} + (1-0.02)k(t) - c(t)\\
+c(t) \ge 0, k(t) \ge 0, k(1) = 0.1
+\end{align*}
+Euler's equation is:
+\begin{align*}
+\frac{c(t+1)}{\beta c(t)} = \frac{A}{3k(t+1)^{2/3}} + 1 - \delta
+\end{align*}
+In the steady state $c(t+1) = c(t)$ hence:
+\begin{align*}
+\frac{1}{\beta} = \frac{A}{3(k^*)^{2/3}} + 1 - \delta\\
+\text{if } k^* = 1 \to A = 3(\frac{1}{\beta} + \delta - 1) = 0.185
+\end{align*}
+Our initial guess for $k(2)$ should lie within the interval $ [k(1), f(k(1)) + (1 - \delta)k(1)]$ because even if we assume $c(1) = 0$ we will not be able to increase capital $k(2)$ more than $f(k(1)) + (1 - \delta)k(1)$ and moreover since $k^* = 1$ while $k(1) = 0.1$ by the theorem optimal capital growth $s(k(t))$ is non-decreasing in $k(t)$ hence $k(2)$ cannot be less than $k(1)$. The global result which follows is that $k(t)$ cannot be greater than $k^*$ and less than $k(1)$.
+
+
+
+Applying shouting algoritm the following value of $k(2)$ has been obtained:
+\begin{align*}
+k(2) = 0.1368665097187844
+\end{align*}
+and corresponding capital and consumption paths are depicted on the Fig. \ref{fig1} , \ref{fig2} respectively.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{k(t)}
+	\caption{}\label{fig1}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{c(t)}
+	\caption{}\label{fig2}
+\end{figure}
+\end{document}
