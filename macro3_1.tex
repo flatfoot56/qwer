@@ -90,14 +90,34 @@ c(t) \ge 0, k(t) \ge 0, k(0) > 0\ \text{is given}\nonumber
 	V(k) = u(c^*) + \frac{1}{1+\rho}V(k-c^*)\\
 	\rho = \frac{V(k - c^*) - V(k) + u(c^*)}{V(k) - u(c^*)}
 	\end{align*}
-	here $V(k-c^*) - V(k)$ are "capital gains" and $u(c^*)$ are "dividends". By the envelope theorem
+	or alternatively:
+	\begin{align*}
+	\rho = \frac{u(c^*(t)) + V(k^*(t+1)) - V(k^*(t))}{V(k^*(t)) - u(c^*(t))}
+	\end{align*}
+	(* means optimal trajectory).
+	Here $\frac{V(k(t+1)) - V(k(t))}{V(k(t))}$ are "capital gains" and $u(c^*)$ are "dividends". 
+	
+	
+	By the envelope theorem
 	\begin{align*}
 	V'(k) = \frac{1}{1+\rho}V'(k-c^*)\\
 	\rho = \frac{V'(k-c^*) - V'(k)}{V'(k)}
 	\end{align*}
-	\item 
-	\item 
-	\item 
+	or alternatively:
+	\begin{align*}
+	\rho = \frac{V'(k(t+1)) - V'(k(t))}{V'(k(t))}
+	\end{align*}
+	as one can observe there are no marginal dividends (because there are no production) only $\frac{V'(k(t+1)) - V'(k(t))}{V'(k(t))}$ which describes percentage change of shadow price of capital i.e. marginal "capital gains". 
+	\item Of course in general the answer to this question depends on the particular type of function $u()$, however if we assume "good" increasing and concave utility function then price of marginal piece of cake increases over time. From the Euler's equation (which is obtained in 5.) $\frac{u'(c(t))}{u'(c(t+1))} = \frac{\lambda(t)}{\lambda(t+1)} = \beta$. Since $\lambda(t) = V'(k(t))$ then $\frac{V'(k(t))}{V'(k(t+1))} = \beta < 1$. That means that $V'(k(t))$ is increasing over time. Since $\rho$ is a constant (its meaning is the interest rate) then to hold it constant with increasing denumerator, the numerator $V'(k(t+1)) - V'(k(t))$ should also increase but $V'(k(t+1)) - V'(k(t))$ is exactly the price of marginal piece of cake. Intuitivelly it can be understood as follows: the amount of capital is shrinking hence over time the agent values each marginal unit of capital more and more. 
+	\item Using the same equations as in the 2. $\frac{V'(k(t))}{V'(k(t+1))} = \beta$, that means that the present value of the whole cake stay constant: \begin{align*}
+	V'(k(t)) = \frac{1}{\beta}V'(k(t-1)) &= \frac{1}{\beta^2}V'(k(t-2)) = \dots = \frac{1}{\beta^t}V'(k(0))\\
+	\end{align*}
+	But the present value of $V'(k(t))$ is $\beta^t V'(k(t))$ hence 
+	\begin{align*}
+	\forall\ t\ \beta^t V'(k(t)) = V'(k(0))
+	\end{align*}
+	In the same time the current value is decreasing, which can be inferred from $\frac{V'(k(t))}{V'(k(t+1))} = \beta < 1$.
+	\item Present value is constant, current is increasing with rate $\frac{1}{\beta}$.
 	\item Assume 
 	\begin{align*}
 	u(c(t)) = \frac{c(t)^{1 - \sigma}}{1 - \sigma}, \sigma > 0
@@ -183,4 +203,9 @@ and corresponding capital and consumption paths are depicted on the Fig. \ref{fi
 	\includegraphics[width=0.8\textwidth]{c(t)}
 	\caption{}\label{fig2}
 \end{figure}
+
+
+
+
+It should be borne in mind that aforementioned $k(2)$ is the $\textit{approximate}$ value of true $k(2)$ that means that with this particular (in general not optimal) $k(2)$ for large $t$ the algorithm will diverge from the steady state. Hence those plots describe true capital and consumption paths only approximately. 
 \end{document}
