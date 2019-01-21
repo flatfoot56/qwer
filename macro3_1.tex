@@ -116,7 +116,7 @@ c(t) \ge 0, k(t) \ge 0, k(0) > 0\ \text{is given}\nonumber
 	\begin{align*}
 	\forall\ t\ \beta^t V'(k(t)) = V'(k(0))
 	\end{align*}
-	In the same time the current value is decreasing, which can be inferred from $\frac{V'(k(t))}{V'(k(t+1))} = \beta < 1$.
+	In the same time the current value is increasing, which can be inferred from $\frac{V'(k(t))}{V'(k(t+1))} = \beta < 1$.
 	\item Present value is constant, current is increasing with rate $\frac{1}{\beta}$.
 	\item Assume 
 	\begin{align*}
@@ -138,7 +138,18 @@ Thus, the Euler's equation is:
 \frac{c(t+1)}{c(t)} = \beta^{\frac{1}{\sigma}}
 \end{align*}
 intertemporal elasticity of substitution is $\frac{1}{\sigma}$. If it is equal to 0 then any changes of interest rate have no effect on consumption growth. If the intertemporal elasticity becomes larger than 0, then the ratio $\frac{c(t+1)}{c(t)}$ becomes low, that is the price of consumption 
-\item 
+\item Now FOCs are:
+\begin{align*}
+\begin{cases}\frac{\partial}{\partial c(t)}: u'(c(t)) - \lambda(t) = 0\\
+\frac{\partial}{\partial k(t+1)}: -\beta^t \lambda(t) + \beta^{t+1}(1 - \delta)\lambda(t+1) = 0\\
+\end{cases}\\
+\frac{\lambda(t+1)}{\lambda(t)} = \frac{1}{\beta(1 - \delta)} > \frac{1}{\beta}
+\end{align*}
+that means that in this case even present value will increase over time:
+\begin{align*}
+V'(k(t)) = \frac{1}{(1 - \delta)^t}V'(k(0))
+\end{align*}
+and the rate of increasing of current value $\frac{1}{\beta(1-\delta)}$ goes up compare to the case $\delta = 0$.
 \item Assume $\sigma = 1, \delta = 0$ then
 from Euler's equation:
 \begin{align*}
