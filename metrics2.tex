@@ -29,6 +29,7 @@
 \newcommand{\norma}{\mathscr{N}}
 \newcommand{\expect}{\mathbb{E}}
 \newcommand{\summa}{\sum_{i=1}^n}
+\newcommand{\yrseduc}{\textit{yrseduc}}
 \usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
 \usepackage{tikz} % 
 \def\myrad{2cm}% radius of the circle
@@ -205,24 +206,39 @@ Is $\tilde{\beta_2} = \frac{1}{\hat{\gamma_2}}$ an unbiased estimate of $\beta_2
 	\end{align*}
 	Similarly for $b_2$:
 	\begin{align}\label{eq2}
-	b_2 = \frac{s^2_{yx_2} - b_1s^2_{x_1x_2}}{s^2_{x_2x_2}} &= \frac{s^2_{yx_2} - s^2_{yx_1} + b_2s^2_{x_1x_2}}{s^2_{x_2x_2}} \nonumber\\
-	b_2 &= \frac{s^2_{yx_2} - s^2_{yx_1}}{s^2_{x_2x_2} - s^2_{x_1x_2}}
+	b_2 &= \frac{s^2_{yx_2} - b_1s^2_{x_1x_2}}{s^2_{x_2x_2}}\nonumber\\
+	\text{hence }\nonumber\\
+	b_2 &= \frac{s^2_{yx_2}s^2_{x_1x_1} - s^2_{yx_1}s^2_{x_2x_1}}{s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2}
 	\end{align}
 	\item Performing simple linear regression of $y$ on $x_1$, $y$ on $x_2$, $x_1$ on $x_2$ and $x_2$ on $x_1$ denote OLS estimates for slope coefficients as $\alpha_1, \alpha_2, \alpha_3, \alpha_4$ respectively. It is known that
 	\begin{align*}
 	\alpha_1 = \frac{s^2_{yx_1}}{s^2_{x_1x_1}},\ \alpha_2 = \frac{s^2_{yx_2}}{s^2_{x_2x_2}},\ \alpha_3 = \frac{s^2_{x_1x_2}}{s^2_{x_2x_2}},\ \alpha_4 = \frac{s^2_{x_1x_2}}{s^2_{x_1x_1}}
 	\end{align*}
-	Divide numerator and denumerator of (\ref{eq2}) by $s^2_{x_1x_1}$ (assuming that it is not equal to 0):
+	Divide numerator and denumerator of (\ref{eq2}) by $(s^2_{x_1x_1})^2$ (assuming that it is not equal to 0):
 	\begin{align*}
-	b_2 = \frac{\alpha_2\frac{\alpha_4}{\alpha_3} - \alpha_1}{\frac{\alpha_4}{\alpha_3} - \alpha_4}
+	b_2 = \frac{\alpha_2\frac{\alpha_4}{\alpha_3} - \alpha_1\alpha_4}{\frac{\alpha_4}{\alpha_3} - \alpha_4^2} = \frac{\frac{\alpha_2}{\alpha_3} - \alpha_1}{\frac{1}{\alpha_3} - \alpha_4}
 	\end{align*}
 	Similarly for $b_1$:
 	\begin{align*}
-	b_1 = \frac{\alpha_1\frac{\alpha_3}{\alpha_4} - \alpha_2}{\frac{\alpha_3}{\alpha_4} - \alpha_3}
+	b_1 = \frac{\alpha_1 - \alpha_2 \alpha_4}{1 - \alpha_3}
 	\end{align*}
 	\item From (\ref{eq2}):
 	\begin{align*}
-	\hat{\gamma_2} = \frac{s^2_{yx_2} - s^2_{x_1x_2}}{s^2_{yy} - s^2_{yx_1}} \to \frac{1}{\hat{\gamma_2}} = \frac{s^2_{yy} - s^2_{yx_1}}{s^2_{yx_2} - s^2_{x_1x_2}}
+	\hat{\gamma_2} = \frac{s^2_{yx_2}s^2_{x_1x_1} - s^2_{x_2x_1}s^2_{yx_1}}{s^2_{x_1x_1}s^2_{yy} - (s^2_{x_1y})^2} \to \frac{1}{\hat{\gamma_2}} = \frac{s^2_{x_1x_1}s^2_{yy} - (s^2_{x_1y})^2}{s^2_{yx_2}s^2_{x_1x_1} - s^2_{x_2x_1}s^2_{yx_1}}\\
+	\end{align*}
+	To find $\expect[\frac{1}{\hat{\gamma_2}}]$ firstly observe the following facts:
+	\begin{align*}
+	s^2_{x_1x_1}s^2_{yy} = s^2_{x_1x_1}\cdot(\summa (y_i - \bar{y})(\beta_1x_{1i} + \beta_2x_{2i} + u_i - \beta_1\bar{x_1} - \beta_2 \bar{x_2} - \bar{u})) = \\
+	=s^2_{x_1x_1} (\beta_1s^2_{yx_1} + \beta_2s^2_{yx_2} + s^2_{uy})\\
+	(s_{x_1y}^2)^2 = s_{x_1y}^2 \cdot (\summa (x_{1i} - \bar{x})(\beta_1x_{1i} + \beta_2x_{2i} + u_i - \beta_1\bar{x_1} - \beta_2\bar{x_2} - \bar{u})) =\\ =s_{x_1y}^2 (\beta_1 s^2_{x_1x_1} + \beta_2s^2_{x_1x_2} + s^2_{x_1u})
+	\end{align*}
+	hence
+	\begin{align*}
+	s^2_{x_1x_1}s^2_{yy} - (s_{x_1y}^2)^2 = \beta_2(s^2_{x_1x_1}s^2_{yx_2} - s^2_{x_1y}s^2_{x_1x_2}) + s^2_{x_1x_1}s^2_{uy} - s^2_{x_1y}s^2_{x_1u}
+	\end{align*}
+	Thus,
+	\begin{align*}
+	\frac{1}{\hat{\gamma_2}} = \beta_2 + \frac{s^2_{x_1x_1}s^2_{uy} - s^2_{x_1y}s^2_{x_1u}}{s^2_{x_1x_1}s^2_{yx_2} - s^2_{x_1y}s^2_{x_1x_2}}
 	\end{align*}
 \end{enumerate}
 \section*{Problem 4}
@@ -258,5 +274,68 @@ be an estimator of the slope parameter $\gamma$.
 	\begin{align*}
 	Var(\tilde{\gamma}|x_1, \dots, x_2) = \sigma^2 \frac{\summa x_i^6}{\left(\summa x_i^4\right)^2} 
 	\end{align*}
+\end{enumerate}
+\section*{Problem 5}
+In this problem set you continue to explore the returns to education and the gender gap
+in earnings. The data set is the same as for problem set 1 (cps99 ps1.csv; see problem set 1
+for a description of the variables). Consider the regression of average hourly earnings (\textit{ahe}) on
+years of education (\textit{yrseduc}). Consider the following three variables that have been omitted
+from the regression:
+\begin{enumerate}[(a)]
+\item gender
+\item a binary variable that = 1 if the worker’s last name falls in the first half of the alphabet,
+and = 0 if it falls in the second half.
+\item the worker’s native ability (for example IQ or some better measure)
+\end{enumerate}
+For each: Will this omission arguably lead to omitted variable bias? Why or why not?
+If your answer is that it will, state the sign of
+
+
+
+\textbf{Solution}
+
+Omitted variable bias appears when omitted variable is correlated with explanatory variables and affects dependent variable.
+\begin{enumerate}[(a)]
+	\item First of all, let us compute a sample correlation between gender and \textit{yrseduc}. The correlation is insignificantly small, hence we have reason to believe that gender is actualy not correlated with \textit{yrseduc}. Indeed, in most of countries there is no an arguable relationship between gender of the person and number of his or her years of education. However, in Russia, for example, and maybe in other countries with a conscript army system (except Israel, I think) I think men usually tend to spend more years being enrolled in some educational institutions in order not to go to the army. So, in general omission of gender variable can indeed lead to the omitted variable bias, but in our particular case, I suppose it is not a problem.
+	\item I think that such a variable both does not affect the response variable and is not correlated with years of education, so there is no omitted variable bias.
+	\item Yes, the omission of the worker's naitive ability can lead to the omitted variable bias. Because I suppose it both affects the average salary and is correlated with number of years of education. In general, I think the bias should be positive i.e. obtained in the misspecified model OLS estimate of the slope coefficient sould be on average greater than the true value of slope coefficient for \textit{yrseduc}. Since $\tilde{\beta_1} = \hat{\beta_1} + \hat{\beta_2} \delta$ where $\tilde{\beta_1}$ is the OLS estimate of the coefficient of misspecified model, $\hat{\beta_1}, \hat{\beta_2}$ are OLS estimates for the miltiple regression with both variables \textit{yrseduc} and innate abilities, and $\delta$ is the OLS estimate in regression innate abilities on \textit{yrseduc}. It can be reasonable to assume that the more skillful pearson is the more higher his salary is, hence $\hat{\beta_2} > 0$. Not as much reasonable would it assume that the more skillful pearson is the more years he spend on education, hence $\delta > 0$. However it can be the case that more skillful people on the contrary spend less years on education (e.g. Bill Gates, Steave Jobs) because of high opportunity costs of it, in this situation $\delta < 0$ and bias is negative.
+\end{enumerate}
+\section*{Problem 6}
+Consider an experimental approach to estimation of the effect on earnings of education.
+\begin{enumerate}[(a)]
+\item Describe an experimental protocol for an idealized randomized controlled experiment
+that would permit unbiased estimation of the effect on earnings of an additional year of education at a typical US educational institution. (Ignore practical and ethical issues.)
+\item Explain why, precisely, your experimental protocol would eliminate omitted variable
+bias arising from omission of the variables in question 1 (or any other variables).
+\end{enumerate}
+
+
+
+\textbf{Solution}
+\begin{enumerate}[(a)]
+	\item An idealized randomized controlled experiment should be as follows: we should absolutely randomly choose two groups of people. Absolutely randomly in the sense that each person of the USA could equally likely be chosen for this experiment. People of the first group should be given an additional year of education, while people from the second group should be abstained from the education over the year. Then after this year 
+\end{enumerate}
+\section*{Problem 7}
+Estimate two regressions: (i) \textit{ahe} on \textit{yrseduc} and (ii) \textit{ahe} on \textit{yrseduc} and \textit{female}.
+\begin{enumerate}[(a)]
+\item In regression (ii), what is the coefficient on \yrseduc? Explain what this means.
+\item In regression (ii), test the hypothesis that the population coefficient on female in
+specification (ii) is zero, against the hypothesis that it is nonzero, at the 5\% significance level.
+In everyday words (not statistical terms), what precisely is the hypothesis is that you are
+testing?
+\item Does the coefficient on \textit{yrseduc} change from regressions (i) to (ii) in a substantively
+important way, that is, is the difference between the two estimates large in a real-world sense?
+What is the reason that including \textit{female} in the regression results in a large (or only a small)
+change in the coefficient on \yrseduc? (Hint: what is the correlation between \yrseduc\ and
+\textit{female}?)
+\end{enumerate}
+
+
+\textbf{Solution}
+
+\begin{enumerate}[(a)]
+	\item Coefficient on \yrseduc\ is equal to 1.34147. That means that holding a gender of the person fixed each additional year of education on average gives 1.34147 dollars of increase of the per hour earnings.
+	\item Using coeftest() it can be obtained that the null hypothesis should be rejected on the 5\% significance level. The hypothesis was that holding a number of years of education fixed both males and females get on average equal salary per hour.
+	\item Coefficient on \yrseduc\ did not significantly change: from 1.32 to 1.34. The reason is the follwoing that as it has been already indicated in the problem 5 (a) the sample correlation between \yrseduc\ and \textit{female} is very low, as a result, using formula from the 5 (c) $\tilde{\beta_1} = \hat{\beta_1} + \hat{\beta_2} \delta$ one can conclude that extremely small $\delta$ results in $\tilde{\beta_1} \approx \hat{\beta_1}$ even if $\hat{\beta_2} \neq 0$.
 \end{enumerate}
 \end{document}
