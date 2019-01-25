@@ -1,0 +1,148 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\newcommand{\yrseduc}{\textit{yrseduc}}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Microeconomics 3. Problem Set 3.
+\end{center}
+\section*{Problem 1}
+Consider an Edgeworth box exchange economy with two commodities. Consumers'
+endowments are given by 
+\begin{align*}
+\omega_1 = (\frac{\sqrt{2}}{2}, 4),\ \omega_2 = (\frac{\sqrt{2}}{2}, 5)
+\end{align*}. 
+Assume further that the utility
+functions of the two consumers are as follows:
+\begin{align*}
+u_1(x_1) := x_{11} + \sqrt{x_{21}},\ \ 
+u_2(x_2) := \sqrt{8}x_{12} + \sqrt{x_{22}}
+\end{align*}
+\begin{enumerate}[(i)]
+\item Find the set of Pareto efficient allocations parametrically, as a function of the utility level
+of consumer 2.
+\item For each interior Pareto efficient allocation, find a corresponding equilibrium with transfers.
+\end{enumerate}
+
+
+\textbf{Solution}
+\begin{enumerate}[(i)]
+	\item To find the set of Pareto efficient allocations one need to solve the following optimization problem
+	\begin{align*}
+	\underset{x_{11}, x_{21} \ge 0}{\max\ }\ x_{11} + \sqrt{x_{21}}\\
+	s.t.\ \sqrt{8}x_{12} + \sqrt{x_{22}} \ge \bar{u}\\
+	x_{11} + x_{12} = \sqrt{2}\\
+	x_{21} + x_{22} = 9
+	\end{align*}
+	Or alternatively
+	\begin{align*}
+	\underset{x_{11}, x_{21} \ge 0}{\max}\ x_{11} + \sqrt{x_{21}}\\
+	s.t.\ 4 - \sqrt{8}x_{11} + \sqrt{9 - x_{21}} \ge \bar{u}\\
+	x_{11} \le \sqrt{2},\ x_{21} \le 9
+	\end{align*}
+	constraint is obviously binding because otherwise we can slightly increase $x_{11}$ such that the constraint still will hold but the objective function will increase.
+	(It should be borne in mind that $\bar{u}$ cannot exceed 7 because $u_2(\sqrt{2}, 9) = 7$). For the interior solution:
+	\begin{align*}
+	\text{FOCs}: &\begin{cases}
+	1 - \sqrt{8}\lambda = 0\\
+	\frac{1}{\sqrt{x_{21}}} - \frac{\lambda}{\sqrt{9 - x_{21}}} = 0
+	\end{cases}\\
+	\lambda = \frac{1}{\sqrt{8}}\ \to\ 
+	\frac{1}{\sqrt{x_{21}}} &- \frac{1}{\sqrt{72 - 8 x_{21}}} = 0 \to\ \begin{cases} x_{21} = 8\\
+	x_{11} = \frac{5 - \bar{u}}{\sqrt{8}}
+	\end{cases}
+	\end{align*}
+	Thus the set of Pareto efficient allocation is:
+	\begin{align}\label{eq1}
+	\begin{cases}
+	x^*_1 = 
+	\begin{pmatrix}
+	\sqrt{2}\\
+	9 - \bar{u}^2
+	\end{pmatrix},\ x^*_2 = \begin{pmatrix}
+	0\\
+	\bar{u}^2
+	\end{pmatrix}, 0 \le \bar{u} < 1\\
+	x^*_1 = 
+	\begin{pmatrix}
+	\frac{5 - \bar{u}}{\sqrt{8}}\\
+	8
+	\end{pmatrix},\ x^*_2 = \begin{pmatrix}
+	 \frac{\bar{u}- 1}{\sqrt{8}}\\
+	 1
+	\end{pmatrix}, 1 \le \bar{u} < 5\\
+	x^*_1 = 
+	\begin{pmatrix}
+	0\\
+	9 - (\bar{u} - 4)^2\\
+	\end{pmatrix},\ x^*_2 = \begin{pmatrix}
+	\sqrt{2}\\
+	(\bar{u} - 4)^2
+	\end{pmatrix}, 5 < \bar{u} \le 7\\
+	\end{cases}
+	\end{align}
+	\item To find euilibria with transfers we need to find wealth levels and prices corresponding to each interior Pareto efficient allocation. That means that we need to find such $w_1, w_2$ and such a price vector $p = (p_1\ p_2)$ that $x^*_1, x^*_2$ from the \eqref{eq1} maximize consumers' utility functions over the following budget sets:
+	\begin{align*}
+	\left\{(x_{11}, x_{21}) \in \mathbb{R}^2_{+}: p_1x_{11} + p_2x_{21} \le w_1\right\}\\	\left\{(x_{12}, x_{22}) \in \mathbb{R}^2_{+}: p_1x_{12} + p_2x_{22} \le w_2\right\}\\
+	\end{align*}
+	\begin{align*}
+	\underset{x_{11}, x_{21} \ge 0}{\max}\ x_{11} + \sqrt{x_{21}}\\
+	 s.t.\ p_1x_{11} + p_2x_{21} \le w_1
+	\end{align*}
+	In the interior allocations MRS = MRT hence
+	\begin{align*}
+	2\sqrt{x_{21}} = \frac{p_1}{p_2} \to\ p_1 = 4\sqrt{2}p_2
+	\end{align*}
+	We can assume $p_2 = 1$ hence $p_1 = 4\sqrt{2}$
+	\begin{align*}
+	\begin{cases}
+	4\sqrt{2} \cdot \frac{5 - \bar{u}}{\sqrt{8}} + 8 = w_1\\
+	4\sqrt{2} \cdot \frac{\bar{u} - 1}{\sqrt{8}} + 1 = w_2
+	\end{cases}\\
+	\begin{cases}
+	w_1 = 18 - 2\bar{u}\\
+	w_2 = 2\bar{u} - 1
+	\end{cases}, 
+	\end{align*}
+\end{enumerate}
+\end{document}
