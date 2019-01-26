@@ -1,0 +1,149 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Game theory. Problem Set 1.
+\end{center}
+\section*{Problem 1}
+John and Peter are bidding for an indivisible object. The rules of the
+auction are as follows. The individual who places the highest bid wins the
+object. If John wins he pays the amount of money Peter bade. If Peter
+wins he pays the amount of money he bade. Both players place their bids
+simultaneously. For each individual $i \in \left\{J, P\right\}$ let $v_i \ge 0$ denote their
+valuation for the object and let $b_i \ge 0$ denote the bid they placed. Their
+preferences are captured by the following payoff functions for John and
+Peter respectively:
+\begin{align*}
+u_J(b_J, b_P) = \begin{cases}
+v_J - b_P, &b_J > b_P\\
+\frac{1}{2}(v_J - b_P), &b_J = b_P\\
+0, &b_J < b_P
+\end{cases}\\
+u_P(b_J, b_P) = \begin{cases}
+v_P - b_P, &b_P > b_J\\
+\frac{1}{2}(v_P - b_P), &b_P = b_J\\
+0, &b_P < b_J
+\end{cases}
+\end{align*}
+The information above (including valuations) is common knowledge. Does
+either player have a weakly dominant strategy to bid his valuation? Can
+you find values for the parameters $(v_J , v_P ) \in \mathbb{R}^2_+$ such that the pair of
+strategies $(b_J , b_P ) = (v_J , v_P)$ constitutes a Nash Equilibrium? For each
+answer you give provide the relevant demonstration.
+
+
+\textbf{Solution}
+
+
+Suppose that Peter's strategy is to bid his valuation $v_P$. Then
+\begin{align*}
+u_P(b_J, v_P) = 0 < u_P\left(b_J, \frac{b_J + v_P}{2}\right) = \frac{v_P - b_J}{2}, \text{for }b_J < v_P\\
+\end{align*}
+hence such a strategy cannot be (weakly) dominant for Peter.
+Suppose that John's strategy is to bid his valuation $v_J$. Then
+\begin{align*}
+\begin{cases}
+u_J(v_J, b_P) = 0 \ge u_J(b_J, v_P)\ \forall\ b_J , \ \ \ &b_P \ge v_{J}\\
+u_J(v_J, b_P) = v_J - b_P \ge u_J(b_J, v_P)\ \forall\ b_J, \ \ \ &b_P < v_J
+\end{cases}
+\end{align*}
+Thus, for John, the strategy to bid his valuation is indeed weakly dominant strategy.
+Assume $v_J \ge v_P$ then the pair of strategies $(b_J, b_P) = (v_J, v_P)$ indeed constitutes a Nash equilibrium. Let us prove it. Denote $r_J(b_P), r_P(b_J)$ best responses on the opponent's bid of John and Peter respectively. Obviously:
+\begin{align*}
+r_J(b_P) &= \begin{cases}
+[0, b_P), b_P > v_J\\
+[0, b_P], b_p = v_J\\
+(b_P, +\infty), b_P < v_J
+\end{cases}\\
+r_P(b_J) &= \begin{cases}
+[0, b_J), b_J > v_P\\
+[0, b_J], b_j = v_P\\
+b_J + \varepsilon, b_J < v_P
+\end{cases}
+\end{align*}
+Then 
+\begin{align*}
+\begin{cases}
+r_J(v_P) = (v_P, +\infty) \ni v_J \text{ and } r_P(v_J) = [0, v_J) \ni v_P, \ \ \ &v_J > v_P\\
+r_J(v_P) = [0, v_P] \ni v_J \text{ and } r_P(v_J) = [0, v_J] \ni v_P, \ \ \ &v_J = v_P
+\end{cases}
+\end{align*} 
+Thus, for each player his strategy belongs to his best response on rival's playing this strategy, so, it is a Nash equilibrium.
+If $v_J < v_P$ then $r_J(v_P) = (0, v_P) \ni v_J$ however $r_P(v_J) = v_J + \varepsilon < v_P$ (we assume $\varepsilon$ is sufficiently small). Hence for $v_J < v_P$, $(b_J, b_P) = (v_J, v_P)$ is not a Nash equilibrium.
+\section*{Problem 2}
+Prove the following statement
+In a finite simultaneous move game representable in normal form,
+\begin{align*}
+\Gamma = (I, \times_{i \in I}S_i, (u_i)_{i \in I})
+\end{align*}
+if some pure strategy $s_i \in S_i$
+is strictly dominated by some $\sigma_i \in \Delta(S_i)$, then
+for any Nash Equilibrium of the game $\sigma^* \in \times_{i \in I}\Delta(A_i)$, we have $\sigma^*_i(s_i) = 0$
+(that is, the equilibrium strategy of player $i$ assigns zero probability to pure
+strategy $s_i$).
+Hint: Proceed by contradiction. As a first step, show that $\sigma^*_i
+(a_i) \neq 1$.
+
+
+\textbf{Solution}
+
+Assume $\sigma^* \in \times_{i \in I}\Delta(S_i)$ is a Nash equilibrium. And assume that for a player $i$, $\sigma_i^*$ assigns a positive probability to the pure strategy $s_j$ which is strictly dominated by the strategy $\sigma_i$. Then 
+\begin{align*}
+&\exists\ \alpha_1, \dots, \alpha_{|S_i|}: \alpha_k \in [0, 1]\ \forall\ k, \sum_{k=1}^{|S_i|}\alpha_k = 1\text{ and }\\
+ u_i(\sigma^*_i, \sigma^*_{-i}) = &\alpha_1 u_1(s_1, \sigma^*_{-i}) + \dots + \alpha_j u_i(s_j, \sigma^*_{-i}) + \dots + \alpha_{|S_i|}u_i(s_{|S_i|}, \sigma^*_{-i}),\ \  \alpha_j > 0
+\end{align*}
+Since $\sigma_i$ strictly dominates $s_j$ then
+\begin{align*}
+&\exists\ \beta_1, \dots, \beta_{|S_i|}:\beta_k \in [0, 1]\ \forall\ k,\ \sum_{k=1}^{|S_i|}\beta_k = 1\text{ and }
+\forall\ \sigma_{-i} \in \times_{l \in I\setminus \left\{i\right\}}\Delta(S_l)\\
+u(s_j, \sigma_{-i}) < &u(\sigma_i, \sigma_{-i}) = \beta_1 u_i(s_1, \sigma_{-i}) + \dots + \beta_j u_i(s_j, \sigma_{-i}) + \dots + \beta_{|S_i|}u_i(s_{|S_i|}, \sigma_{-i})
+\end{align*}
+But then
+\begin{align*}
+&u_i(\sigma_i^*, \sigma^*_{-i}) < \alpha_1u_1(s_1, \sigma^*_{-i}) + \dots + \alpha_j \left(\sum_{k=1}^{|S_i|}\beta_k u_i(s_k, \sigma^*_{-i})\right) + \dots + \alpha_{|S_i|}u_i(s_{|S_i|}, \sigma^*_{-i}) = \\
+&= (\alpha_1 + \alpha_j\beta_1)u_i(s_1, \sigma^*_{-i}) + \dots + (\alpha_j + \alpha_j\beta_j)u_i(s_1, \sigma^*_{-i}) + \dots + (\alpha_{|S_i|} + \alpha_{|S_i|}\beta_{|S_i|})u_i(s_{|S_i|}, \sigma^*_{-i}) = \\
+&=u(\hat{\sigma_i}, \sigma^*_{-i})
+\end{align*}
+Since $\exists\ t \in 1, \dots, |S_i|: \beta_{t} > 0\ \to \alpha_t + \alpha_j \beta_t \neq \alpha_t$ hence there exists another strategy $\hat{\sigma_i} \neq \sigma^*_i$ which gives strictly greater payoff than $\sigma^*_i$ hence $\sigma^*$ is not a Nash equilibrium, contradiction. This contradiction shows that indeed $\alpha_j = 0$ i.e. the euilibrium strategy must assign $0$ probability to the strictly dominated strategy.
+\end{document}
