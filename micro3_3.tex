@@ -102,7 +102,7 @@ of consumer 2.
 	\end{pmatrix},\ x^*_2 = \begin{pmatrix}
 	0\\
 	\bar{u}^2
-	\end{pmatrix}, 0 \le \bar{u} < 1\\
+	\end{pmatrix}, 0 \le \bar{u} \le 1\\
 	x^*_1 = 
 	\begin{pmatrix}
 	\frac{5 - \bar{u}}{\sqrt{8}}\\
@@ -110,7 +110,7 @@ of consumer 2.
 	\end{pmatrix},\ x^*_2 = \begin{pmatrix}
 	 \frac{\bar{u}- 1}{\sqrt{8}}\\
 	 1
-	\end{pmatrix}, 1 \le \bar{u} < 5\\
+	\end{pmatrix}, 1 < \bar{u} < 5\\
 	x^*_1 = 
 	\begin{pmatrix}
 	0\\
@@ -118,7 +118,7 @@ of consumer 2.
 	\end{pmatrix},\ x^*_2 = \begin{pmatrix}
 	\sqrt{2}\\
 	(\bar{u} - 4)^2
-	\end{pmatrix}, 5 < \bar{u} \le 7\\
+	\end{pmatrix}, 5 \le \bar{u} \le 7\\
 	\end{cases}
 	\end{align}
 	\item To find euilibria with transfers we need to find wealth levels and prices corresponding to each interior Pareto efficient allocation. That means that we need to find such $w_1, w_2$ and such a price vector $p = (p_1\ p_2)$ that $x^*_1, x^*_2$ from the \eqref{eq1} maximize consumers' utility functions over the following budget sets:
@@ -135,14 +135,238 @@ of consumer 2.
 	\end{align*}
 	We can assume $p_2 = 1$ hence $p_1 = 4\sqrt{2}$
 	\begin{align*}
-	\begin{cases}
+	&\begin{cases}
 	4\sqrt{2} \cdot \frac{5 - \bar{u}}{\sqrt{8}} + 8 = w_1\\
 	4\sqrt{2} \cdot \frac{\bar{u} - 1}{\sqrt{8}} + 1 = w_2
 	\end{cases}\\
-	\begin{cases}
+	&\begin{cases}
 	w_1 = 18 - 2\bar{u}\\
 	w_2 = 2\bar{u} - 1
-	\end{cases}, 
+	\end{cases}, 1 < u < 5
 	\end{align*}
+\end{enumerate}
+\section*{Problem 2}
+Let $\bar{\omega_1}$ and $\bar{\omega_2}$ denote the total endowments of the two goods in an Edgeworth box
+exchange economy. Assume further that the utility functions of the two consumers are as
+follows:
+\begin{align*}
+u_1(x_1) := (x_{11})^{2/3}(x_{21})^{1/3}\ \ 
+u_2(x_2) := (x_{12})^{1/3}(x_{22})^{2/3}
+\end{align*}
+Consider the following welfare maximization problem, as a function of $\lambda \in (0; 1)$:
+\begin{align} \label{eq2}
+\underset{(x_1, x_2)}{\max}\ \lambda u_1(x_1) + (1 - \lambda)u_2(x_2)\ s.t.\ x_{l1} + x_{l2} = \bar{\omega} \text{ and } x_{li} > 0 \text{ for } l, i \in \left\{1, 2\right\}
+\end{align}
+Let $(x_1(\lambda); x_2(\lambda))$ denote the solution, where $x_i(\lambda) = (x_{1i}(\lambda); x_{2i}(\lambda))$ for $i = 1; 2.$
+\begin{enumerate}[(i)]
+\item Assuming an interior solution with $x_i(\lambda) >> 0$ for $i = 1; 2$, use the first order conditions
+of problem \eqref{eq2} to compute the ratios $\frac{x_{11}(\lambda)}{
+x_{21}(\lambda)}$
+and $\frac{x_{12}(\lambda)}{
+x_{22}(\lambda)}$
+in terms of $\lambda$.
+\item  Note that $\frac{x_{11}(\lambda)}{x_{21}(\lambda)} >\frac{x_{12}(\lambda)}{x_{22}(\lambda)}$
+and both ratios are decreasing in $\lambda$. What additional conditions
+on $\bar{\omega_1}; \bar{\omega_2}$ and $\lambda$ are required for problem \eqref{eq2} to have an interior solution as you assumed?
+Graphically illustrate the set of interior efficient allocations, and clarify the role of $\lambda$ in
+the graph. (Hints. Feel free to do the algebra to characterize the interiority condition,
+but it is not really needed. Instead, let us think of a utility function $u_i$ as a production
+function $f_i$ that produces \textit{utils} using consumption goods as inputs. Then, in problem \eqref{eq2},
+$\lambda$ and $1-\lambda$ can be viewed as the prices of two outputs, namely the utility levels of agents 1
+and 2, respectively. This makes problem \eqref{eq2} equivalent to the revenue maximization problem
+(15.D.5) in Chapter 15 of the textbook. In turn, the factor allocation that solves the problem
+(15.D.5) is the same as the equilibrium factor allocation of the corresponding small open
+economy. Conclusion: Aside from the differences in optimization problems of individual
+agents/firms (utility maximization subject to a budget constraint vs profit maximization),
+the Edgeworth exchange model and the $2 \times 2$ open economy are quite similar to each other,
+at least from a mathematical point of view. The similarity is especially useful in efficiency
+issues.)
+\end{enumerate}
+
+
+\textbf{Solution}
+
+\begin{enumerate}[(i)] 
+	\item If we assume the interior solution then FOCs are
+	\begin{align*}
+	\begin{cases}
+	\frac{2 \lambda }{3} \left(\frac{x_{21}}{x_{11}}\right)^{1/3} = \mu_1\\
+	\frac{\lambda}{3} \left(\frac{x_{11}}{x_{21}}\right)^{2/3} = \mu_2\\
+	\frac{1 - \lambda}{3} \left(\frac{x_{22}}{x_{12}}\right)^{2/3} = \mu_1\\
+	\frac{2(1-\lambda)}{3} \left(\frac{x_{12}}{x_{22}}\right)^{1/3} = \mu_2\\
+	\end{cases}
+	\end{align*}
+	where $\mu_l$ are Lagrange multipliers.
+	\begin{align*}
+	\frac{x_{11}}{x_{21}} = \frac{2\mu_2}{\mu_1}\\
+	\frac{x_{12}}{x_{22}} = \frac{\mu_2}{2\mu_1}
+	\end{align*}
+	hence
+	\begin{align*}
+	\begin{cases}
+	\frac{2\lambda}{3} \left(\frac{\mu_1}{2 \mu_2}\right)^{1/3} = \mu_1\\
+	\frac{1-\lambda}{3} \left(\frac{2\mu_1}{\mu_2}\right)^{2/3} = \mu_1
+	\end{cases} \to \frac{\mu_2}{\mu_1} = \left(\frac{1-\lambda}{\lambda}\right)^{3} \to \begin{cases}
+	\frac{x_{11}}{x_{21}} = 2 \left(\frac{1-\lambda}{\lambda}\right)^{3}\\
+	\frac{x_{12}}{x_{22}} = \frac{1}{2}\left(\frac{1-\lambda}{\lambda}\right)^{3}
+	\end{cases}
+	\end{align*}
+	\item Following the hint and using logic from $2 \times 2$ production model we can infer that the solution will indeed interior iff
+	\begin{align*}
+	\frac{x_{11}}{x_{21}} >& \frac{\bar{\omega_1}}{\bar{\omega_2}} > \frac{x_{12}}{x_{22}}\\
+	2\left(\frac{1 - \lambda}{\lambda}\right)^3 >& \frac{\bar{\omega_1}}{\bar{\omega_2}} >\frac{1}{2} \left(\frac{1 - \lambda}{\lambda}\right)^3
+	\end{align*}
+	The set of interior efficient allocations is depicted below, on the Fig \ref{fig1}.
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{plotdraft}
+		\caption{}\label{fig1}
+	\end{figure}
+\end{enumerate}
+\section*{Problem 3}
+In the $2\times 2$ open economy model, an allocation $z = (z_1; z_2)$ is feasible if $z_1+z_2 = \bar{z}$, where
+$\bar{z}$ is the total endowment vector $(\bar{z_1}; \bar{z_2})$. In turn, a feasible allocation is said to be efficient
+if there is no other feasible allocation $\hat{z} = (\hat{z_1}; \hat{z_2})$ such that $f_j(\hat{z_j}) \ge f_j(z_j)$ for both firms $j$,
+with strict inequality for some $j$. Using our discussion of Pareto efficiency from Chapter 16,
+suggest two different optimization techniques to characterize efficient factor allocations in a
+$2 \times 2$ open economy with concave production functions. (No need to go into details, just
+state the optimization problems.)
+
+
+\textbf{Solution}
+
+
+There can be two approaches, namely:
+A feasible allocation $(z_1^*, z_2^*)$ is efficient $\iff\ \exists\ \bar{f} \ge 0$ such that $(z_1^*, z_2^*)$ solves the following optimization problem 
+\begin{align*}
+\underset{z_{11} z_{21} \ge 0}{\max}\ f_1(z_{11}, z_{21})\\
+s.t.\ f_2(z_{12}, z_{22}) \ge \bar{f}\\
+z_{11} + z_{12} = \bar{z_1}\\
+z_{21} + z_{22} = \bar{z_2}
+\end{align*}
+or:
+A feasible allocation $(z_1^*, z_2^*)$ is efficient $\iff\ \exists\ \lambda_1 \ge 0, \lambda_2 \ge 0: \lambda_1^2 + \lambda_2^2 > 0$ such that $(z_1^*, z_2^*)$ solves the following optimization problem:
+\begin{align*}
+\underset{z_{11}, z_{21}, z_{12}, z_{22} \ge 0}{\max}\ \lambda f_1(z_{11}, z_{21}) + (1 - \lambda)f_2(z_{12}, z_{22})\\
+s.t. z_{11} + z_{12} = \bar{z_1}\\
+	z_{12} + z_{22} = \bar{z_2}
+\end{align*}
+\section*{Problem 4}
+Assuming interior solutions, show that the first order conditions of problems (16.E.1)
+and (16.F.1) in the textbook are equivalent to each other. Under what conditions on utility
+functions will the two problems lead to the same solutions? Explain your answer.
+
+
+
+\textbf{Solution}
+
+Problem 16.E.1.:
+\begin{align*}
+\underset{(x, y)}{\max}\ \lambda_1u_1(x_1) + \dots + \lambda_Iu_I(x_I)\\
+s.t.\ \sum_{i=1}^I x_{li} = \bar{\omega_l} + \sum_{j=1}^Jy_{lj}, \forall\ l = 1, \dots, L\\
+x_{li} \ge 0, \forall\ i = 1, \dots, I, l = 1, \dots, L\\
+y_{i} \in Y_i,\ \forall\ i = 1, \dots, I
+\end{align*}
+Assuming interior solution FOCs will be:
+\begin{align*}
+\begin{cases}
+\lambda_1\frac{\partial u_1(x_1)}{\partial x_{l1}} - \mu_l = 0,\ \ \  l = 1, \dots, L\\
+\dots\ \dots\ \dots\\
+\lambda_i \frac{\partial u_i(x_i)}{\partial x_{li}} - \mu_l = 0,\ \ \  l = 1, \dots, L\\
+\dots\ \dots\ \dots\\
+\lambda_I\frac{\partial u_I(x_I)}{\partial x_{lI}} - \mu_l = 0,\ \ \  l = 1, \dots, L
+\end{cases}
+\end{align*}
+where $\mu_l$ are Lagrange multipliers which correspond to $L$ market-clearing constraints. 
+
+
+Problem 16.F.1:
+\begin{align*}
+&\underset{(x, y)}{\max}\ u_1(x_1)\\
+&s.t.\ u_i(x_i) \ge \bar{u_i},\ \ \ i=2, \dots, L\\
+&\sum_{i=1}^Ix_{li} \le \bar{\omega_l} + \sum_{j=1}^Jy_{lj},\ \ \ l = 1, \dots, L\\
+&F_j(y_j) \le 0\ \ \ j = 1, \dots, J\\
+&x_{li} \ge 0, \ \forall i, l
+\end{align*}
+Of course market clearing constraint and constraint on utility levels are binding because in latter case for example otherwise we can decrease the amount of good for some agent and give this amount to the 1st agent, increasing the oblective function.
+Assuming interior solution FOCs will be:
+\begin{align*}
+\begin{cases}
+\frac{\partial u_1(x_1)}{\partial x_{l1}} - \nu_l = 0, \ \ \ l = 1, \dots, L\\
+\dots\ \dots\ \dots\\
+\eta_i\frac{\partial u_i(x_i)}{\partial x_{li}} - \nu_l = 0,\ \ \ l = 1, \dots, L\\
+\dots\ \dots\ \dots\\
+\eta_I\frac{\partial u_I(x_I)}{\partial x_{lI}} - \nu_l = 0, \ \ \ l = 1, \dots, L
+\end{cases}
+\end{align*}
+Where $\eta_i$ are Lagrange multiplier which correspond to $I-1$ utility levels' constraints and $\nu_l$ are Lagrange multiplier which correspond to $L$ market clearing constraints. As we can observe, if $\lambda_1 \neq 0$ in the problem 16.E.1 then these FOCs are equivalent to each other.
+
+
+If utility functions are concave then the utility possibility set is a convex set. Obviously for each particular $(\bar{u_2}, \dots, \bar{U_I})$ the solution to the problem 16.F.1. should lie on the frontier (see Fig.), but when the UPS is a convex set by the separating hyperplane theorem there should exists such a non-zero $\lambda = (\lambda_1\ \dots\ \lambda_I)$ such that is is a solution to the problem 16.E.1.
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{plotdraft}
+	\caption{}\label{fig2}
+\end{figure}
+In that sense both problems will lead to the same solution.
+\section*{Problem 5}
+Consider the exchange economy depicted in Figure 15.B.10(a). Show that the initial
+endowment allocation can be supported as a part of a quasi-equilibrium with transfers.
+Describe the corresponding price vector and wealth distribution. Is this a full equilibrium
+with transfers?
+
+
+\textbf{Solution}
+
+
+
+A feasible allocation $(x^*, y^*)$, a price vector $p$ and wealth levels $w = (w_1\ \dots\ w_I)$ are said to be a quasi-equilibrium with transfers if:
+\begin{enumerate}[(i)]
+	\item (Profit maximization condition) $\forall\ y_j\ \in\ Y_j\ \to py_j^* \ge py_j\ \forall\ j = 1, \dots, J$
+	\item (Market clearing condition) $\sum_{i=1}^I x^*_i = \bar{\omega} + \sum_{j=1}^Jy^*_j$
+	\item $\forall\ x_i\ \in\ X_i: x_i \succ_i x_i^*\ \to px_i \ge w_i\ \forall\ i$ (and $px_i^* \le w_i\ \forall\ i$)
+	\item (Balanced budget condition) $\sum_{i=1}^Iw_i = p\bar{\omega} + \sum_{j=1}^J py_j$
+\end{enumerate}
+In the exchanged economy there is no any production hence we should not care about the profit maximization condition. Assume the economy 15.B.10(a) (see Fig ) and let us prove that the initial endowment allocation $x^*$ can indeed be supported as the quasi-equilibrium. Assume $p = (1\ 0)$ and $w_1 = px_1^* = 0, w_2 = px^*_2 = \bar{\omega_1}$. Balanced budget condition holds, since $w_1 + w_2 = \bar{\omega_1} = (1\ 0) \cdot (\bar{\omega_1}\ \bar{\omega_2})^T = \bar{\omega_1}$. As well as market clearing condition. It remains to show that (iii) condition holds either. To do so, observe that the consumer 1 strictly prefers each point with positive amount of good 1 to $x_1^*$ hence $\forall\ x_1\ \in X_1: x_1 \succ_1 x_1^*\ \to px_1 = x_{11} \ge w_1 = 0$. Similarly, the second consumer strictly prefers each point with greater amount of good 1 (than $\bar{\omega_1}$) to $x_2^*$ which means that $\forall\ x_2 \succ_2 x_2^*\ \to\ px_2 = x_{12} \ge \bar{\omega_1}$. Thus, all conditions hold and the point is indeed quasiequilibrium with transfers.
+
+However it is not a full equilibrium with transfers. Because in the definition of full equilibrium with transfers instead of (iii) condition is the following:
+\begin{align*}
+x_i^*\ \text{maximizes } \succsim_i\ \text{ over }B(p) = \left\{x_i \in X_i: px_i \le w_i \right\}\ \forall\ i = 1, \dots, I
+\end{align*}
+For the 1st consumer his budget set with such a price vector is:
+\begin{align*}
+\left\{(x_{11}, x_{21})\in X_1:\ (1\ 0)\cdot(x_{11}, x_{21})^T = x_{11} \le w_1 = 0\right\} \equiv \left\{(x_{11}, x_{21})\in X_1:\ x_{11} = 0 \right\}
+\end{align*} 
+Of course $x_1^*$ does not maximizes hit utility on the aforementioned set: increase of $x_{21}$ could make him strictly better off still remainig in the budget set.
+\section*{Problem 6}
+\begin{enumerate}[(i)]
+	\item Assume by contradiction $\exists\ $ good $l$: $p_l < 0$. By strict monotonicity of preferences $\forall\ \varepsilon >0\ \ \hat{x_i} = x_i^* + \mathbb{I}_l\varepsilon \succ_i x_i^*$ (where $\mathbb{I}_l$ is a vector of zeros with 1 as a $l$-th entry). However 
+	\begin{align*}
+	p\hat{x_i} = px_i^* + p_l\varepsilon < px_i^* \le w_i
+	\end{align*}
+	As a result 
+	\begin{align*}
+	\exists\ \hat{x_i}: \hat{x_i} \succ x_i^*: p\hat{x_i} \le w_i
+	\end{align*}
+	which violates the definition of quasi equilibrium that means that all entried of p-vector are nonnegative.
+	\item By the balanced budget condition:
+	\begin{align*}
+	\sum_{i=1}^I w_i = p \bar{\omega} + \sum_{j=1}^J py_j^*\\
+	\sum_{i=1}^I w_i = p \left(\bar{\omega} + \sum_{j=1}^J y_j\right) > 0
+	\end{align*}
+	Since $p \ge 0$ and $\left(\bar{\omega} + \sum_{j=1}^J y_j\right) >> 0$. As a result $\sum_{i=1}^I w_i > 0$ hence there exists at least one agent whose wealth is positive.
+	\item A buget set of the consumer $i_0$ is:
+	\begin{align*}
+	B(p, w_{i_0}) = \left\{x_{i_0} \in X_{i_0}: px_{i_0} \le w_{i_0} \right\}
+	\end{align*}
+	Assume that $x_{i_0} \succ_{i_0} x^*_{i_0}$ and $x_{i_0} \in B(p, w_{i_0})$. By the strictly monotonicity of preferences the only case which is possible is $px_{i_0} = w_{i_0} > 0$. By continuity of preferences both sets:
+	\begin{align*}
+	U = \left\{x_i \in X_i: x_i \succsim_i x_i^* \right\}\\
+	L = \left\{x_i \in X_i: x_i \precsim_i x_i^* \right\}
+	\end{align*}
+	are closed
+	\item Assume by contradiction that there exists some good $l$ such that $p_l \le 0$. Consider $\varepsilon > 0$ and $\hat{x_{i_0}} = x_{i_0}^* + \mathbb{I}_l\varepsilon$. By the strict monotonicity $\hat{x_{i_0}} \succ x_{i_0}^*$ but $p\hat{x_{i_0}} = px_{i_0}^* + p_l\varepsilon \le px_{i_0}^* \le w_{i_0}$ which contradict to the fact that $x_{i_0}^*$ is the preferences maximizer over the budget set. Thus, $p_l > 0\ \forall\ l = 1, \dots, L$. 
+	\item $w_i \ge 0, \forall\ i$ because otherwise there cannot exist such an allocation $x_i$ that for $p >> 0$, $px_i \le w_i$ hence there cannot exist any quasi-equilibria which contradicts to the set up of the problem. Then, if $w_i = 0$ then for $p >> 0$ the budget set contains only $x_i^* = 0$ and this point maximizes preferences over such a budget set. In case $w_i > 0$ see (iii). AS a result, a quasi-equilibrium is in fact a full equilibrium.
+	\item Without strong monotonicity we would not be able to conclude that $p >> 0$ (actually solution to the problem 5 demonstrate the case when p (as a vector) is not strictly positive (i.e. contains zero elements)). Hence strong monotonicity indeed plays crucial role for the equivalence between notions of quasi- and full equilibria.
 \end{enumerate}
 \end{document}
