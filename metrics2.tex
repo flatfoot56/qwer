@@ -55,14 +55,16 @@ and this model satisfies the Gauss-Markov assumptions. However, we estimate the 
 omits $x_3$. Let $\tilde{\beta_1}, \tilde{\beta_2}$ be the OLS estimators from the regression of $y$ on $x_1$ and $x_2$. Show
 that the expected value of $\tilde{\beta_1}$ (given the values of the independent variables in the sample) is
 \begin{align*}
-\expect \tilde{\beta_1} = \beta_1 + \beta_3 \frac{\sum_{i=1}^n \hat{r_{i1}x_{i3}}}{\sum_{i=1}^n \hat{r_{i1}}^2}
+\expect \tilde{\beta_1} = \beta_1 + \beta_3 \frac{\sum_{i=1}^n \hat{r_{i1}}x_{i3}}{\sum_{i=1}^n \hat{r_{i1}}^2}
 \end{align*}
 where the $\hat{r_{i1}}$ are the OLS residuals from the regression of $x_1$ on $x_2$.
 
 
 
 \textbf{Solution}
-Plugging $y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2}+\beta_3x_{i3}$ into
+
+
+Following hint, plugging $y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2}+\beta_3x_{i3}$ into
 \begin{align*}
 \tilde{\beta_1} = \frac{\sum_{i=1}^n \hat{r_{i1}}y_i}{\sum_{i=1}^n \hat{r_{i1}}^2}
 \end{align*}
@@ -262,7 +264,7 @@ be an estimator of the slope parameter $\gamma$.
 
 
 \begin{enumerate}[(a)]
-	\item First of all $x_i \neq 0\ \forall i$ then the estimator is well-defined.
+	\item If $\exists\ i: x_i \neq 0$ then the estimator is well-defined.
 	\item \begin{align*}
 	\expect[\tilde{\gamma}|x_1, \dots, x_n] = \expect\left[\frac{\summa (\gamma x_i + \varepsilon_i)x_i^3}{\summa x_i^4}\bigg|x_1, \dots, x_n\right] &= \gamma + \frac{1}{\summa x_i^4} \summa x_i^3\expect[\varepsilon_i|x_1, \dots, x_n] =\\
 	 &\underset{\text{G.-M. assump}}{=} \gamma + 0
@@ -313,7 +315,14 @@ bias arising from omission of the variables in question 1 (or any other variable
 
 \textbf{Solution}
 \begin{enumerate}[(a)]
-	\item An idealized randomized controlled experiment should be as follows: we should absolutely randomly choose two groups of people. Absolutely randomly in the sense that each person of the USA could equally likely be chosen for this experiment. People of the first group should be given an additional year of education, while people from the second group should be abstained from the education over the year. Then after this year 
+	\item Since the education is a sequential process i.e. to get an additional year of university one should primarily finish a school. That means that in order to estimate the effect of $i$-th additional year at school we should randomly choose two groups of children randomly in the sense that each child in the USA should be equally likelly chosen in these groups. Then these children should be randomly distributed among schools in the USA and study there $i-1$ years. Then children from the first group should be expelled from school and finish their education. Children from the second group should be allowed to study one more additional year and after that should also be expelled from the school. Then at some age of those people we should measure average salaries in both groups and compare these means using some statistical tests. 
+	\item This protocol actually eliminates omitted variable bias because it eliminates correlation between additional year of education and any other factors which can influence earnings. To be more precise, let assume that earnings are described as follows $y = \beta_0 + \beta_1 \text{\textit{yrseduc}} + \beta_2 \text{\textit{intel.ability}} + u$. But in our controlled randomized experiment intelectual abilities of people and years of education are independent variables. Hence if we somehow measured intelectual abilities and regress them on \textit{yrseduc} in our experiment we would get something like on the Fig \ref{fig2}. 
+		\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{iqyrs}
+		\caption{}\label{fig2}
+	\end{figure}
+i.e. estimated coefficient $\delta$ would be close to zero. But estimated coefficient from regression $y$ on \textit{yrseduc} is equal to $\hat{\beta_1} + \delta \hat{\beta_2}$ where $\hat{\beta_1}, \hat{\beta_2}$ are OLS estimates on hypothetical regression $y$ on \textit{yrseduc} and intelectual abilities. THe same thing with any other facctors which can in principle affect earnings. Thus, estimated value of additional school year becomes unbiased. Of course, such kind of experiment is not possible in reality because of ethical issues.
 \end{enumerate}
 \section*{Problem 7}
 Estimate two regressions: (i) \textit{ahe} on \textit{yrseduc} and (ii) \textit{ahe} on \textit{yrseduc} and \textit{female}.
@@ -344,4 +353,22 @@ those who attained a bachelor’s degree) to estimate the marginal value of a ba
 more specifically, the value of going to school for 16 years and receiving a bachelor’s degree,
 relative to going to school for 16 years but not receiving a bachelor’s degree. Construct a 95\%
 confidence interval for the marginal value of a bachelor’s degree.
+
+\textbf{Solution}
+
+
+The summary of regression is depicted below.
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{ba}
+	\caption{}\label{fig1}
+\end{figure}
+
+
+
+Using confint() one can get the following 95\% confidence interval for the marginal value of a bachelor degree:
+\begin{align*}
+(-0.1332442; 1.705304)
+\end{align*}
+This interval include 0, hence we cannot infer that for people whose number of years of education are equal, obtainment of bachelor degree on average leads to a higher salary.
 \end{document}
