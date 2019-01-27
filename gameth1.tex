@@ -195,6 +195,9 @@ but now suppose $\forall j = 1, \dots, i-1, i+1, \dots, n$, $\hat{h_j} = \vareps
 Because the value of the function at its maximum is always greater or equal than in any other point. That means that $h_i^*$ is not a strictly dominant strategy. This contradiction shows that $\beta = 0$. Q.E.D.
 \section*{Problem 4}
 Prove the following statement
+
+
+
 In a finite simultaneous move game representable in normal form,
 \begin{align*}
 \Gamma =
@@ -208,5 +211,18 @@ equilibrium of the game
 \textbf{Solution}
 
 
+First of all let us prove that the survived strategy is indeed a Nash equilibrium, after that let us prove that none of Nash equilibria can be deleted over the iterated deletion process.
 
+
+Assume by contradiction that the profile is not a Nash equilibrium, i.e. for some player $i$, $s_i^*$ is not a best response on $s^*_{-i}$. That means that the best response $\hat{s_i}$ has been deleted through the process of iterated deletion. Let us consider the step when it occured. To be deleted there must exist a strategy $\tilde{s_i}$ such that
+\begin{align*}
+\forall\ s_{-i} \text{ which has survived until this step and for } s^*_{-i} \text{ in particular }\to u_i(\tilde{s_i}, s_{-i}) > u_i(\hat{s_i}, s_{-i})
+\end{align*}
+but that means that $\hat{s_i}$ is not a best response on $s^*_{-i}$. The contradiction shows that $s^*_{i}$ is indeed a best response for each player $i$, hence the profile is a Nash equilibrium.
+
+It remains to show that none of Nash equilibria can be deleted through the process of iterated deletion. Assume by contradiction that some Nash equilibrium $(s_1^*, \dots, s_I^*)$ has been deleted, wlog that means that for some player $i$, $s_i^*$ has been deleted as a strictly dominated strategy (while $s_{-i}^*$ has still not be deleted). That means that
+\begin{align*}
+\exists\ \hat{s_i} \in S_i:\ \forall\ s_{-i} \text{ and for } s_{-i}^* \text{ in particular }\to u_i(\hat{s_i}, s_{-i}) > u_i(s_i^*, s_{-i})
+\end{align*}
+but that means that $s_{i}^*$ cannot be a best response on $s_{-i}^*$ hence it cannot be part of the Nash equilibium. This contradiction shows that none of Nash equilibria can be deleted. Q.E.D.
 \end{document}
