@@ -146,4 +146,67 @@ But then
 &=u(\hat{\sigma_i}, \sigma^*_{-i})
 \end{align*}
 Since $\exists\ t \in 1, \dots, |S_i|: \beta_{t} > 0\ \to \alpha_t + \alpha_j \beta_t \neq \alpha_t$ hence there exists another strategy $\hat{\sigma_i} \neq \sigma^*_i$ which gives strictly greater payoff than $\sigma^*_i$ hence $\sigma^*$ is not a Nash equilibrium, contradiction. This contradiction shows that indeed $\alpha_j = 0$ i.e. the euilibrium strategy must assign $0$ probability to the strictly dominated strategy.
+\section*{Problem 3}
+There are $n < +\infty$ firms in an industry. Each can try to convince Congress
+to give the industry a subsidy. Let $h_i$ denote the hours of effort put by
+some industry $i \in \left\{1,\dots , n\right\}$. Let $c(h_i) = w_ih_i^2$, with $w_i > 0$, be the cost of
+this effort to firm $i$. For each profile of efforts $(h_1, \dots , h_n) \in \mathbb{R}^n_+$, the value
+of the subsidy that gets approved equals
+\begin{align*}
+\alpha \sum_{i \in \left\{1, \dots, n\right\}} h_i + \beta \left(\prod_{i \in \left\{1, \dots, n\right\}} h_i\right)
+\end{align*}
+where $\alpha, \beta \ge 0$. The approved subsidy is shared equally among the firms in
+the industry. Suppose that all firms choose the effort level simultaneously.
+Show that each firm has a strictly dominant strategy if and only if $\beta = 0$.
+What is firm $i$’s strictly dominant strategy when this is so?
+
+
+\textbf{Solution}
+
+
+Each firm's payoff function is:
+\begin{align*}
+u_i(h_1, \dots, h_i, \dots, h_n) = \alpha \cdot \frac{h_1 + \dots h_i + \dots + h_n}{n} + \beta h_1\times\dots\times h_i \times \dots\times h_n - w_ih_i^2
+\end{align*}
+hence to find a strictly dominant strategy one need to find $h_i^*$:
+\begin{align*}
+u_i(h_i^*, h_{-i}) > u_i(h_i, h_{-i})\ \forall\ h_{-i}, \forall\ h_i
+\end{align*}
+Suppose $\beta = 0$ then 
+\begin{align*}
+u_i(h_i, h_{-i}) = \alpha\frac{h_i}{n} + \alpha\frac{h_1 + \dots+h_{i-1}+h_{i+1}+\dots+h_n}{n} - w_ih_i^2
+\end{align*}
+it is a quandratic function in $h_i$ and regardless of what $h_j\ \forall\ j \in\left\{1, \dots, n\right\}\setminus \left\{i\right\}$ is it attains maximum at $h_i = \frac{\alpha}{2nw_i}$. Thus, strategy $h_i = \frac{\alpha}{2nw_i}$ is a strictly dominant strategy for each firm in case $\beta = 0$. Now assume conversly that each firm has a strictly dominant strategy $h_i^*$. Then 
+\begin{align*}
+u_i(h_i^*, h_{-i}) > u_i(h_i, h_{-i})\ \  \forall\ h_i, h_{-i}
+\end{align*}
+Suppose by contradiction that $\beta > 0$. Let us denote $\prod_{k \in \left\{1, \dots, n\right\}\setminus\left\{i\right\}}h_k$ as $H_{-i}$ then if for some $h_{-i}$ - profile of strategies of other players
+\begin{align*}
+u_i(h_i^*, h_{-i}) > u_i(h_i, h_{-i})\ \forall\ h_i \neq h_{i}^*
+\end{align*}
+then $h_{i}^*$ is the extremum of the payoff function, given $H_{-i}$, i.e.
+\begin{align*}
+h_i^* = \frac{\alpha}{2nw_i} + \frac{\beta}{2nw_i}H_{-i}
+\end{align*}
+but now suppose $\forall j = 1, \dots, i-1, i+1, \dots, n$, $\hat{h_j} = \varepsilon^{\frac{1}{n-1}}h_j$ for some positive $\varepsilon$. Then
+\begin{align*}
+\exists\ \hat{h_i} = \frac{\alpha}{2nw_i} + \frac{\varepsilon \beta}{2nw_i}H_{-i} \neq h^*_i: u_i(\hat{h_i}, \hat{h_{-i}}) \ge u_i(h_i^*, \hat{h_{-i}})
+\end{align*}
+Because the value of the function at its maximum is always greater or equal than in any other point. That means that $h_i^*$ is not a strictly dominant strategy. This contradiction shows that $\beta = 0$. Q.E.D.
+\section*{Problem 4}
+Prove the following statement
+In a finite simultaneous move game representable in normal form,
+\begin{align*}
+\Gamma =
+(I, \times_{i \in I}S_i,(u_i)_{i\in I})
+\end{align*}
+if a single profile of pure strategies survives the process of iterated deletion
+of strictly dominated strategies, then this profile must be the unique Nash
+equilibrium of the game
+
+
+\textbf{Solution}
+
+
+
 \end{document}
