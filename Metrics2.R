@@ -18,3 +18,6 @@ coeftest(fit2, vcov = vcovHC(fit2, type = "HC1"))
 summary(fit1)
 
 #Problem 8
+fit3 <- lm(df$ahe ~ df$yrseduc + df$ba, data = df)
+summary(fit3)
+confint(fit3, vcov = vcovHC(fit3, type = "HC1"))
