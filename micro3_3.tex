@@ -61,7 +61,8 @@ u_2(x_2) := \sqrt{8}x_{12} + \sqrt{x_{22}}
 \begin{enumerate}[(i)]
 \item Find the set of Pareto efficient allocations parametrically, as a function of the utility level
 of consumer 2.
-\item For each interior Pareto efficient allocation, find a corresponding equilibrium with transfers.
+\item For each interior Pareto efficient allocation, find a corresponding equilibrium with transfers.
+
 \end{enumerate}
 
 
@@ -230,7 +231,8 @@ if there is no other feasible allocation $\hat{z} = (\hat{z_1}; \hat{z_2})$ such
 with strict inequality for some $j$. Using our discussion of Pareto efficiency from Chapter 16,
 suggest two different optimization techniques to characterize efficient factor allocations in a
 $2 \times 2$ open economy with concave production functions. (No need to go into details, just
-state the optimization problems.)
+state the optimization problems.)
+
 
 
 \textbf{Solution}
@@ -247,7 +249,7 @@ z_{21} + z_{22} = \bar{z_2}
 or:
 A feasible allocation $(z_1^*, z_2^*)$ is efficient $\iff\ \exists\ \lambda_1 \ge 0, \lambda_2 \ge 0: \lambda_1^2 + \lambda_2^2 > 0$ such that $(z_1^*, z_2^*)$ solves the following optimization problem:
 \begin{align*}
-\underset{z_{11}, z_{21}, z_{12}, z_{22} \ge 0}{\max}\ \lambda f_1(z_{11}, z_{21}) + (1 - \lambda)f_2(z_{12}, z_{22})\\
+\underset{z_{11}, z_{21}, z_{12}, z_{22} \ge 0}{\max}\ \lambda_1 f_1(z_{11}, z_{21}) + \lambda_2f_2(z_{12}, z_{22})\\
 s.t. z_{11} + z_{12} = \bar{z_1}\\
 	z_{12} + z_{22} = \bar{z_2}
 \end{align*}
@@ -279,6 +281,7 @@ Assuming interior solution FOCs will be:
 \end{align*}
 where $\mu_l$ are Lagrange multipliers which correspond to $L$ market-clearing constraints. 
 
+In both problems technological constraints are the same hence FOCs wrt $y_j$ will be similar in both problems either.
 
 Problem 16.F.1:
 \begin{align*}
@@ -302,13 +305,13 @@ Assuming interior solution FOCs will be:
 Where $\eta_i$ are Lagrange multiplier which correspond to $I-1$ utility levels' constraints and $\nu_l$ are Lagrange multiplier which correspond to $L$ market clearing constraints. As we can observe, if $\lambda_1 \neq 0$ in the problem 16.E.1 then these FOCs are equivalent to each other.
 
 
-If utility functions are concave then the utility possibility set is a convex set. Obviously for each particular $(\bar{u_2}, \dots, \bar{U_I})$ the solution to the problem 16.F.1. should lie on the frontier (see Fig.), but when the UPS is a convex set by the separating hyperplane theorem there should exists such a non-zero $\lambda = (\lambda_1\ \dots\ \lambda_I)$ such that is is a solution to the problem 16.E.1.
+If utility functions are concave then the utility possibility set is a convex set. Obviously for each particular $(\bar{u_2}, \dots, \bar{u_I})$ the solution to the problem 16.F.1. should lie on the frontier (see Fig. \ref{fig2}), but when the UPS is a convex set by the separating hyperplane theorem there should exists such a non-zero $\lambda = (\lambda_1\ \dots\ \lambda_I)$ such that it is a solution to the problem 16.E.1.
 	\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{plotdraft}
 	\caption{}\label{fig2}
 \end{figure}
-In that sense both problems will lead to the same solution.
+In that sense both problems will lead to the same solution. Put it another way, both problems have identical FOCs, but only under assumption of concavity these FOCs become \textit{sufficient} conditions for extremum.
 \section*{Problem 5}
 Consider the exchange economy depicted in Figure 15.B.10(a). Show that the initial
 endowment allocation can be supported as a part of a quasi-equilibrium with transfers.
