@@ -1,0 +1,213 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\newcommand{\yrseduc}{\textit{yrseduc}}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Econometrics 1. Problem Set 3.
+\end{center}
+\section*{Problem 1}
+
+\textbf{Solution}
+
+
+\begin{enumerate}[(a)]
+	\item 
+	\begin{align*}
+	t = \frac{-0.0023}{0.0022} \approx -1
+	\end{align*}
+	p-value is about $0.2$, consequently we have no reasons for rejecting the hypothesis that \textit{profitmarg} does not affect salary (i.e. slope coefficient on this variable is equal to zero) on the 5\% significance level.
+	\item Similarly,
+	\begin{align*}
+	t_{2\text{nd col}} = 2.24,\ t_{3\text{nd col}} = 2.04
+	\end{align*}
+	in both cases the hypothesis that corresponding coeeficient is equal to zero should be rejected on the 5\% significance level. Since
+	\begin{align*}
+	\frac{\Delta \text{salary}}{\text{salary}} = 0.1 \cdot \frac{\Delta \text{mktval}}{\text{mktval}}\\
+	100 \cdot \frac{\Delta \text{salary}}{\text{salary}} = 0.1 \frac{\Delta \text{mktval}}{\text{mktval}} \cdot 100
+	\end{align*}
+	that means that once \textit{mktval} changes by 1\% holding other thing equal, the average salary will change by 0.1\%.
+	\item 
+	\begin{align*}
+	t_{\text{ceoten}} = \frac{0.0171}{0.0055} = 3.11\\
+	\end{align*}
+	hence on the 5\% significance level the coefficient is not equal to 0.
+	Since
+	\begin{align*}
+		\frac{\Delta \text{salary}}{\text{salary}} = 0.0171 \Delta \text{ceoten}\\
+		100 \cdot \frac{\Delta \text{salary}}{\text{salary}} = 1.71 \Delta \text{ceoten}
+	\end{align*}
+	that is one more year as a CEO with the current company increases the average salary by 1.71\% other thing equal.
+	\begin{align*}
+	t_{\text{comten}} = -\frac{0.0092}{0.0033} = 2.78\\
+	\end{align*}
+	hence on the 5\% significance level the coefficient is not equal to 0.
+	Since
+	\begin{align*}
+	\frac{\Delta \text{salary}}{\text{salary}} = -0.0092 \Delta \text{ceoten}\\
+	100 \cdot \frac{\Delta \text{salary}}{\text{salary}} = 0.92 \Delta \text{ceoten}
+	\end{align*}
+	that is one more year with the current company decreases the average salary by 0.92\% other thing equal.
+\end{enumerate}
+
+\section*{Problem 2}
+\begin{enumerate}[(a)]
+	\item \begin{align*}
+	&y_i = \beta_0 + \beta_1 x_{i} + u\\
+	&y_i = \gamma_0 + \gamma_1(x_i - \bar{x}) + v = \gamma_0 + \gamma_1 \tilde{x_i} + v\\
+	&t_{\beta_1} = \frac{\hat{\beta_1}}{SE(\hat{\beta_1})},\  t_{\gamma_1} = \frac{\hat{\gamma_1}}{SE(\hat{\gamma_1})}
+	\end{align*}
+	\begin{align*}
+	\hat{\beta_1} = \frac{\summa (x_i - \bar{x})y_i}{\summa (x_i - \bar{x})^2} = \frac{\summa \tilde{x_i} y_i}{\summa \tilde{x_i}^2} = \hat{\gamma_1}
+	\end{align*}
+	\begin{align*}
+	SE(\hat{\beta_1}) = \frac{\sqrt{\summa \hat{u_i}^2}}{\sqrt{\summa (x_i - \bar{x})^2}}\\
+	SE(\hat{\gamma_1}) = \frac{\sqrt{\summa \hat{v_i}^2}}{\sqrt{\summa (\tilde{x_i})^2}}\\
+	\end{align*}
+	Thus, the only difference in both standard errors is the difference in sum of squares of residuals. To that end in order to answer the question one need to compare these sums.
+	\begin{align*}
+	&\hat{u_i} = y_i - \hat{\beta_0} - \hat{\beta_1}x_{i}\\
+	&\hat{v_i} = y_i - \hat{\gamma_0} - \hat{\gamma_1}\tilde{x_i} = y_i - \hat{\gamma_0} - \hat{\gamma_1}(x_i - \bar{x})
+	\end{align*}
+	Since $\hat{\beta_1} = \hat{\gamma_1}$, $\hat{u_i}$ and $\hat{v_i}$ differs by the term $\hat{\gamma_0} - \hat{\gamma_1}\bar{x} - \hat{\beta_0}$.
+	\begin{align*}
+	&\hat{\gamma_0} = \bar{y} - \hat{\gamma_1}\bar{\tilde{x}} = \bar{y}\\
+	&\hat{\beta_0} = \bar{y} - \hat{\beta_1}\bar{x}\\
+	&\hat{u_i} - \hat{v_i} = \hat{\beta_1}\bar{x} - \hat{\gamma_1}\bar{x} = 0
+	\end{align*}
+	Thus, t-statistics are equal.
+	\item
+	\begin{align*}
+	Var \begin{pmatrix}
+	\hat{\beta_0}\\
+	\hat{\beta_1}
+	\end{pmatrix} = \begin{pmatrix}
+	2 & 1\\
+	1 & 3
+	\end{pmatrix}
+	\end{align*}
+	Since
+	\begin{align*}
+	\hat{\beta_1} = \beta_1 + \frac{\summa (x_i - \bar{x})u_i}{\summa (x_i - \bar{x})^2}\\
+	\end{align*}
+	\begin{align*}
+	Var (\hat{\beta_1}|x_1, \dots, x_n) \underset{\text{i.i.d}}{=} \frac{\sigma^2_u}{\summa (x_i - \bar{x})^2}
+	\end{align*}
+	\begin{align*}
+	&Var(\hat{\beta_0}|x_1, \dots, x_n) = Var(\bar{y} - \hat{\beta_1}\bar{x}|x_1, \dots, x_n) = Var(\bar{y}|x_1, \dots, x_n) + \bar{x}^2Var(\hat{\beta_1}|x_1, \dots, x_n) -\\
+	&- 2\bar{x}cov(\bar{y}, \hat{\beta_1}|x_1, \dots, x_n)
+	\end{align*}
+	\begin{align*}
+	&cov(\bar{y}, \hat{\beta_1}|x_1, \dots, x_n) = \frac{1}{n\summa (x_i - \bar{x})^2} cov \left(\summa y_i, \sum_{j=1}^n (x_j - \bar{x})y_j\bigg|x_1, \dots, x_n\right) = \\
+	&=\frac{1}{n\summa (x_i - \bar{x})^2} \sum_{j=1}^n(x_j - \bar{x})\summa cov(y_j, y_i) = \frac{\sigma^2_u \summa (x_i - \bar{x})}{n\summa(x_i - \bar{x})} = 0
+	\end{align*}
+	Thus, 
+	\begin{align*}
+	Var(\hat{\beta_0}|x_1, \dots, x_n) = \frac{\sigma^2_u}{n} + \frac{\bar{x}^2\sigma^2_u}{\summa(x_i - \bar{x})^2} = \sigma^2_u\frac{n\bar{x}^2 + \summa(x_i - \bar{x})^2}{n\summa(x_i - \bar{x})^2} = \frac{\summa x_i^2}{n\summa(x_i - \bar{x})^2}\sigma_u^2
+	\end{align*}
+	\begin{align*}
+	cov(\hat{\beta_0}, \hat{\beta_1}|x_1, \dots, x_n) = cov(\bar{y} - \hat{\beta_1}\bar{x}, \hat{\beta_1}|x_1, \dots, x_n) = 0 - \bar{x}Var(\hat{\beta_1}|x_1, \dots, x_n) =\\ -\frac{\bar{x} \sigma^2_u}{\summa (x_i - \bar{x})^2}
+	\end{align*}
+	To obtain the estimates of variances one should plug $\hat{\sigma_u}^2$ instead of $\sigma^2_u$. That means that:
+	\begin{align*}
+	\begin{cases}
+	\frac{\hat{\sigma^2_u}}{\summa (x_i - \bar{x})^2} = 2\\
+	\frac{\summa x_i^2}{n\summa(x_i - \bar{x})^2}\hat{\sigma_u^2} = 3\\
+	-\frac{\bar{x} \sigma^2_u}{\summa (x_i - \bar{x})^2} = 1
+	\end{cases}\\
+	\end{align*}
+	Using the fact $\summa (x_i - \bar{x})^2 = \summa x_i^2 - n\bar{x}^2$ we get a system of three equations with three unknows, which can be easily solved, as a result:
+	\begin{align*}
+	\hat{\sigma^2_u} = 255\\
+	\summa x_i^2 = 153\\
+	\bar{x} = -\frac{1}{2}
+	\end{align*}
+	\item Assuming all variances, condition on $x_1, \dots, x_n$
+	\begin{align*}
+	Var(\hat{\beta_0} + \alpha \hat{\beta_1}) = Var\hat{\beta_0} + \alpha Var \hat{\beta_1} -2\alpha \text{cov}(\hat{\beta_0}, \hat{\beta_1}) =\\
+	=\frac{153}{13005}\hat{\sigma_u^2} + \frac{\alpha^2 \hat{\sigma^2_u}}{127.5} + 2\alpha \frac{ \sigma^2_u}{255} \to \min
+	\end{align*}
+	\begin{align*}
+	FOC: \frac{4}{255} \alpha^* + \frac{2}{255} = 0\\
+	\alpha^* = -\frac{1}{2}
+	\end{align*}
+\end{enumerate}
+\section*{Problem 3}
+The result of regression is depicted below on the Fig. \ref{fig1}.
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{lnahe}
+	\caption{Summary of the regression}\label{fig1}
+\end{figure}
+
+\begin{enumerate}[(a)]
+	\item First of all, all three coefficients are significant (on 5\% significance level). Of course it would be more correct to use coeftest() in order to get heteroskedasticity-robust standard errors, but p-value is such a small that this procedure do not change our conclusion about significance (only standard errors and t-statistics change slightly). Then, using logic similar to the Problem 1, we can infer that, other things equal each additional year of education increases the average per hour salary by 8\%, holding other things equal each additional year of life increases per hour earnings by 0.6\%, and finally, holding other things equal women get on average 22\% less per hour salary than men.
+	\item RMSE is approximately equal to $0.465$.
+	\item Confidence interval for the gender gap in earnings is
+	\begin{align*}
+	(-0.254035195; -0.194271848)
+	\end{align*}
+	i.e. with probability 0.95 the interval $(19\%; 25\%)$ cover the value which indicates by how much percent the average per hour salary for women is less than the one for men.
+	\item Based on the summary of regression, the marginal value of the high school diploma is 8.3, i.e. holding gender and age fixed, receiving a high school diploma after 12 years of studying against 12 years without diploma increases average per hour earnings by 8.3\%. Using coeftest() we can conclude that on the 5\% significance level we reject the hypothesis that the marginal value of high school diploma is zero. 8.3\% is not a huge value, in fact, I suppose average the salary of people with high school diploma much more higher than those without diploma.
+	\item 
+	Estimating the following regression model
+	\begin{align*}
+	\ln(\text{ahe}) = \beta_0 + \beta_1 \text{hsdipl} + \beta_2 \text{yrseduc} + \beta_3 \text{age} + \beta_4\text{female} + u
+	\end{align*}
+	one can get:
+	\begin{align*}
+	\ln \text{ahe}_{12} - \ln \text{ahe}_{10} &= \beta_1 + 2 \beta_2\\
+	\frac{\text{ahe}_{12} - \text{ahe}_{10}}{\text{ahe}_{10}} &= V = e^{\beta_1 + 2\beta_2} - 1 \\
+	\hat{V} = e^{\hat{\beta_1} + 2\hat{\beta_2}} - 1 &\approx 0.285
+\end{align*}
+I think it is a rather reasonable estimate.
+\item 
+\begin{align*}
+\prob (\alpha_1 < e^{\hat{\beta_1} + 2 \hat{\beta_2}} - 1 < \alpha_{2}) = 0.95\\
+\prob (\ln(\alpha_1 + 1) < \hat{\beta_1} + 2\hat{\beta_2} < \ln(\alpha_2 +1)) = 0.95
+\end{align*}
+Thus, we need to compute a confidence interval for $\hat{\beta_1} + 2 \hat{\beta_2}$. To do so let us modify our model and estimate regression $\ln( \text{ahe})$ on $1$, \textit{hsdipl } $+ 1$, \textit{yrseduc } $+2$, \textit{age} and \textit{female}.
+\end{enumerate}
+\end{document}
