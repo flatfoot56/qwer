@@ -179,7 +179,7 @@ The result of regression is depicted below on the Fig. \ref{fig1}.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{lnahe}
-	\caption{Summary of the regression}\label{fig1}
+	\caption{Summary of regression}\label{fig1}
 \end{figure}
 
 \begin{enumerate}[(a)]
@@ -208,6 +208,57 @@ I think it is a rather reasonable estimate.
 \prob (\alpha_1 < e^{\hat{\beta_1} + 2 \hat{\beta_2}} - 1 < \alpha_{2}) = 0.95\\
 \prob (\ln(\alpha_1 + 1) < \hat{\beta_1} + 2\hat{\beta_2} < \ln(\alpha_2 +1)) = 0.95
 \end{align*}
-Thus, we need to compute a confidence interval for $\hat{\beta_1} + 2 \hat{\beta_2}$. To do so let us modify our model and estimate regression $\ln( \text{ahe})$ on $1$, \textit{hsdipl } $+ 1$, \textit{yrseduc } $+2$, \textit{age} and \textit{female}.
+Thus, we need to compute a confidence interval for $\hat{\beta_1} + 2 \hat{\beta_2}$. To do so let us modify our model and estimate regression $\ln( \text{ahe})$ on \textit{hsdipl } $- 1$, \textit{yrseduc } $-2$, \textit{age} and \textit{female}. It is easy to observe that in that case the intercept will be $\beta_0 + \beta_1 + 2\beta_2$. Using confint() for this new intercept we can get the following:
+\begin{align*}
+\prob (1.375500454 &< \widehat{\beta_0 + \beta_1 + 2\beta_2} < 1.585969536) = 0.95\\
+\prob(0.1458 &< \hat{\beta_1} + 2\hat{\beta_2} < 0.3563) = 0.95
+\end{align*}
+Thus, $\alpha_1 = 0.157$, $\alpha_2 = 0.428$ and
+\begin{align*}
+\prob(0.157 < \hat{V} < 0.428) = 0.95
+\end{align*}
+\end{enumerate}
+\section*{Problem 4}
+The summary of regression is depicted below (see Fig. \ref{fig2})
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{square}
+	\caption{Summary of the regression}\label{fig2}
+\end{figure}
+
+\begin{enumerate}[(a)]
+	\item Sign of the coefficient on \textit{age} is +, while on \textit{age}$^2$ is -. Denote $y = \ln \text{ahe}, x_1 = \text{ age}, x_3 = \text{ female}, x_4 = \text{hsdipl}$. Since 
+	\begin{align*}
+	\ln y = \beta_0 + \beta_1x_1 + \beta_2x_1^2 + \beta_3x_3 + \beta_4x_4 +u
+	\end{align*}
+	that means that
+	\begin{align*}
+	\frac{d \ln y}{d x_1} = \beta_1 + 2\beta_2x_1\\
+	\frac{dy}{y} = \beta_1dx_1 + 2\beta_2 x_1 dx_1 \\
+	\frac{\Delta y}{y} \approx \beta_1\Delta x_1 + 2\beta_2 x_1 \Delta x_1
+	\end{align*}
+	Since $\beta_1 > 0$ while $\beta_2 < 0$ that means that: the older the person becomes - the less (on average) increase in salary each additional year brings. For example, if $x_1 = 20, \Delta x_1 = 1$ then $\frac{\Delta y}{y} \cdot 100 \approx 2.96 \%$, but if $x_1 = 40, \Delta x_1 = 1$ then $\frac{\Delta y}{y} \cdot 100 \approx 0.86 \%$.
+	\item The relation is linear $\iff$ $\beta_2 = 0$. Using coeftest() we reject this hypothesis on the 5\% significance level, i.e. the relation is quadratic.
+	\item The estimated gender gap has changed from -0.224 to -0.225, which is not a significant change in a real-world sense. Econometric reason is that first of all $\text{age}^2$ and $\text{female}$ are almost uncorrelated (sample correaltion coeeficient is about 0.007) and moreover slope coefficient on $\text{age}^2$ is also very small, as a result including $\text{age}^2$ barely changes the estimated gender gap.
+	\item Let us estimate the following regression
+	\begin{align*}
+	\ln y = \beta_0 + \beta_1x_1 + \beta_2x_1^2 + \beta_{23}x_1^3+ \beta_3x_3 + \beta_4x_4 +u
+	\end{align*}
+	the relation is cubic $\iff \beta_{23} = 0$. Using coeftest() we can conclude that on the 5\% significance level we cannot reject this hypothesis, i.e. the relation is quadratic.
+	\item Here we need to test the hypothesis $\beta_2 = 0, \beta_{23} = 0$. The output of linearHypothesis() is depicted below (see Fig. \ref{fig3}).
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{hyptest}
+		\caption{Hypothesis test}\label{fig3}
+	\end{figure}
+
+
+	Thus, the hypothesis can be rejected on the 5\% significance level. That is the relation is more likely a polynomial of up to cubic degree. I recomend the specification
+	\begin{align*}
+	\ln y = \beta_0 + \beta_1x_1 + \beta_2x_1^2 + \beta_3x_3 + \beta_4x_4 +u
+	\end{align*}
 \end{enumerate}
 \end{document}
