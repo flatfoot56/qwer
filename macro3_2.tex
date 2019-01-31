@@ -1,0 +1,168 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Macroeconomics 3. Problem Set 2.
+\end{center}
+\section*{Problem 1}
+Consider a neoclassical growth model in continuous time with technological progress. Production function
+is given by $F (K, AL)$, $A_t = Ze^{gt}, 0 < g < \rho$, where $\rho$ is the discount factor. Utility function is CRRA, $u (c) = c^{\gamma}, 0 < \gamma < 1$.
+\begin{enumerate}[1.]
+\item Write down the planner’s problem in terms of original variables $K_t, L_t, C_t$.
+\item Denote $k_t \equiv \frac{K_t}{e^{gt}L_t}$ and $c_t =\frac{C_t}{e^{gt}L_t}$. Rewrite the planner’s problem in terms of these variables.
+\item Write down all optimality conditions.
+\item Plot the phase diagram in coordinates $(k, c)$. Show the optimal trajectory.
+\item Suppose that at moment $t = 0$ the economy is in the steady state. Use the phase diagram to
+describe what happens after an unexpected permanent change in labor productivity $Z$.
+\item Suppose that at moment $t = 0$ the economy is in the steady state. Use the phase diagram to
+describe what happens after an unexpected temporary change in labor productivity $Z$: at $t = 0$ $Z$
+jumps to its new value, and it is expected that at $t = T > 0$ $Z$ drops back to its original value.
+\end{enumerate}
+
+
+
+\textbf{Solution}
+
+
+\begin{enumerate}
+	\item The planner's problem is:
+	\begin{align*}
+	&\underset{C(t)}{\max}\ \int_{0}^{\infty} L(t) \left(\frac{C(t)}{L(t)}\right)^{\gamma}e^{-\rho t}dt\\
+	s.t.\ &\dot{K}(t) = F(K(t), Ze^{gt}L(t)) - \delta K(t) - C(t)\\
+	&C(t) \ge 0, K(t) \ge 0, L(t) \ge 0\\
+	&K(0) \ge 0, L(0) \ge 0 \text{ are given }
+	\end{align*}
+	\item $k_t = \frac{K_t}{e^{gt}L_t}$ assuming $L_t = L(0)\ \forall\ t$, we obtain
+	\begin{align*}
+	\dot{K}(t) = \frac{d}{dt}(k_te^{gt}L_t) = \dot{k}_te^{gt}L_t + gk_te^{gt}L_t
+	\end{align*}
+	hence resources constraint can be rewritten as follows:
+	\begin{align*}
+	\dot{k_t} + gk_t = \frac{F(K_t, e^{gt}ZL_t)}{e^{gt}L_t} - \delta\frac{K(t)}{e^{gt}L_t} - \frac{C_t}{e^{gt}L_t}
+	\end{align*}
+	 assuming CRS production function, finally the planner's problem should be rewritten in the following manner:
+	\begin{align*}
+	&\underset{c_t}{\max}\ \int_{0}^{\infty} c_t^{\gamma}e^{-(\rho - g \gamma)t}dt\\
+	s.t.\ &\dot{k}(t) = F(k_t, Z) - (\delta+g) k_t - c_t\\
+	&c_t \ge 0, k_t \ge 0\\
+	&k_0 \ge 0 \text{ is given}
+	\end{align*}
+	\item 
+	\begin{align*}
+	H = c_t^{\gamma}e^{-(\rho - g\gamma)t} + \lambda_t (F(k_t, Z) - (\delta +g) k_t - c_t)\\
+	\begin{cases}
+	\frac{\partial H}{\partial c_t} = \gamma c_t^{\gamma - 1}e^{-(\rho - g\gamma)t} - \lambda_t = 0\\
+	\dot{\lambda}_t = -\frac{\partial H}{\partial k_t} = -\lambda_t(F'(k_t, Z) - \delta - g)\\
+	\lim_{t \to \infty} \lambda_tk_t = 0
+	\end{cases}
+	\end{align*}
+	\item \begin{align*}
+	&\frac{d}{dt} \left(\frac{\gamma e^{-(\rho - g\gamma)t}}{c_t^{1 - \gamma}}\right) = \dot{\lambda}_t\\
+	-\frac{\gamma(1 - \gamma)\dot{c}_t}{c_t^{2 - \gamma}}e^{-(\rho - g\gamma)t} - &\frac{\gamma(\rho - g\gamma)}{c_t^{1 - \gamma}}e^{-(\rho - g\gamma)t} = \dot{\lambda}_t = -\lambda_t(F'(k_t, Z) - \delta - g)\\
+	\frac{\gamma(1 - \gamma)\dot{c}_t}{c_t^{2 - \gamma}}e^{-(\rho - \gamma g)t} + &\frac{\gamma(\rho - g\gamma)}{c_t^{1 - \gamma}}e^{-(\rho - g\gamma)t} = \frac{\gamma}{c_t^{1 - \gamma}}e^{-(\rho - g\gamma)t}(F'(k_t, Z) - \delta - g)\\
+	&\frac{(1 - \gamma)\dot{c}_t}{c_t} + \rho - g\gamma = F'(k_t, Z) - \delta - g
+	\end{align*}
+	If $\dot{c}_t = 0$ then either $F'(k_t, Z) = \rho +(1-\gamma)g + \delta$ or $c_t = 0$. Denote the solution to this equation as $\tilde{k}$. If $\dot{k}_t = 0$ then $c_t = F(k_t, Z) - (\delta + g)k_t$ assuming $F(\cdot)$ satisfies Inada conditions, the isoclines will be as it depicted on the Fig \ref{fig1}. 
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{plotdraft}
+		\caption{}\label{fig1}
+	\end{figure}
+\item If $Z$ increases than $F(k_t, Z)$ increases either as a result isocline $\dot{k}(t) = 0$ moves upward because for a given $k_t$, $c_t$ increases. Moreover, if marginal productivity of capital increases with increase of the other factor (which is a standard assumption about production functions) then in order for $F'(k_t, Z)$ remains unchanged and equal to $\delta + g + \rho - g\gamma$, $k_t$ should also increase (since $\frac{\partial F}{\partial k}$ decreases in $k$). Thus, the isocline,corresponded to $\dot{c} = 0$ moves to the left (see Fig. ). Of course, exact values of these shifts depend on parameters and a type of the production function, as a result in the new steady state consumption could be more or less than the old one. Let us consider the case, which is depicted on the Fig. \ref{fig1}. In this case at $t = 0$ consumption will be increased such that the future dynamics will be along the optimal saddle trajectory of the new steady state (see Fig. \ref{fig1}).
+\item In this case the social planner should from $t = 0$ to $T = t$ moves along the trajectory of new, modified system but he should choose those trajectory of new system which exactly at $t = T$ brings the system to the saddle trajectory of old steady state. See Fig. \ref{fig3} for clarifications.
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{plotdraft}
+	\caption{}\label{fig3}
+\end{figure}
+
+\end{enumerate}
+\section*{Problem 2}
+Problem:
+\begin{enumerate}[1.]
+	\item
+\begin{align*}
+\underset{\left\{k(t+1), c(t)\right\}_{t=1}^{\infty}}{\max}\ \sum_{t=1}^{\infty} 0.96^t \ln c(t)\\
+\text{s.t.\ } k(t+1) = Ak(t)^{1/3} + (1-0.02)k(t) - c(t)\\
+c(t) \ge 0, k(t) \ge 0, k(1) = 0.1
+\end{align*}
+Euler's equation is:
+\begin{align*}
+\frac{c(t+1)}{\beta c(t)} = \frac{A}{3k(t+1)^{2/3}} + 1 - \delta
+\end{align*}
+In the steady state $c(t+1) = c(t)$ hence:
+\begin{align*}
+\frac{1}{\beta} = \frac{A}{3(k^*)^{2/3}} + 1 - \delta\\
+\text{if } k^* = 1 \to A = 3(\frac{1}{\beta} + \delta - 1) = 0.185
+\end{align*}
+\item 
+\begin{align*}
+V(k) = \underset{c, k'}{\max}\ [u(c) + \beta V(k')]\\
+s.t.\ k' = f(k) + (1 - \delta)k - c
+\end{align*}
+we don’t need values of $k$ below $0.1$ and
+above $1$ because by theorem $k(t)$ monotonically increases from $k(1)$ towards the steady state $k^* = 1$.
+\item Comparisons with the shooting algorithm for 100, 500 and 1000-points grids are depicted below on the Fig. \ref{fig4}, \ref{fig2} and \ref{fig5} respectively.
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{shooting100}
+	\caption{Comparison with shooting algorithm for 100-points grid}\label{fig4}
+\end{figure}
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{VFI}
+	\caption{Comparison with shooting algorithm for 500-points grid}\label{fig2}
+\end{figure}
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{shooting1000}
+	\caption{Comparison with shooting algorithm for 1000-points grid}\label{fig5}
+\end{figure}
+
+
+
+For 1000 points-grid accuracy is indeed significantly higher comparing to 100-points. However even in case of 500-points the accuracy is high enough so, in fact there is no need in 1000-points grid which requires high computational power of the computer (it has taken about 10-15 minutes for my computer to execute the algorithm for 1000 points).
+\end{enumerate}
+\end{document}
