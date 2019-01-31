@@ -246,7 +246,7 @@ The summary of regression is depicted below (see Fig. \ref{fig2})
 	\begin{align*}
 	\ln y = \beta_0 + \beta_1x_1 + \beta_2x_1^2 + \beta_{23}x_1^3+ \beta_3x_3 + \beta_4x_4 +u
 	\end{align*}
-	the relation is cubic $\iff \beta_{23} = 0$. Using coeftest() we can conclude that on the 5\% significance level we cannot reject this hypothesis, i.e. the relation is quadratic.
+	the relation is quadratic $\iff \beta_{23} = 0$. Using coeftest() we can conclude that on the 5\% significance level we cannot reject this hypothesis, i.e. the relation is quadratic.
 	\item Here we need to test the hypothesis $\beta_2 = 0, \beta_{23} = 0$. The output of linearHypothesis() is depicted below (see Fig. \ref{fig3}).
 	
 	\begin{figure}[h]
@@ -260,5 +260,66 @@ The summary of regression is depicted below (see Fig. \ref{fig2})
 	\begin{align*}
 	\ln y = \beta_0 + \beta_1x_1 + \beta_2x_1^2 + \beta_3x_3 + \beta_4x_4 +u
 	\end{align*}
+	first of all because this model is more interpretable than the model with cubic relationship, and secondly, we have significant statistic evidence that the relation is not cubic and not linear (based on (d) and (e)).
+	\end{enumerate}
+
+\section*{Problem 5}
+\begin{enumerate}[(a)]
+	\item 
+\begin{table}[h]
+	\begin{tabular}{cccc}
+		Specification & Age 30 to 31  & Age 45 to 46 & Age 60 to 61 \\
+		\hline
+		Linear in \textit{age}&  &  &  \\
+		Quadratic in \textit{age}  &  &  &  \\
+		Cubic in \textit{age} &  &  &\\
+		\hline 
+	\end{tabular}
+\end{table}
+
+For linear model the starting point does not matter hence all entries should be equal to each other and from the Problem 3 (a):
+\begin{align*}
+\frac{\Delta y}{y} \cdot 100 \% \approx 0.6 \Delta x_1
+\end{align*}
+For quadratic model, as it has been already mentioned above:
+\begin{align*}
+\frac{\Delta y}{y} &\approx \beta_1 \Delta x_1 + 2 \beta_2x_1\Delta x_1\\
+\frac{\Delta y}{y} \cdot 100 \% &\approx 5.07 \Delta x_1 -0.105 x_1 \Delta x_1 = \begin{cases}
+1.92, x_1 = 30\\
+0.34, x_1 = 45\\
+-1.23, x_1 = 60
+\end{cases}
+\end{align*}
+Similarly for cubic model:
+\begin{align*}
+\frac{\Delta y}{y} \approx \beta_1 \Delta x_1 + 2 \beta_2 x_1 \Delta x_1 + 3\beta_{23}x_1^2 \Delta x_1
+\end{align*}
+Using summary from the cubic regression we can obtain:
+\begin{align*}
+\frac{\Delta y}{y} \cdot 100 \% \approx 7.754 \Delta x_1 - 0.234 x_1 \Delta x_1 + 0.0015 x_1^2 \Delta x_1 = \begin{cases}
+2.08, x_1 = 30\\
+0.26, x_1 = 45\\
+-0.886, x_1 = 60
+\end{cases}
+\end{align*}
+
+
+Thus, the table looks like:
+
+
+\begin{table}[H]
+	\begin{tabular}{cccc}
+		Specification & Age 30 to 31  & Age 45 to 46 & Age 60 to 61 \\
+		\hline
+		Linear in \textit{age}& 0.6  & 0.6 & 0.6 \\
+		Quadratic in \textit{age}  &1.92  &0.34  &-1.23  \\
+		Cubic in \textit{age} &2.08  &0.26  &-0.886\\
+		\hline 
+	\end{tabular}
+\end{table}
+\item From the linear to quadratic specification this values significantly differs, quadratic specification reflects the truth of life that the average salary firstly increases with age, then it attains maximum at middle age and then starts falling down.
+
+AS for comparison between quadratic and cubic models, both models predict approximately equal values in real world sense.
+\item As I have mentioned somewhere above, the second row makes more sense for me, because it is interpretable (formula for percent changes in $y$ does not include $\text{age}^2$ which is a very strange indicator in real-world terms), in contrast to the cubic model and moreover, estimates gotten from this model seem rather plausible.
 \end{enumerate}
 \end{document}
