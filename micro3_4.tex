@@ -1,0 +1,140 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Microeconomics 3. Problem Set 4.
+\end{center}
+\section*{Problem 1}
+Consider the exchange economy depicted in Figure 15.B.10(a). Show that the conclusion
+of Proposition 17.B.2(v) fails in this example. Which property of preferences (or the lack
+thereof) is responsible from this?
+
+
+\textbf{Solution}
+
+
+Assume $p^n = \left(1\ \frac{1}{n}\right) \underset{n \to \infty}{\to} (1\ 0)$. Then 
+\begin{align*}
+x_2(p^n) = \begin{pmatrix}
+\bar{\omega_1}\\
+0
+\end{pmatrix},\ x_1(p^n) = \begin{pmatrix}
+x_{11}(p^n)\\
+x_{21}(p^n)
+\end{pmatrix}
+\end{align*}
+are demand functions of both consumers, where $x_{11}(p^n)$ and $x_{21}(p^n)$ are the first consumer preferences maximizers over her budget set:
+\begin{align*}
+\left\{(x_{11}, x_{21}) \in [0, \bar{\omega_2}] \times [\bar{\omega_1}, 0]: x_{11} + \frac{x_{12}}{n} \le \frac{\bar{\omega_2}}{n} \right\}
+\end{align*}
+Then the excess demand function is:
+\begin{align*}
+z(p^n) = \begin{pmatrix}
+x_{11}(p^n)\\
+x_{21}(p^n) - \bar{\omega_2}
+\end{pmatrix}
+\end{align*}
+Since the first consumer strictly prefers any positive amount of good 1 to her initial endowment of this good - 0, hence $x_{11}(p^n) > 0\ \forall\ n$. Moreover, from the budget constraint:
+\begin{align*}
+x_{11} + \frac{x_{12} - \bar{\omega_2}}{n} \le 0
+\end{align*}
+that means that $x_{12} - \bar{\omega_2} \le 0$, i.e.
+\begin{align*}
+\max \left\{z_1(p^n), z_2(p^n) \right\} = x_{11}(p^n)
+\end{align*}
+$\frac{x_{12} - \bar{\omega_2}}{n} \underset{n \to \infty}{\to} 0$ therefore:
+\begin{align*}
+B(p^n) \underset{n \to \infty}{\to} \left\{(x_{11}, x_{21}) \in [0, \bar{\omega_2}] \times [\bar{\omega_1}, 0]: x_{11} \le 0 \right\}
+\end{align*}
+hence maximizer $x_{11}(p^n)^* \to 0$.
+Thus, 
+\begin{align*}
+\max\left\{z_1(p^n), z_2(p^n)\right\} \underset{p^n \to (1\ 0)}{\to} 0 \neq +\infty
+\end{align*}
+i.e. the conclusion of the proposition fails. It has happend because of lack of strictly monotonicity of preferences of the second consumer.
+\section*{Problem 2}
+Suppose $\pi_{11} > \pi_{12}$ in Example 19.C.1 in the textbook. Show that an interior Pareto
+efficient allocation $x$ lies below the diagonal of the Edgeworth box, i.e., 
+\begin{align*}
+\frac{x_{11}}{x_{21}} > 1 > \frac{x_{12}}{x_{22}}
+\end{align*}
+What
+else can you say about the relation between the ratios $\frac{\pi_{11}}{\pi_{21}}$, $\frac{\pi_{12}}{\pi_{22}}$ and $\frac{p_1}{p_2}$ in an
+Arrow-Debreu equilibrium?
+
+
+\textbf{Solution}
+
+\begin{align*}
+U_1(x_{11}, x_{21}) = \pi_{11}u_1(x_{11}) + (1 - \pi_{11}) u_1(x_{21})\\
+U_2(x_{12}, x_{22}) = \pi_{12}u_2(x_{12}) + (1 - \pi_{12}) u_2(x_{22})\\
+\end{align*}
+Necessary (and sufficient for concave functions) condition for the interior Pareto efficiency is the following:
+\begin{align*}
+\frac{\partial U_1/\partial x_{11}}{\partial U_1/\partial x_{21}} &= \frac{\partial U_2/\partial x_{12}}{\partial U_1/\partial x_{22}}\\
+\frac{\pi_{11}u'_1(x_{11})}{(1-\pi_{11})u'_1(x_{21})} &= \frac{\pi_{12}u'_2(x_{12})}{(1-\pi_{12})u'_2(x_{22})}
+\end{align*}
+The market clearing conditions imply that:
+\begin{align*}
+x_{11} + x_{12} = \bar{\omega_1} = 1\\
+x_{21} + x_{22} = \bar{\omega_2} = 1\\
+\end{align*}
+Thus, 
+\begin{align*}
+\frac{\pi_{11}u'_1(x_{11})}{(1-\pi_{11})u'_1(x_{21})} = \frac{\pi_{12}u'_2(1 - x_{11})}{(1-\pi_{12})u'_2(1-x_{21})}
+\end{align*}
+If $\pi_{11} > \pi_{12}$ then 
+\begin{align}\label{eq1}
+\frac{u'_1(x_{11})}{u'_1(x_{21})} < \frac{u'_2(1-x_{11})}{u'_2(1 - x_{21})}
+\end{align}
+Assume by contradiction that $x_{11} \le x_{21}$ hence $1-x_{11} \ge 1 - x_{21}$ by strict concavity of $u_1(\cdot), u_2(\cdot)$:
+\begin{align*}
+\frac{u_1'(x_{11})}{u'_1(x_{21})} \ge 1\\
+\frac{u'_2(1 - x_{11})}{u_2'(1 - x_{21})} \le 1
+\end{align*}
+but it contradicts to \eqref{eq1}. Hence $x_{11} > x_{21}$ and $1 - x_{11} = x_{21} < x_{22} = 1 - x_{21}$.
+
+
+
+\end{document}
