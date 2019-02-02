@@ -136,5 +136,245 @@ Assume by contradiction that $x_{11} \le x_{21}$ hence $1-x_{11} \ge 1 - x_{21}$
 but it contradicts to \eqref{eq1}. Hence $x_{11} > x_{21}$ and $1 - x_{11} = x_{21} < x_{22} = 1 - x_{21}$.
 
 
+Since at the interior equilibrium:
+\begin{align*}
+\frac{\partial U_1/\partial x_{11}}{\partial U_1/\partial x_{21}} &= \frac{\partial U_2/\partial x_{12}}{\partial U_1/\partial x_{22}} = \frac{p_1}{p_2}
+\end{align*}
+that means that
+\begin{align*}
+\frac{\pi_{11}u'_1(x_{11})}{(1-\pi_{11})u'_1(x_{21})} = \frac{\pi_{12}u'_2(1 - x_{11})}{(1-\pi_{12})u'_2(1-x_{21})} = \frac{p_1}{p_2}\\
+x_{11} > x_{21} \to \frac{u_1'(x_{11})}{u_1'(x_{21})} < 1 \to \frac{\pi_{11}}{1 - \pi_{11}} > \frac{p_1}{p_2}
+\end{align*}
+Similarly, 
+\begin{align*}
+\frac{u_2'(1 - x_{11})}{u_2'(1 - x_{21})} > 1 \to \frac{\pi_{12}}{1 - \pi_{12}} < \frac{p_1}{p_2}
+\end{align*}
+i.e.
+\begin{align*}
+\frac{\pi_{12}}{1 - \pi_{12}} < \frac{p_1}{p_2} < \frac{\pi_{11}}{1 - \pi_{21}}
+\end{align*}
+\section*{Problem 3}
+Solve Exercise 19.C.4 from the textbook. (Note: There is an error in the statement,
+only $u_2$ is strictly concave.)
 
+
+\textbf{Solution}
+
+\begin{enumerate}[(a)]
+	\item As in the previous problem, at the interior equilibrium:
+	\begin{align*}
+	\frac{\pi_{11}u'_1(x_{11})}{(1-\pi_{11})u'_1(x_{21})} = \frac{\pi_{12}u'_2(x_{12})}{(1-\pi_{12})u'_2(x_{22})}
+	\end{align*}
+	here, however $\pi_{11} = \pi_{12}$ and moreover the first consumer is risk-neutral (i.e. $u_1'(x) = const\ \forall\ x$) hence
+	\begin{align*}
+	1 = \frac{u'_2(x_{12})}{u'_2(x_{22})}
+	\end{align*}
+	by stictly concavity of $u_2(\cdot)$ it follows that
+	\begin{align*}
+	x_{12} = x_{22}
+	\end{align*}
+	i.e. the second consumer insures completely.
+	\item Assume wlog that $\pi_{11} > \pi_{12}$ then
+	\begin{align*}
+	\frac{\pi_{11}}{1 - \pi_{11}} > \frac{\pi_{12}}{1 - \pi_{12}}\ \to 1 < \frac{u'_2(x_{12})}{u'_2(x_{22})}\ \to x_{12} < x_{22}
+	\end{align*}
+	i.e. the second consumer does not insure completely, namely:
+	\begin{align*}
+	\begin{cases}
+	x_{12} < x_{22}, \pi_{12} < \pi_{11}\\
+	x_{12} > x_{22}, \pi_{12} > \pi_{11}
+	\end{cases}
+	\end{align*} 
+	Without trade the risk-neutral consumer gets:
+	\begin{align*}
+	\pi_{11} \frac{\bar{\omega_1}}{2} + (1 - \pi_{11})\frac{\bar{\omega_2}}{2}
+	\end{align*}
+	If the trade occurs the first consumer should maxmize his preferences over his budget set, i.e. solve the following optimization problem:
+	\begin{align*}
+	\underset{x_{11}, x_{21} \ge 0}{\max}\ \pi_{11}x_{11} + (1 - \pi_{21})x_{21}\\
+	s.t.\ p_1x_{11} + p_2x_{22} \le p_1\frac{\bar{\omega_1}}{2} + p_2 \frac{\bar{\omega_2}}{2}
+	\end{align*}
+	If $\pi_{11} > 0.5$ then solution is:
+	\begin{align*}
+	x_{11}^* = \frac{\bar{\omega_1}}{2} + \frac{p_2}{p_1}\frac{\bar{\omega}_2}{2}\\
+	x_{21}^* = 0
+	\end{align*}
+	in that case the consumer gets:
+	\begin{align*}
+	\pi_{11} \left(\frac{\bar{\omega_1}}{2} + \frac{p_2}{p_1}\frac{\bar{\omega}_2}{2}\right) = \pi_{11} \frac{\bar{\omega_1}}{2} + \pi_{11}\frac{1 - \pi_{11}}{\pi_{11}} \frac{\bar{\omega_2}}{2} = \pi_{11} \frac{\bar{\omega_1}}{2} + (1 - \pi_{11})\frac{\bar{\omega_2}}{2}
+	\end{align*}
+	which is exactly the same value he gets without trade. (the case $\pi_{11} \le 0.5$ is analogous).
+\end{enumerate}
+
+\section*{Problem 4}
+Consider an Arrow-Debreu exchange economy with two physical goods, two states and
+two consumers. Consumers' Bernoulli utility functions are state independent and identical:
+\begin{align*}
+u_1(x_{s1}) = \frac{1}{2} \ln x_{1s1} + \frac{1}{2}\ln x_{2s1}\ u_2(x_{s2}) = \frac{1}{2} \ln x_{1s2} + \frac{1}{2}\ln x_{2s2}
+\end{align*}
+Here, $x_{si} = (x_{1si}; x_{2si})$ stands for the consumption bundle of consumer $i$ in state $s$. Consumer
+1 assigns probability $1/4$ to state 1 while consumer 2 assigns probability $3/4$ to state 1.
+Consumers' endowment vectors are as follows:
+\begin{align*}
+\omega_1 = (\omega_{111}; \omega_{211}; \omega_{121}; \omega_{221}) = (12; 4; 0; 0);\  \omega_{2} = (\omega_{112}; \omega_{212}; \omega_{122}; \omega_{222}) = (0; 0; 4; 12)
+\end{align*}
+As usual, $\omega_{lsi}$ stands for consumer $i's$ endowment of good $l$ in state $s$. Find an Arrow-Debreu
+equilibrium of this model.
+
+
+\textbf{Solution}
+
+Consumers are solving the following optimization problems:
+\begin{align*}
+\underset{x_{111}, x_{211}, x_{121}, x_{221} \ge 0}{\max}\ \ \ \frac{1}{8} (\ln x_{111}+ \ln x_{211}) + \frac{3}{8}(\ln x_{121} + \ln x_{221})\\
+s.t.\ \  p_{11}x_{111} + p_{21}x_{211} + p_{12}x_{121} + p_{22}x_{221} \le 12p_{11} + 4p_{21}\\
+\\
+\underset{x_{112}, x_{212}, x_{122}, x_{222} \ge 0}{\max}\ \ \ \frac{3}{8}(\ln x_{112} + \ln x_{212}) + \frac{1}{8}(\ln x_{122} + \ln x_{222})\\
+s.t.\ \  p_{11}x_{112} + p_{21}x_{212} + p_{12}x_{122} + p_{22}x_{222} \le 12p_{22} + 4p_{12}\\
+\end{align*}
+And moreover market clearing conditions imply:
+\begin{align*}
+x_{111} + x_{112} = 12 \nonumber\\
+x_{211} + x_{212} = 4\nonumber\\
+x_{121} + x_{122} = 4\\
+x_{221} + x_{222} = 12\nonumber
+\end{align*}
+Since derivatives of objective functions tend to infinity while some of $x$ tend to 0 hence the solution should lie at the interior. Thus, FOCs are:
+\begin{align*}
+\begin{cases}
+\frac{1}{8x_{111}} - \lambda p_{11} = 0\\
+\frac{1}{8x_{211}} - \lambda p_{21} = 0\\
+\frac{3}{8x_{121}} - \lambda p_{12} = 0\\
+\frac{3}{8x_{221}} - \lambda p_{22} = 0\\
+p_{11}x_{111} + p_{21}x_{211} + p_{12}x_{121} + p_{22}x_{221} = 12p_{11} + 4p_{21}
+\end{cases} \to \begin{cases}
+x_{111} = \frac{12p_{11} + 4p_{21}}{8p_{11}}\\
+x_{211} = \frac{12p_{11} + 4p_{21}}{8p_{21}}\\
+x_{121} = \frac{3(12p_{11} + 4p_{21})}{8p_{12}}\\
+x_{221} = \frac{3(12p_{11} + 4p_{21})}{8p_{22}}
+\end{cases}
+\end{align*}
+Similarly for the second consumer:
+\begin{align*}
+\begin{cases}
+x_{112} = \frac{3(12p_{22} + 4p_{12})}{8p_{11}}\\
+x_{212} = \frac{3(12p_{22} + 4p_{12})}{8p_{21}}\\
+x_{122} = \frac{12p_{22} + 4p_{12}}{8p_{12}}\\
+x_{222} = \frac{12p_{22} + 4p_{12}}{8p_{22}}
+\end{cases}
+\end{align*}
+Plugging market clearing conditions into FOCs:
+\begin{align*}
+\begin{cases}
+\frac{12p_{11} + 4p_{21}}{8p_{11}} + \frac{3(12p_{22} + 4p_{12})}{8p_{11}} = 12\\
+\frac{12p_{11} + 4p_{21}}{8p_{21}} + \frac{3(12p_{22} + 4p_{12})}{8p_{21}} = 4\\
+\frac{3(12p_{11} + 4p_{21})}{8p_{12}} + \frac{12p_{22} + 4p_{12}}{8p_{12}} = 4\\
+\frac{3(12p_{11} + 4p_{21})}{8p_{22}} + \frac{12p_{22} + 4p_{12}}{8p_{22}} = 12
+\end{cases}\\
+\begin{cases}
+-21p_{11} + p_{21} + 3p_{12} + 9p_{22} = 0\\
+3p_{11} - 7p_{21} + 3p_{12} + 9p_{22} = 0\\
+9p_{11} +3p_{21} - 7p_{12} + 3p_{22} = 0\\
+9p_{11} + 3p_{21} + p_{12} - 21p_{22} = 0
+\end{cases}
+\end{align*}
+The solution is:
+$p_{11} = p_{22}, p_{21} = p_{12} = 3p_{22}$. If we normalize $p_{11} = 1$ then $p_{22} = 1, p_{12} = p_{21} = 3$.
+That is, the equilibrium allocation is:
+\begin{align*}
+x_1 = \begin{pmatrix}
+3\\
+1\\
+3\\
+9
+\end{pmatrix},\ x_2 = \begin{pmatrix}
+9\\
+3\\
+1\\
+3
+\end{pmatrix}
+\end{align*}
+\section*{Problem 5}
+Consider an Arrow-Debreu exchange economy with two physical goods, two states, and
+two consumers. Consumers' Bernoulli utility functions are state independent:
+\begin{align*}
+u_1(x_{s1}) = \ln x_{1s1} + 2 \ln x_{2s1}\ \  u_2(x_{s2}) = 2 \ln x_{1s2} + \ln x_{2s2}
+\end{align*}
+Both consumers think that the states are equally likely. Consumers' endowment vectors are
+equal to each other:
+\begin{align*}
+\omega_i = (\omega_{11i}; \omega_{21i}; \omega_{12i};\omega_{22i}) = (6; 6; 3; 3) \text{ for } i = 1; 2,
+\end{align*}
+Find an Arrow-Debreu
+equilibrium of this model.
+
+
+\textbf{Solution}
+
+
+Consumers are solving the following optimization problems:
+\begin{align*}
+&\underset{x_{111}, x_{211}, x_{121}, x_{221} \ge 0}{\max}\ \ \ \frac{1}{2}(\ln x_{111} + 2\ln x_{211}) + \frac{1}{2}(\ln x_{121} + 2\ln x_{221})\\
+s.t.\ \  p_{11}x_{111}& + p_{21}x_{211} + p_{12}x_{121} + p_{22}x_{221} \le 6p_{11} + 6p_{21} + 3p_{12} + 3p_{22}\\
+\\
+&\underset{x_{112}, x_{212}, x_{122}, x_{222} \ge 0}{\max}\ \ \ \frac{1}{2}(2\ln x_{112} + \ln x_{212}) + \frac{1}{2}(2\ln x_{122} + \ln x_{222})\\
+s.t.\ \  p_{11}x_{112}& + p_{21}x_{212} + p_{12}x_{122} + p_{22}x_{222} \le 6p_{11} + 6p_{21} + 3p_{12} + 3p_{22}\\
+\end{align*}
+And moreover market clearing conditions imply:
+\begin{align*}
+x_{111} + x_{112} = 12 \nonumber\\
+x_{211} + x_{212} = 12\nonumber\\
+x_{121} + x_{122} = 6\\
+x_{221} + x_{222} = 6\nonumber
+\end{align*}
+Since derivatives of objective functions tend to infinity while some of $x$ tend to 0 hence the solution should lie at the interior. Thus, FOCs are:
+\begin{align*}
+&\begin{cases}
+\frac{1}{2x_{111}} - \lambda p_{11} = 0\\
+\frac{1}{x_{211}} - \lambda p_{21} = 0\\
+\frac{1}{2x_{121}} - \lambda p_{12} = 0\\
+\frac{1}{x_{221}} - \lambda p_{22} = 0\\
+p_{11}x_{111} + p_{21}x_{211} + p_{12}x_{121} + p_{22}x_{221} \le 6p_{11} + 6p_{21} + 3p_{12} + 3p_{22}
+\end{cases} \\
+&\begin{cases}
+x_{111} = \frac{6p_{11} + 6p_{21} + 3p_{12} + 3p_{22}}{6p_{11}}\\
+x_{211} = \frac{6p_{11} + 6p_{21} + 3p_{12} + 3p_{22}}{3p_{21}}\\
+x_{121} = \frac{6p_{11} + 6p_{21} + 3p_{12} + 3p_{22}}{6p_{12}}\\
+x_{221} = \frac{6p_{11} + 6p_{21} + 3p_{12} + 3p_{22}}{3p_{22}}
+\end{cases}
+\end{align*}
+Similarly for the second consumer:
+\begin{align*}
+x_{112} = \frac{6p_{11} + 6p_{21} + 3p_{12} + 3p_{22}}{3p_{11}}\\
+x_{212} = \frac{6p_{11} + 6p_{21} + 3p_{12} + 3p_{22}}{6p_{21}}\\
+x_{122} = \frac{6p_{11} + 6p_{21} + 3p_{12} + 3p_{22}}{3p_{12}}\\
+x_{222} = \frac{6p_{11} + 6p_{21} + 3p_{12} + 3p_{22}}{6p_{22}}
+\end{align*}
+From market clearing conditions:
+\begin{align*}
+\begin{cases}
+-6p_{11} + 2p_{21} + p_{12} + p_{22} = 0\\
+2p_{11} - 6p_{21} + p_{12} + 3p_{22} = 0\\
+2p_{11} + 2p_{21} - 3p_{12} + p_{22} = 0\\
+2p_{11} + 2p_{21} + p_{12} - 3p_{22} = 0
+\end{cases}
+\end{align*}
+The solution is:
+\begin{align*}
+2p_{11} = 2p_{21} = p_{22} = p_{12}
+\end{align*}
+Normalize $p_{11} = 1$ then $p_{11} = p_{21} = 1, p_{22} = p_{12} = 2$. And the equilibrium allocation is:
+\begin{align*}
+x_1 = \begin{pmatrix}
+4\\
+8\\
+2\\
+4
+\end{pmatrix},\ x_2 = \begin{pmatrix}
+8\\
+4\\
+4\\
+2
+\end{pmatrix}
+\end{align*}
 \end{document}
