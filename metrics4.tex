@@ -1,0 +1,165 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\newcommand{\yrseduc}{\textit{yrseduc}}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Econometrics 1. Problem Set 4.
+\end{center}
+\section*{Problem 1}
+
+\textbf{Solution}
+
+
+Since $\hat{\beta_0}, \dots, \hat{\beta_k}$ are OLS estimates they satisfy the following system of equations:
+\begin{align}\label{eq1}
+\begin{cases}
+\summa (y_i - \hat{\beta_0} - \hat{\beta_1}x_{1i} - \dots - \hat{\beta_k}x_{ki}) = 0\\
+\summa x_{1i}(y_i - \hat{\beta_0} - \hat{\beta_1}x_{1i} - \dots - \hat{\beta_k}x_{ki}) = 0\\
+\dots\\
+\dots\\
+\summa x_{ki}(y_i - \hat{\beta_0} - \hat{\beta_1}x_{1i} - \dots - \hat{\beta_k}x_{ki}) = 0
+\end{cases}
+\end{align}
+
+This is also true for $\tilde{\beta_0}, \dots, \tilde{\beta_k}$, i.e.
+\begin{align*}
+\begin{cases}
+\summa c_0(c_0y_i - \tilde{\beta_0} - \tilde{\beta_1}c_1x_{1i} - \dots - \tilde{\beta_k}c_kx_{ki}) = 0\\
+\summa c_1x_{1i}(c_0y_i - \tilde{\beta_0} - \tilde{\beta_1}c_1x_{1i} - \dots - \tilde{\beta_k}c_kx_{ki}) = 0\\
+\dots\\
+\dots\\
+\summa x_{ki}c_k(c_0y_i - \tilde{\beta_0} - \tilde{\beta_1}c_1x_{1i} - \dots - \tilde{\beta_k}c_kx_{ki}) = 0
+\end{cases}
+\end{align*}
+Assuming that $c_0$ is not equal to 0 either, this system can be rewritten as follows:
+\begin{align*}
+\begin{cases}
+\summa c_0^2(y_i - \frac{1}{c_0}\tilde{\beta_0} - \frac{c_1}{c_0}\tilde{\beta_1}x_{1i} - \dots - \frac{c_k}{c_0}\tilde{\beta_k}x_{ki}) = 0\\
+\summa \frac{c_1}{c_0}x_{1i}(y_i - \frac{1}{c_0}\tilde{\beta_0} - \frac{c_1}{c_0}\tilde{\beta_1}x_{1i} - \dots - \frac{c_k}{c_0}\tilde{\beta_k}x_{ki}) = 0\\
+\dots\\
+\dots\\
+\summa \frac{c_k}{c_0}x_{ki}(y_i - \frac{1}{c_0}\tilde{\beta_0} - \frac{c_1}{c_0}\tilde{\beta_1}x_{1i} - \dots - \frac{c_k}{c_0}\tilde{\beta_k}x_{ki}) = 0
+\end{cases}
+\end{align*}
+or, finally
+\begin{align*}
+\begin{cases}
+\summa (y_i - \frac{1}{c_0}\tilde{\beta_0} - \frac{c_1}{c_0}\tilde{\beta_1}x_{1i} - \dots - \frac{c_k}{c_0}\tilde{\beta_k}x_{ki}) = 0\\
+\summa x_{1i}(y_i - \frac{1}{c_0}\tilde{\beta_0} - \frac{c_1}{c_0}\tilde{\beta_1}x_{1i} - \dots - \frac{c_k}{c_0}\tilde{\beta_k}x_{ki}) = 0\\
+\dots\\
+\dots\\
+\summa x_{ki}(y_i - \frac{1}{c_0}\tilde{\beta_0} - \frac{c_1}{c_0}\tilde{\beta_1}x_{1i} - \dots - \frac{c_k}{c_0}\tilde{\beta_k}x_{ki}) = 0
+\end{cases}
+\end{align*}
+Substituting 
+\begin{align}\label{eq2}
+\tilde{\beta_i} = \frac{c_0}{c_i}\tilde{\beta_i}', \forall\ i = 1, \dots, k\\
+\tilde{\beta_0} = c_0 \tilde{\beta_0}' \nonumber
+\end{align} 
+we can get the system which is equivalent to the system \eqref{eq1}, as a result has the same solutions. Plugging these solutions $\hat{\beta_i}$ back to \eqref{eq2} we finally get
+\begin{align*}
+\tilde{\beta_i} = \frac{c_0}{c_i}\hat{\beta_i}\ \forall\ i=1, \dots, k\\
+\tilde{\beta_0} = c_0 \hat{\beta_0}
+\end{align*}
+Q.E.D.
+
+\section*{Problem 2}
+\textbf{Solution}
+
+
+\begin{align*}
+\ln(wage) = \beta_0 + \beta_1 educ + \beta_2 educ \times pareduc + \beta_3 exper + \beta_4 tenure + u
+\end{align*}
+
+\begin{enumerate}[(i)]
+	\item Obviously
+	\begin{align*}
+	\frac{d \ln (wage)}{d\ educ} = \beta_1 + \beta_2 pareduc
+	\end{align*}
+	hence
+	\begin{align*}
+	\frac{\Delta \ln (wage)}{\Delta educ} \approx \beta_1 + \beta_2 pareduc
+	\end{align*}
+	As for me it is difficult to say something about sign of $\beta_0$ apriori. If $\beta_2$ is positive then each additional year of parents' education yields greater average percentage change in salary with additional year of education. I cannot come up with any strong reasoning for $\beta_2$ be positive or negative.
+	\item If $pareduc = 24$ then
+	\begin{align*}
+	100\% \cdot \frac{\Delta wage}{wage} = 4.7 \Delta educ + 0.078 \cdot 24 \Delta educ = 4.7 \Delta educ + 1.872 \Delta educ
+	\end{align*}
+	If $pareduc = 32$ then
+	\begin{align*}
+	100\% \cdot \frac{\Delta wage}{wage} = 4.7 \Delta educ + 0.078 \cdot 32 \Delta educ = 4.7 \Delta educ + 2.496 \Delta educ
+	\end{align*}
+	i.e. each additional year of parents' education increases by 0.078 percent points the value of percent change of salary in response to additional year of education.
+	\item \begin{align*}
+	t = \frac{0.0016}{0.0012} \approx 1.33
+	\end{align*}
+	p-value is about 0.09, hence we can reject the hypothesis on 5\% significance level. That is, the return to education does not depend on parents' education.
+	\section*{Problem 3}
+	
+	
+	\textbf{Solution}
+	
+	
+	Since 
+	\begin{align*}
+	F \equiv \frac{(SSR_r - SSR_{ur}) / q}{SSR_{ur}/(n - k - 1)}
+	\end{align*}
+	where $SSR_r$ and $SSR_{ur}$ are sums of squares of residuals of restricted and unrestricted models respectively, $q = 2, k = 8$. 
+	\begin{align*}
+	R^2_{ur} = 1 - \frac{SSR_{ur}}{SST_{ur}}\\
+	R^2_{r} = 1 - \frac{SSR_{r}}{SST_{r}}\\
+	\end{align*}
+	while
+	\begin{align*}
+	SST = \summa (y_i - \bar{y}) = SST_r = SST_{ur}
+	\end{align*}
+	hence
+	\begin{align*}
+	F = \frac{(R^2_{ur} - R^2_r)/q}{(1 - R^2_{ur})/(n-k-1)} = \frac{(0.232 - 0.229)/2}{(1-0.232)/(680 - 8 - 1)} \approx 1.31
+	\end{align*}
+	p-value is about 0.27, hence the hypothesis (that corresponding slope coefficients are 0) cannot be rejected at the 10\% significance level. That is, both these terms are jointly insignificant hence I would not include them in the model.
+\end{enumerate}
+\section*{Problem 4}
+
+\end{document}
