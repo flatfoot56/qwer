@@ -161,5 +161,92 @@ Q.E.D.
 	p-value is about 0.27, hence the hypothesis (that corresponding slope coefficients are 0) cannot be rejected at the 10\% significance level. That is, both these terms are jointly insignificant hence I would not include them in the model.
 \end{enumerate}
 \section*{Problem 4}
+\begin{enumerate}[(a)]
+	\item From Problem Set 2, Problem 3:
+	\begin{align*}
+	\hat{\beta_1} = \frac{s^2_{yx_1}s^2_{x_2x_2} - s^2_{yx_2}s^2_{x_2x_1}}{s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2}\\
+	\hat{\beta_2} = \frac{s^2_{yx_2}s^2_{x_1x_1} - s^2_{yx_1}s^2_{x_2x_1}}{s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2}
+	\end{align*}
+	where $s^2_{xy}$ means a sample covariance between $x$ and $y$. That means that:
+	\begin{align}\label{eq4}
+	&Var(\hat{\beta_1}|x_1, x_2) = \left(\frac{s^2_{x_2x_2}}{s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2}\right)^2 Var(s^2_{yx_1}|x_1, x_2) + \nonumber\\
+	&+\left(\frac{s^2_{x_2x_1}}{s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2}\right)^2 Var(s^2_{yx_2}|x_1, x_2) - \frac{2s^2_{x_2x_2}s^2_{x_2x_1}}{(s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2)^2}cov(s^2_{yx_1}, s^2_{yx_2}|x_1, x_2) = \nonumber\\
+	&\underset{i.i.d}{=} \left(\frac{s^2_{x_2x_2}}{s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2}\right)^2 \summa (x_{i1} - \bar{x_1})^2Var(y_i|x_{i1}, x_{i2}) + \nonumber\\
+	&\left(\frac{s^2_{x_2x_1}}{s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2}\right)^2 \summa (x_{i2} - \bar{x_2})^2Var(y_i|x_{i1}, x_{i2}) -\nonumber\\
+	&-\frac{2s^2_{x_2x_2}s^2_{x_2x_1}}{(s^2_{x_1x_1}s^2_{x_2x_2} -(s^2_{x_1x_2})^2)^2} \summa \sum_{j=1}^n (x_{i1} - \bar{x_1})(x_{j2} -\bar{x_2})cov(y_i, y_j|x_{1}, x_2) = \nonumber\\
+	&=\left(\frac{s^2_{x_2x_2}}{s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2}\right)^2 s^2_{x_1x_1} \sigma^2 +
+	\left(\frac{s^2_{x_2x_1}}{s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2}\right)^2 s^2_{x_2x_2} \sigma^2 - \nonumber\\
+	&-\frac{2s^2_{x_2x_2}s^2_{x_2x_1}}{(s^2_{x_1x_1}s^2_{x_2x_2} -(s^2_{x_1x_2})^2)^2} s^2_{x_1x_2}\sigma^2 = \frac{s^2_{x_2x_2}}{s^2_{x_1x_1}s^2_{x_2x_2} -(s^2_{x_1x_2})^2}\sigma^2
+	\end{align}
+	Similarly for $\hat{\beta_2}$:
+	\begin{align}\label{eq3}
+	&Var(\hat{\beta_2}|x_1, x_2) = \frac{s^2_{x_1x_1}}{s^2_{x_1x_1}s^2_{x_2x_2} -(s^2_{x_1x_2})^2}\sigma^2
+	\end{align}
+	Then
+	\begin{align*}
+	Var(\hat{\beta_1}|x_1, x_2) - Var(\hat{\beta_2}|x_1, x_2) = \frac{\sigma^2}{s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2} (s^2_{x_2x_2} - s^2_{x_1x_1})
+	\end{align*}
+	and 
+	\begin{align*}
+	\widehat{Var(\hat{\beta_1}|x_1, x_2)} - \widehat{Var(\hat{\beta_2}|x_1, x_2)} =\frac{\hat{\sigma}^2}{s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2} (s^2_{x_2x_2} - s^2_{x_1x_1})
+	\end{align*}
+	Since $\widehat{Var(\hat{\beta_1}|x_1, x_2)} - \widehat{Var(\hat{\beta_2}|x_1, x_2)} > 0$ and the determinant of sample covariance matrix (which appears in the denominator) should be nonnegative (i.e. positive) then $s^2_{x_2x_2} - s^2_{x_1x_1}$ should be positive. Hence, once we have an invertible sample covariance matrix the sample variance of $x_1$ should be smaller than the sample variance of $x_2$.
+	\item 
+	\item Since
+	\begin{align*}
+	Var(\hat{\beta_1} + \hat{\beta_2}) = Var(\hat{\beta_1}) + Var(\hat{\beta_2}) + 2cov(\hat{\beta_1}, \hat{\beta_2})
+	\end{align*}
+	It remains to estimate the covariance of $\hat{\beta_1}$ with $\hat{\beta_2}$.
+	\begin{align*}
+	cov(\hat{\beta_1}, \hat{\beta_2}|x_1, x_2) = \frac{s^2_{x_2x_2}s^2_{x_1x_1}cov(s^2_{yx_1}, s^2_{yx_2}) - s^2_{x_2x_2}s^2_{x_2x_1}Var(s^2_{yx_1})}{(s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2)^2} - \\
+	-\frac{ s^2_{x_2x_1}s^2_{x_1x_1}Var(s^2_{yx_2}) - s^2_{x_2x_1}s^2_{x_2x_1}cov(s^2_{yx_2}, s^2_{yx_1})}{(s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2)^2} = \\
+	=\frac{-s^2_{x_1x_2}}{s^2_{x_1x_1}s^2_{x_2x_2} - (s^2_{x_1x_2})^2}\sigma^2
+	\end{align*}
+	That means that
+	\begin{align*}
+	\widehat{Var(\hat{\beta_1} + \hat{\beta_2})} = 
+	\end{align*}
+	\item $\summa x_ix_i^T$ is a diagonal meaning that $s^2_{x_1x_2} = 0$ hence we need to find $s^2_{x_1x_1}$ and $s^2_{x_2x_2}$. From \eqref{eq3} and \eqref{eq4} it follows that:
+	\begin{align*}
+	2 = SE(\hat{\beta_1}) = \sqrt{\frac{s^2_{x_2x_2}3^2}{(n-1)s^2_{x_1x_1}s^2_{x_2x_2}}}\\
+	(n-1)s^2_{x_1x_1} = \frac{9}{4}
+	\end{align*}
+	Similarly for $\hat{\beta_2}$:
+	\begin{align*}
+	1 = \sqrt{\frac{s^2_{x_1x_1}3^2}{(n-1)s^2_{x_1x_1}s^2_{x_2x_2}}}\\
+	(n-1)s^2_{x_2x_2} = 3
+	\end{align*}
+	Thus, the diagonal of $\summa x_ix_i^T$ which is $n, \summa x_{1i}^2, \summa x_{2i}^2$ is equal to:
+	\begin{align*}
+	100,\ \frac{9}{4},\ 3
+	\end{align*}
+\end{enumerate}
+\section*{Problem 5}
+Summary of the regression is depicted on the Fig. \ref{fig1}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{lnahe_femyrs}
+	\caption{Summary of regression}\label{fig1}
+\end{figure}
+
+\begin{enumerate}[a.]
+	\item Denote coefficient on $yrseduc$ as $\beta_1$, on $female\times yrseduc$ as $\beta_2$ and on $female$ as $\beta_3$. For males ($female = 0$)
+	\begin{align*}
+	\frac{\Delta ahe}{ahe} \cdot 100\% = \beta_1 \cdot 100 \Delta yrseduc
+	\end{align*}
+	i.e. the coefficient on $yrseduc$ times 100 is the percent change of average per hour salary for men adding one additional year of education, holding other things fixed.
+	
+	For women:
+	\begin{align*}
+	\frac{\Delta ahe}{ahe} \cdot 100\% = 100(\beta_1 + \beta_2)\Delta yrseduc
+	\end{align*}
+	i.e. the coefficient on $yrseduc$ plus the coefficient on $yrseduc \times female$ times 100 is the percent change of average per hour salary for women adding one additional year of education, holding other things fixed.
+	\item 
+	\item We should test whether $\beta_2 = 0$ or not. Using coeftest() we can conclude that the null hypothesis can be rejected at the 5\% significance level, i.e. the value of the aditional year of education for men and for women differs.
+	\item We need to test the hypothesis that both $\beta_2$ and $\beta_3$ are equal to 0. Using linearhypothesis() we can conclude that the hypothesis should be rejected, i.e. regression lines are different for men and for women.
+	\item For men additional year of education increases the average per hour salary by $8.26\%$ for women by $9.9\%$, in statistical terms this is a significant difference (since we reject the hypothesis that $\beta_2 = 0$) in real world sense I think not.
+\end{enumerate}
+\section*{Problem 6}
 
 \end{document}
