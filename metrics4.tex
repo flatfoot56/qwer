@@ -248,5 +248,47 @@ Summary of the regression is depicted on the Fig. \ref{fig1}.
 	\item For men additional year of education increases the average per hour salary by $8.26\%$ for women by $9.9\%$, in statistical terms this is a significant difference (since we reject the hypothesis that $\beta_2 = 0$) in real world sense I think not.
 \end{enumerate}
 \section*{Problem 6}
+Nothing changed. R did not include $male \times yrseduc$ in regression because $male \times yrseduc = yrseduc - female \times yrseduc$ i.e. regressors are perfectly linearly dependent.
+\section*{Problem 7}
+Summary for two models are depicted on the Fig. \ref{fig2} and \ref{fig3} respectively.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{age_cub}
+	\caption{Summary of regression}\label{fig2}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{age_cub2}
+	\caption{Summary of regression}\label{fig3}
+\end{figure}
+\begin{enumerate}[a.]
+	\item Denote the coefficients of the models as follows:
+	\begin{align*}
+	\ln ahe = \beta_0 + \beta_1 female + \beta_2 yrseduc + \beta_3 age + \beta_4 age^2 + \beta_5 age^3 + \beta_6 female \times yrseduc + \\
+	+\beta_7 female \times age + \beta_8 female \times age^2 + \beta_9 female \times age^3
+	\end{align*}
+	For men :
+	\begin{align*}
+	\text{1st model: } 100 \beta_2 = 8.08\\
+	\text{2nd model: } 100 \beta_2 = 8.03\\
+	\end{align*}
+	i.e. interaction terms do not significantly affect the value of additional year of education for men, in a real-world sense.
+	For women:
+	\begin{align*}
+	\text{1st model: } 100(\beta_2 + \beta_6) = 10.13\\
+	\text{2nd model: } 100(\beta_2 + \beta_6) = 10.07
+	\end{align*}
+	i.e. interaction terms do not significantly affect the value of additional year of education for women, in a real-world sense, either.
+	\item \begin{align*}
+	\frac{\Delta ahe}{ahe} \cdot 100 = 100(\beta_1 + 16 \beta_6 + 25 \beta_7 + 25^2 \beta_8 + 25^3 \beta_9)\Delta female = -8.42 \Delta female
+	\end{align*}
+	i.e. on average 25-year old female workers with 16 years of education earn by 8.4\% less than their male counterparts.
+	\item \begin{align*}
+	\frac{\Delta ahe}{ahe} \cdot 100 = 100(\beta_1 + 16 \beta_6 + 55 \beta_7 + 55^2 \beta_8 + 55^3 \beta_9)\Delta female = -22.69 \Delta female
+	\end{align*}
+	i.e. on average 55-year old female workers with 16 years of education earn by 22.7\% less than their male counterparts.
+	\item We need to test the hypothesis that $\beta_7 = \beta_8 = \beta_9 = 0$. Using linearHypothesis() we can conclude that at the 5\% significance level the hypothesis should be rejected. That is, a gender gap depends on age.
+	\item Yes, there is evidence. Coefficients jointly significanly differ from zero and moreover based on (c) and (d) we can conclude that for 25 year-old female and for 55-year old the gender gap significantly differs in a real-world terms (8\% for the former and 22.7\% for the latter)
+\end{enumerate}
 \end{document}
