@@ -1,0 +1,486 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\newcommand{\yrseduc}{\textit{yrseduc}}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Microeonomics 3. Problem Set 5.
+\end{center}
+\section*{Problem 1}
+\begin{enumerate}[(a)]
+	\item  Consider a modified version of Question 4 in Problem Set 4 in which trade takes
+	place sequentially. Suppose there are two Arrow securities (denominated in terms of the
+	physical good 1). Find a Radner equilibrium of this modified model. (You should determine
+	the equilibrium values of all variables, i.e., consumption plans, asset portfolios, spot prices
+	and asset prices.)
+	\item Suppose now that in place of the Arrow securities, there are two assets defined by the
+	return vectors $r_1 = (2, 1)$ and $r_2 = (1, 2)$, respectively. As usual, the $s$’th coordinate of $r_k$
+	represents the amount of good 1 that the asset $k$ pays in state $s$ (for $k = 1, 2$ and $s = 1, 2$).
+	Find a Radner equilibrium of the corresponding sequential exchange model.
+\end{enumerate}
+
+
+\textbf{Solution}
+
+
+\begin{enumerate}[(a)]
+	\item From the Problem 4 of Problem Set 4 it is known that the Arrow-Debreu equilibrium consists of prices:
+	\begin{align*}
+	p_{11} = p_{22} = 1,\ p_{12} = p_{21} = 3
+	\end{align*}
+	and allocation:
+	\begin{align*}
+	x_1 = \begin{pmatrix}
+	3\\
+	1\\
+	3\\
+	9
+	\end{pmatrix},\ x_2 = \begin{pmatrix}
+	9\\
+	3\\
+	1\\
+	3
+	\end{pmatrix}
+	\end{align*}
+From the theorem of equivalence between Arrow-Debreu equilibrium and Radner equilibrium it follows that prices of two Arrow securities are equal to:
+\begin{align*}
+q^* = \begin{pmatrix}
+p_{11}\\
+p_{12}
+\end{pmatrix} = \begin{pmatrix}
+1\\
+3
+\end{pmatrix}
+\end{align*}
+Equilibrium consumption plans do not change. It remains to find equilibrium portfolio for each consumer. 
+\begin{align*}
+z^*_{si} = \frac{1}{p_{1s}}p_s(x_{si} - \omega_{si})\\
+z^*_{1} =  \begin{pmatrix}
+-18\\
+6
+\end{pmatrix},\ z^*_{2} = \begin{pmatrix}
+18\\
+-6
+\end{pmatrix}
+\end{align*}
+\item 
+\begin{align*}
+R = \begin{pmatrix}
+2 & 1\\
+1 & 2
+\end{pmatrix}
+\end{align*}
+The return matrix has a full rank hence the consumption plan do not change and the asset prices will be:
+\begin{align*}
+\tilde{q}^* = R^Tq = \begin{pmatrix}
+5\\
+7
+\end{pmatrix}
+\end{align*}
+Again, by the theorem of equivalence between Radner equilibrium with assets and Arrow-Debreu equilibrium, prices do not change. It remains to find assets portfolio for each consumer. To do so, for the first consumer we need to solve the following linear system:
+\begin{align*}
+\begin{pmatrix}
+2 & 1\\
+1 & 2
+\end{pmatrix} \begin{pmatrix}
+\tilde{z_{11}}^*\\
+\tilde{z_{12}}^*
+\end{pmatrix} = \begin{pmatrix}
+-18\\
+6
+\end{pmatrix}
+\end{align*}
+and the solution is 
+\begin{align*}
+\tilde{z}_1^* = \begin{pmatrix}
+-14\\
+10
+\end{pmatrix}
+\end{align*}
+For the second consumer, we need to clear the security market hence:
+\begin{align*}
+\tilde{z_2}^* = \begin{pmatrix}
+14\\
+-10
+\end{pmatrix}
+\end{align*}
+(Also note that $\tilde{q}^*\tilde{z_i}^* = 0\ \forall\ i$ i.e. no-arbitrage condition holds)
+\end{enumerate}
+\section*{Problem 2}
+\begin{enumerate}[(a)]
+\item Consider a sequential version of Question 5 in Problem Set 4 with two Arrow
+securities. Find a Radner equilibrium of this modified model.
+\item  If we were to add one more asset to this economy defined by a return vector $r_3 \in \mathbb{R}^2$,
+how would you compute the equilibrium price of this new asset?
+\end{enumerate}
+
+
+
+\textbf{Solution}
+
+\begin{enumerate}
+	\item Again, from the Problem 5 of Problem Set 4 it is known that the Arrow-Debreu equilibrium consists of prices:
+	\begin{align*}
+	p_{11} = p_{21} = 1,\  p_{22} = p_{12} = 2 
+	\end{align*}
+	and the equilibrium allocation:
+	\begin{align*}
+	x_1 = \begin{pmatrix}
+	4\\
+	8\\
+	2\\
+	4
+	\end{pmatrix},\ x_2 = \begin{pmatrix}
+	8\\
+	4\\
+	4\\
+	2
+	\end{pmatrix}
+	\end{align*}
+	From the theorem of equivalence between Arrow-Debreu equilibrium and Radner equilibrium it follows that prices of two Arrow securities are equal to:
+	\begin{align*}
+	q^* = \begin{pmatrix}
+	p_{11}\\
+	p_{12}
+	\end{pmatrix} = \begin{pmatrix}
+	1\\
+	2
+	\end{pmatrix}
+	\end{align*}
+	Equilibrium consumption plans do not change. It remains to find equilibrium portfolio for each consumer. 
+	\begin{align*}
+	z^*_{si} = \frac{1}{p_{1s}}p_s(x_{si} - \omega_{si})\\
+	z^*_{1} =  \begin{pmatrix}
+	0\\
+	0
+	\end{pmatrix},\ z^*_{2} = \begin{pmatrix}
+	0\\
+	0
+	\end{pmatrix}
+	\end{align*}
+	\item Since market with 2 Arrow securities was complete that means that we can express $r_3$ as a unique linear combination of columns of the identity matrix $2 \times 2$ i.e. $r_3 = r_{31} e_1 + r_{32} e_2$. Then:
+	\begin{align*}
+	q_3 = r_{31} q_1 + r_{32} q_2= r_{31} + 2r_{32}
+	\end{align*}
+\end{enumerate}
+\section*{Problem 3}
+Consider a sequential exchange model with two physical goods, two states, two consumers, and two assets. The return vectors of the assets are as follows:
+\begin{align*}
+r_1 = (1,\ 1)\ r_2 = (2,\ 1)
+\end{align*}
+As usual, the $s$’th entry of $r_k$ represents the return of asset $k$ in state $s$ in terms of the
+physical good 1.
+Consumers’ Bernoulli utility functions are state independent:
+\begin{align*}
+u_1(x_{s1}) = (x_{1s1})^{1/2}(x_{2s1})^{1/2},\ 
+u_2(x_{s2}) = (x_{1s2})^{1/3}(x_{2s2})^{2/3}
+\end{align*}
+Here, $x_{si} = (x_{1si}, x_{2si})$ stands for the consumption bundle of consumer $i$ in state $s = 1, 2$.
+Both consumers assign probability $1/2$ to each state.
+Let $\omega_i = (\omega_{lsi})$, where $\omega_{lsi}$ is consumer $i$’s endowment of good $l$ in state $s$. Assume
+further that:
+\begin{align*}
+\omega_1 = (\omega_{111}, \omega_{211}, \omega_{121}, \omega_{221}) = (5, 1, 0, 0),\ \ \omega_2 = (\omega_{112}, \omega_{212}, \omega_{122}, \omega_{222}) = (0, 0, 5, 1).
+\end{align*}
+Thus, consumer 1 has all the endowment in state 1 while consumer 2 has all the endowment
+in state 2. Moreover, the total endowment vector equals $(5,\ 1)$ in both states.
+Compute a Radner equilibrium of this model.
+
+
+\textbf{Solution}
+
+
+Let us compute firstly the Arrow-Debreu equilibrium. Consumers are solving the following problems:
+\begin{align*}\
+\underset{x_{111}, x_{211}, x_{121}, x_{221} \ge 0}{\max}\ \frac{1}{2} (x_{111})^{1/2} (x_{211})^{1/2} + \frac{1}{2} (x_{121})^{1/2}(x_{221})^{1/2}\\
+s.t.\ p_{11}x_{111} + p_{21}x_{211} + p_{12}x_{121} + p_{22}x_{221} \le 5p_{11} + p_{21}\\
+\underset{x_{112}, x_{212}, x_{122}, x_{222} \ge 0}{\max}\ \frac{1}{2} (x_{112})^{1/3} (x_{212})^{2/3} + \frac{1}{2} (x_{122})^{1/3}(x_{222})^{2/3}\\
+s.t.\ p_{11}x_{111} + p_{21}x_{211} + p_{12}x_{121} + p_{22}x_{221} \le 5p_{12} + p_{22}\\
+\end{align*}
+And moreover market clearing conditions imply:
+\begin{align*}
+x_{111} + x_{112} = 5 \nonumber\\
+x_{211} + x_{212} = 1\nonumber\\
+x_{121} + x_{122} = 5\\
+x_{221} + x_{222} = 1\nonumber
+\end{align*}
+Since derivatives of objective functions tend to infinity while some of $x$ tend to 0 hence the solution should lie at the interior. The solution is:
+\begin{align*}
+\begin{cases}
+x_{111} = \frac{5p_{11} + p_{21}}{4p_{11}}\\
+x_{211} = \frac{5p_{11} + p_{21}}{4p_{21}}\\
+x_{121} = \frac{5p_{11} + p_{21}}{4p_{12}}\\
+x_{221} = \frac{5p_{11} + p_{21}}{4p_{22}}\\
+\end{cases}\\
+\begin{cases}
+x_{112} = \frac{5p_{12} + p_{22}}{6p_{11}}\\
+x_{212} = \frac{5p_{12} + p_{22}}{3p_{21}}\\
+x_{122} = \frac{5p_{12} + p_{22}}{6p_{12}}\\
+x_{222} = \frac{5p_{12} + p_{22}}{3p_{22}}\\
+\end{cases} 
+\end{align*}
+Market clearing conditions imply that:
+\begin{align*}
+\begin{cases}
+-45p_{11} + 3p_{21} + 10p_{12} + 2p_{22} = 0\\
+15p_{11} - 9p_{21} + 20p_{12} + 4p_{22} = 0\\
+15p_{11} + 3p_{21} - 50p_{12} + 2p_{22} = 0\\
+15p_{11} + 3p_{21} +20p_{12} - 8p_{22} = 0\\
+\end{cases}
+\end{align*}
+Normalizing $p_{11} = 1$ we get the solution:
+\begin{align*}
+p_{11} = p_{12} = 1,\ p_{22} = p_{21} = 7
+\end{align*}
+and the equilibrium allocation is:
+\begin{align*}
+x_1^* = \begin{pmatrix}
+3\\
+\\
+\frac{3}{7}\\
+\\
+3\\
+\\
+\frac{3}{7}
+\end{pmatrix},\ x_2^* = \begin{pmatrix}
+2\\
+\\
+\frac{4}{7}\\
+\\
+2\\
+\\
+\frac{4}{7}
+\end{pmatrix}
+\end{align*}
+Then, in Radner equilibrium with 2 Arrow securities:
+\begin{align*}
+q^* = \begin{pmatrix}
+1\\
+1
+\end{pmatrix}
+\end{align*}
+equilibrium portfolio for each consumer can be found as follows: 
+\begin{align*}
+z^*_{si} = \frac{1}{p_{1s}}p_s(x_{si} - \omega_{si})\\
+z^*_{1} =  \begin{pmatrix}
+-6\\
+6
+\end{pmatrix},\ z^*_{2} = \begin{pmatrix}
+6\\
+-6
+\end{pmatrix}
+\end{align*}
+For
+\begin{align*}
+&R = \begin{pmatrix}
+1 & 2\\
+1 & 1
+\end{pmatrix}\\
+&\text{assets' price vector will be }\tilde{q}^* = R^Tq = \begin{pmatrix}
+2\\
+3
+\end{pmatrix}
+\end{align*}
+It remains to find assets portfolio for each consumer. To do so, for the first consumer we need to solve the following linear system:
+\begin{align*}
+\begin{pmatrix}
+1 & 2\\
+1 & 1
+\end{pmatrix} \begin{pmatrix}
+\tilde{z_{11}}^*\\
+\tilde{z_{12}}^*
+\end{pmatrix} = \begin{pmatrix}
+-6\\
+6
+\end{pmatrix}
+\end{align*}
+and the solution is 
+\begin{align*}
+\tilde{z}_1^* = \begin{pmatrix}
+18\\
+-12
+\end{pmatrix}
+\end{align*}
+For the second consumer, we need to clear the security market hence:
+\begin{align*}
+\tilde{z_2}^* = \begin{pmatrix}
+-18\\
+12
+\end{pmatrix}
+\end{align*}
+\section*{Problem 4}
+Consider a sequential exchange model with one physical good, three states, three Arrow
+securities and two consumers. Let $x_{si}$ stand for consumption of consumer $i = 1, 2$ in state
+$s = 1, 2, 3$. Consumers’ Bernoulli utility functions are state independent, and defined as
+follows:
+\begin{align*}
+u_1(x_{s1}) = \sqrt{x_{s1}},\  u_2(x_{s2}) = \ln x_{s2}.
+\end{align*}
+Both consumers assign probability $\pi_s$ to the state $s$, where 
+\begin{align*}
+\pi_1 =\frac{1}{6},\ \pi_2 =\frac{2}{6},\ \pi_3 =\frac{3}{6}
+\end{align*}
+Consumers’ endowment vectors are as follows:
+$\omega_1 = (0,\ 3,\ 0), \omega_2 = (3,\ 0,\ 1)$.
+(As usual, the $s$-th entry of $\omega_i$ stands for the endowment of consumer $i$ in state $s$.) Questions
+(i)-(iv) below refer to a Radner equilibrium of this model.
+\begin{enumerate}[(i)]
+\item Let $q_s$ denote the price of the $s$-th Arrow security, which has a positive return in state $s$.
+Find a relation between $q_1$ and $q_2$. Explain your answer. (Hint. Utility functions are state
+independent and strictly concave, we have a common prior, and total endowments are the
+same in states 1 and 2. This should remind you an earlier example.)
+\item Normalize $q_3$ to $1$. Use your answer in part (i) to determine consumers’ consumption
+plans and asset portfolios, as a function of $q_1$.
+\item Compute the value of $q_1$.
+\item Provide a formula for the price of any additional asset that we may introduce into this
+economy
+\end{enumerate}
+
+
+\textbf{Solution}
+
+\begin{enumerate}[(i)]
+	\item At the interior equilibrium we should have:
+	\begin{align*}
+	\frac{\pi_1 u_1'(x_{1})}{\pi_2 u_1'(x_2)} = \frac{p_1}{p_2} = \frac{q_1}{q_2} = \frac{\pi_1u_2'(3 - x_1)}{\pi_2u_2'(3 - x_2)}
+	\end{align*}
+	If $x_1 > x_2$ then $3-x_1 < 3-x_2$ and by strict concavity of utility functions:
+	\begin{align*}
+	\frac{u_1'(x_1)}{u_1'(x_2)} < 1 < \frac{u_2'(3-x_1)}{u_2'(3-x_2)}
+	\end{align*}
+	it follows that $x_1 = x_2$ and as a result $q_1 = q_2$.
+	\item $q_3 = 1$. Similarly for other states:
+	\begin{align*}
+	\frac{\pi_1 u_1'(x_{11})}{\pi_3 u_1'(x_{31})} = \frac{p_1}{p_3} = &q_1 = \frac{\pi_1u_2'(x_{12})}{\pi_3u_2'(x_{32})}\\
+	\sqrt{\frac{x_{31}}{x_{11}}} = &q_1 = \frac{x_{32}}{x_{12}}
+	\end{align*}
+	incorporating market-clearing:
+	\begin{align*}
+	\sqrt{\frac{x_{31}}{x_{11}}} = q_1 = \frac{1- x_{31}}{3 - x_{11}}
+	\end{align*}
+	\begin{align*}
+	x_{31} = 1 - (3-&x_{11})q_1\\
+	\frac{1 - (3-x_{11})q_1}{x_{11}} &= q_1^2\\
+	x_{11} = \frac{3q_1 - 1}{q_1(1 - q_1)} &= x_{21}\\
+	x_{31} = \frac{q_1(3q_1 - 1)}{1 - q_1}\\
+	x_1^* = \begin{pmatrix}
+	\frac{3q_1 - 1}{q_1(1 - q_1)}\\
+		\\
+		\frac{3q_1 - 1}{q_1(1 - q_1)}\\
+			\\
+		\frac{q_1(3q_1 - 1)}{1 - q_1}	
+	\end{pmatrix},\ &x_2^* = \begin{pmatrix}
+	\frac{1 - 3q_1^2}{q_1(1 - q_1)}\\
+	\\
+	\frac{1 - 3q_1^2}{q_1(1 - q_1)}\\
+	\\
+	\frac{1 - 3q_1^2}{1 - q_1}\\
+	\end{pmatrix}
+	\end{align*}
+	And the assets portfolios will be:
+	\begin{align*}
+	z_1^* = \begin{pmatrix}
+	\frac{3q_1 - 1}{q_1(1 - q_1)}\\
+	\\
+	-\frac{1 - 3q_1^2}{q_1(1 - q_1)}\\
+	\\
+	\frac{q_1(3q_1 - 1)}{1 - q_1}\\
+	\end{pmatrix},\ z_2^* = \begin{pmatrix}
+	-\frac{3q_1 - 1}{q_1(1 - q_1)}\\
+	\\
+	-\frac{1 - 3q_1^2}{q_1(1 - q_1)}\\
+	\\
+	-\frac{q_1(3q_1 - 1)}{1 - q_1}	
+	\end{pmatrix}
+	\end{align*}
+	\item To compute $q_1$ we need to use the budget constraint, i.e.
+	\begin{align*}
+	2\frac{3q_1 - 1}{1-q_1} + \frac{q_1(3q_1 - 1)}{1 - q_1} = 3q_1\\
+	q_1 = \frac{\sqrt{13} - 1}{6}
+	\end{align*}
+	\item Since the market with 3 Arrow securities was complete alike in the Problem 2, price of new security can be computed as a linear combination of prices of basic securities, with weights being equal to returns of the new security. That is, if new asset pays $r_4 = (r_{14}\ r_{24}\ r_{32})$ then its price will be:
+	\begin{align*}
+	q_4 = r_{14}q_1 + r_{24}q_2+ r_{32}q_3
+	\end{align*}
+\end{enumerate}
+\section*{Problem 5}
+\textbf{Step 1}
+
+The no arbitrage condition implies that the linear space $\Phi$ does not intersect the convex set $\mathbb{R}^s_+\setminus\left\{0\right\}$. Because if some $\tilde{z} \in \mathbb{R}^s_+\setminus\left\{0\right\}$ and at the same time $\tilde{z} \in \Phi$ that means that $\exists\ z\in \mathbb{R}^K$ such that $qz = 0$ and $Rz = \tilde{z} > 0$ which contradicts the no-arbitrage condition. Since $\mathbb{R}^s_+\setminus\left\{0\right\}$ is a convex set as well as a linear subspace $\Phi$, we can use a swparation hyperplane theorem. That is, $\exists\ \mu \in \mathbb{R}^s: \mu \neq 0$ and $a \in \mathbb{R}$ such that
+\begin{align*}
+\mu z \ge a \ge \mu \phi\, \forall\ z \in \mathbb{R}^s_+\setminus\left\{0\right\},\ \forall\ \phi \in \Phi
+\end{align*}
+Since $\left\{0\right\} \in \Phi$ then
+\begin{align}\label{eq1}
+\mu z \ge a \ge 0 \ge \mu \phi\, \forall\ z \in \mathbb{R}^s_+\setminus\left\{0\right\},\ \forall\ \phi \in \Phi
+\end{align}
+Moreover, since $\Phi$ is a linear space that means that $\forall\ \phi \in \Phi\ \exists\ -\phi \in \Phi$ hence:
+\begin{align*}
+\forall\ \phi\in\Phi\, \mu \phi \le 0\ \text{ and } -\mu \phi \le 0 \to \mu\phi = 0\
+\end{align*}
+It remains to prove that $\mu >0$. To do so, let us assume the opposite, i.e. $\exists\ \text{ a coordinate } s: \mu_s < 0$. Obviously $\forall\ \varphi\ \in \mathbb{R}^s_{+}\setminus\left\{0\right\}$ and $\forall\ \lambda > 0$, $\varphi + \mathbb{I}_{s}\lambda \in \mathbb{R}^s_{+}\setminus\left\{0\right\}$. But for all $\varphi$ we can pick such a large $\lambda$ that
+\begin{align*}
+\mu (\varphi + \mathbb{I}_s\lambda) = \mu \varphi + \mu_s\lambda < 0
+\end{align*}
+but by \eqref{eq1} it should be nonnegative for any $\lambda$. In conclusion, $\exists\ \mu >0:\ \mu \phi = 0\, \forall\ \phi \in \Phi$, as we sought.
+
+\textbf{Step 2}
+
+
+Given that $\mu$, the vector $\mu R$ belongs to the linear space $\left\{\alpha q : \alpha \in \mathbb{R}\right\}$. Indeed, otherwise, we can separate the vector $\mu R$ from the latter space, since both $\mu R$ as a point and $\left\{\alpha q : \alpha \in \mathbb{R}\right\}$ are convex sets. That is
+\begin{align*}
+\exists\ \text{ nonzero }\ v: \mu R v  \ge a \ge rv\ \forall\ r\ \in\left\{\alpha q : \alpha \in \mathbb{R}\right\}
+\end{align*}
+Since the latter space is a linear
+space, just as in the previous step, $\forall\ r\ \in \left\{\alpha q : \alpha \in \mathbb{R}\right\},\ -r\ \in \left\{\alpha q : \alpha \in \mathbb{R}\right\} $ and as a result $rv = 0\ \forall\ r\in\left\{\alpha q : \alpha \in \mathbb{R}\right\}$. This leads to a separating normal vector $v \in \mathbb{R}^K$ such that
+$qv = 0$ and $(\mu R)v = \mu (Rv) \ge 0$. Since $\mu >0$ and each column of $R$ also $>0$ hence $\mu R >0$ therefore if $z \neq 0$ and $\mu R z \ge 0$ then $\mu R v > 0$. Letting $\phi \equiv Rv \in \Phi$ yields a contradiction to the fact that $\mu \phi = 0\ \forall\ \phi$. The contradiction shows that $\mu R$ belongs to the linear space $\left\{\alpha q : \alpha \in \mathbb{R}\right\}$.
+
+\textbf{Step 3}
+
+As it has been concluded in step 2 $\mu R >0$. Moreover $q >> 0$ because otherwise no-arbitrage condition would be violated (assume there exists some coordinate $s$ such that $q_s \le 0$ then there exists $z = \mathbb{I}_s \lambda$ for some $\lambda > 0$ such that $qz \le 0$ however since there exists $s$ such that $r_{sk} >0$ hence $Rz > 0$).
+Since $\mu R = \alpha q$ it follows that $\alpha >0$ but that means that
+\begin{align*}
+\exists\ \hat{\mu} = \frac{1}{\alpha}\mu >0: \hat{\mu}R = q
+\end{align*}
+and this completes the proof.
+\end{document}
