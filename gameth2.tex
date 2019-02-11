@@ -1,0 +1,328 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Game theory. Problem Set 2.
+\end{center}
+\section*{Problem 1}
+Whether candidate 1 or candidate 2 is elected depends on the votes of two
+citizens. The world may be in one of two states, A or B. The citizens agree
+that candidate 1 is best if the state is A and candidate 2 is best if the state
+is B. Each citizen’s preferences are represented by the expected value of a
+Bernoulli payoff function that assigns a payoff of 1 if the best candidate
+for the state wins (obtains more votes than the other candidate), a payoff
+of zero if the other candidate wins, and a payoff of $\frac{1}{2}$ if the candidates tie.
+Citizen 1 is informed of the state of the world, whereas citizen 2 believes
+it’s A with probability .9 and state B with probability .1. Each citizen may
+vote for candidate 1, vote for candidate 2, or abstain (not vote). Find the
+Bayes-Nash equilibrium (or equilibria) of this game involving each player
+playing a pure strategy (if any) separately for each of the the following
+assumptions:
+\begin{enumerate}[(a)]
+\item Citizens vote simultaneously.
+\item Citizen 1 votes first and citizen 2 votes after observing citizen 1’s vote.
+Does any of the equilibria you found involve a weakly dominated strategy?
+\end{enumerate}
+
+
+\textbf{Solution}
+
+\begin{enumerate}[(a)]
+	\item The tree of the game is depicted below:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{plotdraft}
+		\caption{}\label{fig2}
+	\end{figure}
+	Obviously for player 1 the strategy $\left\{12\right\}$ (i.e. vote for candidate $1$ if A occurs and for candidate 2 if B occurs) is a weakly dominant strategy: regardless of what the player 2 does the player 1 gets greater than or equal payoff. I claim that the profile of strategies 
+	\begin{align*}
+	\left\{12; \text{abstain}\right\}
+	\end{align*}
+	is a Nash equilibria (and hence a SPE). Let us prove it. In playing the aforementioned profile, player's 2 expected payoff is
+	\begin{align*}
+	0.9 \cdot 1 + 0.1 \cdot 1 = 1
+	\end{align*}
+	If he deviates and plays $1$ or $2$ then his expected payoffs will be:
+	\begin{align*}
+	0.9 \cdot 1 + 0.1 \cdot 0.5 < 1\\
+	0.9 \cdot 0.5 + 0.1 \cdot 1 < 1
+	\end{align*}
+	If the first player deviates and plays $\left\{\text{abstain}\ 2\right\}$, $\left\{\text{abstain}\ \text{abstain}\right\}$ or $\left\{1\ \text{abstain}\right\}$ (other strategies are striclty dominated and cannot be played in the equilibrium) then his expected payoffs will be:
+	\begin{align*}
+	\left\{\text{abstain}\ 2\right\}&: 0.9 \cdot 0.5 + 0.5 + 0.1 \cdot 1 < 1\\
+	\left\{\text{abstain}\ \text{abstain}\right\}&: 0.9 \cdot 0.5 + 0.1 \cdot 0.5 = 0.5 < 1\\
+	\left\{1\ \text{abstain}\right\}&: 0.9 \cdot 1 + 0.1 \cdot 0.5 < 1
+	\end{align*}
+	The profile of strategies $\left\{\text{abstain } 2; 1 \right\}$ is also a SPE because:
+	\begin{align*}
+	&u_2(\left\{\text{abstain } 2; 1 \right\}) = 0.95 > u_2(\left\{\text{abstain } 2; \text{ abstain } \right\}) = 0.55 > u_2(\left\{\text{abstain } 2; 2 \right\}) = 0.05\\
+	&u_1(\left\{\text{abstain } 2; 1 \right\}) = 0.95 \ge u_1(\left\{1 2; 1 \right\}) = 0.95 > u_1(\left\{\text{abstain } \text{ abstain }; 1 \right\}) = 0.9 \ge \\
+	&\ge u_1(\left\{1\text{ abstain }; 1 \right\}) = 0.9
+	\end{align*}
+	 To prove that there are no another equilibria below is a list of profitable unilateral deviations for another profiles of strategies (note that strictly dominated strategies are not taken into account)
+	\begin{align*}
+	u_2(\left\{\text{abstain } \text{ abstain }; 2 \right\}) &< u_2(\left\{\text{abstain } \text{ abstain }; 1 \right\})\\
+	u_2(\left\{1 \text{ abstain }; 2 \right\}) &< u_2(\left\{1 \text{ abstain }; 1 \right\})
+	\end{align*}
+	Thus, there are two Bayes-Nash equilibria, namely:
+	\begin{align*}
+	\left\{12; \text{abstain}\right\}\\
+	\left\{\text{abstain } 2; 1 \right\}
+	\end{align*}
+	The second equilibrium profile contains a weakly dominated strategy for the first player, it is easy to observe that the strategy $\left\{12\right\}$ gives the first player weakly greater payoff (than $\left\{\text{ abstain } 2\right\}$) regardless of what the second player does.
+	
+	\item If the first player votes for the 1st candidate than it is optimal for the second player to vote either for the 1st candidate or to abstain, both alternatives yield him equal expected payoffs $0.9$.
+	
+	If the first player abstains from voting then it is optimal for the second player to vote for the 1st candidate it yields him the greatest expected payoffs $0.9$.
+	
+	If the first player votes for the second candidate then it is optimal for the second player to vote for the 1st candidate it yields him the greates expected payoffs $0.5$.
+	
+	As a result the equilibria are (strategy $121$ means that if 1st player votes for 1st or for 2nd candidate - vote for the 1st candidate, if he abstained - vote for the second candidate):
+	\begin{align*}
+	&\left\{11\ ; 111\ \right\}\\
+	&\left\{11\ ; \text{abstained }11\ \right\}\\
+	&\left\{1 \text{ abstained }\ ; 111\ \right\}\\
+	&\left\{1\text{ abstained }\ ; \text{ abstained }11\ \right\}\\
+	&\left\{\text{ abstained } 1\ ; 111\ \right\}\\
+	&\left\{\text{ abstained } 1\ ; \text{ abstained }11\ \right\}\\
+	&\left\{\text{ abstained }\text{ abstained }\ ; 111\ \right\}\\
+	&\left\{\text{ abstained }\text{ abstained }\ ; \text{ abstained }11\ \right\}\\	
+	\end{align*}
+	As in previous point, for player 1, to abstain in the first state is weakly dominated strategy by strategy of voting for the 1st candidate, because it yields him weakly smaller payoffs regardless of what player 2 does.
+	\end{enumerate}
+
+\section*{Problem 2}
+
+\textbf{Solution}
+
+
+I will denote a profile of strategies as $\left\{A, B, CD\right\}$ where $A$, $B$ are some actions of players 1 and 2 respectively, and $CD$ means that player 3 plays action $C$ once he is called upon to play in history $\left\{D\right\}$ and $D$ once he is called upon to play in history $\left\{Cd\right\}$
+
+Obviously profiles of strategies
+\begin{align*}
+\left\{C, c, LR\right\}\\
+\left\{C, c, LL\right\}\\
+\end{align*}
+are Nash equilibria because nobody has a profitable unilateral deviation: player 1 gets 1 instead of 3 if deviates, player 2 is not called upon to play hence his action cannot somehow affect his payoffs, and player 3 if deviates and plays $R$ instead of $L$ gets 0 instead of 2. The strategy
+\begin{align*}
+\left\{C, d, LR\right\}
+\end{align*}
+also constitutes Nash equilibrium because if player 1 decides to deviate he gets 0 instead of 3, and player 3 gets 0 instead of 2. The strategies
+\begin{align*}
+\left\{D, c, RR\right\}\\
+\left\{D, d, RR\right\}
+\end{align*}
+are also Nash equilibria because both players 1 and 2 cannot get more by deviating, whereas player 3 gets strictly less, playing another strategy in the second node. Thus, all Nash equilibria in this game are:
+\begin{align*}
+\left\{C, c, LR\right\}\\
+\left\{C, c, LL\right\}\\
+\left\{C, d, LR\right\}\\
+\left\{D, c, RR\right\}\\
+\left\{D, d, RR\right\}
+\end{align*}
+It is easy to check that there are no other pure-strategies equilibria.
+
+Among these Nash equilibria, strategies
+\begin{align*}
+\left\{C, d, LR\right\}\\
+\left\{C, c, LR\right\}\\
+\end{align*}
+are SPE, because for player 3 it is optimal to play $L$ in the history $\left\{C\right\}$ and $R$ in the history $\left\{Dd\right\}$, player 2 is indifferent, and consequently for the 1st player it is optimal to play $C$. Thus, these profiles consits of strategies, optimal for each subgame.
+\section*{Peroblem 3}
+There is a seller who holds a good and can supply it at a cost $c > 0$. There
+is also one buyer who values the good for $v > c$. They negotiate over the good and attempt to settle the deal. Their discount rate for the future is
+$\delta \in (0, 1)$: if the good is sold at a price $p$ at period $t$, at period $s \le t$ the
+buyer estimates his utility from the deal to be $\delta^{t-s}(v - p)$. Similarly, the
+seller values the deal at $\delta^{t-s}(p-c)$. If the deal does not happen, both agents
+receive zero utility. All the parameters are common knowledge. Assume
+that the buyer always buys and the seller always sells when indifferent.
+\begin{enumerate}[(a)]
+\item Suppose the seller can make a take-it-or-leave-it offer $p$ at $t = 1$. Then,
+the buyer either accepts or rejects it, and the game terminates. What
+is the set of pure-strategy Nash equilibria in this game? What is the
+Sub-game Perfect Equilibrium?
+\item Assume the game does not terminate after the buyer answers the offer.
+If he rejects at $t = 1$, at $t = 2$ he can make an offer in response,
+proposing his own price. The seller then either accepts or rejects it, and
+the game terminates. What is the subgame-perfect Nash equilibrium?
+\item Now suppose the seller can make her offers at $t = 1$ and $t = 2$, and
+the buyer is able to propose a price only at $t = 3$ (after which, again,
+the game terminates). What is the Sub-game Perfect Equilibrium?
+(Hint: if the buyer rejects the offer at $t = 1$, at $t = 2$ the game from
+the previous point will begin, delivering the same payoffs in its SPE.)
+\end{enumerate}
+
+\textbf{Solution}
+
+\begin{enumerate}[(a)]
+	\item The stratefy of seller is a number $b \in \mathbb{R}$. His payoff is
+	\begin{align*}
+	u_s(b) = \begin{cases}
+	b - c, &\text{the deal occurs}\\
+	0, &\text{otherwise}
+	\end{cases}
+	\end{align*}
+	taking $b$ as given strategy of buyer is a binary decision accept offer or reject. His payoff is:
+	\begin{align*}
+	u_b(b) = \begin{cases}
+	v - b, &\text{if he accepts}\\
+	0, &\text{otherwise}
+	\end{cases}
+	\end{align*}
+	The best response of buyer is:
+	\begin{align*}
+	r_b(b) = \begin{cases}
+	\text{accept}, &\text{ if } b \le v\\
+	\text{reject}, &\text{ if } b > v
+	\end{cases}
+	\end{align*}
+	Hence the optimal strategy of seller is $b = v$, and the equilibrium profile of strategies is
+	\begin{align*}
+	\left\{v, \text{accept}\right\}
+	\end{align*}
+	it is a SPE. However this game also possesses another equilibrium. The profile of strategies
+	\begin{align*}
+	\left\{b, \text{reject} \right\},\ b > v
+	\end{align*}
+	is also a Nash equilibrium because any unilateral deviations will not increase players' payoffs.
+	\item Denote seller's bid as $b_s$, buyer's bid as $b_b$, and will denote profiles of strategies as
+	\begin{align*}
+	\left\{b_sR, Ab_b\right\}
+	\end{align*}
+	where $b_sR$ means that seller bids $b_s$ at $t = 1$ and rejects the offer at $t = 1$ and the same things for the buyer. The game tree is depicted below
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{plotdraft}
+		\caption{}\label{fig1}
+	\end{figure}
+	If at $t = 2$ the seller is called upon to play then his optimal strategy is:
+	\begin{align*}
+	\begin{cases}
+	\text{accept}, &\text{ if } \delta(b_b - c) \ge 0\\
+	\text{reject}, &\text{ if } \delta(b_b - c) < 0
+	\end{cases}
+	\end{align*}
+	When buyer is called upon to play at his second node then his optimal strategy is $b_b = c$. When buyer is called upon to play at his first node and should decide whether to accept offer or not his optimal strategy is:
+	\begin{align*}
+	\begin{cases}
+	\text{accept}, &\text{ if } b_s \le v - \delta(v - c)\\
+	\text{reject}, &\text{ if } b_s > v - \delta(v - c)
+	\end{cases}
+	\end{align*}
+	And finally at $t = 1$ optimal strategy for the seller will be $b_s = v - \delta(v - c)$. Thus, the subgame perfect equilibrium is:
+	\begin{align*}
+	\left\{v - \delta(v - c)A, Ac\right\}
+	\end{align*}
+	\item Since we have already analysed the subgame, starting from $t = 2$, at $t = 1$ when buyer is called upon to play his optimal strategy will be:
+	\begin{align*}
+	\begin{cases}
+	\text{accept}, & \text{ if } v - b_s^{t=1} \ge \delta(v - v + \delta(v-c))\\
+	\text{reject}, &\text{ if } v - b_s^{t=1} < \delta(v - v + \delta(v-c))
+	\end{cases}
+	\end{align*}
+	hence optimal strategy of seller at $t = 1$ is:
+	\begin{align*}
+	b_s^{t=1} = v - \delta^2(v - c)
+	\end{align*}
+	Thus, the SPE profile of strategies is:
+	\begin{align*}
+	\left\{v - \delta^2(v - c),v - \delta(v - c),A\ ;\  A,A,c \right\}
+	\end{align*}
+\end{enumerate}
+\section*{Problem 4}
+Consider a game with two players, Player 1 and Player 2. Each player
+$i \in \left\{1, 2\right\}$ can choose an action $a_i$ from a finite set of actions $A_i$. Player
+$i$’s payoff at any action profile $(a_1, a_2)\in A_1 \times A_2$ is $f_i(a_1, a_2)$. Suppose
+first that the two players move simultaneously. How many strategies does
+each player have? Now suppose that player 1 moves first and that player 2
+observes player 1’s move before choosing her move. How may strategies does
+each player have now? Moreover, suppose that this latter game has multiple
+sub-game perfect Nash equilibria. Show that if this is the case, then there
+exist two pairs of actions $(a_1', a_2')$ and $(a_1'', a_2'')$ (with either $a_1' \neq a_2'$ or
+$a_1'' \neq a_2''$ or both) such that either
+\begin{align*}
+f_1(a_1', a_2') &= f_1(a_1'', a_2'')\ \text{ or }\\
+f_2(a_1', a_2') &= f_2(a_1'', a_2'')
+\end{align*}
+
+
+\textbf{Solution}
+
+Players have infinitely many mixed strategies if $|A_i| > 1\ \forall\ i \in \left\{1, 2\right\}$. If both move simulteneously than each has $|A_i|$ pure strategies ($|\cdot|$ means cardinality of set). If player 1 moves first than he has still $|A_1|$ pure strategies, whereas player 2, who observes the player's 1 actions now have $|A_1| \times |A_2|$ pure strategies, because for each action of player 1 player 2 has $|A_2|$ actions to respond.
+
+
+Obviously, if there exists a unique best response $r_2(a_1)$ of player 2 to each action $a_1$ of player 1, and moreover the set
+\begin{align*}
+\underset{a_i}{\text{argmax}}\ f_1(a_i, r_2(a_i))
+\end{align*} 
+is a singleton, then the profile of strategies \begin{align*}
+\left\{\underset{a_i}{\text{argmax}}\ f_1(a_i, r_2(a_i)); r_2(\underset{a_i}{\text{argmax}}\ f_1(a_i, r_2(a_i)))\right\}
+\end{align*} 
+is a uniqiue SPE. Suppose now that there exists several SPE, it can be possible either if the set
+\begin{align*}
+\underset{a_i}{\text{argmax}}\ f_1(a_i, r_2(a_i))
+\end{align*}
+contains more than one element, or
+\begin{align*}
+\exists\ a_j\ \in A_1: |\underset{b_i \in A_2}{\text{argmax}}\ f_2(a_j, b_i)| > 1
+\end{align*}
+or both. If the set
+\begin{align*}
+\underset{a_i}{\text{argmax}}\ f_1(a_i, r_2(a_i))
+\end{align*}
+contains more than one element than
+\begin{align*}
+\exists\ \text{ different } a_1', a_2'' \in \underset{a_i}{\text{argmax}}\ f_1(a_i, r_2(a_i))\ \&\ \exists\ a_2' = r_2(a_1'), a_2'' = r_2(a_1'')\ : f_1(a_1', a_2') = f_1(a_1'', a_2'')
+\end{align*}
+If
+\begin{align*}
+\exists\ a_j\ \in A_1: |\underset{b_i \in A_2}{\text{argmax}}\ f_2(a_j, b_i)| > 1
+\end{align*}
+then
+\begin{align*}
+\exists\ a_1' = a_j, a_1'' = a_j\ \&\ \exists\ \text{different } a_2', a_2'' \in \underset{b_i \in A_2}{\text{argmax}}\ f_2(a_j, b_i):\ f_2(a_1', a_2') = f_2(a_1'', a_2'')
+\end{align*}
+The case $a_1' \neq a_1''\ \&\ a_2' \neq a_2''$ is analoguos.
+Q.E.D.
+\end{document}
