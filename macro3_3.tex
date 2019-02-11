@@ -1,0 +1,172 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Macroeconomics 3. Problem Set 3.
+\end{center}
+\section*{Problem 1}
+\begin{enumerate}[1.]
+	\item \begin{enumerate}[(a)]
+		\item SOMCE are functions
+		\begin{align*}
+		\left\{c(t), l(t), i(t), b(t), w(t), r(t)\right\}
+		\end{align*}
+		such that
+		\begin{itemize}
+			\item Taking $w(t)$ as given households choose $\left\{c(t), l(t), b(t)\right\}$ as a solution to the following optimization problem:
+			\begin{align*}
+			&\max\ \int_{0}^{\infty} e^{-\rho t}u(c(t))\\
+			&s.t.\ \dot{b}(t) = w(t)l(t) -c(t) + r(t)b(t),\ \forall\ t\\
+			&\lim_{t \to \infty} b(t)e^{-\int_{0}^t r(\tau)d\tau} \ge 0, c(t) \ge 0, 0 \le l(t) \le 1, b(0) = 0
+			\end{align*}
+			\item Taking $w(t)$ as given, firms choose $\left\{l(t), i(t)\right\}$ as a solution to the following optimization problem:
+			\begin{align*}
+			\max\ \int_{0}^{\infty} &(F(k(t), l(t)) - w(t)l(t) - i(t))e^{-\rho t}dt\\
+			&s.t.\ \dot{k}(t) = i(t) - \delta k(t)\\
+			&k(t) \ge 0, k(0) > 0 \text{ is given}
+			\end{align*}
+			\item Markets are cleared, i.e.
+			\begin{align*}
+			c(t) + i(t) &= F(k(t), l(t)), \forall\ t\\
+			b(t) &= 0, \forall t
+			\end{align*}
+		\end{itemize}
+	\item $l(t) = 1,\ \forall t$ since there is no disutility from labour. Hamiltonian for households looks as follows
+	\begin{align*}
+	\mathscr{H}(c(t), b(t)) = e^{-\rho t}u(c(t)) + \lambda(t)(w(t)l(t) - c(t) + r(t)b(t))\\
+	\end{align*}
+	and optimality conditions are:
+	\begin{align*}
+	\begin{cases}
+	e^{-\rho t}u'(c(t)) = \lambda(t)\\
+	-\lambda(t)r(t) = \dot{\lambda}(t)\\
+	\lim_{t \to \infty} \lambda(t)b(t) = 0
+	\end{cases}\\
+	\frac{\dot{c}(t)}{c(t)} = -\frac{u'(c(t))}{u''(c(t))c(t)}(r(t) - \rho)
+	\end{align*}
+	Firms have two control variables $l(t)$ and $i(t)$ and one state variable $k(t)$. Hamiltonian looks as follows:
+	\begin{align*}
+	\mathscr{H}(i(t), l(t), k(t)) = e^{-\rho t}(F(k(t), l(t)) - w(t)l(t) - i(t)) + \gamma(t)(i(t) - \delta k(t))
+	\end{align*}
+	then optimality conditions are:
+	\begin{align*}
+	\begin{cases}
+	F'_l(k(t), l(t)) = w(t)\\
+	\gamma(t) = e^{-\rho t}\\
+	\dot{\gamma}(t) = -e^{-\rho t}F'_k(k(t), l(t)) + \gamma(t)\delta\\
+	\lim_{t \to \infty} \gamma(t) k(t) = 0
+	\end{cases} \to \begin{cases}
+	F'_k(k(t), l(t)) = \rho + \delta\\
+	F'_l(k(t), l(t)) = w(t)
+	\end{cases}
+	\end{align*}
+	Then, the dynamic system could be:
+	\begin{align*}
+	\begin{cases}
+	\frac{\dot{c}(t)}{c(t)} = -\frac{u'(c(t))}{u''(c(t))c(t)}(r(t) - \rho)\\
+	F'_k(k(t), 1) = \rho + \delta\\
+	\dot{k}(t) = F(k(t), 1) - c(t) - \delta k(t)
+	\end{cases}
+	\end{align*}
+	No-arbitrage condition imply that at the equilibrium, firms should be indifferent between investments in capital and investments in consumers' bonds, i.e. gains from bonds and capital should be equal to each other, i.e. $r(t) = F'_k(k(t), l(t)) - \delta$. As a result, the dynamic system becomes equivalent to the social planner's one:
+	\begin{align*}
+	\begin{cases}
+	\frac{\dot{c}(t)}{c(t)} = -\frac{u'(c(t))}{u''(c(t))c(t)}(F'_k(k(t), 1) - \rho - \delta)\\
+	\dot{k}(t) = F(k(t), 1) - c(t) - \delta k(t)
+	\end{cases}
+	\end{align*}	
+	Of course its solution coincides with the planner's solution.
+	\item Consumers manage to save through firms i.e. if in some period consumers decide to consume less (to save) then market clearing condition implies that firms will have to invest more in capital, as a result more capital leads to more marginal product of labour, which means higher wages for consumers. Thus, by consuming less households automatically force firms to invest more. At equilibrium $r(t)$ is set in such a way as to eliminate any possibilities for arbitrage. With equilibrium interest rate firms are indifferent between investments in capital and investments in bonds, and consumers are indifferent to borrowing or lending.
+	\end{enumerate}
+	\item 
+	\begin{align*}
+	c(t) + b(t + 1) + p(t) a(t + 1) = w(t)l(t) + (1 + r (t)) b(t) + p(t) a(t) + d(t)a(t)
+	\end{align*}
+	\begin{enumerate}[(a)]
+		\item 
+		\begin{align*}
+		&c(t)\Delta t + b(t + \Delta t) + p(t)a(t + \Delta t) = w(t)l(t)\Delta t + (1 + r(t)\Delta t)b(t) + p(t)a(t) + \\
+		&+d(t)a(t)\Delta t\\
+		&\dot{b}(t) + p(t)\dot{a}(t) = w(t)l(t) + r(t)b(t) + d(t)a(t) - c(t)
+		\end{align*}
+		Now, SOMCE are functions
+		\begin{align*}
+		\left\{c(t), l(t), a(t), i(t), b(t), w(t), r(t)\right\}
+		\end{align*}
+		such that
+		\begin{itemize}
+			\item Taking $w(t), p(t)$ as given households choose $\left\{c(t), l(t), b(t), a(t)\right\}$ as a solution to the following optimization problem:
+			\begin{align*}
+			&\max\ \int_{0}^{\infty} e^{-\rho t}u(c(t))\\
+			&s.t.\ \dot{b}(t) + p(t)\dot{a}(t) = w(t)l(t) + r(t)b(t) + d(t)a(t) - c(t),\ \forall\ t\\
+			&\lim_{t \to \infty} b(t)e^{-\int_{0}^t r(\tau)d\tau} \ge 0, c(t) \ge 0, 0 \le l(t) \le 1, b(0) = 0, a(t) \le 1\\
+			\end{align*}
+			\item Taking $w(t)$ as given, firms choose $\left\{l(t), i(t)\right\}$ as a solution to the following optimization problem:
+			\begin{align*}
+			\max\ \int_{0}^{\infty} &(F(k(t), l(t)) - w(t)l(t) - i(t) - d(t))e^{-\rho t}dt\\
+			&s.t.\ \dot{k}(t) = i(t) - \delta k(t)\\
+			&k(t) \ge 0, k(0) > 0 \text{ is given}
+			\end{align*}
+			\item Markets are cleared, i.e.
+			\begin{align*}
+			c(t) + i(t) + d(t)&= F(k(t), l(t)), \forall\ t\\
+			b(t) &= 0,\ \forall\ t\\
+			a(t) &= 1,\ \forall\ t
+			\end{align*}
+		\end{itemize}
+	\item $x(t) = p(t)a(t)$. Then consumer's problem is:
+	\begin{align*}
+	&\max\ \int_{0}^{\infty} e^{-\rho t}u(c(t))\\
+	&s.t.\ \dot{b}(t) + \dot{x}(t) = w(t)l(t) + r(t)b(t) + \frac{d(t) + \dot{p}(t)}{p(t)}x(t) - c(t),\ \forall\ t\\
+	&\lim_{t \to \infty} b(t)e^{-\int_{0}^t r(\tau)d\tau} \ge 0, c(t) \ge 0, 0 \le l(t) \le 1, b(0) = 0, \frac{x(t)}{p(t)} \le 1\\
+	\end{align*}
+	No-arbitrage condition implies that at the equilibrium both assets should yield the same interest, that means that
+	\begin{align*}
+	r(t) = \frac{d(t) + \dot{p}(t)}{p(t)}
+	\end{align*}
+	it means that asset yields its owner a gain in a form of dividends $\frac{d(t)}{p(t)}$ and in a form of price change $\frac{\dot{p}(t)}{p(t)}$.
+	\item Economic interpretation is the following: the price of asset is equal to discounted sum of all dividends it pays.
+	\end{enumerate}
+\end{enumerate}
+\end{document}
