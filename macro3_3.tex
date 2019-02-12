@@ -56,7 +56,7 @@
 		\begin{itemize}
 			\item Taking $w(t)$ as given households choose $\left\{c(t), l(t), b(t)\right\}$ as a solution to the following optimization problem:
 			\begin{align*}
-			&\max\ \int_{0}^{\infty} e^{-\rho t}u(c(t))\\
+			&\max\ \int_{0}^{\infty} e^{-\rho t}u(c(t))dt\\
 			&s.t.\ \dot{b}(t) = w(t)l(t) -c(t) + r(t)b(t),\ \forall\ t\\
 			&\lim_{t \to \infty} b(t)e^{-\int_{0}^t r(\tau)d\tau} \ge 0, c(t) \ge 0, 0 \le l(t) \le 1, b(0) = 0
 			\end{align*}
@@ -138,7 +138,7 @@
 		\begin{itemize}
 			\item Taking $w(t), p(t)$ as given households choose $\left\{c(t), l(t), b(t), a(t)\right\}$ as a solution to the following optimization problem:
 			\begin{align*}
-			&\max\ \int_{0}^{\infty} e^{-\rho t}u(c(t))\\
+			&\max\ \int_{0}^{\infty} e^{-\rho t}u(c(t))dt\\
 			&s.t.\ \dot{b}(t) + p(t)\dot{a}(t) = w(t)l(t) + r(t)b(t) + d(t)a(t) - c(t),\ \forall\ t\\
 			&\lim_{t \to \infty} b(t)e^{-\int_{0}^t r(\tau)d\tau} \ge 0, c(t) \ge 0, 0 \le l(t) \le 1, b(0) = 0, a(t) \le 1\\
 			\end{align*}
@@ -157,7 +157,7 @@
 		\end{itemize}
 	\item $x(t) = p(t)a(t)$. Then consumer's problem is:
 	\begin{align*}
-	&\max\ \int_{0}^{\infty} e^{-\rho t}u(c(t))\\
+	&\max\ \int_{0}^{\infty} e^{-\rho t}u(c(t))dt\\
 	&s.t.\ \dot{b}(t) + \dot{x}(t) = w(t)l(t) + r(t)b(t) + \frac{d(t) + \dot{p}(t)}{p(t)}x(t) - c(t),\ \forall\ t\\
 	&\lim_{t \to \infty} b(t)e^{-\int_{0}^t r(\tau)d\tau} \ge 0, c(t) \ge 0, 0 \le l(t) \le 1, b(0) = 0, \frac{x(t)}{p(t)} \le 1\\
 	\end{align*}
@@ -167,6 +167,92 @@
 	\end{align*}
 	it means that asset yields its owner a gain in a form of dividends $\frac{d(t)}{p(t)}$ and in a form of price change $\frac{\dot{p}(t)}{p(t)}$.
 	\item Economic interpretation is the following: the price of asset is equal to discounted sum of all dividends it pays.
+	\item 
+	\item \begin{align*}
+	d(t) = r(t)k(t) - \dot{k}(t)
+	\end{align*}
+	\item
 	\end{enumerate}
 \end{enumerate}
+\section*{Problem 2}
+\begin{enumerate}
+	\item \begin{align}\label{eq1}
+	&\underset{c(t), l(t), a(t)}{\max}\ \int_{0}^{\infty} e^{-\rho t} u(c(t))dt\\
+	&s.t.\ \dot{a}(t) = w(t)l(t) + (r(t) - \tau - \delta)a(t) - c(t) - z(t)\nonumber\\
+	&\lim_{t \to \infty} a(t)e^{-\int_{0}^t r(\tau)d\tau} \ge 0, c(t) \ge 0, 0 \le l(t) \le 1, a(0) = k(0) > 0 \text{ is given }\nonumber
+	\end{align}
+	\item Taking $r(t), w(t)$ as given for each $t$ firms are solving the following optimization problem:
+	\begin{align}\label{eq2}
+	\underset{K(t), L^f(t)}{\max}\ F(K(t), L^f(t)) - r(t)K(t) - w(t)L^f(t)
+	\end{align}
+	\item The equilibrium is a set of functions $\left\{c(t), l(t), a(t), K(t), L^f(t), r(t), w(t), z(t)\right\}$ such that:
+	\begin{itemize}
+		\item Taking $w(t), z(t), r(t)$ as given, consumers choose $c(t), l(t), a(t)$ as a solution to optimization problem \eqref{eq1}
+		\item Taking $r(t), w(t)$ as given for each $t$ firms choose $K(t), L^f(t)$ as a solution to optimization problem \eqref{eq2}.
+		\item Markets are cleared and budget is balanced, i.e.
+		\begin{align*}
+		\forall\ t:\ &K(t) = A(t) = a(t) \cdot L(t)\\
+		&l(t) = L^f(t)\\
+		&c(t) + \dot{k}(t) + g = F(K(t), L^f(t)) - \delta k(t)\\
+		&g = \tau k(t) + z(t)
+		\end{align*}
+	\end{itemize}
+\item Assuming CRS production function, firms' problem can be rewritten in a following manner:
+\begin{align*}
+\max\ L^f(F(k_t, 1) - r(t)k(t) - w(t))
+\end{align*}
+Then FOCs imply:
+\begin{align*}
+&F'_k(k(t), 1) = f'(k(t)) = r(t) \to k(t)^*\\
+L^f = &\begin{cases}
+\infty, w(t) < F(k(t)^*, 1) - r(t)k^*(t)\\
+0, w(t) > F(k(t)^*, 1) - r(t)k^*(t)\\
+\forall, w(t) = F(k(t)^*, 1) - r(t)k^*(t)
+\end{cases}
+\end{align*}
+Incorporating market clearing:
+\begin{align*}
+L^f(t) &= l(t)\\
+w(t) &= F(k^*(t), 1) - r(t)k^*(t), \text{ where } k^*(t) = f'^{-1}(r(t))
+\end{align*}
+\item Firms have zero profit: the whole output is used to pay for labour and capital.
+\item Hamiltonian is:
+\begin{align*}
+\mathscr{H}(c(t), l(t), a(t)) = e^{-\rho t}u(c(t), l(t)) + \lambda(t)(w(t)l(t) + (r(t) - \tau)a(t) - c(t) - z(t))
+\end{align*}
+Since there are no disutility from labour, $l(t) = 1\ \forall\ t$.
+Optimality conditions:
+\begin{align*}
+\begin{cases}
+e^{-\rho t}u'(c(t)) - \lambda(t) = 0\\
+\dot{\lambda}(t) = -\lambda(t)(r(t) - \tau - \delta)\\
+\lim_{t \to \infty} a(t)\lambda(t) = 0
+\end{cases}\\
+\end{align*}
+and the system is:
+\begin{align*}
+\begin{cases}
+\frac{\dot{c}(t)}{c(t)} = -\frac{u'(c(t))}{u''(c(t))c(t)}(\rho - r(t) + \tau + \delta)\\
+\dot{k}(t) = F(k(t), 1) - \delta k(t) - c(t) - g
+\end{cases}
+\end{align*}
+\item The picture is provided below:
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{plotdraft}
+	\caption{}\label{fig1}
+\end{figure}
+
+Yes, if a subsidy $-\tau = \rho$ then $f'(\bar{k}) = \delta$ which corresponds to a golden rule. Since this steady state does not coincide with the social planner's one, which as we know is the first best, it means that actually consumers are not benefited from translating into the golden-rule steady state.
+\item If the goverment increases $\tau$ then the isocline $\dot{c}(t) = 0$ moves to the left, that means that new steady state will correspond to lower consumption and lower capital (see Fig \ref{fig1}). Hence in order to move to a new saddle path consumption should be increased firstly after that it is decreasing gradually. Intuition is straightforward: high tax rate on capital - consumers do not want to own as much capital - they start consume more, invest less, as a consequences amount of capital decreases.
+\item In that case consumption should be increased at $t=0$ to attain the trajectory of the initial system which exactly at $t=T$ leads to the saddle path of the modified system.
+\item If at time $t=T$ government decides not to increase $\tau$, the economy should decrease consumption in order to attain the saddle path of initial system (see Fig \ref{fig2}). Also, the straightforward intuition: it turns out that tax rate is not increased, but we already have too less capital, that means it's time to "tighten belts" and start to amass capital.
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{plotdraft}
+	\caption{}\label{fig2}
+\end{figure}
+\item In that case at $t = 0$ consumption should be increased in order to move to the trajectory of new system which exactly at $t = T$ leads to a saddle path of the initial system.
+
+	\end{enumerate}
 \end{document}
