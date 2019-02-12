@@ -112,24 +112,50 @@ Does any of the equilibria you found involve a weakly dominated strategy?
 	\end{align*}
 	The second equilibrium profile contains a weakly dominated strategy for the first player, it is easy to observe that the strategy $\left\{12\right\}$ gives the first player weakly greater payoff (than $\left\{\text{ abstain } 2\right\}$) regardless of what the second player does.
 	
-	\item If the first player votes for the 1st candidate than it is optimal for the second player to vote either for the 1st candidate or to abstain, both alternatives yield him equal expected payoffs $0.9$.
-	
-	If the first player abstains from voting then it is optimal for the second player to vote for the 1st candidate it yields him the greatest expected payoffs $0.9$.
-	
-	If the first player votes for the second candidate then it is optimal for the second player to vote for the 1st candidate it yields him the greates expected payoffs $0.5$.
-	
-	As a result the equilibria are (strategy $121$ means that if 1st player votes for 1st or for 2nd candidate - vote for the 1st candidate, if he abstained - vote for the second candidate):
-	\begin{align*}
-	&\left\{11\ ; 111\ \right\}\\
-	&\left\{11\ ; \text{abstained }11\ \right\}\\
-	&\left\{1 \text{ abstained }\ ; 111\ \right\}\\
-	&\left\{1\text{ abstained }\ ; \text{ abstained }11\ \right\}\\
-	&\left\{\text{ abstained } 1\ ; 111\ \right\}\\
-	&\left\{\text{ abstained } 1\ ; \text{ abstained }11\ \right\}\\
-	&\left\{\text{ abstained }\text{ abstained }\ ; 111\ \right\}\\
-	&\left\{\text{ abstained }\text{ abstained }\ ; \text{ abstained }11\ \right\}\\	
+	\item Let us take a look at the game from the point of view of second player and use backward induction approach. Best responses of the second player on non-strictly dominated strategies of the 1st player are the following (here $a$ stands for "abstain" and as in previous part $121$-strategy means that the second player votes for 1 if 1st player votes for 1 or 2 and votes for 2 if 1st player abstains, $\forall$ - means that any action is possible):
+	\begin{itemize}
+	\item \begin{align*}
+	r_2(\left\{12\right\}) =\begin{cases} \left\{1\forall a \right\}\\
+	\left\{1\forall 2 \right\}\\
+	\left\{a\forall 2 \right\}\\
+	\left\{a\forall a \right\}\\
+	\end{cases}
 	\end{align*}
-	As in previous point, for player 1, to abstain in the first state is weakly dominated strategy by strategy of voting for the 1st candidate, because it yields him weakly smaller payoffs regardless of what player 2 does.
+	Of course, 
+	\begin{align*}
+	\left\{12\right\} \in r_1(r_2(\left\{12\right\}))
+	\end{align*}
+	hence all 12 profiles of strategies are equilibria. 
+	\item \begin{align*}
+	r_2(\left\{1a\right\}) = \begin{cases}
+	\left\{12\forall \right\}\\
+	\left\{a2\forall \right\}
+	\end{cases}
+	\end{align*}
+	Again
+	\begin{align*}
+	\left\{1a\right\} \in r_1(r_2(\left\{1a\right\}))
+	\end{align*}
+	hence 6 more profiles of strategies are equilibria.
+	
+	
+	\item \begin{align*}
+	r_2(\left\{a2\right\}) = \begin{cases}
+	\left\{\forall 1 2\right\}\\
+	\left\{\forall 1 a\right\}
+	\end{cases}
+	\end{align*}
+	$\left\{a2\right\} \in r_1(r_2(\left\{a2\right\}))$ hence these strategies are also equilibria.
+	\item \begin{align*}
+	r_2(\left\{aa\right\}) = \left\{\forall 1 \forall \right\}
+	\end{align*}
+	however 
+	\begin{align*}
+	\left\{aa\right\} \notin r_1(r_2(\left\{aa\right\}))
+	\end{align*}
+	because once the state $b$ occurs it is more profitable for the 1st player to deviate and to vote for the second candidate. Hence, it is not an equilibrium profile.
+	\end{itemize}
+	As in previous point, for player 1, to abstain in both states is weakly dominated strategy by strategy of voting for the best candidate for the particular state, because it yields him weakly smaller payoffs regardless of what player 2 does.
 	\end{enumerate}
 
 \section*{Problem 2}
