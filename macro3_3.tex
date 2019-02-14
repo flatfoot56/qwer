@@ -140,7 +140,7 @@
 			\begin{align*}
 			&\max\ \int_{0}^{\infty} e^{-\rho t}u(c(t))dt\\
 			&s.t.\ \dot{b}(t) + p(t)\dot{a}(t) = w(t)l(t) + r(t)b(t) + d(t)a(t) - c(t),\ \forall\ t\\
-			&\lim_{t \to \infty} b(t)e^{-\int_{0}^t r(\tau)d\tau} \ge 0, c(t) \ge 0, 0 \le l(t) \le 1, b(0) = 0, a(t) \le 1\\
+			&\lim_{t \to \infty} b(t)e^{-\int_{0}^t r(\tau)d\tau} \ge 0, c(t) \ge 0, 0 \le l(t) \le 1, b(0) = 0, 0 \le a(t) \le 1\\
 			\end{align*}
 			\item Taking $w(t)$ as given, firms choose $\left\{l(t), i(t)\right\}$ as a solution to the following optimization problem:
 			\begin{align*}
@@ -159,7 +159,7 @@
 	\begin{align*}
 	&\max\ \int_{0}^{\infty} e^{-\rho t}u(c(t))dt\\
 	&s.t.\ \dot{b}(t) + \dot{x}(t) = w(t)l(t) + r(t)b(t) + \frac{d(t) + \dot{p}(t)}{p(t)}x(t) - c(t),\ \forall\ t\\
-	&\lim_{t \to \infty} b(t)e^{-\int_{0}^t r(\tau)d\tau} \ge 0, c(t) \ge 0, 0 \le l(t) \le 1, b(0) = 0, \frac{x(t)}{p(t)} \le 1\\
+	&\lim_{t \to \infty} b(t)e^{-\int_{0}^t r(\tau)d\tau} \ge 0, c(t) \ge 0, 0 \le l(t) \le 1, b(0) = 0,0 \le \frac{x(t)}{p(t)} \le 1\\
 	\end{align*}
 	No-arbitrage condition implies that at the equilibrium both assets should yield the same interest, that means that
 	\begin{align*}
@@ -167,11 +167,30 @@
 	\end{align*}
 	it means that asset yields its owner a gain in a form of dividends $\frac{d(t)}{p(t)}$ and in a form of price change $\frac{\dot{p}(t)}{p(t)}$.
 	\item Economic interpretation is the following: the price of asset is equal to discounted sum of all dividends it pays.
-	\item 
+	\item Using capital motion equation, market clearing can be rewritten as follows:
+	\begin{align*}
+	c(t) + \dot{k}(t) + \delta k(t) + d(t) = F'_k(k(t), l(t))k(t) + F'_l(k(t), l(t))l(t)\\
+	c(t) + \dot{k}(t) + \delta k(t) + d(t) = F'_k(k(t), l(t))k(t) + w(t)l(t)\\
+	\end{align*}
+	Since at the equilibrium firms have zero profit, market clearing condition implies that 
+	\begin{align*}
+	c(t) = w(t)l(t)
+	\end{align*}
+	that means that
+	\begin{align*}
+	\dot{k}(t) + \delta k(t) + d(t) &= (r(t) + \delta)k(t)\\
+	r(t) &= \frac{\dot{k}(t) + d(t)}{k(t)}
+	\end{align*}
+	$k(t) = p(t)$ i.e. price of asset is equal to price of capital, it is a reasonable result. At equilibrium people should be indifferent between purchasing capital and purchasing assets.
 	\item \begin{align*}
 	d(t) = r(t)k(t) - \dot{k}(t)
 	\end{align*}
-	\item
+	 Since $a(t) = 1$ then $x(t) = p(t) = k(t)$. Thus,
+	\begin{align*}
+	\dot{b}(t) + \dot{k}(t) = w(t)l(t) + r(t)b(t) + r(t)k(t) - c(t)
+	\end{align*}
+	So, we obtained the budget constraint in a model when consumers own capital.
+	\item Again, consumers save through firms: market clearing implies that the whole output should be either consumed by consumers or invested in future capital (or payed consumers in a form of dividends). As a result, consumers are able to reduce consumption and thereby increase investments in future capital which increases their future wages and dividends. $r(t)$ is also set such that consumers and firms become indifferent between different forms of saving (investment).
 	\end{enumerate}
 \end{enumerate}
 \section*{Problem 2}
