@@ -1,0 +1,216 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\newcommand{\yrseduc}{\textit{yrseduc}}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Econometrics 1. Problem Set 5.
+\end{center}
+\section*{Problem 1}
+Consider a simple model to estimate the effect of personal computer (PC) ownership on
+college grade point average for graduating seniors at a large public university:
+\begin{align*}
+GPA = \beta_0 + \beta_1 PC + u
+\end{align*}
+where $PC$ is a binary variable indicating $PC$ ownership.
+\begin{enumerate}[(i)]
+\item Why might PC ownership be correlated with $u$?
+\item Explain why $PC$ is likely to be related to parents’ annual income. Does this mean
+parental income is a good IV for $PC$? Why or why not?
+\item Suppose that, four years ago, the university gave grants to buy computers to roughly
+one-half of the incoming students, and the students who received grants were randomly chosen.
+Carefully explain how you would use this information to construct an instrumental variable for
+$PC$.
+\end{enumerate}
+
+
+\textbf{Solution}
+
+
+\begin{enumerate}[(i)]
+	\item Variety of reasons are possible. For example, people who own PCs can spend a lot of time on playing computer games, as a result they pay less attention to studying, hence their GPA can be affected. That is, error term contains for example a number of hours a person spend on computer games, which of course correlated with PC ownership.
+	\item PC is not very cheap purchase, so it can in principle be related to parents' income: smaller income - smaller probability that parents can afford purchasing a PC. Parental income is good IV if it is valid, i.e. is not correlated with error term. As for me, it is not a good IV because I suppose that children from not very rich families can tend to have a higher motivation for studying than their rich counterparts, as a result parental income can be negatively correlated with $GPA$.
+	\item We can use as IV a dummy variable, whether or not a particular student have been chosen as a grant taker. Obviously it is not correlated with $GPA$ because students were chosen randomly. Moreover this variable is correlated with PC ownership, because once the person received a grant for purchasing PC, he should own a PC. Consequently, this variable is relevant, i.e. correlated with PC ownership, and exogenous, i.e. not correlated with $GPA$.
+\end{enumerate}
+\section*{Problem 2}
+Consider a simple linear regression model
+\begin{align*}
+y = \beta_0 + \beta_1x + u
+\end{align*}
+The regressor $x$ is endogenous and $Cov(x, u) \neq 0$. There are two instruments $z_1$ and $z_2$, which
+are valid and relevant and non-constant. The error term $u$ is homoscedastic and has zero
+unconditional mean. The random variables $x$, $z_1$ and $z_2$ also have zero unconditional mean.
+\begin{enumerate}[(a)]
+\item Suppose that $Cov(x, u) > 0$. What is the sign of an asymptotic bias of the OLS estimate
+of the intercept?
+\item Consider the vector of random variables $\xi = (x, z_1, z_2)^T$. What is a minimal possible
+rank of the following matrix of expectations: $\expect (\xi\xi^T)$?
+\item Consider two IV estimates of the intercept. The first estimate is based on the following
+two instruments: constant and $z_1$. The second is based on $z_1$ and $z_2$. Is it possible to get
+a smaller asymptotic variance for the intercept estimator in the second case than in the first
+case? If yes, provide an example.
+\item Suppose someone wants to perform IV estimation with the following instruments: constant and $z_1$. The estimator does not observe $z_1$, instead (s)he observes this variable with a
+measurement error which is i.i.d. and independent of all other random variables. Investigate
+and describe the effect of the measurement error on efficiency of estimation.
+\end{enumerate}
+
+
+\textbf{Solution}
+
+
+\begin{enumerate}[(a)]
+	\item If $Cov(x, u) > 0$ then
+	\begin{align*}
+	\frac{\summa (x_i - \bar{x})y_i}{\summa (x_i - \bar{x})^2} = \hat{\beta}_1 \overset{p}{\to} \frac{cov(x, y)}{Var(y)} = \beta_1 + \frac{cov(x, u)}{Var(x)}
+	\end{align*}
+	\begin{align*}
+	\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x} = \beta_0 + (\beta_1 - \hat{\beta_1})\bar{x} + \bar{u} \overset{p}{\to} \beta_0 + \frac{cov(x, u)}{Var(x)}\expect x + \expect u = \beta_0
+	\end{align*}
+	hence the intercept is still asymptotically unbiased.
+	\item $\expect \xi \xi^T$ is in fact a covariance matrix of the random vector $\xi = (x\ z_1\ z_2)^T$, i.e. $Var(\xi)$. Assume firstly that $z_1$ and $z_2$ are perfectly linearly dependent i.e. $z_1 = -\alpha z_2, \alpha \neq 0$. That means that
+	\begin{align*}
+	\exists\ v = (0\ 1\ -\alpha)^T \neq 0: Var(v^T\xi) = v^T Var(\xi) v = Var(z_1 -\alpha z_2) = 0
+	\end{align*}
+	that means that matrix $Var(\xi) = \expect (\xi \xi^T)$ is singular, i.e. $rg(\expect(\xi\xi^T)) < 3$. Note that assumption of perfect linear dependency between $z_1$ and $z_2$ does not violate the premise of the problem, both $z_1$ and $z_2$ are still valid, relevant and non-constant. In conclusion, rank can be equal to 2.
+	
+	Now assume that $x = \alpha_1 z_1 + \alpha_2 z_2,\  \alpha_1\alpha_2 \neq 0$ then
+	\begin{align*}
+	\expect x^2 = \expect[\alpha_1^2z_1^2 + 2\alpha_1\alpha_2z_1z_2 + \alpha_2^2z_2^2] = \alpha_1\expect[\alpha_1z_1^2 + \alpha_2z_1z_2] + \alpha_2\expect[\alpha_1z_1z_1 + \alpha_2z_2^2] =\\ =\alpha_1\expect[xz_1] + \alpha_2 \expect[xz_2]
+	\end{align*}
+	As a result:
+	\begin{align*}
+	Varx = \alpha_1 cov(x, z_1) + \alpha_2 cov(x, z_2)\\
+	cov(x, z_1) = \alpha_1 Varz_1 + \alpha_2 cov(z_1, z_2)\\
+	cov(x, z_2) = \alpha_1 cov(z_1, z_2) + \alpha_2Varz_2
+	\end{align*}
+	Since
+	\begin{align*}
+	\expect \xi\xi^T = \begin{pmatrix}
+	Varx & cov(x, z_1) & cov(x, z_2)\\
+	cov(x, z_1) & Var z_1 & cov(z_1, z_2)\\
+	cov(x, z_2) & cov(z_1, z_2) & Varz_2
+	\end{pmatrix}
+	\end{align*}
+	we can conclude that the first row is a linear combination of two other rows, i.e. matrix has rank 1.
+	
+	However, in this case $z_1$ and $z_2$ become non-valid instruments, because
+	\begin{align*}
+	cov(u, z_1) = \frac{1}{\alpha_1}cov(x, u) - \frac{\alpha_2}{\alpha_1}cov(z_2, u) = \frac{1}{\alpha_1}cov(x, u) \neq 0\\
+	cov(u, z_2) = \frac{1}{\alpha_2}cov(x, u) - \frac{\alpha_1}{\alpha_2}cov(z_1, u)= \frac{1}{\alpha_2}cov(x, u) \neq 0\\
+	\end{align*}
+	In conclusion, minimal rank is 2.
+	\item Assume $x_i = (1\ x_i)^T, X = (x_1\ \dots\ x_n)^T, z_{1i} = (1\ z_{1i})^T, Z_1 = (z_{11}\ \dots\ z_{1n})^T, \beta = (\beta_0\ \beta_1)^T$.
+	Then 
+	\begin{align*}
+	y &= X\beta + u\\
+	X &= Z_1\gamma + v\\
+	y &= Z_1\gamma\beta + u\\
+	\hat{\beta} &= ((Z_1\hat{\gamma})^T(Z_1\hat{\gamma}))^{-1}(Z_1\hat{\gamma})^Ty\\
+	\hat{\gamma} &= (Z^TZ_1)^{-1}Z_1^TX\\
+	\hat{\beta}&=(X^TZ_1(Z_1^TZ_1)^{-1}Z_1^TX)^{-1}X^TZ_1(Z_1^TZ_1)^{-1}Z_1^Ty = (Z_1^TX)^{-1}Z_1^Ty\\
+	Var(\hat{\beta}) &= (Z_1^TX)^{-1}Z_1^TZ_1(X^TZ_1)^{-1}\sigma^2\\
+	\end{align*}
+	\begin{align*}
+	\frac{1}{n}(Z_1^TX) = \begin{pmatrix}
+	1 & \bar{x}\\
+	\bar{z_1} & \frac{1}{n}\summa z_{1i}x_i
+	\end{pmatrix} &\overset{p}{\to} \begin{pmatrix}
+	1 & 0\\
+	0 & cov(z_1, x)
+	\end{pmatrix}\\
+	\frac{1}{n}(Z^TZ) = \begin{pmatrix}
+	1 & \bar{z}\\
+	\bar{z} & \frac{1}{n}\summa z_{1i}^2
+	\end{pmatrix} &\overset{p}{\to} \begin{pmatrix}
+	1 & 0\\
+	0 & Var(z_1)
+	\end{pmatrix}\\
+	\frac{1}{n} (X^TZ_1) = \begin{pmatrix}
+	1 & \bar{z_1}\\
+	\bar{x} & \frac{1}{n}\summa z_{1i}x_i
+	\end{pmatrix} & \overset{p}{\to} \begin{pmatrix}
+	1 & 0\\
+	0 & cov(z_1, x)
+	\end{pmatrix}
+	\end{align*}
+	That means that $n Var_{as}(\hat{\beta_0}) = \sigma^2$
+	
+	
+	Now, suppose $z_{2i} = (z_{1i}\ z_{2i})^T$ and $Z_2 = (z_1\ \dots\ z_n)^T$. Following the same logic:
+	\begin{align*}
+	Var(\hat{\beta}) = (Z_2^TX)^{-1}Z_2^TZ_2(X^TZ_2)^{-1}\sigma^2\\
+	\end{align*}
+	\begin{align*}
+	\frac{1}{n}(Z_2^TX) = \begin{pmatrix}
+	\bar{z_1} & \frac{1}{n}\summa z_{1i}x_i\\
+	\\
+	\bar{z_2} & \frac{1}{n}\summa z_{2i}x_i
+	\end{pmatrix} &\overset{p}{\to} \begin{pmatrix}
+	0 & cov(z_1, x)\\
+	0 & cov(z_2, x)
+	\end{pmatrix}\\
+	\frac{1}{n}(Z^TZ) = \begin{pmatrix}
+	\frac{1}{n}\summa z_{1i}^2 & \frac{1}{n}\summa z_{1i}z_{2i}\\
+	\\
+	\frac{1}{n}\summa z_{2i}x_i & \frac{1}{n}\summa z_{2i}^2
+	\end{pmatrix} &\overset{p}{\to} \begin{pmatrix}
+	Var(z_1) & cov(z_1, z_2)\\
+	cov(z_1, z_2) & Var(z_2)
+	\end{pmatrix}\\
+	\frac{1}{n} (X^TZ_1) = \begin{pmatrix}
+	\bar{z_1} & \bar{z_2}\\
+	\frac{1}{n}\summa x_iz_{1i} & \frac{1}{n}\summa z_{2i}x_i
+	\end{pmatrix} & \overset{p}{\to} \begin{pmatrix}
+	0 & 0\\
+	cov(x, z_1) & cov(z_2, x)
+	\end{pmatrix}
+	\end{align*}
+	As we can see, asymptotic matrix is singular, i.e. it diverges to infinity whereas in previous case asymptotic variance $\times n$ is finite. We have to conclude that, it is not possible to get
+	a smaller asymptotic variance for the intercept estimator in the second case than in the first
+	case.
+	\item Assume $\tilde{z_{1i}} = z_{1i} + \varepsilon_i$. Then
+	\begin{align*}
+	\hat{\beta_1}_{IV} = \frac{\summa (y_i - \bar{y})(z_{1i} + \varepsilon_i)}{\summa (x_i - \bar{x})(z_{1i} + \varepsilon_i)}
+	\end{align*}
+\end{enumerate}
+\end{document}
