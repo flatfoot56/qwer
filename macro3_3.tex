@@ -62,7 +62,7 @@
 			\end{align*}
 			\item Taking $w(t)$ as given, firms choose $\left\{l(t), i(t)\right\}$ as a solution to the following optimization problem:
 			\begin{align*}
-			\max\ \int_{0}^{\infty} &(F(k(t), l(t)) - w(t)l(t) - i(t))e^{-\rho t}dt\\
+			\max\ \int_{0}^{\infty} &(F(k(t), l(t)) - w(t)l(t) - i(t))e^{-\int_0^tr(s)ds}dt\\
 			&s.t.\ \dot{k}(t) = i(t) - \delta k(t)\\
 			&k(t) \ge 0, k(0) > 0 \text{ is given}
 			\end{align*}
@@ -87,17 +87,17 @@
 	\end{align*}
 	Firms have two control variables $l(t)$ and $i(t)$ and one state variable $k(t)$. Hamiltonian looks as follows:
 	\begin{align*}
-	\mathscr{H}(i(t), l(t), k(t)) = e^{-\rho t}(F(k(t), l(t)) - w(t)l(t) - i(t)) + \gamma(t)(i(t) - \delta k(t))
+	\mathscr{H}(i(t), l(t), k(t)) = e^{-\int_0^tr(s)ds}(F(k(t), l(t)) - w(t)l(t) - i(t)) + \gamma(t)(i(t) - \delta k(t))
 	\end{align*}
 	then optimality conditions are:
 	\begin{align*}
 	\begin{cases}
 	F'_l(k(t), l(t)) = w(t)\\
-	\gamma(t) = e^{-\rho t}\\
-	\dot{\gamma}(t) = -e^{-\rho t}F'_k(k(t), l(t)) + \gamma(t)\delta\\
+	\gamma(t) = e^{-\int_0^tr(s)ds}\\
+	\dot{\gamma}(t) = -e^{-\int_0^tr(s)ds}F'_k(k(t), l(t)) + \gamma(t)\delta\\
 	\lim_{t \to \infty} \gamma(t) k(t) = 0
 	\end{cases} \to \begin{cases}
-	F'_k(k(t), l(t)) = \rho + \delta\\
+	F'_k(k(t), l(t)) = r(t) + \delta\\
 	F'_l(k(t), l(t)) = w(t)
 	\end{cases}
 	\end{align*}
@@ -105,11 +105,11 @@
 	\begin{align*}
 	\begin{cases}
 	\frac{\dot{c}(t)}{c(t)} = -\frac{u'(c(t))}{u''(c(t))c(t)}(r(t) - \rho)\\
-	F'_k(k(t), 1) = \rho + \delta\\
+	F'_k(k(t), 1) = r(t) + \delta\\
 	\dot{k}(t) = F(k(t), 1) - c(t) - \delta k(t)
 	\end{cases}
 	\end{align*}
-	No-arbitrage condition imply that at the equilibrium, firms should be indifferent between investments in capital and investments in consumers' bonds, i.e. gains from bonds and capital should be equal to each other, i.e. $r(t) = F'_k(k(t), l(t)) - \delta$. As a result, the dynamic system becomes equivalent to the social planner's one:
+	As a result, the dynamic system becomes equivalent to the social planner's one:
 	\begin{align*}
 	\begin{cases}
 	\frac{\dot{c}(t)}{c(t)} = -\frac{u'(c(t))}{u''(c(t))c(t)}(F'_k(k(t), 1) - \rho - \delta)\\
@@ -144,7 +144,7 @@
 			\end{align*}
 			\item Taking $w(t)$ as given, firms choose $\left\{l(t), i(t)\right\}$ as a solution to the following optimization problem:
 			\begin{align*}
-			\max\ \int_{0}^{\infty} &(F(k(t), l(t)) - w(t)l(t) - i(t) - d(t))e^{-\rho t}dt\\
+			\max\ \int_{0}^{\infty} &(F(k(t), l(t)) - w(t)l(t) - i(t) - d(t))e^{-\int_0^tr(s)ds}dt\\
 			&s.t.\ \dot{k}(t) = i(t) - \delta k(t)\\
 			&k(t) \ge 0, k(0) > 0 \text{ is given}
 			\end{align*}
