@@ -12,6 +12,7 @@
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{float}
+\usepackage{makecell}
 \usepackage[section]{placeins}
 \usepackage[makeroom]{cancel}
 \usepackage{mathrsfs} % 
@@ -210,7 +211,188 @@ and describe the effect of the measurement error on efficiency of estimation.
 	case.
 	\item Assume $\tilde{z_{1i}} = z_{1i} + \varepsilon_i$. Then
 	\begin{align*}
-	\hat{\beta_1}_{IV} = \frac{\summa (y_i - \bar{y})(z_{1i} + \varepsilon_i)}{\summa (x_i - \bar{x})(z_{1i} + \varepsilon_i)}
+	\hat{\beta_1}_{IV} &= \frac{\summa (y_i - \bar{y})(z_{1i} + \varepsilon_i)}{\summa (x_i - \bar{x})(z_{1i} + \varepsilon_i)}\\
+	Var(\hat{\beta_1}_{IV}|x, \tilde{z_1}) &= \frac{s^2_{z_1z_1} + 2s^2_{z_1\varepsilon} + s^2_{\varepsilon \varepsilon}}{(s^2_{xz_1} + s^2_{x \varepsilon})^2}\sigma^2 \overset{p}{\to} \frac{Var(z_1) + Var(\varepsilon)}{(cov(x, z_1))^2}\sigma^2
 	\end{align*}
+	As we can observe, the error term affects asymptotic effectiveness of estimator, variance becomes larger.
 \end{enumerate}
+\section*{Problem 3}
+\begin{enumerate}[(a)]
+	\item If we suppose that wealth level remains unchanged in both cases (the expenditure on purchase is insufficiently small comparing to the whole wealth) then correlation should be positive, because if $p_{i0}$ is larger that means that on average $w_i$ is large, which means that $p_{1i}$ is also on average large.
+	\item Of course $cov(p_{i0}, \varepsilon_{i}^1) = 0$ i.e. the instrumental variable is exogenous. It remains to show that it is relevant. Obviously, by the set-up of the problem $cov(p_{i0}, w_i) > 0$. Moreover, as it has been stated in (a):
+	\begin{align*}
+	cov(p_{i0}, \beta_2w_i) > 0\\
+	cov(p_{i0}, \beta_2w_i + \varepsilon_i^1) > 0\\
+	cov(p_{i0}, f(\beta_2w_i + \varepsilon_i^1)) > 0\\
+	cov(p_{i0}, p_{i1}) > 0
+	\end{align*}
+	Thus, the IV is exogenous and relevant i.e. valid. Assume $p_i = A \cdot (\beta_2 w_i + \varepsilon_i) + B$ then
+	\begin{align*}
+	\frac{1}{n} (Z^TX) \overset{p}{\to} \begin{pmatrix}
+	1 & A\beta_2 \expect [w] + B & \expect[w]\\
+	A\beta_2\expect[w] + B & A^2\beta_2^2\expect[w^2] + 2AB\beta_2\expect[w]& A\beta_2 \expect[w^2]+B\expect[w]\\
+	\expect[w]& A\beta_2 \expect[w^2]+B\expect[w] & \expect[w^2]
+	\end{pmatrix}
+	\end{align*}
+	it is easy to see that determinant of this matrix is equal to
+	\begin{align*}
+	B^2 (\expect[w])^2
+	\end{align*}
+	As a result, if $B = 0$ then the aforementioned matrix is singular that means that asymptotic variance of estimator diverges to infinity (not well-behaved)
+	\item To find OLS estimates we need to solve the following linear system:
+	\begin{align*}
+	(X^TX) \hat{\beta} = X^Ty\\
+	\end{align*}
+	Since the inverse operation is interchangeable with convergence in probability (continuous mapping theorem) hence, the limit in probability of the solution to the system must coincide with the solution of system, which is obtained in limit. That is,
+	\begin{align*}
+	\text{If } \beta_n \overset{p}{\to} \beta\ \&\ X_n \overset{p}{\to} X, y_n \overset{p}{\to} y\ \text{ then }\\
+	\text{If } \forall\ n\ X_n^TX_n\beta_n = X^T_ny_n\text{ then } X^TX \beta = X^Ty
+	\end{align*}
+	\begin{align*}
+	\frac{1}{n} X^T_nX_n \gamma_n &= \frac{1}{n}X_n^Ty_n\\
+	\begin{pmatrix}
+	1 & \expect[p_0] & \expect[w]\\
+	\expect[p_0] & \expect[p_0^2] & \expect[p_0w]\\
+	\expect[w] & \expect[p_0w] & \expect[w^2]
+	\end{pmatrix} \begin{pmatrix}
+	\gamma_0\\
+	\gamma_1\\
+	\gamma_2
+	\end{pmatrix} &= \begin{pmatrix}
+	\expect[q_1]\\\expect[p_0q_1]\\
+	\expect[wq_1]
+	\end{pmatrix}\\
+	\end{align*}
+	\begin{align*}
+	\begin{pmatrix}
+	1 & \expect[p_0] & \expect[w] \bigg| \expect[q_1]\\
+	\expect[p_0] & \expect[p_0^2] & \expect[p_0w]\bigg| \expect[p_0q_1]\\
+	\expect[w] & \expect[p_0w] & \expect[w^2]\ \bigg|\expect[wq_1]
+	\end{pmatrix} &\sim \begin{pmatrix}
+	1 & \expect[p_0] & \expect[w] \bigg| \expect[q_1]\\
+	\expect[p_0] & \expect[p_0^2] & \expect[p_0w]\bigg| \expect[p_0q_1]\\
+	0 & cov(p_0,w) & Var(w)\ \ \  \bigg|cov(w,q_1)
+	\end{pmatrix} \sim \\
+	&\sim \begin{pmatrix}
+	1 & \expect[p_0] & \expect[w] \bigg| \expect[q_1]\\
+	0 & Var(p_0) & cov(p_0, w)\bigg| cov(p_0q_1)\\
+	0 & cov(p_0, w) & Var(w)\ \ \ \bigg|cov(w, q_1)
+	\end{pmatrix} 
+	\end{align*}
+	\begin{align*}
+	&\gamma_2 = \frac{cov(w, q_1)Var(p_0) - cov(p_0, w)cov(p_0, q)}{Var(w)Var(p_0) - (cov(p_0, w))^2}\\
+	&\gamma_1 = \frac{cov(p_0, q_1)Var(w) - cov(p_0, w)cov(w, q)}{Var(w)Var(p_0) - (cov(p_0, w))^2}\\
+	&\gamma_0 = \expect[q_1] - \expect[p_0] \beta_1 - \expect[w]\beta_2
+	\end{align*}
+	\item 
+	\begin{align*}
+	&q_i^1 - q_i^0 = \beta_1(p_i^1 - p_i^0) + \varepsilon_i^1 - \varepsilon_i^0\\
+	&\hat{\gamma_1} = \frac{\summa (q^1_i - \bar{q^1} - q^0_i + \bar{q^0})(p^1_i - \bar{p^1} - p^0_i + \bar{p^0})}{\summa (p^1_i - \bar{p^1} - p^0_i + \bar{p^0})^2} = \\
+	&= \frac{\summa (\beta_1(p_i^1 - p_i^0) + \varepsilon_i^1 - \varepsilon^0_i - \beta_1(\bar{p^1} - \bar{p^0}) - \bar{\varepsilon^1} + \bar{\varepsilon^0})(p^1_i - \bar{p^1} - p^0_i + \bar{p^0})}{\summa (p^1_i - \bar{p^1} - p^0_i + \bar{p^0})^2}
+	\end{align*}
+	\begin{align}\label{eq1}
+	\expect[\hat{\gamma_1}] = \expect[\expect[\hat{\gamma_1}|p^1, p^0]] = \beta_1 +  \expect\left[\frac{\summa (p^1_i - \bar{p^1} - p^0_i + \bar{p^0})(f^{-1}(p^1_i) - f^{-1}(p^0_i))}{\summa (p^1_i - \bar{p^1} - p^0_i + \bar{p^0})^2}\right]
+	\end{align}
+	where $f(\cdot)$ is such a function that:
+	\begin{align*}
+	p^0_i = f(\beta_2 w_i + \varepsilon^0_i)\\
+	p^1_i = f(\beta_2 w_i + \varepsilon^1_i)\\
+	\end{align*}
+	There are no reasons for the second term in \eqref{eq1} to have a zero mean, that means that $\hat{\gamma_1}$ is biased.
+	\item 
+	\begin{align}\label{eq2}
+	\frac{1}{n}(Z^TX) \overset{p}{\to} \begin{pmatrix}
+	1 & \expect[p^1] & \expect[w]\\
+	\expect[p^0] & \expect[p^1p^0] & \expect[p^0w]\\
+	\expect[w] & \expect[p^1w] & \expect[w^2]
+	\end{pmatrix} \sim \begin{pmatrix}
+	1 & \expect[p^1] & \expect[w]\\
+	0 & cov(p^1, p^0) & cov(p^0, w)\\
+	0 & cov(p^1, w) & Var(w)
+	\end{pmatrix}\\
+	\det \begin{pmatrix}
+	1 & \expect[p^1] & \expect[w]\\
+	0 & cov(p^1, p^0) & cov(p^0, w)\\
+	0 & cov(p^1, w) & Var(w)
+	\end{pmatrix} = cov(p^1, p^0)Var(w) - cov(p^1, w)cov(p^0, w)\nonumber
+	\end{align}
+	By the Cauchy - Schwartz inequality
+	\begin{align*}
+	|cov(p^1, w)| \le \sqrt{Var(p^1)Var(w)}
+	\end{align*}
+	If $p^1 = [\beta_2 w + \varepsilon^1]^3, p^0 = [\beta_2 w + \varepsilon^0]^3$ then $cov(p_1, w) \ge 0$ hence:
+	\begin{align*}
+	cov(p^1, p^0)Var(w) - cov(p^1, w)cov(p^0, w) \ge cov(p^1, p^0)Var(w) - \\
+	-\sqrt{Var(p^1)Var(p^0)}Var(w) > Var(w) > 0
+	\end{align*}
+	Since $cor(p^1, p^0) < 1$ because $p^1, p^0$ are not linearly dependent. That means that determinant of the matrix \eqref{eq2} is not zero, i.e. the estimator is well behaved asymptotically.	
+\end{enumerate}
+\section*{Problem 4}
+Estimate the own-price elasticity of demand by using OLS to regress the log of the quantity
+of grain shipped on the log of the price of shipping grain and the full set of month binary
+indicators.
+\begin{enumerate}[(a)]
+\item What is the estimated demand elasticity and its standard error?
+\item Explain why the interaction of supply and demand plausibly makes this estimator of
+the elasticity biased.
+\end{enumerate}
+
+
+\textbf{Solution}
+
+\begin{enumerate}[(a)]
+	\item The output of coeftest() is depicted below
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{price_elasticity}
+		\caption{}\label{fig1}
+	\end{figure}
+	Elasticity is equal to -0.25 and its standard error is equal to 0.029.
+	\item The estimated model is
+	\begin{align*}
+	\ln (quantity) = \beta_0 + \beta_1 \ln (price) + \beta_2 seas1 + \cdot \beta_{13} seas12 + u
+	\end{align*}
+	Where $u$ is the error term, which includes all factors which affect quantity sold apart from price and dummy months variables. This term can include for example, prices of substitutes (the cheaper substitutes are the smaller quantity) or total income of people (the poorer people are the smaller quantity is). However, price is obviously correlated with aforementioned factors: the less substitutes cost the smaller price is, that means that assumption of OLS is violated, which leads to biased estimate of elasticity.
+\end{enumerate}
+\section*{Problem 5}
+Consider two possibilities for instrumental variables: whether the railroad cartel was experiencing one of its periodic collapses ($cartel$), and whether the Great Lakes are closed because
+of ice ($ice$).
+\begin{enumerate}[(a)]
+\item Use economic reasoning to argue whether $cartel$ plausibly satisfies the two conditions
+for a valid instrument.
+\item Use economic reasoning to argue whether $ice$ plausibly satisfies the two conditions for
+a valid instrument
+\end{enumerate}
+
+\textbf{Solution}
+
+\begin{enumerate}[(a)]
+	\item Without doubt $cartel$ is correlated with $quantity$ (sample covariance is about 0.6). As it has been described cartels try to raise prices. Moreover, the existence of cartel can hardly affect the demand on grain, neither preferences nor income or prices of substitutes can be affected by existence of cartel, hence it is plausibly a valid instrument.
+	\item As in previous case, whether or not lakes are covered with ice cannot affect the consumers' demand for grain, however sample correlation between $ice$ and $\ln (price)$ is rather small (0.3) i.e. $ice$ can be a weak instrument.
+\end{enumerate}
+\section*{Problem 6}
+\begin{center}
+\begin{tabular}{cccccc}
+	\hline
+	& (1) & (2) & (3) & (4) & (5)\\
+	\hline\\
+	Dependent variable: & $\ln(P)$ & $\ln(Q)$ & $\ln(Q)$ & $\ln(Q)$ & $\ln(Q)$\\
+	Regressors:& & & &\\
+	cartel & $\underset{(13.6534)}{0.356}$ & – & – & – & –\\
+	ln(P) & – & $\underset{(-8.7779)}{-0.662}$ & $\underset{(-6.9133)}{-0.93}$ & $\underset{(-1.7509)}{-4.74}$ &$\underset{(-6.7985)}{-0.921}$\\
+	\makecell{F-statistic testing\\
+	coefficients on monthly\\
+	indicators (p-value)} &5.298e-08 & 1.725e-14&2.2e-16 & 0.6864&2.2e-16\\
+	Estimation method & OLS & OLS &TSLS &TSLS &TSLS\\
+	Instrumental variables& n/a& n/a& cartel& ice& \makecell{ice\\
+	cartel}\\
+	First-stage F-statistic& n/a &n/a&186.42&2.3907&92.847\\
+	J-test of overidentifying &n/a &n/a&&&\\
+	restrictions & n/a &n/a &n/a& n/a&
+\end{tabular}
+\end{center}
+\section*{Problem 7}
+I think the most reasonable results were gotten in TSLS regression with $cartel$ as IV. As we can conclude from F-statistic, $ice$ is a weak instrument which is barely correlated with prices and I think only add noise to the model. On the other hand, $cartel$ is correlated with prices, and give reasonable significant statistics to conclude that there was indeed cartel pricing (elasticity is very close to -1).
+
+Here, the main threat is a weak correlation between instruments and regressors
 \end{document}
