@@ -1,0 +1,184 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{makecell}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\newcommand{\yrseduc}{\textit{yrseduc}}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Game theory. Problem Set 3.
+\end{center}
+\section*{Problem 1}
+The tree of the game is depicted below:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{plotdraft}
+	\caption{}\label{fig1}
+\end{figure}
+Obviously, profile of strategies
+\begin{align*}
+\left\{L, R\right\}
+\end{align*}
+is a Nash equilibrium: the best response on $R$ is $L$, the best response on $L$ is $R$. Moreover, if we introduce belief $\mu$ as
+\begin{align*}
+\prob (\text{2nd player at node} \left\{L\right\}|\text{2nd player is called upon to play}) = \mu
+\end{align*}
+then 
+\begin{align*}
+-2 \mu < 5\mu + 7 - 7 \mu = 7 - 2\mu\ \forall\ \mu \in (0, 1)
+\end{align*}
+that means that optimal strategy for player 2 is playing $R$. And aware of it, optimal strategy for player 1 is playing L. As a result the outcome $\left\{LR\right\}$ is both weak sequential equilibrium and Nash equilibrium.
+\section*{Problem 2}
+Obviously the weak sequential equilibrium (which is also a SPE) is the following profile of strategies:
+\begin{align*}
+\left\{In\ Acquiesce;\ A\right\}
+\end{align*}
+and belief for player 2:
+\begin{align*}
+(0, 1)
+\end{align*}
+i.e. player 2 knows for sure that he is at node $\left\{In\ Acquiesce\right\}$. This conclusion is derived because in unique proper subgame the strategy $\left\{Fight\right\}$ is strictly dominated by strategy $\left\{Acquisce\right\}$.
+
+Suppose player 1 plays $\left\{Out, Fight\right\}$ for sure. Then the information set of the 2nd player is reached with 0 probability. Hence the concept of weak sequential equilibrium allows us to put arbitrary beliefs but to the extent that given those beliefs player 1 still does not have a profitable deviation. Assume $\mu_{IF} = \mu$ then expected payoffs of player 2 are:
+\begin{align*}
+F : u_2 &= -1\\
+A: u_2 &=-2\mu + 1 - \mu = 1 - 3\mu
+\end{align*}
+If $\mu < \frac{2}{3}$ then player 2 plays $A$, if $\mu > \frac{2}{3}$ then he plays $F$. If $\mu = \frac{2}{3}$ then player 2 mixes. On the other hand, suppose that player 1 deviates and plays $\left\{In, Fight\right\}$ then his expected payoffs is equal to:
+\begin{align*}
+\begin{cases}
+3, \mu < \frac{2}{3}\\
+-2, \mu > \frac{2}{3}\\
+3 - 5\alpha, \mu = \frac{2}{3}
+\end{cases}
+\end{align*}
+where $\alpha$ is a probability which player 2 mixes the strategy $F$ with. If $\mu < \frac{2}{3}$ then it is profitable for player 1 to deviate, hence it is not an equilibrium, if $\mu > \frac{2}{3}$ then player 1 does not have a profitable deviation. If $\mu = \frac{2}{3}$ then if $\alpha < \frac{3}{5}$ then again, player 1 has a profitable deviation, if $\alpha > \frac{3}{5}$ then the first player does not have incentives to deviate. If $\alpha = \frac{3}{5}$ then player is indifferent, however mixing for player 1 cannot be consistent with beliefs because once he assigns positive probability for $\left\{In\right\}$, $\mu$ automatically becomes zero, because strategy $\left\{In, Fight\right\}$ is strictly dominated by $\left\{In, Acquisce\right\}$. As a result the profiles of strategies and beliefs for player 2:
+\begin{align*}
+\begin{cases}
+\left\{Out, Fight;\ F \right\}, \prob(In, Fight|In) = \mu > \frac{2}{3},\ \prob(In, Acquisce|In) = 1 - \mu\\
+\left\{Out, Fight;\ \alpha F + (1-\alpha)A \right\}, \prob(In, Fight|In) = \frac{2}{3},\ \prob(In, Acquisce|In) = \frac{1}{3}, \alpha > \frac{3}{5}\\
+\end{cases}
+\end{align*}
+constitute sequential equilibrium. These profiles are not SPE.
+\section*{Problem 3}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{game3}
+	\caption{}\label{fig2}
+\end{figure}
+
+
+\textbf{Solution}
+
+Suppose that, conditional on the fact that player 2 is called upon to play, he believes that he is at node $\{AR\}$ with probability $\mu$ and at node $\left\{BR\right\}$ with probability $1 - \mu$. Then playing $W$ yields him $5$ whereas playing $E$ yields 
+\begin{align*}
+10 - 8 \mu
+\end{align*}
+hence he should play
+\begin{align*}
+\begin{cases}
+W, \mu > \frac{5}{8}\\
+E, \mu < \frac{5}{8}\\
+\alpha W + (1 - \alpha)E, \mu = \frac{5}{8}
+\end{cases}
+\end{align*}
+for $\alpha \in (0, 1)$. For player 1, if he plays $R$ he gets:
+\begin{align*}
+\begin{cases}
+0, \mu > \frac{5}{8}\\
+5, \mu < \frac{5}{8}\\
+5 - 5\alpha, \mu = \frac{5}{8}
+\end{cases}
+\end{align*}
+So, we can conclude that the profile of strategies and belief for player 2:
+\begin{align*}
+\left\{L, W\right\}, (\mu, 1-\mu), \mu > \frac{5}{8}
+\end{align*}
+is a weak sequential equilibrium.
+
+If $\mu < \frac{5}{8}$ then player 1 plays for sure $R$ as a result $\mu \neq \frac{1}{2}$ is inconsistent. If $\mu = \frac{5}{8}$ then for $\alpha > \frac{3}{5}$ player 1 plays $L$ and this is also a weak sequential equilibrium, if $\alpha < \frac{3}{5}$ then player 1 should play $R$ for sure, but it is inconsistent with $\mu$. The only remained case is $\alpha = \frac{3}{5}$. In this case, player 1 is indifferent, hence he will mix, however $\mu \neq \frac{1}{2}$ will always be inconsistent with each $\beta$.
+
+If $\mu = \frac{1}{2}$ then player 2 plays $E$ and player 1 plays $R$. This is also a weak sequential equilibrium, since belief is consistent with the strategy and both players maximize their expected payoffs given that the other player plays the strategy.
+Thus, weak sequential equilibria of this game are:
+\begin{align*}
+\begin{cases}
+\{L, W\},\ (\mu, 1-\mu),\ \mu > \frac{5}{8}\\
+\{L, \alpha W + (1 - \alpha) L\},\ (\frac{5}{8}, \frac{3}{8}),\ \alpha > \frac{3}{5}\\
+\{R, E\},\ (\frac{1}{2}, \frac{1}{2})
+\end{cases}
+\end{align*}
+(Belief for player 1 is obviously $(0.5, 0.5)$)
+
+\section*{Problem 4}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{game4}
+	\caption{}\label{fig3}
+\end{figure}
+
+
+\textbf{Solution}
+\begin{enumerate}[(a)]
+	\item Yes, for example $\alpha = \frac{3}{4}$ in this case the profile of strategies $\{D, RL\}$ is a Nash equilibrium. Let us prove it. Obviosly, $\{RL\}$ is a best response on $\{D\}$. For player 1 expected payoffs of playing:
+	\begin{align*}
+	&U\text{ is } \frac{3}{8}\\
+	&D\text{ is } \frac{9}{16} > \frac{3}{8}
+	\end{align*}
+	i.e. $D$ is also a best response on $\{RL\}$, hence it is a Nash equilibrium.
+	\item $\alpha = \frac{1}{2}$. One of sequential equilibria is a mixed behavioural strategy for player 1: $\frac{2}{3}U + \frac{1}{3}D$ and for player 2: $\{\frac{2}{3}L + \frac{1}{3}R, R\}$ and believs for player 2: $(\frac{2}{3}, \frac{1}{3})$ (equal for both information sets, where he is called upon to play). That is, player 2 plays $\frac{2}{3}L + \frac{1}{3}R$ once the nature plays $T$ and $R$ otherwise. Suppose "1st information set" stands for the information set where the 2nd player is called upon to play and nature plays T, and "2nd information set" once the nature plays $B$. Since $\frac{1}{6} < \frac{1}{3}$ then at the 2nd information set the best response of player 2 is indeed $R$ and moreover, belief $(\frac{2}{3}, \frac{1}{3})$ is consistent with the strategy:
+	\begin{align*}
+	\frac{2}{3} = \frac{\frac{2}{3}(1-\alpha)}{(1 - \alpha)}
+	\end{align*}. At the 1st information set, player's 2 expected payoffs from playing:
+	\begin{align*}
+	L: \frac{1}{3}\\
+	R: \frac{1}{3}
+	\end{align*}
+	hence the best response is any mixed behavioural strategy and $\frac{2}{3}L + \frac{1}{3}R$ in particular. Also note, that at 1st information set belief for player 2 is consistent. It remains to check whether the first player is sequentially rational for this strategy. His expected payoffs of playing:
+	\begin{align*}
+	U: \frac{1}{3}\\
+	D: \frac{1}{3}
+	\end{align*}
+	that means that he can play any mixed strategy and $\frac{2}{3}U + \frac{1}{3}D$ in particular.
+	
+	Thus, the strategy and believes are indeed sequential equilibrium of the game.
+\end{enumerate}
+\end{document}
