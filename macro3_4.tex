@@ -1,0 +1,320 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{makecell}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\newcommand{\yrseduc}{\textit{yrseduc}}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Macroeconomics 3. Problem Set 4.
+\end{center}
+\section*{Problem 1}
+\textbf{Solution}
+
+\begin{enumerate}
+	\item A SOMCE is a set of sequences $\{c(t), C(t), w(t), r(t), l(t), a(t), k(t), a(t)\}_{t=0}^{\infty}$. Such that:
+	\begin{itemize}
+		\item Taking $w(t)$ as given, workers chooses $\{c(t), l(t)\}_{t=0}^{\infty}$ such that it solves the following optimization problem:
+		\begin{align*}
+		&\underset{c(t), l(t)}{\max}\ \sum_{t=0}^{\infty} \beta^t \ln c(t)\\
+		&s.t.\ \  c(t) = w(t)l(t), c(t) \ge 0, 0 \le l(t) \le 1
+		\end{align*}
+		\item Taking $r(t)$ as given, capitalists choose $\{C(t), a(t+1)\}_{t=0}^{\infty}$ such that it solves the following optimization problem:
+		\begin{align*}
+		&\underset{C(t)}{\max}\ \sum_{t=0}^{\infty} \beta^t \ln C(t)\\
+		&s.t.\ C(t) + a(t+1) = (1 + r(t))a(t), C(t) \ge 0, a(t) \ge 0, a(0) \text{ is given }
+		\end{align*}
+		\item Taking $w(t), r(t)$ as given, firms choose $\{k(t+1), l(t)\}_{t=0}^{\infty}$ such that it solves the following optimization problem:
+		\begin{align*}
+		&\underset{k(t), l(t)}{\max}\ \sum_{t=0}^{\infty} \prod_{s=0}^t\left(\frac{1}{1 + r(s)}\right)(F(k(t), l(t)) - w(t)l(t) - r(t)k(t) - k(t+1) + (1 - \delta)k(t))\\
+		&s.t.\ k(t) \ge 0, k(0) \text{ is given }
+		\end{align*}
+		\item Markets are cleared, i.e.:
+		\begin{align*}
+		&k(t) = a(t),\ \forall\ t\\
+		&c(t) + C(t) + k(t+1) - (1 - \delta)k(t) = F(k(t), l(t)),\ \forall\ t\\
+		&l(t) = 1,\ \forall\ t
+		\end{align*}
+	\end{itemize}
+\begin{enumerate}[(a)]
+	\item 	Optimality conditions for firms imply that:
+	\begin{align}\label{eq1}
+	\begin{cases}
+	-\prod_{s=0}^{t}\left(\frac{1}{1+r(s)}\right) + \prod_{s=0}^{t+1}\left(\frac{1}{1+r(s)}\right)(F'_k(k(t+1), l(t+1)) - r(t+1) + 1 - \delta) = 0\\
+	w(t) = F(k(t), 1) - r(t)k(t) - k(t+1) + (1 - \delta)k(t)
+	\end{cases}
+	\end{align}
+	hence 
+	\begin{align*}
+	F'_k(k(t+1), l(t+1)) - r(t+1) + 1 - \delta = 1 + r(t+1)\\
+	F'_k(k(t+1), l(t+1)) = \delta + 2r(t+1)
+	\end{align*}
+	At steady state $k(t) = \bar{k}$ hence $F'_k(\bar{k}, 1) = const = \delta + 2r(t+1)$ hence $r(t+1) = \bar{r}$. From BC for capitalists and equilibrium condition $a(t) = k(t) = \bar{k}$ one can get:
+	\begin{align*}
+	C(t) = \bar{r}\bar{k} = \bar{C}
+	\end{align*}
+	Moreover, from FOC for capitalists:
+	\begin{align}
+	\frac{C(t+1)}{\beta C(t)} = 1 + r(t+1)
+	\end{align}
+	hence at steady state $\bar{r} = \frac{1}{\beta}-1$ and steady state capital level is:
+	\begin{align*}
+	f(k) = F(k, 1)\\
+	\bar{k}^* = f'^{-1}\left(\delta + 2\left(\frac{1}{\beta}-1\right)\right) 
+	\end{align*}
+	In the standard neoclassical growth model
+	\begin{align*}
+	\bar{k}^* = f'^{-1}\left(\frac{1}{\beta} - 1 + \delta\right)
+	\end{align*}
+	hence now at steady state there is less capital.
+	\item Obviously $c(t) = w(t)\ \forall\ t$. And for capitalists:
+	\begin{align}\label{eq2}
+	\frac{C(t+1)}{\beta C(t)} = 1 + r(t+1)
+	\end{align}
+	From \eqref{eq2} and BC for capitalists it follows that:
+	\begin{align*}
+	&a(t) = \frac{C(t)}{1 + r(t)} + \frac{a(t+1)}{1+r(t)} = \frac{C(t)}{1 + r(t)} + \frac{C(t+1)}{(1+r(t))(1+r(t+1))} + \\ &+\frac{a(t+2)}{(1+r(t))(1+r(t+1))} = \frac{1+\beta}{1+r(t)}C(t) + \frac{C(t+2)}{(1+r(t))(1+r(t+1))(1+r(t+2))} + \\
+	&+\frac{a(t+3)}{(1+r(t))(1+r(t+1))(1+r(t+2))} = \frac{1+\beta + \beta^2}{1+r(t)}C(t) +\\ &+\frac{a(t+3)}{(1+r(t))(1+r(t+1))(1+r(t+2))} = ... = \frac{1 - \beta^{T+1}}{(1-\beta)(1+r(t))}C(t) +\\ &+\prod_{s=t}^{T}\left(\frac{1}{1+r(s)}\right) a(t+T+1)
+	\end{align*}
+	Transversality condition implies that the last term tends to 0 while $T \to \infty$ hence
+	\begin{align}\label{eq3}
+	C(t) = (1 - \beta)(1+r(t))a(t)
+	\end{align}
+	\item Since
+	\begin{align*}
+	\frac{C(t+1)}{\beta C(t)} = 1 + r(t+1)
+	\end{align*}
+	then if $r(t+1)$ becomes larger than $C(t+1)$ becomes relatively larger to $C(t)$. The intuition is straightforward: consumption at $t$ becomes more expensive (because $r(t+1)$ is alternative cost of consumption) hence it is substituted by $C(t+1)$. 
+\end{enumerate}
+\item \begin{enumerate}[(a)]
+	\item A SOMCE is a set of sequences $\{c(t), C(t), w(t), r(t), l(t), a(t), k(t), g(t), \tau(t), T(t)\}_{t=0}^{\infty}$. Such that:
+	\begin{itemize}
+		\item Taking $w(t), T(t)$ as given, workers chooses $\{c(t), l(t)\}_{t=0}^{\infty}$ such that it solves the following optimization problem:
+		\begin{align*}
+		&\underset{c(t), l(t)}{\max}\ \sum_{t=0}^{\infty} \beta^t \ln c(t)\\
+		&s.t.\ \  c(t) = w(t)l(t) - T(t), c(t) \ge 0, 0 \le l(t) \le 1
+		\end{align*}
+		\item Taking $r(t), \tau(t)$ as given, capitalists choose $\{C(t), a(t+1)\}_{t=0}^{\infty}$ such that it solves the following optimization problem:
+		\begin{align*}
+		&\underset{C(t), a(t)}{\max}\ \sum_{t=0}^{\infty} \beta^t \ln C(t)\\
+		&s.t.\ C(t) + a(t+1) = (1 - \tau(t))(1 + r(t))a(t), C(t) \ge 0, a(t) \ge 0, a(0) \text{ is given }
+		\end{align*}
+		\item Taking $w(t), r(t)$ as given, firms choose $\{k(t+1), l(t)\}_{t=0}^{\infty}$ such that it solves the following optimization problem:
+		\begin{align*}
+		&\underset{k(t), l(t)}{\max}\ \sum_{t=0}^{\infty} \left(\frac{1}{1 + r(t)}\right)^t(F(k(t), l(t)) - w(t)l(t) - r(t)k(t) - k(t+1) + (1 - \delta)k(t))\\
+		&s.t.\ k(t) \ge 0, k(0) \text{ is given }
+		\end{align*}
+		\item Markets are cleared, i.e.:
+		\begin{align*}
+		&k(t) = a(t),\ \forall\ t\\
+		&c(t) + C(t) + g(t) + k(t+1) - (1 - \delta)k(t) = F(k(t), l(t)),\ \forall\ t\\
+		&l(t) = 1,\ \forall\ t\\
+		&g(t) = T(t) + \tau(t)(1 + r(t))a(t)
+		\end{align*}
+	\end{itemize} 
+\item \begin{align*}
+&\underset{\makecell{c(t), C(t), l(t), \\ r(t), a(t), w(t), \\k(t), \tau(t), T(t)}}{\max}\ \sum_{t=0}^{\infty} \beta^t \ln c(t)\\
+&s.t.\ \begin{cases}
+\frac{C(t+1)}{\beta C(t)} = (1 - \tau(t+1))(1 + r(t+1))\\
+c(t) = w(t) - T(t) = F(k(t), 1) - r(t)k(t) - k(t+1) + (1 - \delta)k(t) - T(t)\\
+F'_k(k(t+1), l(t+1)) = \delta +2r(t+1)\\
+c(t) + C(t) + g(t) + k(t+1) - (1 - \delta)k(t) = F(k(t), l(t))\\
+C(t) + a(t+1) = (1 - \tau(t))(1 + r(t))a(t)\\
+g(t) = T(t) + \tau(t) a(t)\\
+a(t) = k(t)\\
+l(t) = 1\\
+C(t) \ge 0, c(t) \ge 0, k(t) \ge 0, a(t) \ge 0, k(0) \text{ is given }\\
+TVC
+\end{cases}
+\end{align*}
+\item Since planner cares only about workers and they cannot save, effectively planner should maximize just $w(t) - T(t)$ at steady state. i.e.
+\begin{align*}
+w(t) - T(t) = f(\bar{k}) - (\bar{r} + \delta)\bar{k} - T(t)
+\end{align*}
+\begin{align*}
+\begin{cases}
+\frac{C(t+1)}{\beta C(t)} = (1 - \tau(t+1))(1 + r(t+1))\\
+c(t) = w(t) - T(t) = F(k(t), 1) - r(t)k(t) - k(t+1) + (1 - \delta)k(t) - T(t)\\
+F'_k(k(t+1), l(t+1)) = \delta +2r(t+1)\\
+c(t) + C(t) + T(t) + \tau(t) \bar{k} + \delta\bar{k} = F(k(t), l(t))\\
+C(t) + a(t+1) = (1 - \tau(t))(1 + r(t))a(t)\\
+g(t) = T(t) + \tau(t) a(t)\\
+\end{cases}
+\end{align*}
+\begin{align*}
+\begin{cases}
+\frac{C(t+1)}{\beta C(t)} = (1 - \tau(t+1))(1 + r(t+1))\\
+c(t) = F(k(t), 1) - (\bar{r} +\delta)\bar{k} - T(t)\\
+F'_k(k(t+1), l(t+1)) = \delta +2r(t+1)\\
+c(t) + C(t) + T(t) + \tau(t) \bar{k} + \delta\bar{k} = F(k(t), l(t))\\
+C(t) + a(t+1) = (1 - \tau(t))(1 + r(t))a(t)\\
+\end{cases}
+\end{align*}
+\begin{align*}
+\begin{cases}
+\frac{C(t+1)}{\beta C(t)} = (1 - \tau(t+1))(1 + r(t+1))\\
+c(t) = F(k(t), 1) - (\bar{r} +\delta)\bar{k} - T(t)\\
+F'_k(k(t+1), l(t+1)) = \delta +2r(t+1)\\
+c(t) + C(t) + T(t) + \tau(t) \bar{k} + \delta\bar{k} = F(k(t), l(t))\\
+C(t) = (\bar{r} - \tau(t)(1 + \bar{r}))\bar{k}\\
+\end{cases}
+\end{align*}
+\begin{align*}
+\begin{cases}
+\frac{C(t+1)}{\beta C(t)} = (1 - \tau(t+1))(1 + r(t+1))\\
+c(t) = F(k(t), 1) - (\bar{r} +\delta)\bar{k} - T(t)\\
+F'_k(k(t+1), l(t+1)) = \delta +2r(t+1)\\
+c(t) + T(t) + (\delta + (1-\tau(t))\bar{r})\bar{k} = F(k(t), l(t))\\
+C(t) = (\bar{r} - \tau(t)(1 + \bar{r}))\bar{k}\\
+\end{cases}
+\end{align*}
+\begin{align*}
+\begin{cases}
+\frac{C(t+1)}{\beta C(t)} = (1 - \tau(t+1))(1 + r(t+1))\\
+c(t) = F(k(t), 1) - (\bar{r} +\delta)\bar{k} - T(t)\\
+F'_k(k(t+1), l(t+1)) = \delta +2r(t+1)\\
+F(k(t), 1) - (\bar{r} +\delta)\bar{k} - T(t) + T(t) + (\delta + (1-\tau(t))\bar{r})\bar{k} = F(k(t), l(t))\\
+\end{cases}
+\end{align*}
+\end{enumerate}
+	\end{enumerate}
+\section*{Problem 2}
+\begin{enumerate}
+	\item Firstly let us solve the model without pension.
+	$\forall\ t > 0$ taking $\{w(t), r(t)\}$ as given households choose $\{c_1(t), c_2(t+1), s(t)\}$ such that is solves the following optimization problem:
+	\begin{align*}
+	&\max\ \ln c_1(t) + \beta \ln c_2(t+1)\\
+	s.t.\ &c_1(t) +s(t) = w(t)\\
+	& c_2(t+1) = s(t)(r(t+1) + 1 - \delta)\\
+	&c_1(t) \ge 0, c_2(t+1) \ge 0
+	\end{align*}
+	$c_2(0)$ solves:
+	\begin{align*}
+	&\max\ \ln c_2(0)\\
+	s.t.\ &c_2(0) = s(-1)(r(0) + 1 - \delta)\\
+	&s(-1) \text{ is given }
+	\end{align*}
+	Firms' optimization conditions imply that:
+	\begin{align*}
+	r(t) &= A\alpha k(t)^{\alpha - 1}\\
+	w(t) &= A(1 - \alpha) k(t)^{\alpha}
+	\end{align*}
+	And market clearing conditions are:
+	\begin{align*}
+	k(t+1)(1+n) &= Ak(t)^{\alpha} + (1-\delta)k(t) - c_1(t) - \frac{c_2(t)}{n+1}\\
+	k(t+1) &= \frac{s(t)}{1+n}
+	\end{align*}
+	FOC:
+	\begin{align*}
+	\frac{c_2(t+1)}{\beta c_1(t)} &= A\alpha k(t+1)^{\alpha-1} + 1 - \delta\\
+	\frac{k(t+1)(n+1)(A\alpha k(t+1)^{\alpha - 1} + 1 -\delta)}{A(1 - \alpha) k(t)^{\alpha} - k(t+1)(n+1)} &= \beta(A\alpha k(t+1)^{\alpha-1} + 1 - \delta)\\
+	k(t+1) &= \frac{A\beta (1-\alpha)k(t)^{\alpha}}{(1+\beta)(1+n)}\\
+	\bar{k}^* &= \left(\frac{A\beta (1-\alpha)}{(1+\beta)(1+n)}\right)^{\frac{1}{1 - \alpha}}
+	\end{align*}
+	Now let us introduce a pension. Then problems of agents become:
+	
+	
+	$\forall\ t > 0$ taking $\{w(t), r(t)\}$ as given households choose $\{c_1(t), c_2(t+1), s(t)\}$ such that is solves the following optimization problem:
+	\begin{align*}
+	&\max\ \ln c_1(t) + \beta \ln c_2(t+1)\\
+	s.t.\ &c_1(t) +s(t) = w(t) - T\\
+	& c_2(t+1) = s(t)(r(t+1) + 1 - \delta) + (1+n)T\\
+	&c_1(t) \ge 0, c_2(t+1) \ge 0
+	\end{align*}
+	$c_2(0)$ solves:
+	\begin{align*}
+	&\max\ \ln c_2(0)\\
+	s.t.\ &c_2(0) = s(-1)(r(0) + 1 - \delta) + (1+n)T\\
+	&s(-1) \text{ is given }
+	\end{align*}
+	Firms' optimization conditions imply that:
+	\begin{align*}
+	r(t) &= A\alpha k(t)^{\alpha - 1}\\
+	w(t) &= A(1 - \alpha) k(t)^{\alpha}
+	\end{align*}
+	And market clearing conditions are:
+	\begin{align*}
+	k(t+1)(1+n) &= Ak(t)^{\alpha} + (1-\delta)k(t) - c_1(t) - \frac{c_2(t)}{n+1}\\
+	k(t+1) &= \frac{s(t)}{1+n}
+	\end{align*}
+	Plugging expressions for $c_1(t)$ and $c_2(t+1)$ into  the objective function and taking derivatives with respect to $s(t)$ we get:
+	\begin{align}\label{eq4}
+	\frac{1}{w(t) - s(t) - T} = \frac{\beta(1+r(t+1) - \delta)}{s(t)(1 + r(t+1) - \delta) + T(1+n)}\nonumber\\
+	s(t) = \frac{\beta (1 + r(t+1) - \delta)(w(t) - T) - T(1+n)}{(1+\beta)(1 + r(t+1) - \delta)} = (n+1)k(t+1)
+	\end{align}
+	\begin{enumerate}[(a)]
+	\item If $T > 0$ then savings are falling down, that means that steady state level of capital declines. It is impossible to express $k(t+1)$ as a function of $k(t)$ since $r(t+1)$ in \eqref{eq4} is a function of $k(t+1)$, but for a given interest rate after introduction $T>0$, $k(t+1)$ becomes smaller, i.e. the equilibrium trajectory also declines.
+	\item If the initial state was dynamically (Pareto) efficient then the increase of $T$ benefits living at the moment old generation, but if the equilibrium was Pareto efficient is should hurt future generations. If the initial state was inefficient that means that  people overaccumulate capital, the increase of $T$ invokes the decrease of $s(t)$ as a result the steady state level of capital declines and both living and future generations will be benefited.
+	\end{enumerate}
+	\item Now
+	$\forall\ t > 0$ taking $\{w(t), r(t)\}$ as given households choose $\{c_1(t), c_2(t+1), s(t)\}$ such that is solves the following optimization problem (assuming $\delta = 0$):
+	\begin{align*}
+	&\max\ \ln c_1(t) + \beta \ln c_2(t+1)\\
+	s.t.\ &c_1(t) +s(t) = w(t) - T\\
+	& c_2(t+1) = (s(t)+T)(r(t+1) + 1)\\
+	&c_1(t) \ge 0, c_2(t+1) \ge 0
+	\end{align*}
+	$c_2(0)$ solves:
+	\begin{align*}
+	&\max\ \ln c_2(0)\\
+	s.t.\ &c_2(0) = (s(-1)+T)(r(0) + 1)\\
+	&s(-1) \text{ is given }
+	\end{align*}
+	Firms' optimization conditions imply that:
+	\begin{align*}
+	r(t) &= A\alpha k(t)^{\alpha - 1}\\
+	w(t) &= A(1 - \alpha) k(t)^{\alpha}
+	\end{align*}
+	And market clearing conditions are:
+	\begin{align*}
+	k(t+1)(1+n) &= Ak(t)^{\alpha} + (1-\delta)k(t) - c_1(t) - \frac{c_2(t)}{n+1}\\
+	k(t+1) &= \frac{s(t) + T}{1+n}
+	\end{align*}
+	Plugging expressions for $c_1(t)$ and $c_2(t+1)$ into  the objective function and taking derivatives with respect to $s(t)$ we get:
+	\begin{align*}
+	\frac{1}{w(t) - s(t) - T} = \frac{\beta}{(s(t)+T)(1 + r(t+1))}\nonumber\\
+	s(t) = \frac{\beta w(t) - \beta T - T}{1+\beta} = (n+1)k(t+1) - T\\
+	s(t) = \frac{\beta w(t)}{1+\beta} = (n+1)k(t+1)
+	\end{align*}
+	Which coincides with saving without pension, i.e. $T$ affects neither steady state level nor the equilibrium trajectory.
+	\end{enumerate}
+\end{document}
