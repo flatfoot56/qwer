@@ -1,0 +1,236 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{makecell}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\newcommand{\yrseduc}{\textit{yrseduc}}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Econometrics 1. Problem Set 6.
+\end{center}
+\section*{Problem 1}
+Assume that problem 8.7 in the textbook means the problem 7 from the chapter 8.
+
+\textbf{Solution}
+
+\begin{enumerate}[(i)]
+	\item \begin{align*}
+	Var(u_{i, e}) = Var(f_i + \nu_{i, e}) = Var(f_i) + Var(\nu_{i, e}) + 2cov(f_i, \nu_{i, e}) = \sigma^2_f + \sigma^2_{\nu} \sigma^2
+	\end{align*}
+	\item \begin{align*}
+	cov(u_{i, e}, u_{i, g}) = cov(f_i + \nu_{i, e}, f_i + \nu_{i, g}) = \sigma^2_f + 0 + 0 + 0 = \sigma^2_f
+	\end{align*}
+	\item \begin{align*}
+	\bar{u}_i &= \frac{1}{m_i} \sum_{e=1}^{m_i} u_{i, e}\\
+	Var(u_i) = Var\left(f_i + \frac{1}{m_i} \sum_{e=1}^{m_i} \nu_{i, e}\right) &= \sigma^2_f + \frac{1}{m_i}Var(\nu_{1, e}) = \sigma^2_f + \frac{1}{m_i}\sigma^2_{\nu}
+	\end{align*}
+	\item 
+	\begin{align*}
+	Var(m_i \bar{u}_i) = m_i^2\sigma^2_f + m_i \sigma^2_{\nu}
+	\end{align*}
+	as a result it still depends on firm ($i$), so, such weights cannot lead to efficient WLS.
+\end{enumerate}
+
+\section*{Problem 2}
+
+\textbf{Solution}
+
+\begin{enumerate}[(a)]
+	\item \begin{align}
+	y = \beta_0 + \beta_1 x^* + u\nonumber\\
+	x^* = \tilde{x_1} - e_1\label{eq1}\\
+	x^* = \tilde{x_2} - e_1 - e_2\label{eq2}
+	\end{align}
+	Firstly regress $y$ on $\tilde{x}_1$ and get residuals $\hat{r}$ and the slope coefficient $\hat{\alpha_1}$. Then repeat the procedure for regression $y$ on $\tilde{x_2}$ and get residuals $\hat{v}$. Then 
+	\begin{align*}
+	\frac{1}{n \hat{\alpha}_1^2} \summa (\hat{r_i}^2 - \hat{v_i}^2)
+	\end{align*}
+	will be a consistent estimator for $\sigma^2_e$. Let us prove it.
+	\begin{align*}
+	\hat{r_{i}} = y_i - \hat{\alpha_0} - \hat{\alpha_1}\tilde{x}_1\\
+	\hat{v}_i = y_i - \hat{\gamma}_0 - \hat{\gamma}_1 \tilde{x}_{2i}
+	\end{align*}
+	Where $\hat{\alpha_0}, \hat{\alpha_1}, \hat{\gamma}_0, \hat{\gamma}_1$ are OLS estimates from the regression $y$ on $\tilde{x}_1$. From \eqref{eq1} and we can infer that:
+	\begin{align*}
+	y = \beta_0 + \beta_1 \tilde{x}_1 - \beta_1 e_1 + u\\
+	\end{align*}
+	that means that $\hat{\alpha_0} \overset{p}{\to} \beta_0$ and $\hat{\alpha_1} \overset{p}{\to} \beta_1$. Since $\bar{\hat{r}}_i = 0$ and observations are i.i.d., that means that
+	\begin{align*}
+	\frac{1}{n} \summa \hat{r}_i^2 \overset{p}{\to} Var(u - \beta_1 e_1) \underset{indep.}{=} \sigma^2 + \beta_1^2 \sigma^2_e
+	\end{align*}
+	Similarly,
+	\begin{align*}
+	\frac{1}{n} \summa \hat{v}_i^2 \overset{p}{\to} Var(u - \beta_1 e_1 - \beta_1 e_2) \underset{indep.}{=} \sigma^2 + 2\beta_1^2 \sigma^2_e
+	\end{align*}
+	Then
+	\begin{align*}
+	\frac{1}{n \hat{\alpha}_1^2}\summa(\hat{v}_i^2 - \hat{r}_i^2) \overset{p}{\to} \sigma^2_e
+	\end{align*}
+	\item 
+	\begin{align*}
+	\hat{\alpha_1} = \beta_1 + \frac{-\beta_1 \summa (\tilde{x}_{1i} - \bar{\tilde{x}}_1)e_{1i} + \summa(\tilde{x}_{1i} - \bar{\tilde{x}}_1)u_{i} }{\summa (\tilde{x}_{1i} - \bar{\tilde{x}}_1)^2}
+	\end{align*}
+	and asymptotic bias is:
+	\begin{align*}
+	b_1 = \frac{-\beta_1 cov(\tilde{x}_1, e_1) + cov(\tilde{x}_1, u)}{Var(\tilde{x}_1)} = \frac{-\beta_1 \sigma^2_e}{Var(x^*) + \sigma^2_e}
+	\end{align*}
+	Similarly for 
+	\begin{align*}
+	\hat{\gamma}_1 = \beta_1 + \frac{-\beta_1 \summa (\tilde{x}_{2i} - \bar{\tilde{x}}_2)e_{1i} -\beta_1 \summa (\tilde{x}_{2i} - \bar{\tilde{x}}_2)e_{2i} + \summa(\tilde{x}_{2i} - \bar{\tilde{x}}_2)u_{i} }{\summa (\tilde{x}_{2i} - \bar{\tilde{x}}_2)^2}
+	\end{align*}
+	and asymptotic bias is:
+	\begin{align*}
+	b_2 = \frac{-\beta_1 cov(\tilde{x}_2, e_1) -\beta_1 cov(\tilde{x}_2, e_2)+ cov(\tilde{x}_2, u)}{Var(\tilde{x}_2)} = \frac{-2\beta_1 \sigma^2_e}{Var(x^*) + 2\sigma^2_e}
+\end{align*}
+hence
+\begin{align*}
+b_1 - b_2 = \frac{\beta_1\sigma^2_eVar(x^*)}{(Var(x^*) + \sigma^2_e)(Var(x^*) + 2\sigma^2_e)}\begin{cases}
+>0, \beta_1 > 0\\
+\le 0, \beta_1 \le 0
+\end{cases}
+\end{align*}
+\item $\tilde{x} = \alpha \tilde{x}_1 + (1 - \alpha)\tilde{x}_2$
+\begin{align*}
+x^* &= \tilde{x} - e_1 - (1 - \alpha)e_2\\
+y &= \beta_0 + \beta_1 \tilde{x} - \beta_1 e_1 - \beta_1(1 - \alpha)e_2 + u
+\end{align*}
+Regress $y$ on $\tilde{x}$:
+\begin{align*}
+y = \delta_0 + \delta_1 \tilde{x} + \varepsilon
+\end{align*}
+\begin{align*}
+\hat{\delta}_1 = \beta_1 + \frac{-\beta_1 \summa (\tilde{x}_{i} - \bar{\tilde{x}})e_{1i} -\beta_1(1 - \alpha) \summa (\tilde{x}_{i} - \bar{\tilde{x}})e_{2i} + \summa(\tilde{x}_{i} - \bar{\tilde{x}})u_{i} }{\summa (\tilde{x}_{i} - \bar{\tilde{x}})^2}
+\end{align*}
+and asymptotic bias is:
+\begin{align*}
+b_2 = \frac{-\beta_1 cov(\tilde{x}, e_1) -\beta_1(1 - \alpha) cov(\tilde{x}, e_2)+ cov(\tilde{x}, u)}{Var(\tilde{x})} = \frac{(\alpha - 2)\beta_1 \sigma^2_e}{Var(x^*) + (1 + (1 - \alpha)^2)\sigma^2_e}
+\end{align*}
+as we can see, if $\alpha = 2$ then asymptotic bias is equal to 0.
+\item Yes, if we regress $y$ on $2\tilde{x}_1 - \tilde{x}_2$ then as it has been shown above, asymptotic bias of OLS estimate of slope will be 0.
+\end{enumerate}
+\section*{Problem 3}
+Assume that Problem C8.10 means the problem C10 from the 8th chapter.
+
+\textbf{Solution}
+
+\begin{enumerate}[(i)]
+	\item The results for both approaches are depicted below:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\textwidth]{nonrobust}
+		\caption{Usual OLS standard errors}\label{fig1}
+	\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{robust}
+	\caption{Heteroskedasticity robust standard errors}\label{fig2}
+\end{figure}
+As we can see, the errors differ, however it does not affect significance of estimates, so differences are not important.
+\item 
+\begin{align*}
+Var(y|x) = \expect[u^2|x] = \expect[y|x] - (\expect[y|x])^2
+\end{align*}
+hence, if
+\begin{align*}
+\hat{u}_i^2 = \gamma_0 + \gamma_1 \hat{y}_i + \gamma_2 \hat{y}_i^2 + \varepsilon_i
+\end{align*}
+then
+\begin{align*}
+\hat{\gamma}_1 \overset{p}{\to} 1\\
+\hat{\gamma}_2 \overset{p}{\to} -1\\
+\hat{\gamma}_0 \overset{p}{\to} 0
+\end{align*}
+\item The results are depicted below
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{white}
+	\caption{}\label{fig3}
+\end{figure}
+as we can conclude the obtained estimates correspond to theoretical results from (ii).
+\item The results are depicted below
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{weighted}
+	\caption{}\label{fig4}
+\end{figure}
+Most coefficient differ slightly, only coefficient on $male$ differs dramatically, however this coefficient is not significant in both models.
+\end{enumerate}
+\section*{Problem 4}
+
+\textbf{Solution}
+
+\begin{enumerate}[(i)]
+	\item Coeftest of regression is depicted below
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\textwidth]{401}
+		\caption{}\label{fig5}
+	\end{figure}
+That means that on average participating in 401(k) plan increases the probability of having individual retirement account by 0.0536, holding income and age fixed.
+\item The problem is that error term can be correlated with $p401k$ because people who have personal retirement account can be more inclined for saving and as a result can tend to participate in 401(k) more likely than others.
+\item  $e401k$ should be correlated with $p401k$ and be uncorrelated with the error term. Of course it is correlated, because in order to participate in 401(k), a worker should be eligible for participating.
+
+I have no idea how American pension system is organized, and what people should do in order to become eligible for participating, and unfortunately have no time to sort it out. So, if in order to become eligible people should undertake some actions then, $e401k$ is not a good IV, because of course those who are more inclined for saving would on average more likely to become eligible, otherwise it can be a good IV.
+\item 	
+The results are depicted below
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{p401}
+	\caption{}\label{fig6}
+\end{figure}
+Coefficient on $e401k$ is statistically significant and rather large, so indeed $e401k$ has correlation with $p401k$.
+\item Results of IV regression are depicted below
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{iv401}
+	\caption{}\label{fig7}
+\end{figure}
+This estimate is almost twice smaller than usual OLS estimate.
+\item As we can see, coefficient on residuals significantly differ from zero, that means that we should reject the hypothesis, i.e. $p401k$ is in fact endogenous.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{endog}
+	\caption{}\label{fig8}
+\end{figure}
+\end{enumerate}
+
+\end{document}
