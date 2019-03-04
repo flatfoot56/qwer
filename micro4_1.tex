@@ -1,0 +1,171 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Microeconomics 4. Problem Set 1.
+\end{center}
+\section*{1\ Strategic entry deterrence}
+A market is open for two periods, and demand is initially uncertain. With probability $p$,
+demand is high $(H)$ in both periods, and with probability $1-p$, demand is low $(L)$ in both
+periods. In period 1, a single firm (the incumbent) is alone in the market. In period 2,
+the incumbent remains in the market; another firm (the entrant) decides whether or not
+to enter and can, if it wishes, base its decision upon the incumbent's first-period profits.
+The incumbent's profitability in each period is limited by the monopoly profit (which is
+$M^H$ if demand is high and $M^L < M^H$ if demand is low); however, the incumbent may
+decide to earn a smaller profit in period 1, by secretly slacking. If the entrant enters,
+both firms' second-period duopoly profit is $D^H$ if demand is high and $D^L$
+if demand
+is low, where $D^L < 0 < D^H < M^L$. If entry does not occur, the entrant obtains 0
+in the second period, while the incumbent earns $M^L$ or $M^H$, depending upon demand.
+The incumbent's objective at the start of the game is to maximize the sum of first- and
+second-period profit
+\begin{enumerate}
+	\item  Assume demand is publicly observable. Explain why, in equilibrium, the incumbent
+	always chooses to earn the monopoly profit in the first period and the entrant enters
+	if and only if demand is high.
+	\item Assume instead, form now on, that the incumbent observes the level of demand at
+	the start of period 1 but that the entrant does not observe it until after making
+	the entry decision in period 2. Explain why, under this assumption of asymmetric information, there does not exist a perfect Bayesian equilibrium in which the
+	incumbent uses the same strategy as in the equilibrium in question 1.
+	\item Suppose $p D^H + (1-p)D^L < 0$. Describe the strategies and beliefs in one of the
+	perfect Bayesian equilibria in this signalling model. State whether your equilibrium
+	is pooling or separating
+\end{enumerate}
+
+
+\textbf{Solution}
+\begin{enumerate}
+	\item The tree of this game is depicted below.
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{plotdraft}
+		\caption{}\label{fig1}
+	\end{figure}
+Since $D^L < 0 < D^H$ the entrant in case of low demand will always choose not enter, and in case of high demand will always choose enter. The incumbent hence should solve the following optimization problems:
+\begin{align*}
+\underset{m \in [0, M^H]}{\max}\ m+D^H\ \text{ if demand is high}\\
+\underset{m \in [0, M^L]}{\max}\ m+M^L\ \text{ if demand is low}\\
+\end{align*}
+That's why the optimal strategy for incumbent is to choose $M^H$ and $M^L$ in case of high and low demand respectively.
+\item The tree of this game is depicted below
+		\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{plotdraft}
+	\caption{}\label{fig2}
+\end{figure}
+Denote the belief of the entrant that he is at the high demand case as $\omega$. If incumbent chooses $M^H$ as a profit for high demand case and $M^L$ as a profit for the low demand case, then $\omega = 1$, that means that the strategy of the entrant consistent with such a belief is choosing not enter if $m = M^H$ and enter if $m = M^L$. But since $D^H < M^L$ the incumbent has incentive to deviate and choose $M^L$ if demand is high in order to prevent the entrant from entry and obtain $M^L + M^H$ instead of $M^H + D^H$. Thus, the "honest" strategy is not an equilibrium one for the incumbent.
+\item The tree of the game is depicted below
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{plotdraft}
+	\caption{}\label{fig3}
+\end{figure}
+Denote $\omega$ is a condition belief of the entrant that the demand is high. Assume $\omega = p: pD^H + (1-p)D^L < 0$. For such a belief the optimal strategy for the entrant is enter once the incumbent's profit if $M^H$ and not enter otherwise (once it is $M^L$). The incumbent's strategy hence is to choose $M^L$ in both cases because
+\begin{align*}
+M^H + D^H < M^H + M^L
+\end{align*}
+Moreover $\omega = p$ is consistent with such a strategy of the incumbent. Thus, the equilibrium is:
+\begin{align*}
+&\text{Incumbent : } \left\{M^L, M^L\right\}\\
+&\text{Entrant : } \left\{\text{enter if incumbent's profit is } M^H \text{ not enter if it is } M^L\right\}\\
+&\text{Entrant's belief : } (p, 1-p)
+\end{align*}
+This is a pooling equilibrium.
+\end{enumerate}
+\section*{2\ Beer and Quiche}
+Nick wakes up and feels like fighting. He goes to a local pub in a hope of finding a target
+there. Indeed, there he sees a man (called Paul) ordering a breakfast. Nick has seen Paul
+before, but never talked to him. Nick knows that Paul can be of two types: Wimp or
+Surly. Surly type is always eager to fight, and Nick does not want to fight with a Surly
+type. In turn, Wimp is weak and easy to fight with, so Nick would be eager to release
+his anger on a Wimp type. However, Nick does not know Paul's type exactly, he only
+knows that the probability of each type is 0.5. Further, Nick has read in a book called
+"Real Men Don't Eat Quiche" by Bruce Feirstein that surly people typically have beer
+for breakfast, while wimp guys prefer ordering a quiche. Nick observes what Paul has
+for breakfast, and decides whether to fight or pass. The payoffs are summarized in the
+matrices below, where the strategies of Nick are in the columns, and the ones of Paul are
+in the rows
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{surlywimp}
+	\label{fig4}
+\end{figure}
+where $c$ is an additional cost for a wimp type to drink beer in the morning.
+\begin{enumerate}
+\item What conditions on $c$ guarantee the existence of a separating PBE? Fully describe
+such an equilibrium.
+\item For what values of $c$ is there a pooling equilibrium in which both Surly and Wimp
+Paul gets beer for breakfast? Fully describe such an equilibrium.
+\item Does the equilibrium in question 2 satisfy the intuitive criterion?
+\end{enumerate}
+
+\textbf{Solution}
+
+\begin{enumerate}
+	\item In the separating PBE the surly type chooses $beer$ and the wimp type chooses $quiche$. Since at the separating equilibrium Nick chooses to fight once Paul gets quiche for breakfast and to pass otherwise, getting a beer for wimp type should be such costly as even being aware of Nick's strategy Paul would not have a profitable deviation. That is, $1 - c < -1$ hence $c > 2$.
+	
+	If we denote belief for Paul of coming across the surly type condition on the fact that Paul gets the beer as $\omega$ and  belief for Paul of coming across the wimp type condition on the fact that Paul gets the quiche as $\lambda$, then the separating equilibrium is:
+	\begin{align*}
+	&\text{Paul : } \{beer, quiche\}\\
+	&\text{Nick : } \{pass, fight\}\\
+	& \omega = 1, \lambda = 0
+	\end{align*}
+	(first action of Paul corresponds to surly type and the second to wimp type, while first action of Nick corresponds to Paul orders beer and the second corresponds to Paul orders quiche)
+	\item Assume $\omega = \frac{1}{2} > \frac{1}{3}$ in this case
+	\begin{align*}
+	2\omega + 1 - \omega < 0
+	\end{align*}
+	that means that Nich chooses $pass$ once Paul gets beer. If $\lambda > \frac{1}{3}$ then $-2\lambda + 1 - \lambda < 0$ which means that Nick chooses to pass even if Paul gets quiche. Since $c > 0$, $1 - c < 1$ and Paul should choose quiche for wimp type. In case $\lambda < \frac{1}{3}$ Nick chooses to fight once Paul gets quiche, as a result if $-1 \le 1 - c$ i.e. $c \le 2$ even wimp type will choose beer.
+	Thus, the equilibrium is:
+	\begin{align*}
+	&\text{Paul : } \{beer, beer\}\\
+	&\text{Nick : } \{pass, fight\}\\
+	& \omega = \frac{1}{2}, \lambda < \frac{1}{3}
+	\end{align*}
+	(again, first action of Paul corresponds to surly type and the second to wimp type, while first action of Nick corresponds to Paul orders beer and the second corresponds to Paul orders quiche)
+	\item It does not satisfy the intuitive criterion. It makes no sense for wimpish Paul to deviate, if $c \le 2$, whereas a surly Paul is indifferent between beer and quiche and in principle can deviate, that means that Nick should believe that if Paul gets quiche, he is surly and as a result he should avoid fighting, but being aware of that wimpish Paul chooses $quiche$, and the equilibrium is broken.
+\end{enumerate}
+\section*{3\ Education}
+
+\end{document}
