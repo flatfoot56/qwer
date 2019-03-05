@@ -167,5 +167,130 @@ Paul gets beer for breakfast? Fully describe such an equilibrium.
 	\item It does not satisfy the intuitive criterion. It makes no sense for wimpish Paul to deviate, if $c \le 2$, whereas a surly Paul is indifferent between beer and quiche and in principle can deviate, that means that Nick should believe that if Paul gets quiche, he is surly and as a result he should avoid fighting, but being aware of that wimpish Paul chooses $quiche$, and the equilibrium is broken.
 \end{enumerate}
 \section*{3\ Education}
+Consider Spence's job-marker signalling model. There are two firms on the market, and
+two types of worker, $\theta_H$ and $\theta_L$; $\theta_H > \theta_L > 0$. The probability of type $\theta_H$ is $Prob(\theta =
+\theta_H) = \lambda$, and is common knowledge. The worker knows his productivity and chooses
+education $e \ge 0$. Education is productive: the productivity of a worker of type $\theta_i$ with
+education $e$ is given by:
+\begin{align*}
+\theta_i + e
+\end{align*}
+The firms observe $e$ and simultaneously make the worker a wage offer. Then the worker
+accepts the highest of the wages, $w$. The payoff of the worker of productivity $\theta_i, i = L, H,$ is:
+\begin{align*}
+w - c(\theta_i, e)
+\end{align*}
+where $c(\theta_i, e)$ is the cost of education $e$ for the worker of ability $\theta_i$,
+\begin{align*}
+c(\theta_i, e) = \frac{e^2}{2\theta_i}
+\end{align*}
+The payoff of the firm that hires the worker of type $\theta_i$ with education $e$ at the wage $w$ is
+\begin{align*}
+\theta_i + e - w
+\end{align*}
+Assume also that the firms have the same beliefs about the worker's productivity off equilibrium path. 
+\begin{enumerate}
+\item Consider the full information case, in which firms observe the type of the worker. What are the wages $w^*_L, w^*_H$, and the levels of education $e^*_L, e^*_H$ under this scenario?
 
+
+Now assume that the firms observe the educational choices of the workers but not the
+types.
+\item  Can this game have a PBE which replicates the full information outcome in terms of
+wages and educational levels? If yes, find the corresponding restrictions on the set
+of parameters of the problem $(\theta_H; \theta_L; \lambda)$, and suggest an intuitive explanation for
+your answer. If no, explain why not. Illustrate your answer graphically in $(w; e)$
+space (do not worry about the precision of your graph).
+\item Now consider pooling equilibria in this model:
+\begin{enumerate}[(a)]
+\item Are there situations in which $e_p = 0$ cannot be supported as a pooling equilibrium? If yes, describe the set of parameters $(\theta_H; \theta_L; \lambda)$ that corresponds to such a situation, and suggest an intuitive explanation for your answer. If no,
+explain why not. Illustrate your answer graphically in $(w; e)$ space .
+\item Can the pooling equilibria in this model be fully Pareto-ordered? Explain your
+answer.
+\item Formulate the dominance requirement
+for PBE refinement. Assume that
+the parameters are such that the set $\Omega$
+of pooling equilibria surviving the
+dominance requirement is non-empty. Does $\Omega$
+contain the pooling equilibrium
+which delivers the highest (pooling equilibrium) payoff to $\theta_H$?
+\end{enumerate}
+\end{enumerate}
+
+
+\textbf{Solution}
+
+\begin{enumerate}
+	\item Competition requires that firms have zero profit, that means that
+	\begin{align*}
+	w_L &= \theta_L + e_L\\
+	w_H &= \theta_H + e_H
+	\end{align*}
+	Thus, choosing the level of education workers of each type maximize:
+	\begin{align*}
+	\theta_L &+ e_L - \frac{e^2_L}{2\theta_L}, \text{ if } \theta = \theta_L\\
+	\theta_H &+ e_H - \frac{e^2_H}{2\theta_H}, \text{ if } \theta = \theta_H
+	\end{align*}
+	hence $e^*_H = \theta_H, e^*_L = \theta_L$ and $w^*_L = 2\theta_L, w^*_H = 2\theta_H$.
+	\item In this case, firms can perfectly distinguish the type of workers by their education level. Hence the beliefs should be $\mu(e_H) = 1, \mu(e_L) = 0$ where
+	\begin{align*}
+	\mu(e) = \prob(\text{the worker is of high type}|\text{the education level } e \text{ is observed})
+	\end{align*}
+	let us specify the beliefs off the equilibrium path as follows:
+	\begin{align*}
+	\mu(e) = \begin{cases}
+	0, e < e_H\\
+	1, e \ge e_H
+	\end{cases}
+	\end{align*}
+	Hence in order for the low type workers do not have a profitable deviation the following condition on parameters should hold:
+	\begin{align*}
+	2\theta_H - \frac{\theta_H^2}{2\theta_L} &\le 2\theta_L - \frac{\theta_L^2}{2\theta_L}\\
+	2(\theta_H - \theta_L) - \frac{1}{2\theta_L}(\theta_H^2 - \theta^2_L) &\le 0\\
+	\frac{(\theta_H - \theta_L)(3\theta_L - \theta_H)}{2\theta_L} &\le 0\\
+	\theta_L &\le \frac{\theta_H}{3}
+	\end{align*}
+	So, when the productivity of the low type is very low compare to that of high type, costs of education are very high for low type workers and it is not optimal for them to pretend to be a high type, which means that low type workers choose $e^*_L = \theta_L$ and high type workers choose $e^*_H = \theta_H$ and firms perfectly distinguish between types.
+	\item 
+	\begin{enumerate}[(a)]
+	\item At the pooling equilibrium both types of workers choose
+	\begin{align*}
+	e^*_H = e^*_L = e_p
+	\end{align*}
+	and $\mu(e_p) = \lambda$. The expected profit of the firm, given an education level $e$ is
+	\begin{align*}
+	\mu(e) \theta_H + (1 - \mu(e)) \theta_L + e
+	\end{align*}
+	that means that the equilibrium wages should be
+	\begin{align*}
+	w(e_p) =  \lambda \theta_H + (1 - \lambda) \theta_L + e_p
+	\end{align*} 
+	Let us define beliefs off the equilibrium path as follows:
+	\begin{align*}
+	\mu(e) = \begin{cases}
+	\lambda, e=e_p = 0\\
+	0, e \neq e_p
+	\end{cases}
+	\end{align*}
+	in this case
+	\begin{align*}
+	w(e) = \begin{cases}
+	\lambda \theta_L + (1 - \lambda) \theta_H, e = 0\\
+	\theta_L + e, e > 0
+	\end{cases}
+	\end{align*}
+	Then the high type is solving the following optimization problem:
+	\begin{align*}
+	\max\left\{ \underset{e > 0}{\max}\ \theta_L + e - \frac{e^2}{2\theta_H}, \lambda \theta_L + (1 - \lambda) \theta_H \right\} = \max\left\{\theta_L + \frac{\theta_H}{2}, \lambda \theta_L + (1 - \lambda) \theta_H \right\}
+	\end{align*}
+	If $\lambda \le \frac{1}{2}$ then $\theta_L + \frac{\theta_H}{2} > \lambda \theta_L + (1 - \lambda)\theta_H$ and that means that high type will deviate and choose positive $e^*_H = \theta_H$ level of education, i.e. $e_p = 0$ is not supportable.
+	\item No, they cannot be. Firstly, obviously that the greatest amount of efforts the workers can spend on education at any pooling equilibria cannot exceed $\bar{e}$ (see Fig. \ref{fig5}) because for any other education level $e > \bar{e}$ and respective equilibrium wage level $w(e) = \lambda \theta_H + (1 - \lambda)\theta_L + e$ the low type worker prefers $e = 0$.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{plotdraft}
+		\caption{}\label{fig5}
+	\end{figure}
+Suppose now that the pooling equilibrium is attained at education level $e' < \bar{e}$ (see Fig. \ref{fig5}). The corresponding indifference curves and wage schedule is depicted on the Fig. \ref{fig5}. Both types are maximizing their utilities, given the wage schedule and equilibrium wages are consistent with beliefs. And this pooling equilibrium Pareto dominates the one with $e = \bar{e}$ (and also each equilibrium with $e' < e < \bar{e}$) because firms have the same zero expected profit, but both types attain higher indifference curves and consequently higher utility levels at $e'$. However, there always exists an education level $\underline{e} = \theta_H$ such that indifference curve of high type is tangent to the line $\lambda \theta_H + (1 - \lambda)\theta_L + e$ at this point (see Fig. \ref{fig5}). And each pooling  equilibrium level of education $e'' < \underline{e}$ will yield the high type worker strictly less utility. Since each point at line $\lambda \theta_H + (1 - \lambda) \theta_L + e$ for $e < \underline{e}$ corresponds to lower indifference curve for high type. Similarly for low type workers there exists an education level $\underline{\underline{e}} = \theta_L$ such that indifference curve of low type is tangent to the line $\lambda \theta_H + (1 - \lambda)\theta_L + e$ at this point (see Fig. \ref{fig5}). And each pooling  equilibrium level of education $e''' < \underline{\underline{e}}$ will yield the low type worker strictly less utility. Since each point at line $\lambda \theta_H + (1 - \lambda) \theta_L + e$ for $e < \underline{\underline{e}}$ corresponds to lower indifference curve for low type. As a result, there is a full Pareto order for pooling equilibrium for $e \in [\theta_H, \bar{e}]$ and for $e \in [0, \theta_L]$, for $e \in (\theta_L, \theta_H)$ there is no Pareto order, since some pooling equilibria are better for low type, but are worse for high type and vice-versa.
+\item Highest pooling equilibrium payoff for the high type is delivered at pooling equilibrium education level $e^* = \theta_H$
+	\end{enumerate}
+\end{enumerate}
 \end{document}
