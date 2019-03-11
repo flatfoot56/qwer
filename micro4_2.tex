@@ -1,0 +1,181 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Microeconomics 4. Problem Set 1.
+\end{center}
+\section*{1\ The Doctor and the Patient}
+Consider the cheap talk signalling model a-la Crawford and Sobel (1982). Suppose that
+there is a patient that does not feel well and goes to see a doctor. The doctor should
+decide which treatment $a$ the patient needs. The type of treatment will depend on
+the health state of the patient $\theta$, which is only privately observed by the patient. The
+doctor's prior about the patient's health is $\theta \sim U[0; 1]$. The patient can send a costless,
+non-binding and non-verifiable signal $s \in [0; 1]$ about his health state (i.e. explain how
+he feels). The doctor cares about her reputation, so she wants to prescribe a appropriate
+treatment for the patient's health: $U
+D(a; \theta) = -(a-\theta)^2$. Instead, the patient, that is
+very hypochondriac, wants to be overtreated: $U^P(a; \theta) = -(a - (\theta + b))^2$, where $b > 0$ is
+the bias towards excessive medication.
+\begin{enumerate}
+	\item Assume that b is such that there exist a 2-partitional equilibrium $(p = 2)$. Characterize this equilibrium.
+	\item Under which condition will such an equilibrium exist?
+	\item Is this the only equilibrium that exists? If yes, argue why. If no, characterize the
+	other(s) equilibrium (equilibria).
+	\item Compute the expected payoff of the doctor and the patient. How do the payoffs
+	change with $b$?
+\end{enumerate}
+
+\textbf{Solution}
+
+\begin{enumerate}
+	\item Assume that for $\theta < \theta_1$ the patient sends $s_1$ e.g. $s_1 = 0$, while for $\theta \ge \theta_1$ the patient sends $s_2 > s_1$ e.g. $s_2 = \theta_1$. Then the doctor chooses treatment as a maximizer of:
+	\begin{align*}
+	\begin{cases}
+	\underset{a}{\max}\ \int_{0}^{\theta_1} -(a - \theta)^2d\theta, s < \theta_1\\
+	\underset{a}{\max}\ \int_{\theta_1}^{1} -(a - \theta)^2d\theta, s \ge \theta_1\\
+	\end{cases}
+	\end{align*}
+	and the solution is obviously
+	\begin{align*}
+	a(s) = \begin{cases}
+	\frac{\theta_1}{2}, s < \theta_1\\
+	\frac{1 + \theta_1}{2}, s \ge \theta_1
+	\end{cases}
+	\end{align*}
+	The patient should send:
+	\begin{align*}
+	\begin{cases}s_1, -\left(\frac{\theta_1}{2} - \theta - b\right)^2 > -\left(\frac{\theta_1 + 1}{2} - \theta - b\right)^2\\
+	s_2, \text{ otherwise}
+	\end{cases}
+	\end{align*}
+	That means that $\theta_1$ should be such that the patient becomes indifferent between sending $s_1$ and $s_2$ i.e.
+	\begin{align*}
+	\frac{\frac{\theta_1}{2} - b + \frac{\theta_1+1}{2} - b}{2} &= \theta_1\\
+	\theta_1 &= \frac{1}{2} - 2b
+	\end{align*}
+	\item 
+	\begin{align*}
+	\frac{1}{2} - 2b \ge 0\\
+	b \le \frac{1}{4}
+	\end{align*}
+	\item No, there always exists a "babbling" equilibrium. In which the patient always sends the same, uninformative signal and doctor just chooses action which maximize his expected payoff taking in account doctor's prior beliefs about type. Given that, patient indifferent between any signal (he cannot change anything) hence he has not profitable deviation.
+	\item The expected payoff of the doctor is:
+	\begin{align*}
+	\pi^D = \int_{0}^{\frac{1}{2} - 2b} - \left(\frac{1}{4} - b - \theta\right)^2d\theta + \int_{\frac{1}{2} - 2b}^{1}- \left(\frac{3}{4} - b - \theta\right)^2d\theta = -2\frac{\left(\frac{1}{4} - b\right)^3}{3} -2\frac{\left(\frac{1}{4} + b\right)^3}{3}
+	\end{align*}
+	The expected payoff of the patient is:
+	\begin{align*}
+	\pi^P = \int_{0}^{\frac{1}{2} - 2b} - \left(\frac{1}{4} - 2b - \theta\right)^2d \theta + \int_{\frac{1}{2} - 2b}^1 - \left(\frac{3}{4} - 2b - \theta\right)^2d \theta = -\frac{1}{3 \cdot 2^5} + \\
+	+\frac{1}{3} \left(\left(\frac{3}{4} - 2b\right)^3 + \left(\frac{1}{4} - 2b\right)\right)
+	\end{align*}
+	\begin{align*}
+	&\frac{\partial \pi^D}{\partial b} = 2\left(\frac{1}{4} - b - \frac{1}{4} - b\right)\left(\frac{1}{4} - b + \frac{1}{4} + b\right) = -2b < 0\\
+	&\frac{\partial \pi^P}{\partial b} = - 2 \left(\frac{3}{4} - 2b - \frac{1}{4} + 2b\right)\left(\frac{3}{4} - 2b + \frac{1}{4} - 2b\right) = -1 + 4b < 0
+	\end{align*}
+	That is payoffs goes down once $b$ increases.
+\end{enumerate}
+\section*{ 2 Labour Market}
+There are two types of workers at the labor market, $i = 1, 2$. A worker of type $i$ has a utility function
+\begin{align*}
+u_i(w, x) = w - c_i(x)
+\end{align*}
+where $w$ is the wage paid to the worker, $x$ is the output he produces, and $c_i(x)$ is a convex
+and increasing cost function, $c'_1(x) < c'_2(x)$, $c_i(0) = 0$, $c'_i(0) = 0$, $c'_i(\infty) = \infty$ for $i = 1, 2$.
+The share of workers of the first type is given by $\lambda$.
+\begin{enumerate}
+	\item Assume that there is a single hiring firm at the market, and it does not observe the
+	workers' types. The profit of the firm is given by the value of output less the wage
+	payment
+	\begin{align*}
+	\pi = x - w
+	\end{align*}
+	Assume that the reservation wage of both workers is zero. Characterize the monopolistic screening contracts $(w_i, x_i)$ offered by the firm.
+	\item Now assume that there are multiple firms in the market, but none of them observes
+	the workers' types. The firms are competing in hiring workers. Characterize the
+	competitive screening SPNE.
+	\item How would your answers to (1) and (2) change if the firms can observe the types
+	of the workers? Why can the first best be (or not be) achieved in each of these
+	scenarios?
+	\item Assume that $c_i(x) = \frac{i}{2}x^2,\ i = 1,\ 2$ and $\lambda = 1/2$. Derive the levels of output and the
+	wages in your monopolistic and competitive screening problems with unobservable
+	and observable worker types (i.e., in (1)-(3))
+\end{enumerate}
+
+
+\textbf{Solution}
+
+\begin{enumerate}
+	\item The monopoly's problem is:
+	\begin{align*}
+	\underset{(x_1, w_1), (x_2, w_2)}{\max}\ \lambda(x_1 - w_1) + (1 - \lambda)(x_2 - w_2)
+	\end{align*}
+	Since outside options of workers are 0, the optimal contracts monopoly proposes to workers should be such that
+	\begin{align*}
+	w_1^* = c_1(x_1^*)\\
+	w_2^* = c_2(x_2^*)
+	\end{align*}
+	Assuming interior solution FOC is:
+	\begin{align*}
+	\begin{cases}
+	1 - c_1'(x_1^*) = 0\\
+	1 - c_2'(x_2^*) = 0
+	\end{cases}\\
+	\end{align*}
+	\begin{align*}
+	c_1'(x_1^*) = c_2'(x_2^*) \to x_1^* > x_2^* \to c_1(x_1^*) > c_1(x_2^*) \to w_2^* - c_1(x_2^*) > w_1^* - c_1(x_1^*) = 0
+	\end{align*}
+	That means that at any interior solution high type has incentive to deviate and mimic to low type. Hence we should add incentive compatibility constraints. The IC constraints are:
+	\begin{align*}
+	\begin{cases}
+	w_1^* - c_2(x_1^*) \le w_2^* - c_2(x_2^*)\\
+	w_2^* - c_1(x_2^*) \le w_1^* - c_1(x_1^*)
+	\end{cases}\\
+	\begin{cases}
+	c_1(x_1^*) - c_2(x_1^*) \le 0\\
+	c_2(x_2^*) - c_1(x_2^*) \le 0
+	\end{cases}
+	\end{align*}
+	Since $c_2(x) > c_1(x) \forall x > 0$ it follows that $x_2^* = 0$.
+\end{enumerate}
+\end{document}
