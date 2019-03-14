@@ -129,6 +129,27 @@ How come applying OLS on the differenced equation does not generally result in c
 	y_t =\alpha + \delta t + \beta_1 x_t + \beta_2 z_t + \beta_3 w_t + u_t
 	\end{align*} 
 	where $w_t = x_t + z_t\ \forall\ t$. In this case obviously $\Delta w_t = \Delta x_t + \Delta z_t$ and the OLS estimate for \eqref{eq1} is inconsistent.
-	\item To ensure that OLS for \eqref{eq1} is consistent. Assumptions TS1'-TS3' should hold. The process \eqref{eq1} should be weakly dependent (and stationary)
+	\item To ensure that OLS for \eqref{eq1} is consistent. Assumptions TS1'-TS3' should hold. The process \eqref{eq1} should be weakly dependent (and stationary). Of course, if $h_t = \beta_1 x_{t1} + \dots + \beta_k x_{tk} + u_t$ is weakly dependent and stationary then the process $\Delta h_t = \beta_1 \Delta x_{t1} + \dots + \beta_k \Delta x_{tk} + \Delta u_t$ (and hence the process $\Delta y_t$) will be weakly dependent and stationary (though this condition is not necessary, e.g. random walk process is not a weakly dependent while the differenced process is). Moreover, $x_{t1}, \dots, x_{tk}$ should not be linearly dependent (then $\Delta x_{t1}, \dots, \Delta x_{tk}$ will not linearly dependent too). In addition, contemporaneous exogeneity assumption should hold, i.e.
+	\begin{align*}
+	\expect[\Delta u_t| \Delta x_{t1}, \dots, \Delta x_{tk}] = 0
+	\end{align*} 
+	\begin{align*}
+	\expect[\Delta u_t|\Delta x_{t1}, \dots, \Delta x_{tk}] = \expect[u_{t}|\Delta x_{t1}, \dots, \Delta x_{tk}] - \expect[u_{t-1}|\Delta x_{t1}, \dots, \Delta x_{tk}] = \\
+	=\expect[\expect[u_t|\vec{x}_{t}, \vec{x}_{t-1}, \dots]|\Delta x_{t1}, \dots, \Delta x_{tk}] - \expect[u_{t-1}|\Delta x_{t1}, \dots, \Delta x_{tk}] = \\
+	=0 - \expect[u_{t-1}|\Delta x_{t1}, \dots, \Delta x_{tk}]
+	\end{align*}
+	hence to ensure that TS3' holds the following condition should hold:
+	\begin{align*}
+	\expect[u_{t-1}|x_{t,1} - x_{t-1, 1}, \dots, x_{t, k} - x_{t-1, k}] = 0
+	\end{align*}
+	\item If we assume that 
+	\begin{align*}
+	\expect[y_t|\vec{x}_t, \vec{x}_{t-1}, \dots] = \vec{x}_t^T\vec{\beta}
+	\end{align*}
+	then
+	\begin{align*}
+	\expect[u_t|\vec{x}_t, \vec{x}_{t-1}, \dots] = 0
+	\end{align*}
+	that is, if we assume that only contemporaneously dated (with $y_t$) variables "explain" $y_t$ (i.e. the average of $y_t$ can be predicted based only on contemporaneously dated variables) then the model is sequentially exogenous. This is not a plausible assumption for economic applications.
 \end{enumerate}
 \end{document}
