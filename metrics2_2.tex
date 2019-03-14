@@ -100,4 +100,35 @@ where $y_t^*$ is the desired or optimal level of $y$, and $y_t$ is the actual (o
 	\hat{\gamma}_1 = \frac{\hat{\beta}_2}{\hat{\lambda}} \approx 0.67
 	\end{align*}
 \end{enumerate}
+
+
+\section*{Problem 3}
+Suppose that the equation 
+\begin{align*}
+y_t = \alpha + \delta _t + \beta_1 x_{t1}+\dots+\beta_k x_{tk}+u_t
+\end{align*} satisfies the sequential exogeneity assumption in equation (11.40). 
+\begin{enumerate}[(i)]
+\item Suppose you difference the equation to obtain 
+\begin{align}\label{eq1}
+\Delta y_t = \delta +\beta_1 \Delta x_{t1} + \dots+ \beta_k \Delta x_{tk} + \Delta u_t.
+\end{align}
+How come applying OLS on the differenced equation does not generally result in consistent estimators of the $\beta_j$?
+\item What assumption on the explanatory variables in the original equation would ensure that OLS on the differences consistently estimates the $\beta_j$?
+\item Let $z_{t1},\dots, z_{tk}$ be a set of explanatory variables dated contemporaneously with $y_t$. If we specify the static regression model $y_t = \beta_0 + \beta_1z_{t1} +\dots+ \beta_k z_{tk} + u_t$, describe what we need to assume for $x_t = z_t$ to be sequentially exogenous. Do you think the assumptions are likely to hold in economic applications?
+\end{enumerate}
+
+\textbf{Solution}
+
+\begin{enumerate}
+	\item First of all, since we do not have any assumptions about the model apart from sequential exogeneity
+	\begin{align*}
+	\expect[u_t|\vec{x}_t, \vec{x}_{t-1}, \dots] = \expect[u_t] = 0
+	\end{align*}
+	we can have a perfect multicollinearity among $\vec{x}_t$. Assume for example $k = 3$, and the model is:
+	\begin{align*}
+	y_t =\alpha + \delta t + \beta_1 x_t + \beta_2 z_t + \beta_3 w_t + u_t
+	\end{align*} 
+	where $w_t = x_t + z_t\ \forall\ t$. In this case obviously $\Delta w_t = \Delta x_t + \Delta z_t$ and the OLS estimate for \eqref{eq1} is inconsistent.
+	\item To ensure that OLS for \eqref{eq1} is consistent. Assumptions TS1'-TS3' should hold. The process \eqref{eq1} should be weakly dependent (and stationary)
+\end{enumerate}
 \end{document}
