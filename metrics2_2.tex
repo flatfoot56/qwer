@@ -1,0 +1,103 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\newcommand{\yrseduc}{\textit{yrseduc}}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Econometrics 2. Problem Set 2.
+\end{center}
+\section*{Problem 1}
+Let $\{y_t: t = 1, 2,\dots\}$ follow a random walk, as in (11.20), with $y_0 = 0$. Show that $Corr(y_t, y_{t+h}) =\sqrt{\frac{t}{t + h}}$   for $t \ge 1, h > 0$.
+
+\textbf{Solution}
+
+\begin{align*}
+y_t = y_{t-1} + e_t = y_{t-2} + e_{t-1} + e_t = \dots = y_0 + e_1 + \dots + e_t\\
+y_{t+h} = y_{t+h-1} + e_{t+h} = \dots = y_0 + e_1 + \dots + e_{t} + \dots + e_{t+h}
+\end{align*}
+\begin{align*}
+&Cov(y_t, y_{t+h}) = (y_0 + e_1 + \dots + e_t, y_0 + e_1 + \dots + e_{t} + \dots + e_{t+h}) \underset{e_t \text{ i.i.d. and indep. of }y_0}{=} t\sigma^2_e\\
+&Var(y_t) = Var(y_0 + e_1 + \dots + e_t)\underset{e_t \text{ i.i.d. and indep. of }y_0}{=} t\sigma^2_e\\
+&Var(y_{t+h}) = Var(y_0 + e_1 + \dots + e_{t} + \dots + e_{t+h}) \underset{e_t \text{ i.i.d. and indep. of }y_0}{=} (t+h) \sigma^2_e\\
+\end{align*}
+\begin{align*}
+Corr(y_t, y_{t+h}) = \frac{t\sigma^2_e}{\sqrt{t(t+h)}\sigma^2_e} = \sqrt{\frac{t}{t+h}}
+\end{align*}
+\section*{Problem 2}
+A partial adjustment model is
+\begin{align*}
+y_t^* = \gamma_0 + \gamma_1 x_t + e_t\\
+y_t - y_{t-1} = \lambda(y_t^* - y_{t-1}) + a_t, 
+\end{align*}
+where $y_t^*$ is the desired or optimal level of $y$, and $y_t$ is the actual (observed) level. For example, $y_t^*$ is the desired growth in firm inventories, and $x_t$ is growth in firm sales. The parameter $\gamma_1$ measures the effect of $x_t$ on $y_t^*$. The second equation describes how the actual $y$ adjusts depending on the relationship between the desired $y$ in time $t$ and the actual $y$ in time $t-1$. The parameter $\lambda$ measures the speed of adjustment and satisfies $0 < \lambda <1$.
+
+\begin{enumerate}[(i)]
+	\item  Plug the first equation for $y_t^*$ into the second equation and show that we can write
+	\begin{align*}
+	y_t = \beta_0 = \beta_1 y_{t-1} + \beta_2 x_{t}+u_t.
+	\end{align*}
+	In particular, find the $\beta_j$ in terms of the $\gamma_j$ and $\lambda$ and find $u_t$ in terms of $e_t$ and $a_t$. Therefore, the partial adjustment model leads to a model with a lagged dependent variable and a contemporaneous $x$. 
+	\item  If $\expect(e_t|x_t, y_{t-1}, x_{t-1}, \dots) = \expect(a_t|x_t, y_{t-1}, x_{t-1},\dots) = 0$ and all series are weakly dependent, how would you estimate the $\beta_j$? 
+	\item If $\hat{\beta}_1 = 0.7$ and $\hat{\beta}_2=0.2$, what are the estimates of $\gamma_1$ and $\lambda$?
+\end{enumerate}
+
+
+\textbf{Solution}
+
+\begin{enumerate}[(i)]
+	\item \begin{align*}
+	y_t - y_{t-1} = \lambda(\gamma_0 + \gamma_1 x_t + e_t - y_{t-1}) + a_t\\
+	y_t = \lambda \gamma_0 + (1 - \lambda)y_{t-1} + \lambda \gamma_1 x_t + \lambda e_t + a_t\\
+	\beta_0 = \lambda \gamma_0,\ \beta_1 = 1 - \lambda,\ \beta_2 = \lambda \gamma_1,\ u_t = \lambda e_t + a_t
+	\end{align*}
+	\item Since
+	\begin{align*}
+	\expect[u_t|x_t, y_{t-1}, x_{t-1}, \dots] = 0
+	\end{align*}
+	and series are weakly dependent then we can consistently estimate $\beta_j$ by OLS regressing $y_t$ on $y_{t-1}, x_{t}$.
+	\item \begin{align*}
+	\hat{\lambda} = 1 - \hat{\beta}_1 = 0.3\\
+	\hat{\gamma}_1 = \frac{\hat{\beta}_2}{\hat{\lambda}} \approx 0.67
+	\end{align*}
+\end{enumerate}
+\end{document}
