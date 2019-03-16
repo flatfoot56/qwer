@@ -101,7 +101,7 @@ Denote the belief of the entrant that he is at the high demand case as $\omega$.
 	\includegraphics[width=0.8\textwidth]{plotdraft}
 	\caption{}\label{fig3}
 \end{figure}
-Denote $\omega$ is a condition belief of the entrant that the demand is high. Assume $\omega = p: pD^H + (1-p)D^L < 0$. For such a belief the optimal strategy for the entrant is enter once the incumbent's profit if $M^H$ and not enter otherwise (once it is $M^L$). The incumbent's strategy hence is to choose $M^L$ in both cases because
+Denote $\omega$ is a condition belief of the entrant that the demand is high. Assume $\omega = p: pD^H + (1-p)D^L < 0$. For such a belief the optimal strategy for the entrant is enter once the incumbent's profit is $M^H$ and not enter otherwise (once it is $M^L$). The incumbent's strategy hence is to choose $M^L$ in both cases because
 \begin{align*}
 M^H + D^H < M^H + M^L
 \end{align*}
@@ -157,7 +157,7 @@ Paul gets beer for breakfast? Fully describe such an equilibrium.
 	\begin{align*}
 	2\omega + 1 - \omega < 0
 	\end{align*}
-	that means that Nich chooses $pass$ once Paul gets beer. If $\lambda > \frac{1}{3}$ then $-2\lambda + 1 - \lambda < 0$ which means that Nick chooses to pass even if Paul gets quiche. Since $c > 0$, $1 - c < 1$ and Paul should choose quiche for wimp type. In case $\lambda < \frac{1}{3}$ Nick chooses to fight once Paul gets quiche, as a result if $-1 \le 1 - c$ i.e. $c \le 2$ even wimp type will choose beer.
+	that means that Nick chooses $pass$ once Paul gets beer. If $\lambda > \frac{1}{3}$ then $-2\lambda + 1 - \lambda < 0$ which means that Nick chooses to pass even if Paul gets quiche. Since $c > 0$, $1 - c < 1$ and Paul should choose quiche for wimp type. In case $\lambda < \frac{1}{3}$ Nick chooses to fight once Paul gets quiche, as a result if $-1 \le 1 - c$ i.e. $c \le 2$ even wimp type will choose beer.
 	Thus, the equilibrium is:
 	\begin{align*}
 	&\text{Paul : } \{beer, beer\}\\
@@ -250,7 +250,12 @@ which delivers the highest (pooling equilibrium) payoff to $\theta_H$?
 	\frac{(\theta_H - \theta_L)(3\theta_L - \theta_H)}{2\theta_L} &\le 0\\
 	\theta_L &\le \frac{\theta_H}{3}
 	\end{align*}
-	So, when the productivity of the low type is very low compare to that of high type, costs of education are very high for low type workers and it is not optimal for them to pretend to be a high type, which means that low type workers choose $e^*_L = \theta_L$ and high type workers choose $e^*_H = \theta_H$ and firms perfectly distinguish between types.
+	So, when the productivity of the low type is very low compare to that of high type, costs of education are very high for low type workers and it is not optimal for them to pretend to be a high type, which means that low type workers choose $e^*_L = \theta_L$ and high type workers choose $e^*_H = \theta_H$ and firms perfectly distinguish between types. On the figure below two examples are provided where the PBE which replicates the full information outcome is possible and where not.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{plotdraft}
+		\caption{Left: low type has profitable deviation; Right: low type does not have a profitable deviation}\label{fig7}
+	\end{figure}
 	\item 
 	\begin{enumerate}[(a)]
 	\item At the pooling equilibrium both types of workers choose
@@ -275,25 +280,22 @@ which delivers the highest (pooling equilibrium) payoff to $\theta_H$?
 	in this case
 	\begin{align*}
 	w(e) = \begin{cases}
-	\lambda \theta_L + (1 - \lambda) \theta_H, e = 0\\
+	\lambda \theta_H + (1 - \lambda) \theta_L, e = 0\\
 	\theta_L + e, e > 0
 	\end{cases}
 	\end{align*}
 	Then the high type is solving the following optimization problem:
 	\begin{align*}
-	\max\left\{ \underset{e > 0}{\max}\ \theta_L + e - \frac{e^2}{2\theta_H}, \lambda \theta_L + (1 - \lambda) \theta_H \right\} = \max\left\{\theta_L + \frac{\theta_H}{2}, \lambda \theta_L + (1 - \lambda) \theta_H \right\}
+	\max\left\{ \underset{e > 0}{\max}\ \theta_L + e - \frac{e^2}{2\theta_H}, \lambda \theta_H + (1 - \lambda) \theta_L \right\} = \max\left\{\theta_L + \frac{\theta_H}{2}, \lambda \theta_H + (1 - \lambda) \theta_L \right\}
 	\end{align*}
-	If $\lambda \le \frac{1}{2}$ then $\theta_L + \frac{\theta_H}{2} > \lambda \theta_L + (1 - \lambda)\theta_H$ and that means that high type will deviate and choose positive $e^*_H = \theta_H$ level of education, i.e. $e_p = 0$ is not supportable.
-	\item No, they cannot be. Firstly, obviously that the greatest amount of efforts the workers can spend on education at any pooling equilibria cannot exceed $\bar{e}$ (see Fig. \ref{fig5}) because for any other education level $e > \bar{e}$ and respective equilibrium wage level $w(e) = \lambda \theta_H + (1 - \lambda)\theta_L + e$ the low type worker prefers $e = 0$. (here $\bar{e} = \theta_L\left(1 + \sqrt{1 + \frac{2\lambda(\theta_H - \theta_L)}{\theta_L}}\right) > \theta_L$)
+	If $0 \le \lambda \le \frac{1}{2}$ then $\theta_L + \frac{\theta_H}{2} > \lambda \theta_H + (1 - \lambda)\theta_L$ and that means that high type will deviate and choose positive $e^*_H = \theta_H$ level of education, i.e. $e_p = 0$ is not supportable. Figure below illustrates the case.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.8\textwidth]{plotdraft}
-		\caption{}\label{fig5}
+		\caption{Unsupportable $e_p = 0$}\label{fig8}
 	\end{figure}
-Suppose now that the pooling equilibrium is attained at education level $e' < \bar{e}$ (see Fig. \ref{fig5}). The corresponding indifference curves and wage schedule is depicted on the Fig. \ref{fig5}. Both types are maximizing their utilities, given the wage schedule and equilibrium wages are consistent with beliefs. And this pooling equilibrium Pareto dominates the one with $e = \bar{e}$ (and also each equilibrium with $e' < e < \bar{e}$) because firms have the same zero expected profit, but both types attain higher indifference curves and consequently higher utility levels at $e'$. However, there always exists an education level $\underline{e} = \theta_H$ (which is wlog $< \bar{e}$) such that indifference curve of high type is tangent to the line $\lambda \theta_H + (1 - \lambda)\theta_L + e$ at this point (see Fig. \ref{fig5}). And each pooling  equilibrium level of education $e'' < \underline{e}$ will yield the high type worker strictly less utility. Since each point at line $\lambda \theta_H + (1 - \lambda) \theta_L + e$ for $e < \underline{e}$ corresponds to lower indifference curve for high type. Similarly for low type workers there exists an education level $\underline{\underline{e}} = \theta_L$ such that indifference curve of low type is tangent to the line $\lambda \theta_H + (1 - \lambda)\theta_L + e$ at this point (see Fig. \ref{fig5}). And each pooling  equilibrium level of education $e''' < \underline{\underline{e}}$ will yield the low type worker strictly less utility. Since each point at line $\lambda \theta_H + (1 - \lambda) \theta_L + e$ for $e < \underline{\underline{e}}$ corresponds to lower indifference curve for low type. As a result, there is a full Pareto order for pooling equilibrium for $e \in [\theta_H, \bar{e}]$ and for $e \in [0, \theta_L]$, for $e \in (\theta_L, \theta_H)$ there is no Pareto order, since some pooling equilibria are better for low type, but are worse for high type and vice-versa. 
-
-Case $\theta_H > \bar{e}$ is analogous, for $e \in (\theta_L, \theta_H)$ equilibria cannot be Pareto ranked.
-\item Dominance requirement requires firms to prescribe positive $\mu(e)$ only to such $e$ that is not a strictly dominated action for high type. In the sense that there is no action $e'$ which yields the high type strictly greater payoff regardless of what equilibrium wages are. Assumption that $\Omega$ in non-empty means that firstly $\theta_H < \bar{e}$ and on the top of that the indifference curve of high type, which goes through $(\bar{e}, \theta_H + \bar{e})$ lies below the indifference curve which is tangent to the line $\lambda \theta_H + (1 - \lambda) \theta_L$ at the point $\theta_H$ (see Fig. \ref{fig6}) because otherwise, the high type chooses the level $\max\ \{\theta_H, \bar{e}\}$ and low type chooses $0$ and $\Omega$, the set of pooling equilibria, is empty.
+	\item No, they cannot be. The levels of education which maximize workers' utilities provided that firms pay a wage $\lambda \theta_H + (1 - \lambda) \theta_l + e$ are $e_H = \theta_H, e_L = \theta_L$. Since $\theta_H > \theta_L$ all pooling equilibria with education level above $\theta_H$ are Pareto ordered because decreasing of $e$ benefits both types of workers and firm still earn zero profit. However, equilibria with education level between $\theta_L$ and $\theta_H$ are not Pareto ordered because once $e^*_p \to \theta_L$ the high type becomes worse-off and the low type becomes better-off.
+\item Dominance requirement requires firms to prescribe positive $\mu(e)$ only to such $e$ that is not a strictly dominated action for high type. In the sense that there is no action $e'$ which yields the high type strictly greater payoff regardless of what equilibrium wages are. Assumption that $\Omega$ in non-empty means that firstly $\theta_H < \bar{e}$ (where $\bar{e}$ is the highest possible amount of education the low type worker obtains in any pooling equilibria) and on the top of that the indifference curve of high type, which goes through $(\bar{e}, \theta_H + \bar{e})$ lies below the indifference curve which is tangent to the line $\lambda \theta_H + (1 - \lambda) \theta_L$ at the point $\theta_H$ (see Fig. \ref{fig6}) because otherwise, the high type chooses the level $\max\ \{\theta_H, \bar{e}\}$ and low type chooses $0$ and $\Omega$, the set of pooling equilibria, is empty.
 	\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{plotdraft}
@@ -364,7 +366,23 @@ and then chooses whether to work
 	b_L = \max\ \left\{\frac{c}{\theta_l} - U, 0\right\}
 	\end{align*}
 	but if $b_L = 0$ then equilibrium becomes pooling and Tim cannot distinguish between states. If $\frac{c}{\theta_l} - U > 0$ then Karen will want to deviate and offer $b_L = 0$ in order to convince Tim that he is of high type. Hence at each equilibrium $b^*_H = b^*_L$.
-	\item 
+	\item Single crossing condition means that once cost of work increases the low type Tim needs higher bonus compensation to preserve the same utility level than the high type Tim. Expected utility levels of both types are the following:
+	\begin{align*}
+	u_H = \begin{cases}
+	(U + b) \theta_H - c, \text{ if Tim works}\\
+	0, \text{if Tim slacks}
+	\end{cases}\\
+	u_L = \begin{cases}
+	(U + b) \theta_L - c, \text{ if Tim works}\\
+	0, \text{if Tim slacks}
+	\end{cases}\\
+	\end{align*}
+	Since $\frac{1}{\theta_H} < \frac{1}{\theta_L}$ then for high levels of utility single crossing condition holds. However, for example for utility level $0$ and for $c < U \theta_L$ (see Fig. \ref{fig9})as we can see utility curves coincide, i.e. the single crossing condition does not hold.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{plotdraft}
+		\caption{}\label{fig9}
+	\end{figure}
 	\item  As always at separating equilibrium Tim can perfectly distinguish between states. That means that at low state he will work only if
 	\begin{align*}
 	\theta_L(U + b_L) + w_L - c \ge w_L
@@ -417,6 +435,15 @@ There can be three types of predictions: wage inequality can increase, decrease 
 Assume for simplicity that we have only two types of workers (of high productivity and of low productivity) and that education is useless, in the sense that it does not increase productivity (a plausible assumption for Russian educational system).
 
 In addition assume that we have a separating equilibrium i.e. the wage inequality is $\theta_H - \theta_L$ and moreover let us use the intuitive criterion refinement which eliminates all pooling equilibria. Since indifference curves of low type workers become flatter, it is now becomes profitable for them to deviate and to pretend to be workers of high productivity. In this case either firms become unable to distinguish between the types and offer a single wage for all types (pooling equilibrium) and as a result, inequality decreases to 0, or workers of high type just increase their level of education (starting to pursue PhD for example) and firm still are able to distinguish between types and offer different wages, hence the wage inequality remains unchanged.
-
-
+\section*{7 Equilibrium Refinements}
+	There are many different criteria that can be used to refine the set of equilibria in a given
+	game. One of them, which you have already discussed, is the intuitive criterion. Think about
+	the logic it tries to capture. Can you think of other ways to select reasonable out-of-equilibrium path beliefs? Suggest one such criterion and explain intuitively why it is reasonable. You may
+	refer to Beer and Quiche or Education signalling or your own set up to illustrate the logic behind
+	your criterion.
+	
+	
+	\textbf{Solution}
+	
+	Intuitive criterion and other criteria try to refine unreasonable out-off equilibrium beliefs. For example, in $Beer-and-Quiche$ set-up (Problem 2). Intuitive criterion requires $\lambda$ (the conditional probability of coming across surly type, condition on the fact that Paul has ordered quiche) being equal to 1, because it is unreasonable for wimpish Paul to deviate from equilibrium. It is a good logic, but as for me it does not fully capture reality. In reality there is always a some probability of mistake, moreover Nick cannot for sure know the cost of drinking beer for wimp Paul. That's why I think it would be more reasonable to consider beliefs in unreachable information set as a random variable distributed on $[0, 1]$. It can be beta $B(a, b)$ distribution. Where parameters $a$ and $b$ are chosen taking into account possible payoffs of players. For instance $c$ is very close to 2 then Paul can not care a lot about his order and the probability of mistake becomes higher. However even if $c$ is small Nick cannot rule out the chance that apart from being wimpish Paul is also stupid and orders $quiche$. Thus, the distribution of belief $\lambda \sim B(a, b)$ where parameters are chosen in a special way (if this problem costs more than 5 point maybe I will derive some possible formulas for $a$ and $b$) capture the reality more precisely, in my opinion.
 \end{document}
