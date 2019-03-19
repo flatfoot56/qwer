@@ -122,7 +122,8 @@ u_i(w, x) = w - c_i(x)
 \end{align*}
 where $w$ is the wage paid to the worker, $x$ is the output he produces, and $c_i(x)$ is a convex
 and increasing cost function, $c'_1(x) < c'_2(x)$, $c_i(0) = 0$, $c'_i(0) = 0$, $c'_i(\infty) = \infty$ for $i = 1, 2$.
-The share of workers of the first type is given by $\lambda$.
+The share of workers of the first type is given by $\lambda$.
+
 \begin{enumerate}
 	\item Assume that there is a single hiring firm at the market, and it does not observe the
 	workers' types. The profit of the firm is given by the value of output less the wage
@@ -225,7 +226,7 @@ The share of workers of the first type is given by $\lambda$.
 		\end{align*}
 	\end{itemize}
 \end{enumerate}
-\section*{Insurance}
+\section*{3 Insurance}
 Consider the competitive screening model of the insurance market with two types of
 consumers $H$ and $L$. All consumers have initial wealth $W > 0$ and may face a loss $d > 0$,
 $d < W$. The probability of facing the loss is $p_L$ for the $L$ type of the consumer, and
@@ -253,6 +254,77 @@ of consumers are distinguished only by the difference between $p_L$ and $p_H$
 \textbf{Solution}
 
 \begin{enumerate}
-	\item 
+	\item Both consumers can happen to be in two states of the world:
+	\begin{align*}
+	W_g &= W - t\\
+	W_b &= W - d + r - t
+	\end{align*}
+	And they derive the following expected utility function:
+	\begin{align*}
+	V(W_b, W_g) = p_i U(W_b) + (1 - p_i)U(W_g),\ i \in \{L, H\}
+	\end{align*}
+	Insurance companies' profit is equal to:
+	\begin{align*}
+	\pi = t - pr
+	\end{align*}
+	and should be equal to zero. That means that
+	\begin{align*}
+	W - W_g - p(W_b + d - W_g) = 0\\
+	(1 - p)W_g + pW_b = W - pd
+	\end{align*}
+	Hence break-even lines for high and low types are given as:
+	\begin{align*}
+	W_b = -\frac{1-p_H}{p_H}W_g + \frac{W}{p_H} -d\\
+	W_b = -\frac{1-p_L}{p_L}W_g + \frac{W}{p_L} -d\\	
+	\end{align*}
+	At the same time, slopes of indifferent curves of consumers are given by:
+	\begin{align*}
+	\frac{dW_b}{dW_g} = - \frac{\frac{dV}{dW_g}}{\frac{dV}{dW_b}} = -\frac{1-p_i}{p_i}\frac{U'(W_g)}{U'(W_b)}
+	\end{align*}
+	In complete information case insurance companies can observe the type, hence equilibrium $(W_g^H, W_b^H), (W_g^L, W_b^L)$ should lie on the break-even lines. In other words,
+	\begin{align*}
+	\frac{dW_b}{dW_g} = - \frac{1-p_i}{p_i}\frac{U'(W_g)}{U'(W_b)} = -\frac{1 - p_i}{p_i}
+	\end{align*}
+	hence by properties of the utility function $W_g = W_b$ for both types. Thus, both types get full insurance in complete information case. The figure below illustrates the case.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{plotdraft}
+		\caption{}\label{fig1}
+	\end{figure}
+Since $W_g^H = W_b^H, W_g^L = W_b^L$ that means that both types at the equilibrium derive the following utility levels:
+\begin{align*}
+p_iU(W_b^i) + (1 - p_i)U(W_b^i) = U(W_b^i) = U(W - p_id),\ i \in \{H, L\}
+\end{align*}
+\item In case of incomplete information at the equilibrium among other things the incentive compatibility constraints should hold. That means that 
+\begin{align*}
+p_L U(W - d + r_L - t_L) + (1 - p_L)U(W - t_L) \ge p_L U(W - d + r_H - t_H) + \\
++(1 - p_L)U(W - t_H)\\
+p_H U(W - d + r_H - t_H) + (1 - p_H)U(W - t_H) \ge p_H U(W - d + r_L - t_L) + \\
++ (1 - p_H)U(W - t_L)\\
+\end{align*}
+If we assume that as in complete information case $W_g^H = W_b^H, W_g^L = W_b^L$ then IC imply:
+\begin{align*}
+U(W^L_g) \ge U(W^H_g)\\
+U(W^H_g) \ge U(W^L_g)\\
+\end{align*}
+but by properties of utility functions this implies that $W^L_g = W^H_g$ which is not a separating equilibrium. Thus, at any separating equilibrium the high type should be offered his complete information contract $(W_g^H, W_g^H)$ while the incentive compatibility constraints imply that:
+\begin{align*}
+p_HU(W_b^H) + (1 - p_H)U(W_g^H) = p_H U(W_b^L) + (1 - p_H)U(W_g^L)\\
+U(W - p_Hd) = p_HU(W_b^L) + (1 -p_H)U(W_g^L)
+\end{align*}
+This separating equilibrium is illustrated below
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{plotdraft}
+	\caption{}\label{fig2}
+\end{figure}
+The high risk type obtains the same utility level as in complete information case, whereas the low risk type becomes strictly worse-off, since $W^g_L \neq W_b^L$. The source of this is the existence of high risk individual who wants to mimic to low risk type and make insurance companies to lose money.
+\item If high type is more risk averse, then for a given wealth level in good state he will demand more wealth in bad state comparing with utility $u(W)$ to maintain the same utility level. That means that new separating equilibrium looks like as follows:
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{plotdraft}
+	\caption{}\label{fig3}
+\end{figure}
+As we can see, in new equilibrium low type obtain higher level of utility, however still less than in the complete information case. Intuitively it happens because once the high risk type becomes more risk averse, the amount of riskier (with not complete insurance) contracts which attract this type decreases. As a result, now the low type becomes happier, obtaining the contract which is closer to complete insurance. 
 \end{enumerate}
 \end{document}
