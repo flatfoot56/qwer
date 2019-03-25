@@ -1,0 +1,96 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Microeconomics 4. Problem Set 3.
+\end{center}
+\section*{Adverse selection with indivisible good}
+	Consider the model we studied in class but where the agent may produce only zero or
+	one unit of the good. Principal's valuation of one unit is $S$. Agent's costs of producing
+	one unit are $\theta$ that takes two values: $\underline{\theta}$ with probability $\nu$ and $\overline{\theta}$ with probability $1-\nu$,
+	$\Delta \theta = \overline{\theta} - \underline{\theta} > 0$. When an agent with costs $\theta$ produces one unit, the principal gets $S-t$ and the agent gets $t - \theta$, $t$ being the transfer from the principal to the agent. No production entails no cost to the agent and no value to the principal. Production is always efficient:
+	$S > \overline{\theta}$. The agent's reservation utility is zero.
+	In the beginning of the period, the principal offers a menu $\{(\underline{p}, \underline{t}), (\overline{p}, \overline{t})\}$, where $\underline{p}$ and $\overline{p}$ are the probabilities of trade with the low and high cost type, respectively (note
+	that the transfer is made independently of whether the trade occurs or not).
+\begin{enumerate}
+	\item Find the first best.
+	\item Find the second best.
+	\item Can the principal replicate the second-best solution by a simpler contract? Which
+one?
+\end{enumerate}
+
+
+\textbf{Solution}
+
+\begin{enumerate}
+	\item Assume that once the trade does not occur, the agent does not produce anything. That means that the agent's objective function is $U^A(t, p, \theta) = t - p \theta$. The principal's objective function is $U^P(\underline{p}, \underline{\theta}, \overline{p}, \overline{\theta}) = \nu(\underline{p}S - \underline{t}) + (1 - \nu)(\overline{p}S - \overline{t})$. Obviously under complete information $\underline{t} = \underline{p}\underline{\theta}$ and $\overline{t} = \overline{p}\overline{\theta}$. And $\underline{p} = \overline{p} = 1$. That is, the first best is the following:
+	\begin{align*}
+	\{(1, \overline{\theta}), (1, \underline{\theta})\}
+	\end{align*}
+	\item Under incomplete information, since $\overline{\theta} > \underline{\theta}$ then $\overline{t} - \overline{p}\underline{\theta} = \overline{p} \Delta \theta > \underline{t} - \underline{p}\underline{\theta} = 0$. That is, the type $\underline{\theta}$ will pretend to be the type $\overline{\theta}$. Hence the principal should propose the contracts which would be incentive compatible. Thus, the principal is solving the following optimization problem:
+	\begin{align*}
+	\underset{(\underline{p}, \underline{t}), (\overline{t}, \overline{p})}{\max}\ \nu(\underline{p}S - \underline{t}) + (1 - \nu)(\overline{p}S - \overline{t})\\
+	s.t.\ \begin{cases}
+	\overline{t} - \overline{p} \overline{\theta} \ge 0\ (PC1)\\
+	\underline{t} - \underline{p} \underline{\theta} \ge 0\ (PC2)\\
+	\overline{t} - \overline{p} \overline{\theta} \ge \underline{t} - \underline{p} \overline{\theta}\ (IC1)\\
+	\underline{t} - \underline{p} \underline{\theta} \ge \overline{t} - \overline{p} \underline{\theta}\ (IC2)
+	\end{cases}
+	\end{align*}
+	$\underline{t} - \underline{p}\underline{\theta} \ge \overline{t} - \overline{p}\underline{\theta} > \overline{t} - \overline{p}\overline{\theta} \ge 0$, hence, $PC2$ is not binding. While $PC1$ is binding because otherwise the principal can decrease $\underline{t}, \overline{t}$ by the same value, which leads to increase of objective function without violating of any constraints. Moreover, $IC2$ should be binding either, because otherwise the principal can decrease $\underline{t}$. Finally, the principal's problem should look like:
+	\begin{align*}
+	&\underset{\overline{p}, \underline{p}}{\max}\ \nu(\underline{p}S - \overline{p}\Delta \theta - \underline{p}\underline{\theta}) + (1-\nu) \overline{p}(S - \overline{\theta})\\
+	&s.t.\ \overline{p} \le \underline{p}\ (IC1)
+	\end{align*}
+	Since $\nu (S - \underline{\theta}) > 0$ then $\underline{p} = 1$. If $(1 - \nu)(S - \overline{\theta}) > \nu \Delta \theta$ then $\overline{p} = 1$ and $\overline{t} = \overline{\theta}, \underline{t} = \overline{\theta}$. Effectively, it means that the principal proposes just one contract $(1, \overline{\theta})$. If $(1 - \nu)(S - \overline{\theta}) < \nu \Delta \theta$ then $\overline{p} = 0$, and $\overline{t} = 0, \underline{t} = \underline{\theta}$. If $(1 - \nu)(S - \overline{\theta}) = \nu \Delta \theta$ then $\overline{p} \in [0, 1]$, $\overline{t} = \overline{p} \overline{\theta}, \underline{t} = \overline{p}\Delta \theta + \underline{\theta}$. So, the second best is the following:
+	\begin{align*}
+	\begin{cases}
+	(1, \overline{\theta}), (1, \overline{\theta}),\ \frac{S - \overline{\theta}}{S - \underline{\theta}} > \nu\\
+	(1, \underline{\theta}), (0, 0),\ \frac{S - \overline{\theta}}{S - \underline{\theta}} < \nu\\
+	(1, \overline{p}\Delta \theta + \underline{\theta}), (\overline{p}, \overline{p}\overline{\theta}),\ \frac{S - \overline{\theta}}{S - \underline{\theta}} = \nu, \overline{p} \in (0, 1)
+	\end{cases}
+	\end{align*}
+	\item By the revelation principle, to replicate the second best we need contracts with number of options equal to cardinality of types' space. Here the cardinality is equal to 2, hence we cannot replicate the second best with less number of options.
+\end{enumerate}
+\end{document}
