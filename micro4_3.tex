@@ -28,6 +28,8 @@
 \newcommand{\prob}{\mathbb{P}}
 \newcommand{\norma}{\mathscr{N}}
 \newcommand{\expect}{\mathbb{E}}
+\newcommand{\ubar}{\overline}
+\newcommand{\lbar}{\underline}
 \newcommand{\summa}{\sum_{i=1}^n}
 \usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
 \usepackage{tikz} % 
@@ -92,5 +94,68 @@ one?
 	\end{cases}
 	\end{align*}
 	\item By the revelation principle, to replicate the second best we need contracts with number of options equal to cardinality of types' space. Here the cardinality is equal to 2, hence we cannot replicate the second best with less number of options.
+\end{enumerate}
+\section*{2 Adverse selection with a privately informed buyer}
+	Here we consider another standard adverse selection setting: a seller with known costs
+	sells a good to a buyer who is privately informed about his valuation.
+	The cost for the principal of $q$ units of good (or quality level $q$) is $c(q)$ and $c'(q) >
+	0, c''(q) > 0, c(0) = 0$. The utility of the principal is $V = t-c(q)$. The agent's valuation
+	for the good is $\theta u(q)$, where $u'(q) > 0, u''(q) < 0, u(0) = 0$ and $\theta = \underline{\theta}$ with probability
+	$\nu$ and $\theta = \overline{\theta}$ with probability $1-\nu$. Denote $\Delta \theta = \overline{\theta}- \underline{\theta}> 0$. The utility of the agent is $U = \theta u(q) - t$.
+	\begin{enumerate}
+	\item Find the first best.
+	\item Check the Spence-Mirlees condition.
+	\item Find the second best.
+	\item When it is optimal to "shut down" the low-valuation type?
+	\end{enumerate}
+
+\textbf{Solution}
+
+\begin{enumerate}
+	\item If the principle knows the agent's valuation then she should solve the following optimization problems:
+	\begin{align*}
+	\underset{(\overline{t}, \overline{q})}{\max}\ \overline{t} - c(\overline{q})\\
+	s.t.\ \overline{\theta} u(\overline{q}) - \overline{t} \ge 0\\
+	\underset{(\underline{t}, \underline{q})}{\max}\ \underline{t} - c(\underline{q})\\
+	s.t.\ \underline{\theta} u(\underline{q}) - \underline{t} \ge 0\\
+	\end{align*}
+	The solutions can be derived from the following FOCs
+	\begin{align*}
+	\underline{\theta} u'(\underline{q}) - c'(\underline{q}) = 0 \to \underline{q}^* \to \underline{t}^* = \underline{\theta}u(\underline{q}^*)\\
+	\overline{\theta} u'(\overline{q}) - c'(\overline{q}) = 0 \to \overline{q}^* \to \overline{t}^* = \overline{\theta}u(\overline{q}^*)
+	\end{align*}
+	\item The Spence-Mirrlees condition
+	\begin{align*}
+	\frac{\partial ^2}{\partial q \partial \theta} \theta u(q) > 0\\
+	\frac{\partial ^2}{\partial q \partial \theta} \theta u(q) = u'(\theta) > 0
+	\end{align*}
+	hence the condition is satisfied.
+	\item If at the first best $\underline{q}^* > 0$ then $\overline{\theta} u(\underline{q}^*) - \underline{\theta}u(\underline{q}^*) > 0$ i.e. under asymmetric information the $\ubar{\theta}$ type would mimic the $\lbar{\theta}$ type. Hence the second best should be incentive compatible. The principal should solve:
+	\begin{align*}
+	\underset{(\underline{t}, \underline{q}), (\overline{t}, \overline{q})}{\max}\ \nu(\underline{t} - c(\underline{q})) + (1 - \nu)(\overline{t} - c(\overline{q}))\\
+	s.t.\ \begin{cases}
+	\overline{\theta} u(\overline{q}) - \overline{t} \ge 0\ (PC1)\\
+	\underline{\theta} u(\underline{q}) - \underline{t} \ge 0\ (PC2)\\
+	\overline{\theta} u(\overline{q}) - \overline{t} \ge \overline{\theta} u(\underline{q}) - \underline{t}\ (IC1)\\
+	\underline{\theta} u(\underline{q}) - \underline{t} \ge \underline{\theta} u(\overline{q}) - \overline{t}\ (IC2)
+	\end{cases}
+	\end{align*}
+	$\ubar{\theta}u(\ubar{q}) - \ubar{t} \ge \ubar{\theta} u(\lbar{q}) - \lbar{t} > \lbar{\theta}u(\lbar{q}) - \lbar{t} > 0$ hence $PC1$ is not binding. While $PC2$ is binding because otherwise the principal can increase $\ubar{t}, \lbar{t}$ by the same amount which leads to increase of the objective function without the violation of any constraints. Moreover, the $IC1$ is binding because otherwise the principal can slightly increase $\ubar{t}$. Hence the optimization problem should like:
+	\begin{align*}
+	&\underset{(\ubar{q}, \lbar{q})}{\max}\ \nu(\lbar{\theta}u(\lbar{q}) - c(\lbar{q})) + (1 - \nu)(\ubar{\theta}u(\ubar{q}) - \Delta \theta u(\lbar{q}) - c(\ubar{q}))\\
+	&s.t.\ u(\lbar{q}) \le u(\ubar{q})
+	\end{align*}
+	FOCs:
+	\begin{align*}
+	\begin{cases}
+	\lbar{\theta}u'(\lbar{q}^*) - c'(\lbar{q}^*) - \frac{1 - \nu}{\nu} \Delta \theta u'(\lbar{q}^*) = 0\\
+	\ubar{\theta}u'(\ubar{q}^*) - c'(\ubar{q}) = 0
+	\end{cases}
+	\end{align*}
+	As we can see for $\ubar{\theta}$ second best $\ubar{q}^*$ coincides with the first best $\ubar{q}^*$. And $\ubar{t}^{*SB} = \ubar{\theta} u(\ubar{q}^*) - \Delta \theta u(\lbar{q}^*) < \lbar{t}^{*FB}$. However for $\lbar{\theta}$, $\lbar{q}^{*SB} < \lbar{q}^{*FB}$, if $\Delta \theta > 0$ (because $\frac{u'(\lbar{q})}{c'(\lbar{q})} = \frac{1}{\lbar{\theta} - \frac{1-\nu}{\nu}\Delta \theta}$ goes up once $\Delta \theta > 0$ which implies that $\lbar{q}$ declines). This also guarantees that $u(\lbar{q}) \le u(\ubar{q})$ because $\lbar{q}^{FB} < \ubar{q}^{FB}$.
+	\item It is optimal to shut down the low-valuation type if:
+	\begin{align*}
+	(1 - \nu) (\ubar{\theta}u(\ubar{q}^{FB}) - c(\ubar{q}^{FB})) > \nu(\lbar{\theta}u(\lbar{q}^{FB}) - c(\lbar{q}^{FB})) + (1 - \nu)(\ubar{\theta}u(\lbar{q}^{FB}) - c(\lbar{q}^{FB}))
+	\end{align*}
 \end{enumerate}
 \end{document}
