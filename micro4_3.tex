@@ -126,7 +126,7 @@ one?
 	\end{align*}
 	\item The Spence-Mirrlees condition
 	\begin{align*}
-	\frac{\partial ^2}{\partial q \partial \theta} \theta u(q) > 0\\
+	\frac{\partial ^2}{\partial q \partial \theta} (\theta u(q) - t) \neq 0\\
 	\frac{\partial ^2}{\partial q \partial \theta} \theta u(q) = u'(\theta) > 0
 	\end{align*}
 	hence the condition is satisfied.
@@ -158,4 +158,158 @@ one?
 	(1 - \nu) (\ubar{\theta}u(\ubar{q}^{FB}) - c(\ubar{q}^{FB})) > \nu(\lbar{\theta}u(\lbar{q}^{FB}) - c(\lbar{q}^{FB})) + (1 - \nu)(\ubar{\theta}u(\lbar{q}^{FB}) - c(\lbar{q}^{FB}))
 	\end{align*}
 \end{enumerate}
+\section*{3 Lending with adverse selection}
+	There is a continuum of risk neutral borrowers with no personal wealth and limited
+	liability. A proportion $\nu$ of borrowers (called type 1) have sure projects with return $h$ for
+	an investment of $1$. A proportion $1-\nu$ of borrowers (called type 2) have (stochastically
+	independent) projects with return $h$ only with probability $\theta$ in $(0; 1)$ and return $0$ with
+	probability $1-\theta$, for an investment of $1$. If he does not apply for a loan, the borrower
+	has an outside opportunity utility level of $u$.
+	There is a single risk neutral bank available for loans which has a financing cost of
+	$r$. The bank offers contracts to maximize its expected profit. For simplicity, we assume
+	that all projects are socially valuable, i.e.,
+	\begin{align*}
+	\theta h > r + u
+	\end{align*}
+	\begin{enumerate}
+	\item Explain why there is no loss of generality in considering the menus of contracts
+	$\{(R_1, P_1),(R_2, P_2)\}$ where $P_i$
+	is the probability of obtaining a loan and $R_i$
+	is the
+	repayment to the bank when the investment succeeds if the borrower announces
+	that he is of type $i$.
+	\item Write the maximization program of the bank which chooses the menu $\{(R_1, P_1),(R_2, P_2)\}$
+	to maximize its expected profit under the borrower's participation and incentive
+	constraints (for simplicity assume that if a borrower applies for a loan he loses his
+	outside opportunity $u$).
+	\item Show that the optimal contract entails a non-random allocation of loans (i.e., $P_i$
+	is
+	either $0$ or $1$, $i = 1, 2$). Characterize the optimal contract. Discuss its properties.
+	Draw indifference curves (in the space $(R, P)$) and look at the Spence-Mirrlees
+	condition. To answer this question, you will need the more general definition of the
+	Spence-Mirrlees condition. Let U be the borrower's utility, then the single crossing
+	condition says that $\frac{\partial }{\partial \theta}\left(\frac{\frac{\partial U}{\partial P}}{\frac{\partial U}{\partial R}}\right)$ has a constant sign.
+	\end{enumerate}
+
+\textbf{Solution}
+
+\begin{enumerate}
+	\item There is no loss of generality because of revelation principle. Which implies that set of contracts with number of options equal to cardinality of the type space, is sufficient to replicate any arbitrary complicated contract structure.
+	\item The bank is maximizing:
+	\begin{align*}
+	\underset{(R_1, P_1), (R_2, P_2)}{\max}\ \nu P_1(R_1 - r) + (1 - \nu)P_2(\theta R_2 - r)\\
+	s.t.\ \begin{cases}
+	P_1 (h - R_1) \ge u\ (PC_1)\\
+	P_2\theta(h - R_2) \ge u\ (PC_2)\\
+	P_1(h - R_1) \ge P_2(h - R_2)\ (IC_1)\\
+	P_2\theta (h - R_2) \ge P_1 \theta (h - R_1)\ (IC_2)
+	\end{cases}
+	\end{align*}
+	\item As always, $(PC_1)$ is not binding because $P_1(h - R_1) \ge P_2(h - R_2) > P_2 \theta (h - R_2) \ge u$. $(PC_2)$ is binding because otherwise bank increases $P_1R_1, P_2R_2$ by the same value, which leads to increase in objective function without violation of any constraints. Moreover, $(IC_1)$ and $(IC_2)$ are also binding because $\theta$ is canceled out. The bank's problem looks as follows:
+	\begin{align*}
+	\underset{P_1, P_2}{\max}\ \nu P_1(h - \frac{u}{P_1\theta} - r) + (1 - \nu)P_2(\theta h - \frac{u}{P_2} - r)
+	\end{align*} 
+	The solution is:
+	\begin{align*}
+	\begin{cases}
+	P_1^* = 1, R_1^* = h - \frac{u}{\theta}, h > r\\
+	P_1^* = 0, \forall\ R_1, h < r\\
+	P_1^* \in (0, 1), R_1^* = h - \frac{u}{\theta P_1}, h = r
+	\end{cases}
+	\begin{cases}
+	P_2^* = 1, R_2^* = h - \frac{u}{\theta}, \theta h - r > 0\\
+	P_2^* = 0, \forall\ R_2, \theta h - r < 0\\
+	P_2^* \in (0, 1), R_2^* = h - \frac{u}{P_2 \theta}, \theta h - r = 0 
+	\end{cases}
+	\end{align*}
+	As we can see, the optimal contract entails not only non-random allocation, for some values of parameters, $P_1$ or $P_2$ can be $\in (0, 1)$. Since I was asked to show that contracts are non-random, I will further assume that parameters are such that contracts are non-random. Depending on parameters three outcomes are possible: $P_1^* = P_2^* = 0$, if $h < r$, $P_1^* = P_2^* = 1$ if $\theta h < r < h$, or $P_1^* = 1, P_2^* = 0$ if $r < \theta h$. As we can see, if cost of financing are higher than possible returns then obviously bank does not finance anybody, if cost of financing are lower than expected return of risky project than bank finances both groups proposes the same contracts for both groups. If cost are higher than expected gains from risky project then bank stops dealing with risky investors. Since utility functions of agents are
+	\begin{align*}
+	U_1 &= P_1(h - R_1) - u\\
+	U_2 &= P_2\theta (h - R_2) - u 
+	\end{align*}
+	the indifference curves look as follows.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{plotdraft}
+		\caption{}\label{fig1}
+	\end{figure}
+Single-crossing condition:
+\begin{align*}
+\frac{\partial}{\partial \theta} \left(\frac{R-h}{P}\right) = 0
+\end{align*}
+has constant sign, however indifference curves obviously intersect only in infinity.
+\end{enumerate}	
+\section*{4 The bribing game}
+	We consider an administration which is supposed to deliver with some fixed delay
+	a service to the citizens (passport, permits,...). With the normal functioning of the
+	administration, citizens derive a benefit $u_0$ which depends on their valuation of time.
+	With some additional effort the official can deliver the service with a shorter delay.
+	Let us call $q$ the decrease of delay that the official can provide at a cost $\frac{(q - Q)^2}{2}$
+	for him
+	where $Q$ is a constant.
+	We assume that there is a proportion $\nu$ (resp. $1-\nu$) of type 1 (resp. type 2) citizens
+	who derive a benefit from a decrease $q$ of delay equal to $\lbar{\theta}q$ ($\ubar{\theta}q$). Citizens are willing to
+	bribe the official to decrease delays.
+	Characterize the optimal bribing contract that the official will offer to the citizen
+	
+	
+	\textbf{Solution}
+	Assume that $\lbar{\theta} < \ubar{\theta}$. The official is solving:
+	\begin{align*}
+	\underset{(b_1, q_1), (b_2, q_2)}{\max}\ \nu\left(b_1 - \frac{(q_1 - Q)^2}{2}\right) + (1 - \nu) \left(b_2 - \frac{(q_2 - Q)^2}{2}\right)\\
+	s.t.\ \begin{cases}
+	\ubar{\theta}q_1 - b_1 \ge 0\ (PC_1)\\
+	\lbar{\theta}q_2 - b_2 \ge 0\ (PC_2)\\
+	\ubar{\theta}q_1 - b_1 \ge \ubar{\theta}q_2 - b_2\ (IC_1)\\
+	\lbar{\theta} q_2 - b_2 \ge \lbar{\theta}q_1 - b_1\ (IC_2)
+	\end{cases}
+	\end{align*}
+	Which is equivalent to:
+	\begin{align*}
+	&\underset{q_1, q_2}{\max}\ \nu \left(\ubar{\theta}q_1 - \Delta \theta q_2 - \frac{(q_1 - Q)^2}{2}\right) + (1 - \nu) \left(\lbar{\theta}q_2 -\frac{(q_2 - Q)^2}{2}\right) \\
+	&s.t.\ \lbar{\theta}q_1 - b_1 \le 0
+	\end{align*}
+	FOCs:
+	\begin{align*}
+	\begin{cases}
+	q_1^* = \ubar{\theta} + Q\\
+	q_2^* = \lbar{\theta} + Q - \frac{\nu}{1 - \nu} \Delta \theta	
+	\end{cases} \begin{cases}
+	b_1^* = \ubar{\theta}(\ubar{\theta} + Q) - \Delta \theta (\lbar{\theta} +Q - \frac{\nu}{1 - \nu} \Delta \theta)\\
+	b_2^* = \lbar{\theta}(\lbar{\theta} +Q - \frac{\nu}{1 - \nu} \Delta \theta)
+	\end{cases}
+	\end{align*}
+	\begin{align*}
+	b_1 = \ubar{\theta}(\ubar{\theta} + Q) - \Delta \theta (\lbar{\theta} +Q - \frac{\nu}{1 - \nu} \Delta \theta) > \ubar{\theta}(\ubar{\theta} + Q) - \Delta \theta (\ubar{\theta} + Q) = \lbar{\theta} q_1
+	\end{align*}
+	
+	\section*{Flexibility}
+		Since flexibility is always good, an employer who does not know the worker's productivity
+		will benefit from adjusting the contract after the worker reveals his productivity. Discus
+		
+		\section*{6 At your disservice}
+		
+		I donít want to complain, but my favourite lunchtime haunt has the rudest barman I've
+		ever encountered - and I don't think it's an accident. The restaurant is famous for its
+		superb, sophisticated Italian cooking and it prices accordingly. A romantic meal for two
+		costs about \$150, plus the price of your selection from a wine list of biblical proportions.
+		Even if you pick the cheapest main course for lunch and sip water, this frugal meal for
+		one will set you back \$15.
+		Or, you could sit at the bar or on one of the tables in the bar area. The food is still
+		superb: you can fill up on rich, soft pork meatballs nestling on pillows of light polenta for
+		about \$8. The veal ragu is rich but you don't have to be, because this perfect spaghetti
+		is half the price of a pasta dish in the main restaurant.
+		It sounds too good to be true, and I'm afraid there is a catch. To get to the food,
+		you have to get past the barman who takes your orders, a man more Bond villain than
+		bon vivant. To walk into that bar is to laugh in the face of fear. The barman welcomes
+		me in with all the warmth of a Transylvanian butler in a B-movie. He drops menus on
+		my table with a sneer. He repeatedly ignores my attempts to order. As he walks past,
+		my companion whispers that he picked up his tattoos in a Russian prison. I think sheís
+		having me on, but I canít be sure.
+		Itís possible, of course, that this man is in the wrong job by accident, and when
+		the restaurant owner reads this column and works out that itís about his restaurant,
+		"Igor" will be fired. I'm not convinced. I think Igor is all part of the plan. One food
+		critic described a previous bartender as acting like sheíd just returned from a tax audit.
+		"Venomous" is obviously in the job description.
+		Why would a restaurant deliberately sabotage the dining experience?
 \end{document}
