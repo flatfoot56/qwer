@@ -47,7 +47,7 @@
 \begin{center}
 	Microeconomics 4. Problem Set 3.
 \end{center}
-\section*{Adverse selection with indivisible good}
+\section*{1 Adverse selection with indivisible good}
 	Consider the model we studied in class but where the agent may produce only zero or
 	one unit of the good. Principal's valuation of one unit is $S$. Agent's costs of producing
 	one unit are $\theta$ that takes two values: $\underline{\theta}$ with probability $\nu$ and $\overline{\theta}$ with probability $1-\nu$,
@@ -93,7 +93,7 @@ one?
 	(1, \overline{p}\Delta \theta + \underline{\theta}), (\overline{p}, \overline{p}\overline{\theta}),\ \frac{S - \overline{\theta}}{S - \underline{\theta}} = \nu, \overline{p} \in (0, 1)
 	\end{cases}
 	\end{align*}
-	\item By the revelation principle, to replicate the second best we need contracts with number of options equal to cardinality of types' space. Here the cardinality is equal to 2, hence we cannot replicate the second best with less number of options.
+	\item If $\frac{S - \ubar{\theta}}{S - \lbar{\theta}} \neq \nu$ then yes, the seller can merely either offer the price $\lbar{\theta}$ or $\ubar{\theta}$, depending on the sign of $\frac{S - \ubar{\theta}}{S - \lbar{\theta}} - \nu$. Otherwise, also yes, but however seller can pick any probability of trading, finally getting the same expected payoff.
 \end{enumerate}
 \section*{2 Adverse selection with a privately informed buyer}
 	Here we consider another standard adverse selection setting: a seller with known costs
@@ -289,7 +289,22 @@ has constant sign, however indifference curves obviously intersect only in infin
 		
 		\textbf{Solution}
 		
-		In some sense employer indeed benefits from renegotiation of the labour contract, because it can implement the most efficient contract. But in the long run such an opportunity can harm the employer because of the following reason. The employer will renegotiate the contract only with the low productivity worker, because the initial contract with this type of workers was deliberately worse than it could be, in order to prevent the high productivity type from pretending to be low. But if ex-ante the high productivity worker had known that tomorrow contract with low type is renegotiated, he would not have reveled his type, and still would have chosen to pretend being of low type. That is, in short run the employer can benefit, but in the long run without commitment he will lose, because nobody of the high type wants to reveal their type.
+		In some sense employer indeed benefits from renegotiation of the labour contract, because it can implement the most efficient contract. But in the long run such an opportunity can harm the employer because of the following reason. The employer will renegotiate the contract only with the low productivity worker, because the initial contract with this type of workers was deliberately worse than it could be, in order to prevent the high productivity type from pretending to be low. But if ex-ante the high productivity worker had known that tomorrow contract with low type is renegotiated, he would not have reveled his type, and still would have chosen to pretend being of low type. That is, in short run the employer can benefit, but in the long run without commitment he will lose, because nobody of the high type wants to reveal their type. This results has been demonstrated by Dewatripoint (QJE, 1989):
+		\begin{quote}
+			"Once the parties cannot precommit any more not to make
+			Pareto-improving changes in the contract based on information
+			revealed in previous periods, the outcome will be worse than in
+			Grossman and Hart's model."
+		\end{quote}
+	\begin{quote}
+		"For example, if at time $t$ it becomes common
+		knowledge that the state of nature is $i$, then from $t + 1$ on
+		employment has to be set at the Walrasian level for state $i$. Any
+		other employment level would not be credible, since it would be
+		known to be Pareto dominated and would be changed through
+		renegotiation. In this sense, revealing information can be costly (ex
+		ante), so that full instantaneous revelation may not be optimal."
+	\end{quote}
 		
 		\section*{6 At your disservice}
 		
@@ -332,5 +347,17 @@ has constant sign, however indifference curves obviously intersect only in infin
 			
 			\textbf{Solution}
 			
-			The principle is based on the idea that even if instead of reporting type 
+			The principle is based on the idea that even if instead of mere reporting his type, the agent reports some function of his type, which would be the best his option given the principal's policy, and then the principal uses some rule $\tilde{g}$ (see Fig.\ref{fig2}) to chose his action. It is equivalent to the agent just reporting the type. 
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\textwidth]{DRP}
+				\caption{}\label{fig2}
+			\end{figure}
+			If one see the picture above the most obvious example when this principle can fail is if functions $m^*(\cdot)$ or $\tilde{g}(\cdot)$ are not one-to-one. The real-life situation which can be described by such function is the following. Assume that instead of one principal there are two principals (e.g. two suppliers) and one agent (buyer) who has a capacity constraint $q_1 + q_2 \le \bar{K}$. Where $q_1, q_2$ the amount the agent buys from the first and the second supplier respectively. In this case even if the agent can be of two types: of high valuation and of low valuation. Each supplier should take into account the mechanism which the other principal uses, because it affects the quantity the agent buys from this principal. As a result, the revelation principal in its traditional form fails here, however Peters (Econometrica, 2001) showed that 
+			\begin{quote}
+				"In very general
+				common agency problems in which there is only a single agent, principals do not need
+				any more than menus of alternatives to respond to the mechanisms offered by the other
+				principals."
+			\end{quote}
 \end{document}
