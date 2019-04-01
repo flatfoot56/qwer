@@ -139,17 +139,54 @@ Assume that $R > r$.
 
 \textbf{Solution}
 
-
 \begin{enumerate}
-	\item Obviously, if neither bank nor borrower cares about the third-party and safety care is costly, the optimal care is $e = 0$. Denote $r$ the marginal interest rate i.e. if the investor borrows $I$, he should return $(1+r)I$. In this case, the optimal contract is:
+	\item First best level of safety care is determined by $(1 - e)h + \psi(e) \to \min$. Hence $\psi'(e^{FB}) = h$.
+	\item If the effort level is not observable, then the agent is solving:
 	\begin{align*}
-	\lbar{t} = \ubar{t} &= V\\
-	e &= 0
+	\underset{e}{\max}\ V - (1+r)I - e \lbar{t} - (1 - e)\ubar{t} - \psi(e)
 	\end{align*}
-\end{enumerate}
-\begin{enumerate}
-	\item 
-\end{enumerate}
+	and the solution is given by $\psi(e^*) = \ubar{t} - \lbar{t}$. If bank sets $\ubar{t} - \lbar{t} = h$ then $e^* = e^{FB}$. Bank's expected payoff in this case will not be negative:
+	\begin{align*}
+	e \lbar{t} + (1 - e) (\ubar{t} - h) = \lbar{t} \ge 0
+	\end{align*}
+	I assume that "sufficient liability" means that the borrower's utility does not become negative if $\lbar{t}, \ubar{t}$ are such as it is provided above.
+	\item If the borrower has $w$ initial wealth, his limited liability constraint implies that even in case of damaging he cannot pay to the bank more than $w$, i.e. $\ubar{t} \le w$. That means that
+	\begin{align*}
+	\lbar{t} = \ubar{t} - \psi(e) \le w - \psi'(e)
+	\end{align*}
+	Bank's profit is
+	\begin{align*}
+	e \lbar{t} + (1 - e) \ubar{t} - (1 + r)I - (1 - e)c \le w - e \psi'(e)- (1 + r)I - (1 - e)c
+	\end{align*}
+	Obviously, once $w$ diminishes the RHS of the expression above could become negative, that means that first best effort level could be no longer implementable.
+	\item \begin{align*}
+	&\underset{e}{\max}\ V - (1 + r)I - e \lbar{t} - (1 - e) \ubar{t} - \psi(e)\\
+	s.t.\ &e \lbar{t} + (1 - e) (\ubar{t} - c) - (1 + r)I = 0\ (\text{Bank's zero profit})\\
+	&\psi'(e) = \ubar{t} - \lbar{t}\ (IC)\\
+	&\ubar{t} \le w\ (LLC)
+	\end{align*}
+	The solution, hence, is determined by:
+	\begin{align*}
+	w - (1 - e)c - e \psi'(e) - (1 + r)I = 0
+	\end{align*}
+	\item Expected welfare decreases once $e$ decreases.
+	\begin{align*}
+	\frac{de}{dc} = \frac{1-e}{c - \psi'(e) - e\psi''(e)} < 0
+	\end{align*}
+	if $c < \psi'(e) + e\psi''(e)$.
+	\item If the bank is monopoly then it is solving:
+	\begin{align*}
+	&\underset{\lbar{t}, \ubar{t}}{\max}\ e \lbar{t} + (1 -e)(\ubar{t} - c) - (1 +r)I\\
+	s.t.\ &\ubar{t} - \lbar{t} = \psi'(e)\\
+	&\ubar{t} \le w\\
+	\end{align*}
+	the solution is determined by
+	\begin{align*}
+	w - e \psi''(e) - \psi'(e) - w + c = 0\\
+	c - e \psi''(e) - \psi'(e) = 0\\
+	\frac{de}{dc} = \frac{1}{2\psi''(e) + e\psi'''(e)} > 0
+	\end{align*}
+	\end{enumerate}
 \section*{3 Contracting under Coercion}
 	A firm wishes to employ an agent. The agent has limited liability so wages are
 	nonnegative, but the firm can punish the agent in a way that is unproductive (e.g. by
