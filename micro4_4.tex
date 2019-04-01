@@ -1,0 +1,246 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\ubar}{\overline}
+\newcommand{\lbar}{\underline}
+\newcommand{\summa}{\sum_{i=1}^n}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+	\begin{tabular}{r}
+		Danil Fedchenko, MAE 2020, group A \\
+	\end{tabular}
+\end{flushright}
+
+
+\begin{center}
+	Microeconomics 4. Problem Set 4.
+\end{center}
+\section*{1 Credit Markets}
+	A risk-neutral entrepreneur has a project that requires capital $K$ to initiate. The project
+	will either succeed, in which case it generates profit $R$, or it will fail, in which case
+	it generates profit $0$. The probability of success is equal to the entrepreneur's effort
+	level $e \in [0, 1]$, and his effort cost is $\frac{e^2}{2}$. He seeks outside funding from an investor. The
+	investor receives a repayment $r$ if the project is successful and $0$ otherwise. Therefore, the
+	entrepreneur's and the investor's expected profit is $\Pi _E = e(R-r) - \frac{e^2}{2}$ and $\Pi _I = er-K$,respectively. Assume that the entrepreneur makes a take-it-or-leave-it offer to an investor,
+	whose outside option is $0$. (This is equivalent to assuming that the investor offers the
+	contract and he operates in a perfectly competitive market.) Furthermore, assume that $R^2 > 4K$.
+	\begin{enumerate}
+	\item Assume that effort level is contractible. Derive the first-best outcome $e^{FB}$ and $r^{FB}$.
+	\item  Now suppose that effort is not contractible. Find the optimal solution $e^*$ and $r^*$.
+	\item  Assume that the entrepreneur has initial wealth $w \in [0, K]$. Therefore, he will invest
+	his own wealth $w$ in the project, and borrow $K-w$ from an investor. Compute the entrepreneur's expected utility $V(w)$. Show that it is increasing and concave in $w$. Provide some intuition and interpretation.
+	\end{enumerate}
+
+\textbf{Solution}
+
+Assume that $R > r$.
+\begin{enumerate}
+	\item If the entrepreneur makes take-it-or-leave offer than he is solving the following optimization problem:
+	\begin{align*}
+	\underset{e, r}{\max}\ e(R - r) - \frac{e^2}{2}\\
+	s.t.\ er - K \ge 0
+	\end{align*}
+	The solution is obviously
+	\begin{align*}
+	e^{FB} = \min\{R, 1\},\ r^{FB} = \frac{K}{\min\{R, 1\}}
+	\end{align*}
+	\item If the effort level is not contractible then the entrepreneur will take $r$ as given and to choose an effort level $e$ he should solve:
+	\begin{align*}
+	\underset{e}{\max}\ e(R - r) - \frac{e^2}{2}
+	\end{align*}
+	the solution is $e^* = \min\{R - r, 1\}$. To choose $r$ such that the investor would be willing to accept take-it-or-leave offer, the entrepreneur should solve:
+	\begin{align*}
+	\underset{r}{\max}\ e^*(R-r) - \frac{e^{*2}}{2}\\
+	s.t.\ e^*r - K \ge 0
+	\end{align*}
+	If $e^* = 1$ then obviously $r^* = \max\{K, R-1\}$. If $e^* = R - r$ then
+	\begin{align*}
+	\underset{r}{\max}\ \frac{(R - r)^2}{2}\\
+	s.t.\ r(R - r) - K \ge 0\\
+	r^2 - rR + K \le 0\\
+	\frac{R - \sqrt{R^2 - 4K}}{2} \le r \le \frac{R + \sqrt{R^2 - 4K}}{2}
+	\end{align*}
+	Note that $R^2 - 4K > 0$ guarantees existence of $\sqrt{R^2 - 4K}$. Since we assumed that $R - r > 0$ then $r^* = \frac{R - \sqrt{R^2 - 4K}}{2}$. The solution is
+	\begin{align*}
+	e = \begin{cases}
+	1, K \le R - 1\\
+	\frac{R + \sqrt{R^2 - 4K}}{2}, K > R - 1
+	\end{cases} r = \begin{cases}
+	R - 1, K \le R - 1\\
+	\frac{R - \sqrt{R^2 - 4K}}{2}, K > R - 1
+	\end{cases}
+	\end{align*}
+	\item Now the entrepreneur should solve:
+	\begin{align*}
+	\underset{r}{\max}\ e^*(R - r) - \frac{e^{*2}}{2}\\
+	s.t.\ e^*r - (K - w) \ge 0
+	\end{align*}
+	If we assume that $e = \frac{R + \sqrt{R^2 - 4(K - w)}}{2} \le 1$ then expected profit is
+	\begin{align*}
+	V(w) = \frac{\left(R + \sqrt{R^2 - 4(K - w)}\right)^2}{8}
+	\end{align*}
+	\begin{align*}
+	V'(w) = \frac{R + \sqrt{R^2 - 4(K - w)}}{\sqrt{R^2 - 4(K - w)}} \ge 0\\
+	V''(w) = \frac{1 - \frac{2R}{\sqrt{R^2 - 4(K - w)}}}{R^2 - 4(K - w)} \le 0
+	\end{align*}
+	Interpretation: if the entrepreneur has more wealth then his expected wealth will be more (surprisingly). And the less initial wealth of entrepreneur is, the more he is benefited from the loan.
+\end{enumerate}
+
+
+\section*{2 Raising Liability Rule}
+	We consider a lender-borrower relationship under moral hazard. The risk-neutral borrower wants to borrow I from a lender to finance a project with safe return $V$ . The project may with probability $1-e$ harm a third-party. The amount of safety care $e$ costs $\psi(e)$ to the borrower with $(\psi' > 0, \psi'' > 0, \psi''' > 0)$. The harm has value $h$. A financial contract is a pair $(\ubar{t}, \lbar{t})$ where $\lbar{t}$ (resp. $\ubar{t}$) is the borrower's reimbursement to the bank if	there is no (resp. one) environmental damage.
+	
+	\begin{enumerate}
+		\item Suppose that $e$ is observable. Compute the first-best level of safety care and assume
+		that the project is socially valuable when the interest rate is $r$.
+		\item Suppose now that $e$ is not observable. We suppose that the bank is competitive
+		and that the borrower has sufficient liability. Show that the first-best is still implementable if the bank must reimburse $h$ to the third-party in case of an accident.
+		\item Suppose that the bank must reimburse $c < h$ to the third-party. We denote by $w$
+		the initial assets of the borrower. Show that as $w$ diminishes, the first-best level of
+		effort can no longer be implemented.
+		\item Compute the second-best optimal level of effort maximizing the borrower's expected payoff subject to the bank's zero profit constraint, the borrower's incentive
+		constraint and his limited liability constraint.
+		\item Show that raising the bank's liability c leads to a lower expected welfare.
+		\item Show that this result no longer holds when the bank is a monopoly.
+	\end{enumerate}
+
+
+\textbf{Solution}
+
+
+\begin{enumerate}
+	\item Obviously, if neither bank nor borrower cares about the third-party and safety care is costly, the optimal care is $e = 0$. Denote $r$ the marginal interest rate i.e. if the investor borrows $I$, he should return $(1+r)I$. In this case, the optimal contract is:
+	\begin{align*}
+	\lbar{t} = \ubar{t} &= V\\
+	e &= 0
+	\end{align*}
+\end{enumerate}
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\section*{3 Contracting under Coercion}
+	A firm wishes to employ an agent. The agent has limited liability so wages are
+	nonnegative, but the firm can punish the agent in a way that is unproductive (e.g. by
+	humiliating him). The firm also can lower the worker's outside option by purchasing
+	"guns" to harass the agent. More precisely, the timing is:
+	\begin{enumerate}
+	\item The firm chooses the level of guns, $g$, at cost $k(g)$.
+	\item The firm offers a contract $\langle w(y), p(y)\rangle$ to the agent, where $y \in \{L, H\} = \{0, 1\}$ is the output, $w \ge 0$ is the wage, and $p \ge 0$ is the nonpecuniary punishment. If the
+	agent rejects the contract, he receives $\ubar{u}-g$.
+	\item If the agent accepts the contract, he chooses effort $a \in [0, 1]$ at cost $c(a)$, giving rise
+	to output $\prob (y = H) = a$.
+	\end{enumerate}
+
+
+Payoffs for the firm and worker are:
+\begin{align*}
+\Pi = zy - w - k(g)\\
+U = w - p -c(a)
+\end{align*}
+where $z$ is the price of output. For simplicity, suppose $k(\cdot)$ and $c(\cdot)$ are increasing,
+convex and satisfy the appropriate Inada conditions (so we don't have to worry about
+boundary problems).
+\begin{enumerate}[(a)]
+\item Write down the firm's problem subject to the $(PC)$ constraint and the $(IC)$ constraint.
+\item Simplify the problem using the first-order approach. Is this approach valid here?
+\item Argue that the optimal contract has $p_H = 0$ and $w_L = 0$, and that the $(PC)$ constraint binds.
+\item Use the $(PC)$ and $(IC)$ constraints to write profits as follows:
+\begin{align*}
+\Pi = za - ac(a) + a(1-a)c'(a) - a\ubar{u} + ag-k(g)
+\end{align*}
+Henceforth, let us assume $\Pi$ is concave in $a$. For $x \in \mathscr{R}^n$, $t \in \mathscr{R}^n$, a function $f(x, t)$ is supermodular in $(x, t)$ if all the cross-partial derivatives are positive. Topkis proved that
+if $f(x, t)$ is supermodular then the optimal solution
+\begin{align*}
+x(t) = argmax_xf(x, t)
+\end{align*}
+is increasing in the parameter $t$.
+\item How does the optimal choice of $a$ and $g$, ($a^*(z, u), g^*(z, \ubar{u})$), vary in the price of
+output and the outside option? Provide an intuition.
+\end{enumerate}
+
+
+\textbf{Solution}
+
+\begin{enumerate}[(a)]
+	\item 
+\end{enumerate}
+
+\section*{4 Moral Hazard in Teams}
+	Consider Holmstrom's model of moral hazard in teams. There are $N > 1$ agents that
+	work in a team. They exert efforts $e_i \ge 0, i = 1, \dots,N$ to jointly produce the output $x(e_1,\dots, e_N )$, where $x(e_1,\dots,  e_N )$ is increasing differentiable function of each effort $e_i$. For each agent,
+	the cost of exerting an effort $e$ is given by an increasing, differentiable and convex function
+	$c(e)$. Each agent observes her own effort and total output, but not the efforts of the other
+	agents, so they cannot contract on the effort level.
+	\begin{enumerate}
+	\item Characterize the first-best (i.e., full information) levels of efforts $e_i, i = 1, \dots, N$
+	\item Assume that the agents agreed on a differentiable balanced-budget sharing rule
+	$\{t_i(x)\}_{i=1, \dots, N}$ . That is, agent $i$ receives $t_i(x)$, which yields her the payoff of
+	\begin{align*}
+	u_i = t_i(x(e_1, \dots, e_N )) - c(e_i),
+	\end{align*}
+	and the transfers to all agents exactly exhaust the budget
+	\begin{align}
+	\sum_{i=1}^N t_i(x) = x
+	\end{align}
+	Is there a differentiable balanced-budget sharing rule which allows to sustain the
+	efficient production level $x^*= x(e_1,\dots,e_N )$? Support your answer analytically.
+	Suggest an intuitive explanation.
+	\item Assume now that there is an $N + 1$-th actor in this game, a principal, who does
+	not contribute to the production but may be part of the sharing rule. Consider the
+	following differentiable sharing rule
+	\begin{align}
+	t_i(x) = x - \frac{N-1}{N}x(e_1,\dots, e_N) \text{ for } i = 1, \dots, N\\
+	t_{N+1}(x) = (N-1)(x(e_1, \dots, e_N) - x) 
+	\end{align}
+	\begin{enumerate}[i.]
+	\item Show that this sharing rule is not balanced among agents $1, \dots, N$, but balanced
+	among all $N + 1$ agents.
+	\item  Does this rule allow to attain the efficient production level? Justify your answer analytically.
+	\item  What is the role of the principal here? Does the principal receive any payoff
+	\end{enumerate}
+	in equilibrium?
+	\item Assume that the sharing rule is as in (b), but now the principal can collude with
+	one of the agents, say, agent $k$. That is, assume that the principal and agent $k$ can
+	write a secret contract maximizing their joint welfare. More specifically, consider a
+	contract that makes agent $k$ residual claimant on the joint surplus of her and the
+	principal (i.e., she would pay the principal a fixed fee, and maximize their joint
+	welfare). The other agents would not know about this collusion.
+	Suppose that first, the principal and agent $k$ decide whether to collude, then all
+	productive agents $1, \dots, N$ (including agent $k$) choose and exert efforts, and finally
+	the transfers are made according to the rule (2)-(3).
+	Is the sharing rule (2)-(3) susceptible to collusion (i.e., can the agents still attain
+	the efficient production level?) Prove your answer and support it by an intuitive explanation.
+	\end{enumerate}
+\end{document}
