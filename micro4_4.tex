@@ -231,7 +231,33 @@ output and the outside option? Provide an intuition.
 \textbf{Solution}
 
 \begin{enumerate}[(a)]
+	\item \begin{align*}
+	&\underset{(w_L, p_L), (w_H, p_H), g, a}{\max}\ a(z - w_H) - (1 - a) w_L - k(g)\\
+	s.t.\ &a(w_H - p_H) + (1 - a)(w_L - p_L) - c(a) \ge \ubar{u} - g\ (PC)\\
+	&w_H - p_H - (w_L - p_L) = c'(a)\ (IC)
+	\end{align*}
 	\item 
+	\item $(PC)$ binds because otherwise the principal can decrease $w_H$ and $w_L$ by the same value which does not affect $(IC)$ but objective function will increase. Principal's objective function is increasing in $a$, decreasing in $w_L$ and does not directly depend on $p_H$. While $(IC)$ implies that
+	$w_H + p_L - p_H - w_L = c'(a)$. Since $c'(a)$ is increasing function, it is optimal for principal to make the LHS of the aforementioned expression as large as possible. Obviously $p_H = 0$, it does not directly affect the objective function and $w_L = 0$, the objective function is decreasing in $w_L$.
+	\item \begin{align*}
+	&\Pi = az - aw_H - k(g)\\
+	&(PC) \to aw_H - (1 - a)p_L - c(a) = \ubar{u} - g\\
+	&(IC) \to w_H + p_L = c'(a)\\
+	&ac'(a) - p_L - c(a) = \ubar{u} - g\\
+	&p_L = ac'(a) - c(a) - \ubar{u} + g\\
+	&w_H = c'(a) - ac'(a) + c(a) + \ubar{u} - g\\
+	&\Pi = az - ac'(a) + a^2c'(a) - ac(a) - a\ubar{u} + ag - k(g)\\
+	&\Pi = az -a(1 - a)c'(a) - ac(a) - a\ubar{u} + ag - k(g)
+	\end{align*}
+	\item The profit function above is supermodular in $(a, g, z, -\ubar{u})$. Indeed,
+	\begin{align*}
+	\frac{\partial^2 \Pi}{\partial a \partial g} = 1 \ge 0\ \frac{\partial^2 \Pi}{\partial a \partial z} = 1 \ge 0\  
+	\frac{\partial^2 \Pi}{\partial a \partial( -\ubar{u})} = 1 \ge 0\\
+	\frac{\partial^2 \Pi}{\partial g \partial z} = 0 \ge 0 
+	\frac{\partial^2 \Pi}{\partial g \partial (-\ubar{u})} = 0 \ge 0   \\
+	\frac{\partial^2 \Pi}{\partial z \partial(-\ubar{u})} = 0 \ge 0
+	\end{align*}
+	Hence the optimal choice of $a$ and $g$ increases in price of output $z$ and decreases in outside option $\ubar{u}$. The more the price of the output is the more firm values output hence the more it will spend on guns to incentivize the worker to work, similarly it should exert more efforts once the price of output increases. When the outside option increases firm has to pay worker more and punish him less, hence the level of guns decreases as well as the level of effort.
 \end{enumerate}
 
 \section*{4 Moral Hazard in Teams}
