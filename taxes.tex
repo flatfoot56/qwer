@@ -1,0 +1,92 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+\section{Enforceability problem}
+\begin{align*}
+&\underset{\beta', e, y'}{\max}\ \pi = y'(1 - t) - \beta'(1-t)(1 - \gamma) + \gamma[e\theta - y' - c(e)] - pk(e\theta - y')\\
+&s.t.\ \frac{\delta \pi}{1 - \delta} \ge (1-t)\beta' + \gamma \beta\ (DE) 
+\end{align*}
+Using the (IC), (DE) becomes
+\begin{align*}
+\delta y'(1 - t - \gamma) + \delta \gamma e \theta - \delta p k(e \theta - y') \ge \gamma c(e) + \beta'(1-t)(1 - \gamma)
+\end{align*}
+Plugging it into the profit function, the problem becomes
+\begin{align*}
+\underset{e, y', \beta'}{\max}\ &y'(1 - t) - \beta'(1-t)(1 - \gamma) + \gamma[e\theta - y' - c(e)] - pk(e\theta - y')\\
+s.t.\ &\delta y'(1 - t - \gamma) + \delta \gamma e \theta - \delta p k(e \theta - y') \ge \gamma c(e) + \beta'(1-t)(1 - \gamma)\ \to \lambda \\
+& e\theta - y' \ge c(e) - (1 - t)\beta'\ \to \mu \\
+& \beta', y', e \ge 0\ \to \psi_1, \psi_2, \psi_3\ \\
+\end{align*}
+Then FOCs are 
+\begin{align}
+\frac{\partial \pi}{\partial e} &= \gamma \theta - \gamma c'(e)- \theta p k'(e \theta - y') + \lambda \delta \gamma \theta - \lambda \delta \theta pk'(e \theta - y') - \lambda \gamma c'(e) - \mu c'(e) + \psi_3= 0\label{eq1}\\
+\frac{\partial \pi}{\partial y'} &= (1 - t - \gamma)+pk'(e\theta - y') + \lambda \delta (1 - t - \gamma) +\lambda \delta pk'(e\theta - y') - \mu + \psi_2 = 0\label{eq2}\\
+\frac{\partial \pi}{\partial \beta'} &= -(1-t)(1-\gamma) - \lambda (1-t)(1-\gamma) + \mu(1 - t) + \psi_1= 0\label{eq3}\\
+&+\text{ slackness complementary conditions}\nonumber
+\end{align}
+Assume firstly $\beta' > 0, y' > 0, e > 0$ then $\psi_1 = 0, \psi_2 = 0, \psi_3= 0$ and hence from \eqref{eq3}:
+\begin{align*}
+(1 + \lambda)(1 - t) = \mu > 0\ \to e \theta - y' = c(e) - (1 - t)\beta'
+\end{align*}
+Then if the (DE) constraint does not bind, $\lambda = 0$ and FOCs imply:
+\begin{align*}
+\frac{\partial \pi}{\partial e}&=\theta - c'(e)- \frac{\theta p k'(e \theta - y')}{\gamma} - \frac{(1 - t)c'(e)}{\gamma}= 0\\
+\frac{\partial \pi}{\partial y'} &= (1 - t - \gamma)+pk'(e\theta - y') - (1-t) = 0
+\end{align*}
+\begin{align*}
+pk'(e\theta - y') = \gamma\\
+\frac{1 - t + \gamma}{\gamma}c'(e) = 0
+\end{align*}
+this implies $e = 0$ which contradicts to the premise. Assume that (DE) does bind. That means that $\lambda > 0$.
+\begin{align*}
+\frac{\partial \pi}{\partial e} &= (1 + \lambda \delta)(\gamma \theta - \theta p k'(e \theta - y')) - (1+\lambda)(1-t)(1+\gamma) c'(e) = 0\\
+\frac{\partial \pi}{\partial y'} &= (1+\lambda \delta)(1 - t - \gamma+pk'(e\theta - y')) - (1+\lambda)(1-t) = 0\\
+c'(e) &= \frac{(1+\lambda \delta)\theta(\gamma - pk'(e \theta - y'))}{(1+\lambda)(1-t)(1+\gamma)} = -\frac{\theta\lambda(1-\delta)}{(1+\lambda)(1+\gamma)} < 0
+\end{align*}
+hence $e < 0$ which also contradicts to the premise. Let us assume that $\beta' = 0$. Moreover, suppose that $e \theta - y' > c(e)\ \to \mu = 0$, and that the (DE) constraint does not bind. This case is equivalent to the case without the enforceability problem, thus, the optimal level of effort is determined by
+\begin{align*}
+c'(e) = \frac{(1 - t)\theta}{\gamma}
+\end{align*}
+Assuming that the (DE) binds, FOCs become
+\begin{align*}
+\frac{\partial \pi}{\partial e} &= (1 + \lambda \delta)(\gamma \theta - \theta p k'(e \theta - y')) -(1+ \lambda) \gamma c'(e)= 0\\
+\frac{\partial \pi}{\partial y'} &= (1 + \lambda \delta)(1 - t - \gamma+pk'(e\theta - y')) = 0\\
+&\text{if }1-t < \gamma \text{ then }c'(e) = \frac{(1+\lambda \delta)\theta(1-t)}{\gamma (1 + \lambda)}\\
+&pk'(e \theta - y') = -(1 - t - \gamma)
+\end{align*}
+Since for $\delta < 1$, $\frac{1+\lambda \delta}{1+\lambda} < 1$ then $e^*$ is smaller than in case without enforceability problem. (Note that $\lambda$ can be found from the DE constraint which is binding). 
+\end{document}
