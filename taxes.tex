@@ -35,7 +35,8 @@
 \def\myanga{45}% angle for the arc
 \def\myangb{195}
 \begin{document} % 
-\section{Enforceability problem}
+\section{Enough undeclared money to pay the worker under the table}
+\subsection{Enforceability problem}
 \begin{align*}
 &\underset{\beta', e, y'}{\max}\ \pi = y'(1 - t) - \beta'(1-t)(1 - \gamma) + \gamma[e\theta - y' - c(e)] - pk(e\theta - y')\\
 &s.t.\ \frac{\delta \pi}{1 - \delta} \ge (1-t)\beta' + \gamma \beta\ (DE) 
@@ -44,7 +45,7 @@ Using the (IC), (DE) becomes
 \begin{align*}
 \delta y'(1 - t - \gamma) + \delta \gamma e \theta - \delta p k(e \theta - y') \ge \gamma c(e) + \beta'(1-t)(1 - \gamma)
 \end{align*}
-Plugging it into the profit function, the problem becomes
+Then the problem is
 \begin{align*}
 \underset{e, y', \beta'}{\max}\ &y'(1 - t) - \beta'(1-t)(1 - \gamma) + \gamma[e\theta - y' - c(e)] - pk(e\theta - y')\\
 s.t.\ &\delta y'(1 - t - \gamma) + \delta \gamma e \theta - \delta p k(e \theta - y') \ge \gamma c(e) + \beta'(1-t)(1 - \gamma)\ \to \lambda \\
@@ -60,24 +61,27 @@ Then FOCs are
 \end{align}
 Assume firstly $\beta' > 0, y' > 0, e > 0$ then $\psi_1 = 0, \psi_2 = 0, \psi_3= 0$ and hence from \eqref{eq3}:
 \begin{align*}
-(1 + \lambda)(1 - t) = \mu > 0\ \to e \theta - y' = c(e) - (1 - t)\beta'
+(1 + \lambda)(1 - \gamma) = \mu > 0\ \to e \theta - y' = c(e) - (1 - t)\beta'
 \end{align*}
 Then if the (DE) constraint does not bind, $\lambda = 0$ and FOCs imply:
 \begin{align*}
-\frac{\partial \pi}{\partial e}&=\theta - c'(e)- \frac{\theta p k'(e \theta - y')}{\gamma} - \frac{(1 - t)c'(e)}{\gamma}= 0\\
-\frac{\partial \pi}{\partial y'} &= (1 - t - \gamma)+pk'(e\theta - y') - (1-t) = 0
+\frac{\partial \pi}{\partial e}&=\theta - c'(e)- \frac{\theta p k'(e \theta - y')}{\gamma} - \frac{(1 - \gamma)c'(e)}{\gamma}= 0\\
+\frac{\partial \pi}{\partial y'} &= (1 - t - \gamma)+pk'(e\theta - y') - (1-\gamma) = 0
 \end{align*}
 \begin{align*}
-pk'(e\theta - y') = \gamma\\
-\frac{1 - t + \gamma}{\gamma}c'(e) = 0
+pk'(e\theta - y') &= t\\
+c'(e) &= \theta(\gamma - t), \text{ if }\gamma \ge t\\
+\beta' &= \frac{c(e) - e \theta + y'}{1-t}
 \end{align*}
-this implies $e = 0$ which contradicts to the premise. Assume that (DE) does bind. That means that $\lambda > 0$.
+Assume that (DE) does bind. That means that $\lambda > 0$.
 \begin{align*}
-\frac{\partial \pi}{\partial e} &= (1 + \lambda \delta)(\gamma \theta - \theta p k'(e \theta - y')) - (1+\lambda)(1-t)(1+\gamma) c'(e) = 0\\
-\frac{\partial \pi}{\partial y'} &= (1+\lambda \delta)(1 - t - \gamma+pk'(e\theta - y')) - (1+\lambda)(1-t) = 0\\
-c'(e) &= \frac{(1+\lambda \delta)\theta(\gamma - pk'(e \theta - y'))}{(1+\lambda)(1-t)(1+\gamma)} = -\frac{\theta\lambda(1-\delta)}{(1+\lambda)(1+\gamma)} < 0
+\frac{\partial \pi}{\partial e} &= (1 + \lambda \delta)(\gamma \theta - \theta p k'(e \theta - y')) - (1+\lambda)c'(e) = 0\\
+\frac{\partial \pi}{\partial y'} &= (1+\lambda \delta)(1 - t - \gamma+pk'(e\theta - y')) - (1+\lambda)(1-\gamma) = 0\\
+c'(e) &= \frac{(1+\lambda \delta)\theta(\gamma - pk'(e \theta - y'))}{1+\lambda} = \frac{\theta((1-t)(1 + \lambda \delta) - (1+\lambda)(1 - \gamma))}{1+\lambda}\\
+pk'(e\theta - y') &= \frac{(1+\lambda)(1-\gamma)}{1+\lambda \delta} - (1 - t - \gamma)\\
+\beta' &= \frac{\delta y'(1 - t - \gamma) + \delta \gamma e \theta - \delta p k(e \theta - y') - \gamma c(e)}{(1-t)(1-\gamma)} = \frac{c(e) - e \theta + y'}{1-t}
 \end{align*}
-hence $e < 0$ which also contradicts to the premise. Let us assume that $\beta' = 0$. Moreover, suppose that $e \theta - y' > c(e)\ \to \mu = 0$, and that the (DE) constraint does not bind. This case is equivalent to the case without the enforceability problem, thus, the optimal level of effort is determined by
+Let us assume that $\beta' = 0$. Moreover, suppose that $e \theta - y' > c(e)\ \to \mu = 0$, and that the (DE) constraint does not bind. This case is equivalent to the case without the enforceability problem, thus, the optimal level of effort is determined by
 \begin{align*}
 c'(e) = \frac{(1 - t)\theta}{\gamma}
 \end{align*}
@@ -89,4 +93,70 @@ Assuming that the (DE) binds, FOCs become
 &pk'(e \theta - y') = -(1 - t - \gamma)
 \end{align*}
 Since for $\delta < 1$, $\frac{1+\lambda \delta}{1+\lambda} < 1$ then $e^*$ is smaller than in case without enforceability problem. (Note that $\lambda$ can be found from the DE constraint which is binding). 
+
+
+Assume finally that $\mu > 0$. That means that $e\theta - y' = c(e)$. If the (DE) constraint is not binding then FOCs become
+\begin{align*}
+\frac{\partial \pi}{\partial e} &= \gamma \theta- \gamma c'(e) - \theta p k'(e \theta - y') - \mu c'(e) = 0\\
+\frac{\partial \pi}{\partial y'} &= (1 - t - \gamma)+pk'(e\theta - y') - \mu  = 0\\
+c'(e) &= \frac{\theta(1 - t - \mu)}{\mu + \gamma}, 1-t \ge \mu\\
+pk'(e\theta - y') &= \mu - (1 - t - \gamma)
+\end{align*}
+if the (DE) constraint is binding then 
+\begin{align*}
+\frac{\partial \pi}{\partial e} &= (1 + \lambda \delta)(\gamma \theta - \theta p k'(e \theta - y')) - (1+\lambda) \gamma c'(e) - \mu c'(e) = 0\\
+\frac{\partial \pi}{\partial y'} &= (1+\lambda \delta)(1 - t - \gamma+pk'(e\theta - y')) - \mu = 0\\
+c'(e) &= \frac{\theta(1-t)(1+\lambda \delta) - \mu}{(1 + \lambda)\gamma + \mu}\\
+pk'(e\theta - y') &= \frac{\mu}{1+\lambda \delta} - (1 - t- \gamma)
+\end{align*}
+\section{Not enough undeclared money}
+Consider the case $e\theta - y' < \beta$. Since it is less costly to pay the worker out of undeclared money, it is worth paying as much as possible out of undeclared money and then pay remaining amount out of declared profit. That means that 
+\begin{align*}
+e\theta - y' = (1 - \alpha) \beta\\
+\alpha = 1 - \frac{e \theta - y'}{\beta}
+\end{align*}
+The firm's profit becomes:
+\begin{align*}
+\pi = (y' - \beta')(1 - t) - \beta + e \theta - y' - pk(e \theta - y')
+\end{align*}
+Using (IC) $\beta = c(e) - \beta'(1-t)$ the profit function is
+\begin{align*}
+\pi = (y'-\beta')(1-t) - c(e) + \beta' (1-t) +e \theta -y' -pk(e \theta - y') = \\ =-y't - c(e) + e \theta -pk'(e \theta - y')
+\end{align*}
+\subsection{No credibility problems}
+Without enforceability problems, FOCs are
+\begin{align*}
+\frac{\partial \pi }{\partial e} &= -c'(e) + \theta - \theta p k'(e\theta - y') = 0\\
+\frac{\partial \pi}{\partial y'} &= -t + pk'(e \theta - y') = 0\\
+c'(e) &= \theta(1-t)\\
+pk'(e \theta -y') &= t
+\end{align*}
+\subsection{Enforceability problems}
+The (DE) constraint is
+\begin{align*}
+\frac{\delta \pi}{1 - \delta} &\ge (1 - t)\beta' + \gamma \beta\\
+-\delta y't - \delta c(e) + \delta e \theta -\delta pk'(e \theta - y') &\ge (1 - \delta)(1 - t)\beta' + (1 - \delta)\gamma c(e) - \gamma (1 - \delta )(1 - t)\beta'
+\end{align*}
+The problem becomes
+\begin{align*}
+\max\ &-y't - c(e) + e \theta -pk'(e \theta - y')\\
+s.t.\ &-\delta y't + \delta e \theta -\delta pk'(e \theta - y') \ge (1 - \gamma)(1 - \delta)(1 - t)\beta' + \gamma c(e)\to \lambda \ (DE)\\
+& e \theta - y' < c(e) - (1-t)\beta'\ \to \mu \\
+& e\theta - y' \ge 0\ \to \eta\\
+& \beta' \ge 0, y' \ge 0, e \ge 0\ \to \psi_1, \psi_2,\psi_3
+\end{align*}
+\begin{align}
+\frac{\partial \pi}{\partial y'} &= -t + pk'(e \theta - y') - \lambda \delta t + \lambda \delta pk'(e \theta - y') + \mu - \eta + \psi_2 = 0 \label{eq4}\\
+\frac{\partial \pi}{\partial e} &= -c'(e)+\theta - \theta pk'(e\theta - y')- \lambda \gamma c'(e) + \lambda \delta \theta - \lambda \delta \theta pk'(e \theta - y') - \mu \theta + \nonumber\\
+&+\mu c'(e) + \eta \theta+ \psi_3 = 0\label{eq5}\\
+\frac{\partial \pi}{\partial \beta'} &= - \lambda(1-\gamma)(1-\delta)(1-t) - \mu(1-t) + \psi_1 = 0\label{eq6}\\
+& \lambda, \mu, \eta, \psi_1, \psi_2, \psi_3 \ge 0 \label{eq7}\\
+&+\text{ slackness complementary conditions}\nonumber
+\end{align}
+Assume firstly that $\beta', y', e >0$, that means $\psi_1 = \psi_2=\psi_3 = 0$, consequently from \eqref{eq6} and \eqref{eq7}, $\lambda = \mu = 0$. If $e \theta - y' > 0$ then $\eta = 0$ and the solution is equivalent to the case without credibility problems. Now assume that $\psi_1 > 0\ \to \beta' = 0$, thus, implying $\mu = 0$, $\lambda = \frac{\psi_1}{(1-t)(1-\delta)(1-\gamma)} > 0$ hence the (DE) constraint binds. Then from the FOCs
+\begin{align*}
+c'(e) = \frac{(1 + \lambda \delta)\theta(1-t)}{1+\lambda}\\
+pk'(e\theta - y') = t
+\end{align*}
+and $\lambda$ can be found from the (DE) constraint.
 \end{document}
