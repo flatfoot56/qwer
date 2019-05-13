@@ -34,9 +34,6 @@
 \newcommand{\summa}{\sum_{i=1}^n}
 \usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
 \usepackage{tikz} % 
-\def\myrad{2cm}% radius of the circle
-\def\myanga{45}% angle for the arc
-\def\myangb{195}
 \begin{document} % 
 \section{Enough undeclared money to pay the worker under the table}
 This is the case once $e\theta - y' \ge \beta$.
@@ -68,14 +65,14 @@ Then FOCs are
 \end{align}
 
 \subsubsection{The declared bonus is zero}
-It is clear that if $e \theta - y' \ge c(e)$ then $\beta' = 0$. Indeed, assume the contrary, $\beta' > 0$ then the principal can slightly decrease $\beta'$. This cannot violate the (DE) constraint. Additionally, if $e\theta - y' \ge c(e)$ then it is for sure $\ge c(e) - (1 - t)\beta'$ for $\beta'>0$, thus, this constraint cannot be violated either. But the profit increases. Hence, $\beta'>0$ is not optimal. Intuitively: if there is enough undeclared money to fully compensate the worker's cost, it is optimal to pay this compensation under the table, since this income is tax free for the worker. Though, it could be not optimal for the firm to make the difference $e\theta - y'$ too large (e.g. more than $c(e)$) because the punishment for tax evasion depends positively upon it, but if it is optimal then the declared bonus is zero.
+It is clear that if $e \theta - y' \ge c(e)$ then $\beta' = 0$. Indeed, assume the contrary, $\beta' > 0$ then the principal can slightly decrease $\beta'$. This cannot violate the (DE) constraint. Additionally, if $e\theta - y' \ge c(e)$ then it is for sure $\ge c(e) - (1 - t)\beta'$ for $\beta'>0$, thus, this constraint cannot be violated either. But the profit increases. Hence, $\beta'>0$ is not optimal. Intuitively: if there is enough undeclared money to fully compensate the worker's cost, it is optimal to pay this compensation under the table, since this income is tax free for the worker. The question is, what if it is not optimal for the firm to make the difference $e\theta - y'$ too large (e.g. more than $c(e)$) because the punishment for tax evasion depends positively upon it?
 
 
-Let us consider this case. Moreover, suppose that $e \theta - y' > c(e)\ \to \mu = 0$, and that the (DE) constraint does not bind. This case is equivalent to the case without the enforceability problem, thus, the optimal level of effort and the amount of declared revenue are determined by
-\begin{align*}
-c'(e) &= \frac{(1 - t)\theta}{\gamma}\\
-pk'(e\theta - y') &= - (1 - t - \gamma)
-\end{align*}
+Let us firstly consider the case $\beta'=0$. Moreover, suppose that $e \theta - y' > c(e)\ \to \mu = 0$, and that the (DE) constraint does not bind. This case is equivalent to the case without the enforceability problem, thus, the optimal level of effort and the amount of declared revenue are determined by
+\begin{align}
+c'(e) &= \frac{(1 - t)\theta}{\gamma}\label{eq4}\\
+pk'(e\theta - y') &= - (1 - t - \gamma) \label{eq5}
+\end{align}
 Assuming that the (DE) binds, FOCs become
 \begin{align*}
 \frac{\partial \pi}{\partial e} &= (1 + \lambda \delta)(\gamma \theta - \theta p k'(e \theta - y')) -(1+ \lambda) \gamma c'(e)= 0\\
@@ -88,14 +85,15 @@ Assuming that the (DE) binds, FOCs become
 	\item An increase in $\theta$ increases $e \theta$ directly and indirectly (through FOC), however, now the indirect influence is smaller than in case of the absence of the enforceability problem. This is because the increase in $e$ tightens the (DE) constraint, so it is harder for the firm to incentivize efforts. Also, $y'$ should increase to keep the FOC satisfied.
 	\item An increase in $\gamma$ (or $t$) decreases $e$ through FOC, however, now the decrease is smaller than in case of the absence of the enforceability problem. $y'$ should also decrease to keep FOC satisfied.
 	\item An increase in $\lambda$ also decreases $e$: once the "shadow" price of relaxing the (DE) constraint goes up - it becomes more costly to incentivize effort. Furthermore, comparing cases $\lambda = 0$ and $\lambda > 0$ we can conclude that if the latter case implies less effort, but in both cases $pk'(e\theta - y') = -(1 - t - \gamma)$ then, other things equal, $y'$ in the latter case should also be smaller. That is the presence of the (DE) constraint not only decreases the effort level but also decreases the declared revenue.
+	\item An increase in $p$ does not affect $e$, but increases $e \theta - y'$, which means that $y'$ increases.
 \end{itemize}
 Assume that $\mu > 0$. That means that $e\theta - y' = c(e)$. If the (DE) constraint is not binding then FOCs become
-\begin{align*}
-\frac{\partial \pi}{\partial e} &= \gamma \theta- \gamma c'(e) - \theta p k'(e \theta - y') + \mu \theta - \mu c'(e) = 0\\
-\frac{\partial \pi}{\partial y'} &= (1 - t - \gamma)+pk'(e\theta - y') - \mu  = 0\\
-c'(e) &= \frac{\theta(1 - t)}{\mu + \gamma}\\
-pk'(e\theta - y') &= \mu - (1 - t - \gamma)
-\end{align*}
+\begin{align}
+\frac{\partial \pi}{\partial e} &= \gamma \theta- \gamma c'(e) - \theta p k'(e \theta - y') + \mu \theta - \mu c'(e) = 0\nonumber\\
+\frac{\partial \pi}{\partial y'} &= (1 - t - \gamma)+pk'(e\theta - y') - \mu  = 0\nonumber\\
+c'(e) &= \frac{\theta(1 - t)}{\mu + \gamma}\label{eq6}\\
+pk'(e\theta - y') &= \mu - (1 - t - \gamma)\label{eq7}
+\end{align}
 if the (DE) constraint is binding then 
 \begin{align*}
 \frac{\partial \pi}{\partial e} &= (1 + \lambda \delta)(\gamma \theta - \theta p k'(e \theta - y')) - (1+\lambda) \gamma c'(e)+ \mu \theta - \mu c'(e) = 0\\
@@ -104,16 +102,11 @@ c'(e) &= \frac{\theta(1-t)(1+\lambda \delta)}{(1 + \lambda)\gamma + \mu}\\
 pk'(e\theta - y') &= \frac{\mu}{1+\lambda \delta} - (1 - t- \gamma)
 \end{align*}
 
-Now it is unclear, whether the (DE) constraint causes an increase or a decrease in $e$. It depends on the relationship between $\gamma$ and $\frac{\delta}{1-\delta} \mu$: 
+Denote $e_{\mu = 0}(e_{\mu > 0}), y'_{\mu=0}(y'_{\mu>0})$ the effort level and the declared revenue in case $\mu = 0\ (\mu > 0)$. Then from \eqref{eq4} and \eqref{eq6} it follows that $e_{\mu >0} \le e_{\mu = 0}$. However from \eqref{eq5} and \eqref{eq7}:
 \begin{align*}
-\text{if } \gamma > \frac{\delta}{1-\delta}\mu \text{  then  } \frac{\theta(1-t)}{\mu + \gamma} > \frac{\theta(1-t)(1 + \lambda \delta)}{(1 + \lambda)\gamma + \mu},
-\end{align*} hence, the presence of the (DE) constraint decreases the level of effort. If $\gamma \le \frac{\delta}{1-\delta}\mu$ then $e$ either increases or remains unchanged.
-The comparative statics are the following:
-\begin{itemize}
-	\item As always, increase in $\theta$ increases $e$ and $y'$. Now the increase in $e$ is even smaller (compare to the case $\mu = 0$) because of additional shadow cost of keeping the constraint $e\theta - y' = c(e)$ bound. 
-	\item The effect of increasing $\gamma$ (or $t$) qualitatively is the same as in case of $\mu = 0$.
-	\item The effect on $e$ of increasing $\lambda$ is ambiguous and depends on the sign of $\gamma - \frac{\delta}{1-\delta}\mu$.
-\end{itemize}
+c(e_{\mu > 0}) = e_{\mu>0}\theta - y'_{\mu>0} \ge e_{\mu=0}\theta - y'_{\mu=0} \ge c(e_{\mu=0})
+\end{align*}
+which means that $e_{\mu>0} \ge e_{\mu = 0}$ which is impossible unless $\mu \neq 0$. Thus, $\underline{\mu = 0}$.
 \subsubsection{The declared bonus is positive}
 If $c(e) - (1-t)\beta' \le e \theta - y' < c(e)$ then $\beta'$ can (and should) be positive.
 Assuming in addition $y' > 0, e > 0$ then $\psi_1 = 0, \psi_2 = 0, \psi_3= 0$ and hence from \eqref{eq3}:
@@ -130,40 +123,112 @@ c'(e) &= \theta(1 - t)\\
 pk'(e\theta - y') &= t\\
 \beta' &= \frac{c(e) - (e\theta - y')}{1-t}
 \end{align*}
-The comparative statics are the following:
-\begin{itemize}
-\item An increase in $\theta$ increases $e$, 
-it also increases the declared revenue $y'$ to keep the FOC satisfied, consequently it increases the declared bonus $\beta'$ ($e \theta - y'$ remains unchanged and $c(e)$ goes up).
-\item An increase in $t$ decreases $e$ and $y'$, while its affect on the declared bonus $\beta'$ is ambiguous: it decreases both the numerator and the denominator, so the affect can be of both signs.
-\item The price of money laundering $\gamma$ affects neither the optimal level of effort nor the amount of declared revenue because the whole undeclared revenue is paid as a black bonus to the worker.
-\end{itemize}
+
+
+Denote this effort level and corresponding declared revenue as $e_{\beta' >0}$ and $y'_{\beta'>0}$ respectively. Also denote the effort level and corresponding revenue from \eqref{eq4} and \eqref{eq5} as $e_{\beta'=0}, y'_{\beta'=0}$. It follows that
+\begin{align*}
+e_{\beta'=0} &> e_{\beta'>0}\\
+e_{\beta'>0}\theta - y'_{\beta'>0} &> e_{\beta'=0}\theta - y'_{\beta'=0} \ge c(e_{\beta'=0})
+\end{align*}
+which is possible only if $e_{\beta'>0}\theta - y'_{\beta'>0} \ge c(e_{\beta'>0})$ but this case has been considered above and implies that $\beta' = 0$.
 
 
 Assume that (DE) does bind. That means that $\lambda > 0$.
 \begin{align*}
 \frac{\partial \pi}{\partial e} &= (1 + \lambda \delta)(\gamma \theta - \theta p k'(e \theta - y')) - (1+\lambda)c'(e) + (1+\lambda)(1-\gamma)\theta = 0\\
 \frac{\partial \pi}{\partial y'} &= (1+\lambda \delta)(1 - t - \gamma+pk'(e\theta - y')) - (1+\lambda)(1-\gamma) = 0\\
-c'(e) &= \frac{(1+\lambda \delta)\theta(\gamma - pk'(e \theta - y'))+ (1+\lambda)(1-\gamma)\theta}{1+\lambda} = \frac{\theta(1-t)(1 + \lambda \delta)}{1+\lambda}\underset{\delta < 1}{<} \theta(1-t)\\
-pk'(e\theta - y') &= \frac{(1+\lambda)(1-\gamma)}{1+\lambda \delta} - (1 - t - \gamma)\\
-\beta' &= \frac{\delta y'(1 - t - \gamma) + \delta \gamma e \theta - \delta p k(e \theta - y') - \gamma c(e)}{(1-t)(1-\gamma)} = \frac{c(e) - (e \theta - y')}{1-t}
+c'(e) &= \frac{(1+\lambda \delta)\theta(\gamma - pk'(e \theta - y'))+ (1+\lambda)(1-\gamma)\theta}{1+\lambda} = \frac{\theta(1-t)(1 + \lambda \delta)}{1+\lambda}\\
+pk'(e\theta - y') &= \frac{(1+\lambda)(1-\gamma)}{1+\lambda \delta} - (1 - t - \gamma)
 \end{align*}
-The comparative statics are the following:
-\begin{itemize}
-\item An increase in $\theta$ increase $e$, but less than in case of the absence of the enforceability problem, because an increase in $e$ tightens the (DE) constraint.
-\item The optimal level of effort still does not depend on the cost of money laundering. However, now it positively affects $y'$ i.e. an increase in $\gamma$ causes the increase in $y'$, because an increase in $\gamma$ tightens the (DE) constraint and $y'$ should be increased to keep it satisfied.
-\end{itemize}
-The results of this section are summarized by the table below:
-\begin{center}
+
+
+Using the same logic, one can show that this case also implies $e \theta - y' \ge c(e)$ which, in turns, means that $\underline{\beta' = 0}$.
+
+In conclusion, if there is enough money to pay the worker under the table, the declared bonus is zero.
+
+The results of this section are summarized by the table below
+\begin{center} 
 	\begin{tabular}{ |c|c|c|c|c|c| } 
-		\hline
-		 & \makecell{$\mu = 0$\\$\lambda>0$}&\makecell{$\mu = 0$\\$\lambda=0$}&\makecell{$\mu > 0$\\$\lambda>0$}&\makecell{$\mu > 0$\\$\lambda=0$} \\
-		\hline
-		$\beta' = 0$ & \makecell{$c'(e) = \frac{(1+\lambda\delta)\theta(1-t)}{\gamma(1 + \lambda)}$\\\\$pk'(e\theta - y') =$\\$ -(1 - t - \gamma)$} & \makecell{$c'(e) = \frac{\theta(1-t)}{\gamma}$\\\\$pk'(e\theta - y') =$\\$ -(1 - t - \gamma)$}&\makecell{$c'(e) = \frac{\theta(1-t)(1+\lambda\delta)}{(1+\lambda)\gamma + \mu}$\\\\$pk'(e\theta - y') =$\\$ \frac{\mu}{1+\lambda\delta}-(1 - t - \gamma)$}&\makecell{$c'(e) = \frac{\theta(1-t)}{\mu +\gamma}$\\\\$pk'(e\theta - y') =$\\$\mu -(1 - t - \gamma)$} \\ 
-		\hline
-		$\beta' >0$ & \cellcolor[HTML]{B2BEB5}& \cellcolor[HTML]{B2BEB5}&\makecell{$c'(e) = \frac{\theta(1-t)(1+\lambda\delta)}{1+\lambda}$\\\\$pk'(e\theta - y') =$\\$\frac{(1+\lambda)(1-\gamma)}{1+\lambda \delta} -(1 - t - \gamma)$} & \makecell{$c'(e) = \theta(1-t)$\\\\$pk'(e\theta - y') =t$} \\ 
 		\hline 
-	\end{tabular}
+		& \makecell{$\lambda>0$}&\makecell{$\lambda=0$} \\ 
+		\hline 
+		$\beta' = 0$ & \makecell{$c'(e) = \frac{(1+\lambda\delta)\theta(1-t)}{\gamma(1 + \lambda)}$\\\\$pk'(e\theta - y') =$\\$ -(1 - t - \gamma)$} & \makecell{$c'(e) = \frac{\theta(1-t)}{\gamma}$\\\\$pk'(e\theta - y') =$\\$ -(1 - t - \gamma)$}\\
+		\hline
+	\end{tabular} 
 \end{center}
 \section{Not enough undeclared money}
+Consider the case $e\theta - y' < \beta = c(e) - (1-t)\beta'$. Since it is less costly to pay the worker out of undeclared money, it is worth paying as much as possible out of undeclared money and then pay the remaining amount out of declared profit. That means that 
+\begin{align*}
+e\theta - y' = (1 - \alpha) \beta\\
+\alpha = \left(1 - \frac{e \theta - y'}{\beta}\right)\cdot\mathbb{I}_{\{e \theta - y' < \beta\}}
+\end{align*}
+where
+\begin{align*}
+\mathbb{I}_{\{e \theta - y' < \beta\}} = \begin{cases}
+1, e\theta - y' < \beta\\
+0, \text{ otherwise}
+\end{cases}
+\end{align*}
+The firm's profit becomes:
+\begin{align*}
+\pi = (y' - \beta')(1 - t) - \beta\mathbb{I}_{\{e \theta - y' < \beta\}} + (e \theta - y')\mathbb{I}_{\{e \theta - y' < \beta\}} + \gamma(e\theta - y' - \beta + \beta \mathbb{I}_{\{e \theta -y' < \beta\}} -\\ -\mathbb{I}_{\{e \theta - y' < \beta\}}(e\theta - y')) - pk(e \theta - y')
+\end{align*}
+Using (IC) $\beta = c(e) - \beta'(1-t)$ the profit function is
+\begin{align*}
+\pi = (y'-\beta')(1-t) +(\mathbb{I}_{\{e \theta - y' < \beta\}} + \gamma(1-\mathbb{I}_{\{e \theta - y' < \beta\}}))(e \theta -y' - c(e) + (1-t)\beta')-pk(e \theta - y')
+\end{align*}
+Denote $\mathbb{I}_{\{e \theta - y' < \beta\}} + \gamma(1-\mathbb{I}_{\{e \theta - y' < \beta\}})$ as $\xi$. Note that
+\begin{align*}
+\xi = \begin{cases}
+1, e\theta - y' < \beta\\
+\gamma, \text{ otherwise}
+\end{cases}
+\end{align*}
+\subsection{No credibility problems}
+Without enforceability problems, FOCs are
+\begin{align*}
+\frac{\partial \pi }{\partial e} &= -\xi c'(e) + \xi \theta - \theta p k'(e\theta - y') = 0\\
+\frac{\partial \pi}{\partial y'} &= 1-t - \xi + pk'(e \theta - y') = 0\\
+c'(e) &= \theta(1-t)\\
+pk'(e \theta -y') &= -(1 - t - \xi)
+\end{align*}
+\subsection{Enforceability problems}
+The (DE) constraint is
+\begin{align*}
+\frac{\delta \pi}{1 - \delta} \ge (1 - t)\beta' + \alpha \beta + \gamma(1 - \alpha) \beta
+\end{align*}
+\begin{align*}
+\delta (y'-\beta')(1-t) +\delta \xi(e \theta -y' - c(e) + (1-t)\beta')-\delta pk(e \theta - y') \ge (1 - \delta)(1 - t)\beta' +\\
++ (1-\delta)(\alpha + \gamma(1 - \alpha))\beta\\
+\delta y'(1-t) +\delta \xi(e \theta -y')-\delta pk(e \theta - y') \ge ((1-\delta)(\alpha + \gamma(1 - \alpha)) +\delta \xi)c(e) +\\ +(1 - \delta \xi + (1 - \delta)(\alpha + \gamma(1 - \alpha)))(1-t)\beta'
+\end{align*}
+The problem becomes
+\begin{align*}
+\max\ &(y'-\beta')(1-t) +\xi(e \theta -y' - c(e) + (1-t)\beta')-pk(e \theta - y')\\
+s.t.\ &\delta y'(1-t) +\delta \xi(e \theta -y')-\delta pk(e \theta - y') \ge ((1-\delta)(\alpha + \gamma(1 - \alpha)) +\delta \xi)c(e) +\\&+(1 - \delta \xi + (1 - \delta)(\alpha + \gamma(1 - \alpha)))(1-t)\beta'\to \lambda \ (DE)\\
+& e \theta - y' < c(e) - (1-t)\beta'\ \to \mu \\
+& e\theta - y' \ge 0\ \to \eta\\
+& \beta' \ge 0, y' \ge 0, e \ge 0\ \to \psi_1, \psi_2,\psi_3
+\end{align*}
+\begin{align}
+\frac{\partial \pi}{\partial y'} &= 1-t-\xi + pk'(e \theta - y') + \lambda \delta (1 - t - \xi) + \lambda \delta pk'(e \theta - y') + \mu - \eta + \psi_2 = 0 \label{eq8}\\
+\frac{\partial \pi}{\partial e} &= -\xi c'(e)+\delta \xi \theta - \theta pk'(e\theta - y')- \lambda (\delta\xi + (1-\delta)(\alpha + \gamma(1 - \alpha))) c'(e) + \lambda \delta \theta - \nonumber\\ 
+&-\lambda \delta \theta pk'(e \theta - y') - \mu \theta + \mu c'(e) + \eta \theta+ \psi_3 = 0\label{eq9}\\
+\frac{\partial \pi}{\partial \beta'} &= -(1-\xi)(1-t) - \lambda(1 - \delta \xi + (1 - \delta)(\alpha + \gamma(1 - \alpha)))(1-t) - \mu(1-t) + \psi_1 = 0\label{eq10}\\
+& \lambda, \mu, \eta, \psi_1, \psi_2, \psi_3 \ge 0 \label{eq11}\\
+&+\text{ slackness complementary conditions}\nonumber
+\end{align}
+Assume firstly that $\beta', y', e >0$, also suppose that $e\theta - y' < \beta \to \xi = 1$, that means $\psi_1 = \psi_2=\psi_3 = 0$, consequently from \eqref{eq10} and \eqref{eq11}, $\lambda = \mu = 0$. If $e \theta - y' > 0$ then $\eta = 0$ and the solution is equivalent to the case without credibility problems. Thus, the optimal level of effort and the amount of declared revenue are determined by
+\begin{align*}
+c'(e) &= \theta(1 - t)\\
+pk'(e\theta - y') &= t
+\end{align*}
 
+
+Now assume that $\psi_1 > 0\ \to \beta' = 0$, implying $\mu = 0$, $\lambda = \frac{\psi_1}{(1 - \delta \xi + (1 - \delta)(\alpha + \gamma(1 - \alpha)))(1-t)}$$> 0$ hence the (DE) constraint binds. Then from the FOCs
+\begin{align*}
+c'(e) &= \frac{(1 + \lambda \delta)\theta(1-t)}{\xi+\lambda(\delta\xi + (1 - \delta)(\alpha + \gamma(1 - \alpha)))}\\
+pk'(e\theta - y') &= -(1 - t - \xi)
+\end{align*}
+and $\lambda$ can be found from the (DE) constraint.
 \end{document}
