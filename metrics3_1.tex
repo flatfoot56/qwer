@@ -1,0 +1,211 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+	{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathscr{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\newcommand{\yrseduc}{\textit{yrseduc}}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+		\begin{tabular}{r}
+			Danil Fedchenko, MAE 2020, group A \\
+		\end{tabular}
+	\end{flushright}
+	
+	
+	\begin{center}
+		Econometrics 3. Problem Set 1.
+	\end{center}
+	\section*{Problem 1}
+	5.8
+	\begin{enumerate}[(a)]
+		\item $\expect^{**}[Y|X] = \gamma X$ where $\gamma \in \underset{c}{\text{ argmax }} \expect[(Y - cX)^2]$. FOC:
+		\begin{align*}
+		\frac{\partial }{\partial c}: -2 \expect[(Y - \gamma X)X] = 0\\
+		\gamma = \frac{\expect[YX]}{\expect[X^2]}
+		\end{align*}
+		\item 
+		\begin{align*}
+		\expect[\expect^{**}[Y|X] - Y] = \expect\left[\frac{\expect[YX]}{\expect[X^2]}X - Y\right] = \frac{\expect[XY]\expect[X]}{\expect[X^2]} - \expect[Y]
+		\end{align*}
+		the expression above in general is not equal to 0, hence it is a biased predictor.
+		\item \begin{align*}
+		Cov(X, Y - \gamma X) = Cov(X, Y) - \gamma Var(X) = \expect[XY] - \expect[X]\expect[Y] - \expect[XY] +\\+ \frac{\expect[XY](\expect X)^2}{\expect[X^2]} = \frac{\expect[XY](\expect X)^2}{\expect[X^2]} - \expect[X]\expect[Y] \neq 0
+		\end{align*}
+		\item \begin{align*}
+		\expect\left[(Y - \frac{\expect[YX]}{\expect[X^2]}X)^2\right] = \expect[Y^2] - \frac{(\expect[XY])^2}{\expect[X^2]}
+		\end{align*}
+		\item When the BLP is used the minimized value $\expect[U^2]$ cannot be higher, since $\alpha + \beta X$ is the special case of $\gamma X$ with the constraint $\alpha = 0$. Of course, the more constrained minimization problem results in greater or equal solution comparing to the less constrained problem. If $\expect[Y]$ is used then
+		\begin{align*}
+		\expect[U^2] = \expect[(Y - \expect[Y])^2] = Var(Y) = \expect[Y^2] - (\expect[Y])^2
+		\end{align*}
+		and the result is ambiguous because if for example $Y = const$ (and $X \neq const$) then of course the marginal expectation method results in smaller $\expect[U^2]$, on the other hand, if $Y = X \neq const$ then the best proportional predictor yields the smallest $\expect[U^2]$.  
+	\end{enumerate}
+
+
+
+6.7
+
+\begin{enumerate}[(a)]
+	\item \begin{align*}
+	\expect[Y|X] = \expect[W|X] + X^2\expect[W|X] = 1 + X^2
+	\end{align*}
+	since $X$ and $W$ are independent and $\expect[W|X] = \expect[W] = 1$.
+	\begin{align*}
+	&\expect^*[Y|X] = \alpha + \beta X\\
+	\text{where } &\beta = \frac{cov(X, Y)}{Var(X)},\ \alpha = \expect[Y] - \beta \expect[X]
+	\end{align*}
+	\begin{align*}
+	&cov(X, Y) = cov(X, W + WX^2) = cov(X, WX^2) = \expect[W]\expect[X^3] - &\expect[X]\expect[W]\expect[X^2] = 0\\
+	&\expect[Y] = 1 + 1 = 2\\
+	&\expect^*[Y|X] = 2
+	\end{align*}
+	\item 
+	\begin{align*}
+	\expect[Y|X] = 1 + X^2
+	\end{align*}\begin{align*}
+	cov(X, Y) = 1,\ Var(X) = 1\ \to \beta &= 1\\
+	\alpha &= 1\\
+	\expect^*[Y|X] &= 1 + X
+	\end{align*}
+	\item CEF does not change because it does not depend on distribution of $X$, whereas $\expect^*[Y|X]$ does depend on the distribution of $X$ and it changes.
+\end{enumerate}
+	\section*{Problem 2}
+	Let a random triple $(y,\ x_1,\ x_2)^T$ be distributed as
+	\begin{align*}
+	\norma \left( \begin{pmatrix}
+	0\\
+	0\\
+	0
+	\end{pmatrix}, \begin{pmatrix}
+	1 & \rho_{y1} & \rho_{y2}\\
+	\rho_{y1} & 1 & \rho_{12}\\
+	\rho_{y2} & \rho_{12} & 1
+	\end{pmatrix} \right)
+	\end{align*}
+	where $\rho_{y1}, \rho_{y2}, \rho_{12}$ are unknown, but it is known that they are not zero. A researcher claims
+	that $\expect[y|x_1, x_2] = \alpha_1 x_1 +\alpha_2x_2$ is the true regression, while $\expect[y|x_1] =\alpha_1x_1$ and $\expect[y|x_2] =\alpha_2x_2$ are not because of the omitted variables bias. Please comment on this claim.
+	
+	
+	
+	\textbf{Solution}
+	
+	
+	It is known that $y|x_1,x_2 \sim \norma(\mu, \Sigma)$ where
+	\begin{align*}
+	\mu = \begin{pmatrix}
+	\rho_{y1} & \rho_{y2}
+	\end{pmatrix} \begin{pmatrix}
+	1 & \rho_{12}\\
+	\rho_{12} & 1
+	\end{pmatrix}^{-1} \begin{pmatrix}
+	x_1\\
+	x_2
+	\end{pmatrix} = \frac{\rho_{y1} - \rho_{y2}\rho_{12}}{1 - \rho_{12}^2}x_1 + \frac{\rho_{y2} - \rho_{y1}\rho_{12}}{1 - \rho_{12}^2}x_2 = \alpha_1 x_1 + \alpha_2 x_2
+	\end{align*}
+	as the researcher claims.  
+	\begin{align*}
+	\expect[y|x_1] = \expect[\expect[y|x_1, x_2]|x_1] = \alpha_1 x_1 + \alpha_2\expect[x_2|x_1]
+	\end{align*}
+	Since $\expect[x_2|x_1] = \rho_{12}x_1 \neq 0$,  $\expect[y|x_1] \neq \alpha_1x_1$ as the researcher claims. The same arguments can be applied to show that $\expect[y|x_2] \neq \alpha_2 x_2$.
+	
+	
+	\section*{Problem 3}
+	A researcher draws a random sample of $n = 100$ from the population of high school students
+	and their results of a certain test. For each student $i = 1, \dots, n$ the researcher observes: $x_i$ - 
+	the type of school (0 if public, 1 if private), and $y_i$ - the test score (1, 2, or 3). The empirical
+	distribution of $(x; y)$ is the following:
+	
+	\begin{center} 
+		\begin{tabular}{ c|ccc|c } 
+			\hline 
+			& Test Score 1&Test Score 2&Test Score 3&Totals\\ 
+			\hline 
+			Public Schools & 0.20& 0.50& 0.10 &0.80\\
+			Private Schools& 0.05& 0.10& 0.05 &0.20\\
+			\hline
+			Totals & 0.25 &0.60 &0.15 &1.00\\
+			\hline
+		\end{tabular} 
+	\end{center}
+\begin{enumerate}
+	\item Provide an analog estimate the optimal predictor (under MSPE) of $y$ given $x$:
+	\item Let $\mathbb{BLP}[x|y]$ denote the best linear predictor (under MSPE) of $x$ given $y$.
+	Let $\widehat{\mathbb{BLP}}[x|y]$ denote the sample analog of $\mathbb{BLP}[x|y]$. Compute
+	\begin{align*}
+	\widehat{\mathbb{BLP}}[x|y = 3] - \widehat{\mathbb{BLP}}[x|y = 1]
+	\end{align*}
+	\item Discuss the statement: "The data indicate that enrolling in a private school
+	rather than a public school substantially increases the chance that a student obtains the
+	highest test score. The estimated effect of private school enrollment is to increase the
+	probability of scoring 3 from $\frac{1}{8}$ to $\frac{1}{4}$"
+\end{enumerate}
+
+
+\textbf{Solution}
+
+
+\begin{enumerate}
+	\item $\mathbb{BLP}[y|x] = \alpha + \beta x$. Where
+	\begin{align*}
+	\beta = \frac{cov(x, y)}{Varx}, \alpha = \expect[y] - \beta \expect[x]
+	\end{align*}
+	Due to analogy principle, $cov(x, y), Varx, \expect[y], \expect[x]$ can be estimated by using the empirical distribution. Namely,
+	\begin{align*}
+	\widehat{\expect[y]} &= \frac{1}{100} \left(25 + 2 \cdot 60 + 3 \cdot 15\right) = 1.9\\
+	\widehat{\expect[x]} &= 0.2
+	\end{align*}
+	\begin{align*}
+	&n^2\widehat{cov}(x, y) = 20(0 - 0.2)(1 - 1.9) + 50(0-0.2)(2-1.9) + 10(0-0.2)(3-1.9) + \\ &+5(1-0.2)(1-1.9) + 10(1-0.2)(2-1.9)+5(1-0.2)(3-1.9) = 2\\
+	&n^2\widehat{Var}x = 80(0-0.2)^2 + 20(1-0.2)^2 = 16
+	\end{align*}
+	\begin{align*}
+	\hat{\beta} = \frac{1}{8},\ \alpha = 1.875\\
+	\mathbb{BLP}[y|x] = \frac{15}{8} + \frac{1}{8}x
+	\end{align*}
+	\item $\mathbb{BLP}[x|y] = \gamma + \delta y$ where
+	\begin{align*}
+	\delta = \frac{cov(x, y)}{Var(y)},\ \gamma = \expect[x] - \delta \expect[y]
+	\end{align*}
+	\begin{align*}
+	\widehat{\mathbb{BLP}}[x|y = 3] - \widehat{\mathbb{BLP}}[x|y = 1] = 2 \hat{\delta}
+	\end{align*}
+	$n^2\widehat{Var}(y) = 25(1-1.9)^2+60(2-1.9)^2+15(3-1.9)^2 = 39$.
+	\begin{align*}
+	\widehat{\mathbb{BLP}}[x|y = 3] - \widehat{\mathbb{BLP}}[x|y = 1] = 2 \hat{\delta} = \frac{4}{39}
+	\end{align*}
+	\item In general the statement is false, because there can be a lot of threats for the internal validity which are not taken into account. For example, there can be omitted variables which bias the estimate, i.e. some other factors apart from type of school affect the students' performance. Moreover there can be an endogeneity problem which also biases the estimate and threats the internal validity of the model.
+	\section*{Problem 4}
+	See the solution in Ipython Notebook file.
+\end{enumerate}
+\end{document}
