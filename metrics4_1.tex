@@ -1,0 +1,133 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+	{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathcal{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\newcommand{\yrseduc}{\textit{yrseduc}}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\def\myrad{2cm}% radius of the circle
+\def\myanga{45}% angle for the arc
+\def\myangb{195}
+\begin{document} % 
+	\begin{flushright}
+		\begin{tabular}{r}
+			Danil Fedchenko, MAE 2020\\
+		\end{tabular}
+	\end{flushright}
+	
+	
+	\begin{center}
+		Econometrics 4. Problem Set 1.
+	\end{center}
+	\section*{Problem 1}
+	\textbf{Solution}
+	
+	\begin{enumerate}[a.]
+		\item We need to show that $\theta_0$ minimizes $\expect \{(y - m(x, \theta))^2|x\}$ over $\Theta$ for any $x$. Using equation (12.4):
+		\begin{align*}
+		&\expect \{(y - m(x, \theta))^2|x\} = \expect \{(y - m(x, \theta_0) + m(x, \theta_0) - m(x, \theta))^2|x\} =\\
+		&= \expect\{(y - m(x, \theta_0))^2|x\} + 2\expect\{(m(x, \theta_0) - m(x, \theta))u|x\} + \expect\{(m(x, \theta_0) - m(x, \theta))^2|x\} = \\
+		&= \expect\{(y - m(x, \theta_0))^2|x\} + 2(m(x, \theta_0) - m(x, \theta))\expect\{u|x\} + (m(x, \theta_0) - m(x, \theta))^2
+		\end{align*}
+		Since $\expect[u|x] = 0$ the expression above is equal to
+		\begin{align*}
+		\expect\{(y - m(x, \theta_0))^2|x\} + (m(x, \theta_0) - m(x, \theta))^2
+		\end{align*}
+		which is apparently positive if $\theta \neq \theta_0$, while for $\theta = \theta_0$ it is equal to 0. That is why it attains minimum once $\theta = \theta_0$.
+		\item The result in a. is stronger because it states that $\theta_0$ minimizes the average (over $y$) square of deviation between $y$ and $m(x, \theta)$ for each particular $x$, whereas the statement that $\theta_0$ minimizes $\expect[(y - m(x, \theta))^2]$ over $\Theta$ claims that $\theta_0$ minimizes the average square of deviation between $y$ and $m(x, \theta)$ and the average is taken both on $y$ and $x$.
+	\end{enumerate}
+
+
+\section*{Problem 2}
+Suppose $y = \beta x + \varepsilon$ where all variables are scalars, $x$ and $\varepsilon$ are independent,
+and the distribution of $\varepsilon$ is symmetric around $0$. For a random sample $\{x_i,y_i\}^n_{i=1}$ consider the
+following extremum estimator of $\beta$:
+\begin{align*}
+\hat{\beta} = \underset{b}{argmax} -\sum_{i=1}^n exp(y_i-bx_i) + exp(-y_i + bx_i)
+\end{align*}
+\begin{enumerate}[a)]
+\item Derive the asymptotic properties of $\hat{\beta}$, paying special attention to the identification
+condition.
+\item Compare this estimator with the OLS estimator in terms of asymptotic efficiency for the
+case when $x$ and $\varepsilon$ are normally distributed.
+\end{enumerate}
+
+
+
+\textbf{Solution}
+
+
+\begin{enumerate}[a)]
+	\item If the identification condition
+	\begin{align*}
+	\expect[e^{\varepsilon} + e^{-\varepsilon}] < \expect[e^{\varepsilon}e^{x(\beta-b)} + e^{-\varepsilon}e^{-x(\beta - b)}], \text{ for all }b \neq \beta
+	\end{align*}
+	holds, then $\hat{\beta} \overset{p}{\to} \beta$. Since $\varepsilon$ and $x$ are independent and moreover $\varepsilon$ and $-\varepsilon$ have similar distributions due to symmetry, then the identification condition becomes
+	\begin{align*}
+	2 \expect[e^{\varepsilon}] < \expect[e^{\varepsilon}] \expect[e^{x(\beta - b)} + e^{-x(\beta - b)}], \text{ for all }b \neq \beta
+	\end{align*}
+	Since $e^{\varepsilon}$ is almost surely positive then so is its expectation. Hence the condition above becomes
+	\begin{align*}
+	\expect[e^{x(\beta - b)} + e^{-x(\beta - b)}] > 2, \text{ for all }b \neq \beta\\
+	\expect\left[\frac{(e^{x(\beta-b)} - 1)^2}{e^{x(\beta - b)}}\right] > 0, \text{ for all }b \neq \beta
+	\end{align*}
+	Both numerator and denominator are almost surely positive hence so is their ratio. Thus, the identification condition holds which (coupled with some technical conditions for the validity of the uniform weak law of large numbers, which also hold for the exponential function) implies $\hat{\beta} \overset{p}{\to} \beta$. 
+	
+	
+	
+	Additionally, the conditions for the asymptotic normality hold and that means that
+	\begin{align*}
+	\sqrt{n}(\hat{\beta} - \beta) \overset{d}{\to} \norma(0, A_0^{-1}B_0A_0^{-1})
+	\end{align*}
+	where
+	\begin{align*}
+	&A_0 = \expect[x^2(e^{\varepsilon} + e^{-\varepsilon})] = 2\expect[x^2] \expect[e^{\varepsilon}]\\
+	&B_0 = \expect[x^2e^{2\varepsilon} + x^2e^{-2\varepsilon} - 2x^2] = \expect[x^2]\expect[(e^{\varepsilon} - e^{-\varepsilon})^2] = 2\expect[x^2](\expect[e^{2\varepsilon}] - 1)
+	\end{align*}
+	Thus,
+	\begin{align*}
+	\sqrt{n}(\hat{\beta} - \beta) \overset{d}{\to} \norma\left(0, \frac{\expect[e^{2 \varepsilon}]-1}{2\expect[x^2]\expect[e^{\varepsilon}]^2}\right)
+	\end{align*}
+	\item Suppose $x \sim \norma(\mu, \sigma_x^2)$ (wlog further assume that $\mu = 0$, otherwise we can introduce an intercept to the model) and $\varepsilon \sim \norma(0, \sigma^2_{\varepsilon})$ then
+	\begin{align*}
+	\sqrt{n}(\hat{\beta} - \beta) \overset{d}{\to} \norma\left(0, \frac{\sigma_{\varepsilon}^2}{\sigma^2_{x}}\right)
+	\end{align*}
+	Moreover, $2\varepsilon \sim \norma(0, 2\sigma^2_{\varepsilon})$ which means that the asymptotic variance for the estimator from a) is 
+	\begin{align*}
+	\frac{e^{\sigma^2_{\varepsilon}}-1}{2\sigma^2_xe^{\sigma^2_{\varepsilon}}}
+	\end{align*}
+	Since $\sigma^2_{\varepsilon} > 0$ then 
+	\begin{align*}
+	e^{-\sigma^2_{\varepsilon}} &> 1 - \sigma^2_{\varepsilon}\\
+	\frac{1}{2} - \frac{1}{2e^{\sigma^2_{\varepsilon}}} &< \frac{\sigma^2_{\varepsilon}}{2} < \sigma^2_{\varepsilon}
+	\end{align*}
+	that means that the asymptotic variance of the OLS estimate is greater, in other words, the estimator from a) is asymptotically more efficient than the OLS estimator.
+\end{enumerate}
+\end{document}
