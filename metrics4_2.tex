@@ -1,0 +1,290 @@
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes} % 
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}} 
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+	{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathcal{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\newcommand{\yrseduc}{\textit{yrseduc}}
+\usepackage[left=7mm, top=20mm, right=15mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\begin{document} % 
+	\begin{flushright}
+		\begin{tabular}{r}
+			Danil Fedchenko, MAE 2020\\
+		\end{tabular}
+	\end{flushright}
+	
+	
+	\begin{center}
+		Econometrics 4. Problem Set 2.
+	\end{center}
+\section*{Problem 1 (Wooldridge 13.2)}
+
+
+
+
+
+\textbf{Solution}
+
+
+
+\begin{enumerate}[a.]
+	\item \begin{align*}
+	l_i = \ln \left( \frac{1}{\sqrt{2 \pi \sigma_0^2}} e^{-\frac{(y_i - m(x_i, \beta))^2}{2 \sigma_0^2}} \right) = -\frac{1}{2 \sigma_0^2} (y_i - m(x_i, \beta))^2 - \frac{1}{2} \ln (2 \pi \sigma_0^2)
+	\end{align*}
+	The CMLE is defined as a solution to the problem:
+	\begin{align*}
+	\underset{\beta}{\max}\ -\frac{1}{2 \sigma^2_0} \summa (y_i - m(x_i, \beta))^2 - \frac{n}{2} \ln (2 \pi \sigma^2_0)
+	\end{align*}
+	and the solution is clearly identical to that of the problem:
+	\begin{align*}
+	\underset{\beta}{\min}\ \summa (y_i - m(x_i, \beta))^2
+	\end{align*}
+	\item 
+	\begin{align*}
+	s_i(\theta) = \frac{\partial l_i}{\partial \theta} = \begin{pmatrix}
+	\frac{1}{\sigma^2_0}(y_i - m(x_i, \beta))\nabla_{\beta} m(x_i, \beta)^T\\\\
+	\frac{1}{2 \sigma_0^4}(y_i - m(x_i, \beta))^2 - \frac{1}{2\sigma^2_0}
+	\end{pmatrix}
+	\end{align*}
+	\begin{align*}
+	\expect[s_i(\theta)|x_i] = \begin{pmatrix}
+	\frac{1}{\sigma^2_0}\nabla_{\beta} m(x_i, \beta)^T \expect[y_i - m(x_i, \beta)|x_i]\\\\
+	\frac{Var(y_i|x_i)}{2 \sigma^4_0} - \frac{1}{2\sigma^2_0}
+	\end{pmatrix} = 0
+	\end{align*}
+	First two moments of the normal distribution should be correctly specified.
+	\item From FOC: 
+	\begin{align*}
+	\hat{\sigma}^2 = \frac{1}{n}\summa (y_i - m(x_i, \hat{\beta}))^2
+	\end{align*}
+	\item \begin{align*}
+	H_i(\theta) = \begin{pmatrix}
+	-\frac{1}{\sigma^2} \nabla_{\beta} m(x_i, \beta)^T\nabla_{\beta} m(x_i, \beta) + & -\frac{1}{\sigma^4}\nabla_{\beta} m(x_i, \beta)^T (y_i - m(x_i, \beta))\\
+	+\frac{1}{\sigma^2}(y_i - m(x_i, \beta))\frac{\partial m(x_i, \beta)}{\partial \beta} & \\
+	-\frac{1}{\sigma^4}(y_i - m(x_i, \beta))\nabla_{\beta} m(x_i, \beta) & -\frac{1}{\sigma_0^6}(y_i - m(x_i, \beta))^2 + \frac{1}{2 \sigma^4}	
+	\end{pmatrix}
+	\end{align*}
+	\item \begin{align*}
+	-\expect[H_i(\theta)|x_i] = \begin{pmatrix}
+	\frac{1}{\sigma^2} \nabla_{\beta} m(x_i, \beta)^T\nabla_{\beta} m(x_i, \beta)& 0\\\\
+	0 & \frac{1}{2\sigma^4}
+	\end{pmatrix}
+	\end{align*}
+	\begin{align*}
+	&s_i(\theta)s_i(\theta)^T =\\&= \begin{pmatrix}
+	\frac{1}{\sigma^4}(y_i - m(x_i, \beta))^2 \nabla_{\beta} m(x_i, \beta)^T \cdot & \frac{1}{2\sigma^4}(y_i - m(x_i, \beta))\nabla_{\beta} m(x_i, \beta)^T \cdot\\
+	\cdot \nabla_{\beta} m(x_i, \beta) & \cdot \left(\frac{1}{\sigma^2}(y_i - m(x_i, \beta))^2 - 1\right)\\
+	 \frac{1}{2\sigma^4}(y_i - m(x_i, \beta))\nabla_{\beta} m(x_i, \beta) \cdot & \frac{1}{4 \sigma^8}(y_i - m(x_i, \beta))^4 - \frac{1}{2 \sigma^6}(y_i - m(x_i, \beta))^2\\
+	 \left(\frac{1}{\sigma^2}(y_i - m(x_i, \beta))^2 - 1\right)& + \frac{1}{4 \sigma^4}
+	\end{pmatrix}
+	\end{align*}
+	Using the fact that central odd moments of normal random variable are zero coupled with the fact that $\expect[(y_i - m(x_i, \beta))^4|x_i] = 3 \sigma^4$ one can get
+	\begin{align*}
+	\expect[s_i(\theta)s_i(\theta)^T|x_i] = \begin{pmatrix}
+	\frac{1}{\sigma^2} \nabla_{\beta} m(x_i, \beta)^T\nabla_{\beta} m(x_i, \beta) & 0\\\\
+	0 & \frac{1}{2\sigma^4}
+	\end{pmatrix} = - \expect[H_i(\theta)|x_i]
+	\end{align*}
+	as we sought.
+	\item The asymptotic variance of the MLE is equal to
+	\begin{align*}
+	Avar(\hat{\beta}) = \frac{1}{n}\left(-\expect[H_i(\theta)]\right)^{-1}_{11} = \frac{\sigma^2}{n} \expect[\nabla_{\beta} m(x, \beta)^T\nabla_{\beta} m(x, \beta)]^{-1}
+	\end{align*}. It can be consistently estimated by the analogy principle as:
+	\begin{align*}
+	\hat{Avar}(\hat{\beta}) = \sigma^2 \left(\summa \nabla_{\beta}m(x_i, \hat{\beta})^T\nabla_{\beta}m(x_i, \hat{\beta})\right)^{-1}
+	\end{align*}
+\end{enumerate}
+	\section*{Problem 2 (Wooldridge 13.3)}
+	
+	
+	
+	
+	\textbf{Solution}
+	
+	
+	
+	\begin{enumerate}[a.]
+		\item 
+		\begin{align*}
+		l_i = y_i \ln G(x_i, \theta_0) + (1 - y_i) \ln (1 - G(x_i, \theta_0))
+		\end{align*}
+		\item 
+		\begin{align*}
+		s_i &= \frac{\partial l_i}{\partial \theta} = y_i \frac{G'_{\theta}(x_i, \theta_0)}{G(x_i, \theta_0)} - (1 - y_i) \frac{G'_{\theta}(x_i, \theta)}{1 - G(x_i, \theta_0)}\\
+		\expect[s_i(\theta_0)|x_i] &= \frac{G'_{\theta}(x_i, \theta_0)}{G(x_i, \theta_0)} \expect[y_i|x_i] - \frac{G'_{\theta}(x_i, \theta)}{1 - G(x_i, \theta_0)} \expect[1-y_i|x_i] = \\
+		&=\frac{G'_{\theta}(x_i, \theta_0)}{G(x_i, \theta_0)} \prob(y_i=1|x_i) - \frac{G'_{\theta}(x_i, \theta)}{1 - G(x_i, \theta_0)} + \frac{G'_{\theta}(x_i, \theta)}{1 - G(x_i, \theta_0)} \prob(y_i=1|x_i) = \\
+		&=G'_{\theta}(x_i, \theta_0) - \frac{G'_{\theta}(x_i, \theta)}{1 - G(x_i, \theta_0)} + \frac{G'_{\theta}(x_i, \theta)G(x_i, \theta_0)}{1 - G(x_i, \theta_0)} = G'_{\theta}(x_i, \theta_0) - G'_{\theta}(x_i, \theta_0) = 0
+		\end{align*}
+		\item $G(x, \theta) = \Phi[x\beta + \delta_1(x\beta)^2 + \delta_2(x\beta)^3]$.
+		\begin{align*}
+		s_i(\beta) = \frac{y_i\varphi(x\beta + \delta_1(x\beta)^2 + \delta_2(x\beta)^3)}{\Phi(x\beta + \delta_1(x\beta)^2 + \delta_2(x\beta)^3)}\begin{pmatrix} x_i + 2\delta_1(x \beta)x_i + 3 \delta_2 (x\beta)^2x_i\\
+		(x \beta)^2\\
+		(x \beta)^3
+		\end{pmatrix}^T	-\\
+		- \frac{(1-y_i)\varphi(x\beta + \delta_1(x\beta)^2 + \delta_2(x\beta)^3)}{1-\Phi(x\beta + \delta_1(x\beta)^2 + \delta_2(x\beta)^3)}\begin{pmatrix} x_i + 2\delta_1(x \beta)x_i + 3 \delta_2 (x\beta)^2x_i\\
+		(x \beta)^2\\
+		(x \beta)^3
+		\end{pmatrix}^T
+		\end{align*}
+		Under restrictions:
+		\begin{align*}
+		s_i(\tilde{\theta}) = \left[ \frac{y_i\varphi(x\hat{\beta})}{\Phi(x\hat{\beta})}\right]\begin{pmatrix}
+		x_i\\
+		(x \hat{\beta})^2\\
+		(x \hat{\beta})^3
+		\end{pmatrix}^T	- \left[ \frac{(1-y_i)\varphi(x\hat{\beta})}{1 - \Phi(x\hat{\beta})}\right]\begin{pmatrix}
+		x_i\\
+		(x \hat{\beta})^2\\
+		(x \hat{\beta})^3
+		\end{pmatrix}^T
+		\end{align*} 
+		Where $\hat{\beta}$ is the estimate of $\beta$.
+		Define 
+		\begin{align*}\hat{\mathcal{I}} = \summa s_i(\tilde{\theta}) s_i(\tilde{\theta})^T
+		\end{align*}
+		then the LM statistics will be
+		\begin{align*}
+		LM = \left(\summa s_i(\tilde{\theta})\right)^T \hat{\mathcal{I}}^{-1} \left(\summa s_i(\tilde{\theta})\right)
+		\end{align*}
+		Under the null, the statistics above is distributed as $\chi^2(2)$.
+		\item To do VAT one should perform the following procedure: first of all, the estimate of $\beta$ should be obtained (e.g. using NLLS, or MLE, or probit), then these estimates should be plugged into $(x \beta)^2$ and $(x \beta)^3$. After that, one should estimate the model $y = \Phi(x\beta + \delta_1 (x \tilde{\beta}) + \delta_2(x \tilde{\beta})^3)$ (here $\tilde{\beta}$ are estimates from the first step) and to use Wald test to test the hypothesis $\delta_1 = \delta_2 = 0$.
+	\end{enumerate}
+
+
+\section*{Problem 3}
+Consider the following distribution where y has a support on $[0; +\infty)$:
+\begin{align*}
+f(y|x; \lambda) = \frac{y}{\lambda^2} e^{-\frac{y}{\lambda}}, \lambda = e^{ \beta x}
+\end{align*}
+where scalar $x$ has a standard normal distribution. A random sample is collected $\{x_i; y_i\}^n{i=1}$.
+\begin{enumerate}[(a)]
+\item Find conditional mean and variance of $y$.
+\item Write down the log-likelihood function. Derive FOCs for MLE estimate of $\beta$.
+\item If possible, derive asymptotic variance of MLE estimate of $\beta$.
+\end{enumerate}
+
+
+
+\textbf{Solution}
+
+
+
+\begin{enumerate}[(a)]
+	\item 
+	\begin{align*}
+	\expect[y|\lambda] &= \int_{0}^{+\infty} \left(\frac{y}{\lambda}\right)^2e^{-\frac{y}{\lambda}}dy = \lambda \int_{0}^{+\infty} u^2e^{-u}du = 2 \lambda\\
+	\expect[y^2|\lambda] &= \int_{0}^{+\infty} \frac{y^3}{\lambda^2}e^{-\frac{y}{\lambda}}dy = \lambda^2 \int_{0}^{+\infty} u^3e^{-u}du = 6 \lambda^2
+	\end{align*}
+	\item 
+	\begin{align*}
+	\ln \mathcal{L}(y, \lambda, x) = \summa \left( \ln y_i - 2 \ln \lambda_i - \frac{y_i}{\lambda_i} + \ln \mathbb{I}_{y_i \ge 0}(y_i)\right) = \\ =\summa \left( \ln y_i - 2 \beta x_i - y_ie^{-\beta x_i} + \ln \mathbb{I}_{y_i \ge 0}(y_i)\right)
+	\end{align*}
+	\begin{align*}
+	\frac{\partial \mathcal{L}(y, \lambda, x)}{\partial \beta} = \summa(-2x_i + y_ix_ie^{-\hat{\beta} x_i}) = 0
+	\end{align*}
+	\item 
+	\begin{align*}
+	-\expect[H_i(\beta)] = - \expect[yx^2e^{-\beta x}] = \expect[x^2e^{-\beta x}\expect[y|x]] = \expect[2x^2] = 2
+	\end{align*}
+	and hence
+	\begin{align*}
+	Avar(\hat{\beta}) = \frac{1}{n} \left(\expect[-H(\beta)]\right)^{-1} = \frac{1}{2n}
+	\end{align*}
+\end{enumerate}
+
+
+\section*{Problem 4}
+ We have a cross-sectional random sample $\{x_i; y_i\}$ where variables $x$ and $y$ are
+scalars. Consider the nonlinear regression:
+\begin{align*}
+y_i = \alpha x_i^{\beta} + u_i
+\end{align*}
+where scalar variables $x_i$ and $u_i$ are mutually idependent and follow i.i.d. process. $u_i$ has standard
+normal distribution. $x_i$ takes positive values and exponentially distributed with pdf $f(x) = e^{-x}$.
+$\alpha$ and $\beta$ are parameters.
+\begin{enumerate}[(a)]
+\item Write down the likelihood function for a finite sample of observed variables.
+\item Write down the FOC for NLS estimates of the model parameters.
+\item Find out the asymptotic variance-covariance matrix of NLS estimates of the parameters
+\end{enumerate}
+
+
+
+\textbf{Solution}
+
+
+\begin{enumerate}[(a)]
+	\item Firstly let us find $f(y_i|x_i)$.
+	\begin{align*}
+	F(y_i|x_i) &= \prob(\alpha x_i^{\beta} + u_i \le y_i|x_i) = \Phi(y_i - \alpha x_i^{\beta})\\
+	f(y_i|x_i) &= \varphi(y_i - \alpha x_i^{\beta})
+	\end{align*}
+	hence unconditional $f(y_i, x_i) = \varphi(y_i - \alpha x_i^{\beta}) e^{-x_i} \mathbb{I}_{x_i \ge 0}(x_i)$
+	and the likelihood function will be
+	\begin{align*}
+	\mathcal{L}(y, x, \alpha, \beta) = \prod_{i=1}^n \varphi(y_i - \alpha x_i^{\beta})e^{-x_i}\mathbb{I}_{x_i \ge 0}(x_i)
+	\end{align*}
+	\item FOCs for the NLSE are
+	\begin{align*}
+	\begin{cases}
+	\summa (y_i - \alpha x_i^{\beta})x_i^{\beta} = 0\\
+	\summa (y_i - \alpha x_i^{\beta})\alpha x_i^{\beta} \ln x_i = 0
+	\end{cases}
+	\end{align*}
+	\item As we can see, the FOCs for the CMLE are identical to that for the NLSE, hence estimates are identical. So we need to find $\expect[-H(\alpha, \beta)]$.
+	\begin{align*}
+	s_i(\alpha, \beta) &= \begin{pmatrix}
+	(y_i - \alpha x_i^{\beta})x_i^{\beta}\\
+	(y_i - \alpha x_i^{\beta})x_i^{\beta} \alpha \ln x_i
+	\end{pmatrix}\\
+	s_i(\alpha, \beta)s_i(\alpha, \beta)^T &= \begin{pmatrix}
+	(y_i - \alpha x_i^{\beta})^2x_i^{2\beta} & (y_i - \alpha x_i^{\beta})^3 x_i^{2\beta}\alpha \ln x_i\\
+	(y_i - \alpha x_i^{\beta})^3 x_i^{2\beta}\alpha \ln x_i & (y_i - \alpha x_i^{\beta})^2x_i^{2\beta}\alpha^2\ln^2(x_i)
+	\end{pmatrix}\\
+	\expect[s_i(\alpha, \beta)s_i(\alpha, \beta)^T|x_i] &= \begin{pmatrix}
+	x_i^{2\beta} & 0\\
+	0 & x_i^{2\beta}\alpha^2 \ln^2(x_i)
+	\end{pmatrix}\\
+	\expect[s_i(\alpha, \beta)s_i(\alpha, \beta)^T] &= \begin{pmatrix}
+	\expect[x^{2\beta}] & 0\\
+	0 & \alpha^2 \expect[x^{2\beta}\ln^2(x)]
+	\end{pmatrix}
+	\end{align*}
+	Thus, 
+	\begin{align*}
+	Avar \begin{pmatrix}
+	\hat{\alpha}\\
+	\hat{\beta}
+	\end{pmatrix} = \frac{1}{n}\begin{pmatrix}
+	\expect[x^{2\beta}] & 0\\
+	0 & \alpha^2 \expect[x^{2\beta}\ln^2(x)]
+	\end{pmatrix}^{-1}
+	\end{align*}
+\end{enumerate}
+\end{document}
