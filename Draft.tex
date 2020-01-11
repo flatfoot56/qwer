@@ -44,21 +44,23 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{definition}[theorem]{Definition}
 \title{Optimal recommender system with strategic alternatives \\ Market Design. Term Project}
 \date{}
 \author{Danil Fedchenko}
 \begin{document} % 
 	\maketitle
 	\section{Introduction}
-	Recommender systems became an integral part of our lives. The most widely known examples of such a kind of services include: \textit{TripAdvisor} which presents ranking on Hotels and Restaurants for customers based on previous users' experience; \textit{Yelp} which provides a forum with reviews and ranking for different businesses; \textit{Netflix} which recommends movies and series also based on information aggregated from different customers. All those services are very important since, on one hand, they provide people with information about options they otherwise may never be aware of, at no (or very low) cost. On the other hand, these services aggregate the information and may make rather precise recommendations to people which significantly reduce search cost for them. But here the interesting question arise: how to disclose the information, the platform aggregated, optimally? It turns out that the full disclosure may not be optimal from the social welfare point of view. This happens since users, who do not internalize the information externalities they impose to other agents, underexplore i.e. start to choose the safe option and do not try new things. 
+	Suppose you would like to find a restaurant to go out tonight what would you do? 
+	Recommender systems became an integral part of our lives. The most widely known examples of such a kind of services include: \textit{TripAdvisor} which presents ranking on Hotels and Restaurants for customers based on previous users' experience; \textit{Yelp} which provides a forum with reviews and ranking for different businesses; \textit{Netflix} which recommends movies and series also based on information aggregated from different customers. All those services are very important since, on one hand, they provide people with information about options they otherwise may never be aware of, at no (or very low) cost. On the other hand, these services aggregate the information and may make rather precise recommendations to people which significantly reduce search cost for them. But here the interesting question arises: how to disclose the information, the platform aggregated, optimally? It turns out that the full disclosure may not be optimal from the social welfare point of view. This happens since users, who do not internalize the information externalities they impose to other agents, underexplore i.e. start to choose the safe option and do not try new things. 
 	
 	
-	Several papers studied this question in different frameworks (see Literature review section) and the main conclusion that all those paper draw is that there should be an optimal level of information obfuscation in order to induce short-living and myopic users to experiment. However, in the previous work the quality of alternatives was supposed to be exogenous to the process of recommendation and learning. So, the recommender policy the platform implements cannot affect the realized quality of alternatives that users choose. But in reality, these alternatives are also strategic agents (think about restaurants or hotels), and in most cases these agents are way more sophisticated than users. These strategic agents may adjust the quality of the good to the recommender policy the platform is employing. And the platform, in turn, should take the strategic nature of alternatives into account once developing the policy. To my best knowledge, there are no papers that study the optimal recommender policy with strategic alternative, so this work may be considered as the first small step in this direction.
+	Several papers studied this question in different frameworks (see Literature review section) and the main conclusion that all those paper draw is that there should be an optimal level of information obfuscation in order to induce short-living and myopic users to experiment. However, in the previous works the quality of alternatives was supposed to be exogenous to the process of recommendation and learning. So, the recommender policy the platform implements cannot affect the realized quality of alternatives that users choose. But in reality, these alternatives are also strategic agents (think about restaurants or hotels), and in most cases these agents are way more sophisticated than users. These strategic agents may adjust the quality of the good to the recommender policy the platform is employing. And the platform, in turn, should take the strategic nature of alternatives into account once developing the policy. To my best knowledge, there are no papers that study the optimal recommender policy with strategic alternative, so this work may be considered as the first small step in this direction.
 	
 	
 	
 	
-	I build a model that embraces three main counterparties: the platform, the firm and users. Users are choosing between the good of \textit{ex-ante} unknown quality provided by the firm and a safe outside option. The firm can exert costly private effort to increase the quality of the service and the platform design the optimal recommender policy taking this into account. I demonstrate that the optimal policy is different once the firm becomes strategic. Also, I derive the optimal recommender policy in the class of simple "1-round" policies. The rest of the paper is organized as follows: the next section presents the literature review, section 3 describes the model, section 4 contains the main results, and last three sections embrace a brief discussion, possible extensions and directions for the future research, and a short conclusion.
+	I build a model that embraces three main parties: the platform, the firm and users. Users are choosing between the good of \textit{ex-ante} unknown quality provided by the firm and a safe outside option. The firm can exert costly private effort to increase the quality of the service and the platform designs the optimal recommender policy taking this into account. I demonstrate that the optimal policy is different once the firm becomes strategic. Also, I derive the optimal recommender policy in the class of simple "1-round" policies. The rest of the paper is organized as follows: the next section presents the literature review, section 3 describes the model, section 4 contains the main results, and last three sections embrace a brief discussion, possible extensions and directions for the future research, and a short conclusion.
 	\section{Literature Review}
 	This work is related to the strand of literature on recommender systems. One of the first papers which studied the optimal design of recommender system is the work by Kremer et al \cite{kremer2014}. The authors build a simple model with two alternatives which generate deterministic but \textit{ex-ante} unknown payoff. One of the alternatives is \textit{a priori} better, in the sense that the expected reward it generates is higher. The finite number of short-living consumers arrive sequentially and each chooses between either of two alternatives. The platform accumulates review and commits to the recommendation policy it uses to make recommendations to the newcomers. The papers, firstly, neatly in simple terms demonstrates why the full revelation policy may be suboptimal. Secondly, the optimal recommender policy is derived which has a "threshold" nature. That is, \textit{a priori} better alternative is recommended if its quality turns out to be higher than the certain threshold. Otherwise the other alternative is recommended, and then once both alternatives were tried the best one is recommended until the end. The setup of this model is very similar to my, however, it has a clear distinction. In my model the quality of the alternative is endogenous to the process of recommendation. This suggests that the threshold-like type of policies cannot be optimal in the presence of strategic alternatives because once the firm knows that it will be recommended forever, it does not have any incentives to maintain the high quality of the service it provides. 
 	
@@ -77,7 +79,7 @@
 	The common feature of all aforementioned models is some form of exogeneity of the quality of the alternative. In the next section I present a model with the strategic firm that can adjust the quality of the good to the learning process and recommendation policy.
 	
 	\section{Model}
-	In the model one firm is operating on the platform and provides customers with the service of ex-ante unknown quality. Unit mass of customers arrives sequentially, each customer decides between the risky good provided by the firm and the safe outside option (customers differ in their outside option). Customers base their decision on the recommendation that is sent by the recommender system. Those who consume the good report the quality to the platform and leave forever. The platform accumulates reviews and commits to the recommender policy that can be a function of past reviews.
+	In the model one firm is operating on the platform and provides customers with the service of ex-ante unknown quality at the exogenous price. Unit mass of customers arrives sequentially, each customer decides between the risky good provided by the firm and the safe outside option (customers differ in their outside option). Customers base their decision on the recommendation that is sent by the recommender system. Those who consume the good report the quality to the platform and leave forever. The platform accumulates reviews and commits to the recommender policy that can be a function of past reviews.
 	
 	
 	
@@ -87,11 +89,11 @@
 	1 - pe^{b} & pe^{b}\\
 	1-pe^{g} & pe^{g}
 	\end{pmatrix}$$
-	here the first row refers to the bad state and the second to the good state, $p$ is the exogenous parameter which reflects the probability that investment will be successful. For example, the element $(1, 2)$ of the matrix represents the probability that the firm will move to the state $g$ if its current state is $b$. 
+	here the first row refers to the bad state and the second to the good state, $p$ is the exogenous parameter which reflects the probability that investment will be successful. For example, the element $(1, 2)$ of the matrix represents the probability that the firm will move to the state $g$ if its current state is $b$. Firm is price taker, i.e. it charges all customers the exogenous price $\mathcal{P}$.
 	
 	
 	
-	If at time $t$ the share of the customers $s_t \in [0, 1]$ decides to consume the good then the firm gets $$\pi_t = s_t - ce$$ where $c$ is the cost of effort and $e \in \{0, 1\}$. The firm's objective is to choose an investing strategy that would maximize $$\expect_0\left[\sum_{t=0}^{\infty} \delta^t \pi_t \right]$$ subject to the recommender policy implemented by the platform.
+	If at time $t$ the share of the customers $s_t \in [0, 1]$ decides to consume the good then the firm gets $$\pi_t = \mathcal{P} s_t - ce$$ where $c$ is the cost of effort and $e \in \{0, 1\}$. The firm's objective is to choose an investing strategy that would maximize $$\expect_0\left[\sum_{t=0}^{\infty} \delta^t \pi_t \right]$$ subject to the recommender policy implemented by the platform.
 	\subsection{Customers}
 	
 	
@@ -99,13 +101,13 @@
 	1, \text{ if }\mathcal{Q}_t = g\\
 	q, \text{ if }\mathcal{Q}_t = b
 	\end{cases}$$
-	where $q \in (0, 1)$. The total utility of the customer who has an outside option $r_i$ and arrives at time $t$ is determined as follows $$u_{it} = \begin{cases}
-	v_t &,\text{if he chose the good}\\
+	where $q \in (0, 1)$. The total utility of the customer who has an outside option $r_i$ and arrives at time $t$ is supposed to be quasilinear and is determined as follows $$u_{it} = \begin{cases}
+	v_t - \mathcal{P}&,\text{if he chose the good}\\
 	r_{i} &,\text{if he chose an outside option}
 	\end{cases}$$
 	Choosing between outside option and the good, customers take into account a private signal received from the platform. This signal has a form of recommendation: the platform either recommends the customer trying the good or not. 
 	\subsection{Platform}
-	At the beginning of the game the platform commits to the recommendation policy, that can be based on past reviews it collected. Then, each period the platform recommends the good to the share of customers $s_t$. Where $s_t$ is the mapping from the set of possible histories at time $t$ to $[0, 1]$. If at time $t$ the platform recommends the good to the share of customers $s_t$ and everybody follows the recommendation then the platform derives a utility $$\mathcal{U}_t = v_ts_t - \frac{s_t^2}{2}$$ which is basically an aggregate surplus obtained by customers who chose a good. The platform designs the recommendation policy that would maximize $$\expect_0\left[\sum_{t=0}^{\infty} \delta^t \mathcal{U}_t\right]$$ subject to the firm's strategy $\sigma(s_t(h^t))$ which, in turn, is induced by the policy.
+	At the beginning of the game the platform commits to the recommendation policy, that can be based on past reviews it collected. Then, each period the platform recommends the good to the share of customers $s_t$. Where $s_t$ is the mapping from the set of possible histories at time $t$ to $[0, 1]$. If at time $t$ the platform recommends the good to the share of customers $s_t$ and everybody follows the recommendation then the platform derives a utility $$\mathcal{U}_t = \int_{0}^{s_t} (v_t - \mathcal{P} - r_i)dr_i =  (v_t - \mathcal{P})s_t - \frac{s_t^2}{2}$$ which is basically an aggregate surplus obtained by customers who chose a good. The platform designs the recommendation policy that would maximize $$\expect_0\left[\sum_{t=0}^{\infty} \delta^t \mathcal{U}_t\right]$$ subject to the firm's strategy $\sigma(s_t(h^t))$ which, in turn, is induced by the policy.
 	\subsection{Timing}
 	Timing of each period of the game is the following. At the beginning of the period the firm decides on the level of effort it will exert. Then this level is exerted and, the firm privately learns its new state. After that the platform makes a recommendation, customers, who followed it, report reviews and the round ends. 
 	\begin{center}
@@ -134,7 +136,7 @@
  	\subsection{Assumptions}
  	Before starting the analysis I would like to explicitly state assumptions the model is based on, and to provide some justifications of these assumptions.
  	\begin{assumption}
- 		The platform knows customers' outside. options
+ 		The platform knows customers' outside options.
  	\end{assumption}
  	This assumption at first glance may seem implausible, however, nowadays platforms have an enormous amount of personal data which can enable them to infer rather precisely about the potential outside option of each customer.
  	
@@ -160,10 +162,10 @@ s^1, \text{ if }\mathcal{Q}_{t-1} = g
 The platform should choose $s^0, s^1$ to maximize its objective taking into account incentives of the firm. But firstly as a benchmark consider the first-best case, when the firm always invest. In this case the recommender policy is characterized by the following lemma
 
 \begin{lemma}(First-best)
-	If the firm always invests in quality then the optimal recommender policy implies $$s^1_{FB} = s^0_{FB} = p + (1-p)q$$
+	If the firm always invests in quality then the optimal recommender policy implies $$s^1_{FB} = s^0_{FB} = p + (1-p)q - \mathcal{P} = \expect[v] - \mathcal{P}$$
 \end{lemma}
 \begin{proof}
-	The proof is straightforward, if the firm invests then the expected quality of the service at each period is $p+(1-p)q$. The platform is maximizing $$\underset{s}{\max}\ (p+(1-p)q)s - \frac{s^2}{2}$$ and the solution is given by $$s = p + (1-p)q$$
+	The proof is straightforward, if the firm invests then the expected quality of the service at each period is $p+(1-p)q$. The platform is maximizing $$\underset{s}{\max}\ (p+(1-p)q - \mathcal{P})s - \frac{s^2}{2}$$ and the solution is given by $$s = p + (1-p)q - \mathcal{P}$$
 \end{proof}
 Clearly, if the platform implements this policy, the firm does not have incentives to invest in quality. 
 \begin{corollary}
@@ -180,10 +182,10 @@ The lemma and the corollary above suggest that the optimal policy should induce 
 	Let $V_{ij}$ be the expected discounted value of the firm which is at state $i$ and in the previous period was at state $j$. Then this values are the solutions to the following system of equations:
 	\begin{align}\label{eq1}
 	\begin{cases}
-	V_{bb} = s^0 + \max\{\delta V_{bb}, \delta p V_{gb} + \delta (1-p)V_{bb} - c\}\\
-	V_{bg} = s^1 + \max\{\delta V_{bb}, \delta p V_{gb} + \delta (1-p)V_{bb} - c\}\\
-	V_{gb} = s^0 + \max\{\delta V_{bg}, \delta p V_{gg} + \delta (1-p)V_{bg} - c\}\\
-	V_{gg} = s^1 + \max\{\delta V_{bg}, \delta p V_{gg} + \delta (1-p)V_{bg} - c\}
+	V_{bb} = \mathcal{P}s^0 + \max\{\delta V_{bb}, \delta p V_{gb} + \delta (1-p)V_{bb} - c\}\\
+	V_{bg} = \mathcal{P}s^1 + \max\{\delta V_{bb}, \delta p V_{gb} + \delta (1-p)V_{bb} - c\}\\
+	V_{gb} = \mathcal{P}s^0 + \max\{\delta V_{bg}, \delta p V_{gg} + \delta (1-p)V_{bg} - c\}\\
+	V_{gg} = \mathcal{P}s^1 + \max\{\delta V_{bg}, \delta p V_{gg} + \delta (1-p)V_{bg} - c\}
 	\end{cases}
 	\end{align}
 	In each $\max$ the first component represents the case when the firm does not invest, while the second is the value the firm obtains if invests. 
@@ -192,20 +194,20 @@ The lemma and the corollary above suggest that the optimal policy should induce 
 	The firm exerts effort at bad state if and only if $$\delta V_{bb} \le \delta p V_{gb} + \delta (1-p)V_{bb} - c \iff V_{gb} - V_{bb} \ge \frac{c}{\delta p}$$
 	Similarly, the firm exerts effort at good state if and only if $$V_{gg} - V_{bg} \ge \frac{c}{\delta p}$$ Suppose that the firm exerts effort at bad state, by way of contradiction assume that the firm does not invest at good state. In this case the system of equation becomes
 	$$	\begin{cases}
-	V_{bb} = s^0 + \delta p V_{gb} + \delta (1-p)V_{bb} - c\\
-	V_{bg} = s^1 + \delta p V_{gb} + \delta (1-p)V_{bb} - c\\
-	V_{gb} = s^0 + \delta V_{bg}\\
-	V_{gg} = s^1 + \delta V_{bg}
+	V_{bb} = \mathcal{P}s^0 + \delta p V_{gb} + \delta (1-p)V_{bb} - c\\
+	V_{bg} = \mathcal{P}s^1 + \delta p V_{gb} + \delta (1-p)V_{bb} - c\\
+	V_{gb} = \mathcal{P}s^0 + \delta V_{bg}\\
+	V_{gg} = \mathcal{P}s^1 + \delta V_{bg}
 	\end{cases}$$ and the solution is $$\begin{cases}
-	V_{bb} = \frac{1+\delta p - \delta^2p}{(1-\delta)(1+\delta p)}s^0 + \frac{\delta^2 p}{(1-\delta)(1+\delta p)}s^1 - \frac{c}{(1-\delta)(1+\delta p)}\\
-	V_{bg} = \frac{\delta}{(1-\delta)(1+\delta p)}s^0 + \frac{1-\delta + \delta p}{(1-\delta)(1+\delta p)}s^1 - \frac{c}{(1-\delta)(1+\delta p)}\\
-	V_{gb} = \frac{(1+\delta p)(1-\delta)+\delta^2}{(1-\delta)(1+\delta p)}s^0 - \frac{\delta^2(1-p)}{(1-\delta)(1+\delta p)}s^1 - \frac{c \delta}{(1-\delta)(1+\delta p)}\\
-	V_{gg} = \frac{\delta^2}{(1-\delta)(1+\delta p)}s^0 + \frac{1 - \delta^2 + \delta p}{(1-\delta)(1+\delta p)}s^1 - \frac{c\delta}{(1-\delta)(1+\delta p)}
+	V_{bb} = \frac{1+\delta p - \delta^2p}{(1-\delta)(1+\delta p)}\mathcal{P}s^0 + \frac{\delta^2 p}{(1-\delta)(1+\delta p)}\mathcal{P}s^1 - \frac{c}{(1-\delta)(1+\delta p)}\\
+	V_{bg} = \frac{\delta}{(1-\delta)(1+\delta p)}\mathcal{P}s^0 + \frac{1-\delta + \delta p}{(1-\delta)(1+\delta p)}\mathcal{P}s^1 - \frac{c}{(1-\delta)(1+\delta p)}\\
+	V_{gb} = \frac{(1+\delta p)(1-\delta)+\delta^2}{(1-\delta)(1+\delta p)}\mathcal{P}s^0 - \frac{\delta^2(1-p)}{(1-\delta)(1+\delta p)}\mathcal{P}s^1 - \frac{c \delta}{(1-\delta)(1+\delta p)}\\
+	V_{gg} = \frac{\delta^2}{(1-\delta)(1+\delta p)}\mathcal{P}s^0 + \frac{1 - \delta^2 + \delta p}{(1-\delta)(1+\delta p)}\mathcal{P}s^1 - \frac{c\delta}{(1-\delta)(1+\delta p)}
 	\end{cases}$$
 	the condition that the firm invest at bad state is
-	$$V_{gb} - V_{bb} = \frac{\delta}{1+\delta p}(s^1 - s^0) - \frac{c}{1+\delta p} \ge \frac{c}{\delta p}$$
+	$$V_{gb} - V_{bb} = \frac{\delta\mathcal{P}}{1+\delta p}(s^1 - s^0) + \frac{c}{1+\delta p} \ge \frac{c}{\delta p}$$
 	But this implies
-	$$\frac{c}{\delta p} \le \frac{\delta}{1 + \delta p}(s^1 - s^0) - \frac{c}{1 + \delta p} = V_{gg} - V_{bg}$$ and hence it is also optimal to invest at good state. The contradiction demonstrates that if the firm invests at the bad state, it also invest at a good state. Using the similar argument it can be shown that investing at the good state also must imply investment at the bad state.
+	$$\frac{c}{\delta p} \le \frac{\delta\mathcal{P}}{1 + \delta p}(s^1 - s^0) + \frac{c}{1 + \delta p} = V_{gg} - V_{bg}$$ and hence it is also optimal to invest at good state. The contradiction demonstrates that if the firm invests at the bad state, it also invest at a good state. Using the similar argument it can be shown that investing at the good state also must imply investment at the bad state.
 \end{proof}
 The result means that either the firm invests at both states or does not invest at all.
 The next proposition characterize the policy that induce the firm to invest in quality.
@@ -216,42 +218,42 @@ The next proposition characterize the policy that induce the firm to invest in q
 	Suppose the firm does not invest at all, in this case the system \eqref{eq1} becomes
 	\begin{align*}
 	\begin{cases}
-	V_{bb} = s^0 + \delta V_{bb}\\
-	V_{bg} = s^1 + \delta V_{bb}\\
-	V_{gb} = s^0 + \delta V_{bg}\\
-	V_{gg} = s^1 + \delta V_{bg}
+	V_{bb} = \mathcal{P}s^0 + \delta V_{bb}\\
+	V_{bg} = \mathcal{P}s^1 + \delta V_{bb}\\
+	V_{gb} = \mathcal{P}s^0 + \delta V_{bg}\\
+	V_{gg} = \mathcal{P}s^1 + \delta V_{bg}
 	\end{cases} \to \begin{cases}
-	V_{bb} = \frac{s^0}{1-\delta}\\
-	V_{bg} = s^1 +\frac{\delta}{1-\delta}s^0\\
-	V_{gb} = \delta s^1 + \frac{1-\delta + \delta^2}{1-\delta}s^0\\
-	V_{gg} = (1+\delta)s^1 + \frac{\delta^2}{1-\delta}s^0
+	V_{bb} = \frac{\mathcal{P}s^0}{1-\delta}\\
+	V_{bg} = \mathcal{P}s^1 +\frac{\delta}{1-\delta}s^0\\
+	V_{gb} = \delta \mathcal{P}s^1 + \frac{1-\delta + \delta^2}{1-\delta}\mathcal{P}s^0\\
+	V_{gg} = (1+\delta)\mathcal{P}s^1 + \frac{\delta^2}{1-\delta}\mathcal{P}s^0
 	\end{cases}
 	\end{align*}
-	The necessary condition that ensures that the firm does not invest is $	V_{gb} - V_{bb} < \frac{c}{\delta p}$. Here, $$	V_{gb} - V_{bb} = \delta(s^1 - s^0)$$ Hence, the firm will not invest if $s^1 - s^0 < \frac{c}{\delta^2 p}$.
+	The necessary condition that ensures that the firm does not invest is $	V_{gb} - V_{bb} < \frac{c}{\delta p}$. Here, $$	V_{gb} - V_{bb} = \delta \mathcal{P}(s^1 - s^0)$$ Hence, the firm will not invest if $s^1 - s^0 < \frac{c}{\delta^2 p \mathcal{P}}$.
 	
 	
 	
 	Now suppose, the firm invests in both states. In this case the system \eqref{eq1} becomes
 	\begin{align*}
 	\begin{cases}
-	V_{bb} = s^0 + \delta p V_{gb} + \delta(1-p)V_{bb} - c\\
-	V_{bg} = s^1 + \delta p V_{gb} + \delta(1-p)V_{bb} - c\\
-	V_{gb} = s^0 + \delta pV_{gg} + \delta(1-p)V_{bg} - c\\
-	V_{gg} = s^1 + \delta p V_{gg} + \delta (1 - p)V_{bg} - c
+	V_{bb} = \mathcal{P}s^0 + \delta p V_{gb} + \delta(1-p)V_{bb} - c\\
+	V_{bg} = \mathcal{P}s^1 + \delta p V_{gb} + \delta(1-p)V_{bb} - c\\
+	V_{gb} = \mathcal{P}s^0 + \delta pV_{gg} + \delta(1-p)V_{bg} - c\\
+	V_{gg} = \mathcal{P}s^1 + \delta p V_{gg} + \delta (1 - p)V_{bg} - c
 	\end{cases}
 	\end{align*}
 	It is a system of linear equations, and its solution is given by:
 	$$\begin{cases}
-	V_{bb} = \frac{\delta^2p}{1-\delta}s^1 + \frac{1-\delta^2p}{1-\delta}s^0 - \frac{c}{1-\delta}\\
-	V_{bg} = \frac{1-\delta + \delta^2p}{1-\delta}s^1 + \frac{\delta(1-\delta p)}{1-\delta}s^0 - \frac{c}{1-\delta}\\
-	V_{gb} = \frac{\delta(1-\delta+\delta p)}{1-\delta}s^1 + \frac{1-\delta + \delta^2 - \delta^2 p}{1- \delta}s^0 - \frac{c}{1-\delta}\\
-	V_{gg} = \frac{1 - \delta^2 + \delta^2 p}{1 - \delta}s^1 + \frac{\delta^2(1-p)}{1- \delta}s^0 - \frac{c}{1 - \delta}
+	V_{bb} = \frac{\delta^2p}{1-\delta}\mathcal{P}s^1 + \frac{1-\delta^2p}{1-\delta}\mathcal{P}s^0 - \frac{c}{1-\delta}\\
+	V_{bg} = \frac{1-\delta + \delta^2p}{1-\delta}\mathcal{P}s^1 + \frac{\delta(1-\delta p)}{1-\delta}\mathcal{P}s^0 - \frac{c}{1-\delta}\\
+	V_{gb} = \frac{\delta(1-\delta+\delta p)}{1-\delta}\mathcal{P}s^1 + \frac{1-\delta + \delta^2 - \delta^2 p}{1- \delta}\mathcal{P}s^0 - \frac{c}{1-\delta}\\
+	V_{gg} = \frac{1 - \delta^2 + \delta^2 p}{1 - \delta}\mathcal{P}s^1 + \frac{\delta^2(1-p)}{1- \delta}\mathcal{P}s^0 - \frac{c}{1 - \delta}
 	\end{cases}$$
-	and again to ensure that the firm indeed invests one needs to check that $V_{gb} - V_{bb} \ge \frac{c}{\delta p}$. In this case $$V_{gb} - V_{bb} = \delta(s^1 - s^0) \ge \frac{c}{\delta p} \iff s^1 - s^0 \ge \frac{c}{\delta^2 p}$$
+	and again to ensure that the firm indeed invests one needs to check that $V_{gb} - V_{bb} \ge \frac{c}{\delta p}$. In this case $$V_{gb} - V_{bb} = \delta\mathcal{P}(s^1 - s^0) \ge \frac{c}{\delta p} \iff s^1 - s^0 \ge \frac{c}{\delta^2 p \mathcal{P}}$$
 \end{proof}
 The result means that the difference in demand of customers that the platform provides the firm with should be high enough to make it optimal for the firm to invest in quality. Also, the straightforward corollary can be obtained
 \begin{corollary}
-	It becomes harder to encourage firm to invest if either cost of investment $c$ is high, or the probability that investment results in quality increase $p$ is low, or the discount factor $\delta$ is low.
+	It becomes harder to encourage firm to invest if either cost of investment $c$ is high, or the probability that investment results in quality increase $p$ is low, or the discount factor $\delta$ is low, ot the priced paid by customers $\mathcal{P}$ is low.
 \end{corollary}
 
 
@@ -259,42 +261,65 @@ The result means that the difference in demand of customers that the platform pr
 
 The next step is to choose the policy $\{s^0, s^1\}$ to maximize the platform's utility subject to the constraint imposed by the Proposition \ref{prop1}. The following theorem characterize the optimal one-round recommender policy.
 \begin{theorem}
-	If it is optimal to encourage the firm to invest, then the optimal one-round recommender policy is characterized by $$s^1 = \min \left\{ p + q(1-p) + \frac{c}{\delta^2 p} - \frac{c}{\delta}, 1\right\}, s^0 = \max\left\{ p + q(1-p) - \frac{c}{\delta}, 0\right\}$$
+	If it is optimal to encourage the firm to invest, then the optimal one-round recommender policy is characterized by $$s^1 = \min \left\{ p + q(1-p) - \mathcal{P} + \frac{c}{\delta^2 p \mathcal{P}} - \frac{c}{\delta \mathcal{P}}, 1\right\}, s^0 = \max\left\{ p + q(1-p) - \mathcal{P} - \frac{c}{\delta \mathcal{P}}, 0\right\}$$
 \end{theorem} 
 \begin{proof}
 	Let $U_i$ be the expected discounted value of the platform if the state of the firm in the previous period was $i$. Then these values are solutions to the following system of equations. 
 	\begin{align*}
+	&\begin{cases}
+	U_b = p\left((1-\mathcal{P})s^0 - \frac{(s^0)^2}{2} + \delta U_g\right) + (1-p)\left((q - \mathcal{P})s^0 - \frac{(s^0)^2}{2} + \delta U_b \right)\\
+	U_g = p\left((1- \mathcal{P})s^1 - \frac{(s^1)^2}{2} + \delta U_g\right) + (1-p)\left((q - \mathcal{P})s^1 - \frac{(s^1)^2}{2} + \delta U_b \right)
+	\end{cases} 
+	\end{align*}
+	which can be rewritten as
+	\begin{align*}
 	\begin{cases}
-	U_b = p\left(s^0 - \frac{(s^0)^2}{2} + \delta U_g\right) + (1-p)\left(qs^0 - \frac{(s^0)^2}{2} + \delta U_b \right)\\
-	U_g = p\left(s^1 - \frac{(s^1)^2}{2} + \delta U_g\right) + (1-p)\left(qs^1 - \frac{(s^1)^2}{2} + \delta U_b \right)
-	\end{cases} \to \begin{cases}
-	U_b = \frac{(p + (1-p)q)}{1 - \delta(1-p)}\left(s^0 - \frac{(s^0)^2}{2} \right) + \frac{p\delta}{1 - \delta(1-p)}U_g\\
-	U_g = \frac{(p + (1-p)q)}{1 - \delta(1-p)}\left(s^1 - \frac{(s^1)^2}{2} \right) + \frac{p\delta}{1 - \delta(1-p)}U_b
+	U_b = \frac{1}{1 - \delta(1-p)} \left( (p + (1-p)q - \mathcal{P})s^0 - \frac{(s^0)^2}{2} \right) + \frac{p\delta}{1 - \delta(1-p)}U_g\\
+	U_g = \frac{1}{1 - \delta p} \left( (p + (1-p)q - \mathcal{P})s^1 - \frac{(s^1)^2}{2} \right) + \frac{(1-p)\delta}{1 - \delta p}U_b
 	\end{cases}
 	\end{align*}
 	the solution is given by
 	$$\begin{cases}
-	U_b = \frac{1-\delta p}{1-\delta}\left((p + q(1-p))s^0 - \frac{(s^0)^2}{2}\right) + \frac{\delta p}{1-\delta}\left((p + q(1-p))s^1 - \frac{(s^1)^2}{2}\right)\\
-	U_g = \frac{\delta (1-p)}{1-\delta}\left((p+q(1-p))s^0 - \frac{(s^0)^2}{2}\right) +\frac{1 - \delta (1-p)}{1-\delta}\left((p+q(1-p))s^1 - \frac{(s^1)^2}{2}\right)
+	U_b = \frac{1-\delta p}{1-\delta}\left((p + q(1-p) - \mathcal{P})s^0 - \frac{(s^0)^2}{2}\right) + \frac{\delta p}{1-\delta}\left((p + q(1-p) - \mathcal{P})s^1 - \frac{(s^1)^2}{2}\right)\\
+	U_g = \frac{\delta (1-p)}{1-\delta}\left((p + q(1-p) - \mathcal{P})s^0 - \frac{(s^0)^2}{2}\right) +\frac{1-\delta(1- p)}{1-\delta}\left((p + q(1-p) - \mathcal{P})s^1 - \frac{(s^1)^2}{2}\right)
 	\end{cases}$$
 	without loss of generality suppose that at $t = 0$ the firm is at bad state and the platform knows it. Then the platform should solve the following problem
 	\begin{align*}
-	\underset{s^1, s^0}{\max}&\ \frac{1-\delta p}{1-\delta}\left((p + q(1-p))s^0 - \frac{(s^0)^2}{2}\right) + \frac{\delta p}{1-\delta}\left((p + q(1-p))s^1 - \frac{(s^1)^2}{2}\right)\\
-	&\text{subject to } 0 \le s^0 \le 1,\ 0 \le s^1 \le 1,\ s^1 - s^0 \ge \frac{c}{\delta^2 p}
+	\underset{s^1, s^0}{\max}&\ \frac{1-\delta p}{1-\delta}\left((p + q(1-p) - \mathcal{P})s^0 - \frac{(s^0)^2}{2}\right) + \frac{\delta p}{1-\delta}\left((p + q(1-p) - \mathcal{P})s^1 - \frac{(s^1)^2}{2}\right)
 	\end{align*}
-	Clearly $s^1 - s^0 \ge \frac{c}{\delta^2 p}$ should bind. Suppose that $s^1 < 1$, we can plug $s^0 = s^1 - \frac{c}{\delta^2 p}$ into the objective function. In this case the optimal solution is given by \begin{align}\label{eq2}
-	s^0 &= p + q(1-p) - \frac{c}{\delta} \nonumber\\
-	s^1 &= p+q(1-p) + \frac{c(1-\delta p)}{\delta^2 p}
+	Clearly $s^1 - s^0 \ge \frac{c}{\delta^2 p \mathcal{P}}$ should bind. Suppose that $s^1 < 1$, we can plug $s^0 = s^1 - \frac{c}{\delta^2 p \mathcal{P}}$ into the objective function. In this case the optimal solution is given by \begin{align}\label{eq2}
+	s^0 &= p + q(1-p) - \mathcal{P} - \frac{c}{\delta \mathcal{P}} \nonumber\\
+	s^1 &= p + q(1-p) - \mathcal{P} - \frac{c}{\delta \mathcal{P}} + \frac{c}{\delta^2 p \mathcal{P}}
 	\end{align}
 	We should consider the case $s^1 = 1$, however if $s^1$ obtained in \eqref{eq2} is less than 1, then in case $p \ge 0.5$ it can be shown that the platform's profit is greater for this $s^1$, comparing to $s^1 = 1$.
 \end{proof}
-\section{Discussion}
-As we can see, the optimal one-round recommender policy with the strategic firm differs from the first-best policy when the firm is not strategic. With strategic firm the platform have to "punish" and "reward" the firm by decreasing and increasing the recommended share comparing to the first-best case. Namely, $s^0_{FB} - s^0 = \frac{c}{\delta}$, so the amount of punishment decreases once $\delta \to 1$ and increases once $c \to 1$. Note that if $q > 1 - \frac{c}{p\delta}$ then $s^0 < q$ which means that the share of customers $q - s^0$ who for sure could derive positive utility from using the good are not recommended doing so. This may suggest that it is not always optimal to induce the firm to invest in quality.
+As we can see, the optimal one-round recommender policy with the strategic firm differs from the first-best policy when the firm is not strategic. With strategic firm the platform has to "punish" and "reward" the firm by decreasing and increasing the recommended share comparing to the first-best case. Namely, $s^0_{FB} - s^0 = \frac{c}{\delta \mathcal{P}}$, so the amount of punishment decreases once $\delta \to 1$ or $\mathcal{P} \to 1$, and increases once $c \to 1$. Note that if $q > 1 - \frac{c}{\delta p \mathcal{P}} - \frac{\mathcal{P}}{p}$ then $s^0 < q$ which means that the share of customers $q - s^0$ who for sure could derive positive utility from using the good are not recommended doing so. This may suggest that it is not always optimal to induce the firm to invest in quality.
 
 
 
+In addition, the recommender policy above is clearly not incentive compatible: those customers whose outside option $r_i \in \left(p+q(1-p) - \mathcal{P}, s^1 \right)$ would rather choose the outside option than follow the recommendation. This is because by following recommendation, given that the firm is investing in quality, the expected utility of the customer is $p + q(1-p) - \mathcal{P}$ while the outside option yields more. But that means that the platform cannot induce the firm to invest in quality since the firm does not obtain enough profit. That is why, the optimal one-round recommender policy with strategic customers should be different from that obtained in this section.
 
 
+\subsection{Strategic customers}
+In this section, I relax the assumption that customers always follow the recommendation, prescribed by the platform. Now, they only do so if and only if the expected utility from choosing the good exceeds the outside option. Formally, 
+\begin{definition}
+	Given $p, q, \mathcal{P}$, the customer with the outside option $r_i$ would follow the recommendation choosing the good if and only if $$p + (1-p)q - \mathcal{P} \ge r_i$$
+\end{definition}
+
+To make some customers willing to follow the recommendation the platform may introduce personal discounts.
+\begin{definition}
+	The platform employs the personal discount system $d(r_i): [0, 1] \to [0, 1]$ if the price paid by the customer with the outside option $r_i$ is $d(r_i) \cdot \mathcal{P}$
+\end{definition}
+In other words, by offering a personal discounts the platform makes the good more attractive for  customers. This eventually allows the platform to meet the incentive compatibility constraint of the customers and, as a result, to render the recommender policy incentive compatible.
+\begin{theorem}
+	If it is optimal to encourage the firm to invest in quality then the best one-round recommender policy embraces recommendations $$s^1 = \min \left\{ p + q(1-p) - \mathcal{P} + \frac{c}{\delta^2 p \mathcal{P}} - \frac{c}{\delta \mathcal{P}}, 1\right\}, s^0 = \max\left\{ p + q(1-p) - \mathcal{P} - \frac{c}{\delta \mathcal{P}}, 0\right\}$$ and the personal discount system $$d(r_i) = \begin{cases}
+	1, &r_i \le p + (1-p)q - \mathcal{P}\\
+	\frac{p+(1-p)q - r_i}{\mathcal{P}}, &r_i > p + (1-p)q - \mathcal{P}
+	\end{cases}$$
+\end{theorem}
+\begin{proof}
+	to be completed
+\end{proof}
 \section{Extensions}
 As for possible extensions, although in the model I consider the simplest class of recommender policies, it would be interesting to consider more general policies ($K$-round policy, $K > 1$). In this case the platform gets more tools to induce the firm to invest, hence, I think the expected social welfare losses from providing the firm with incentives for investing could be lower.
 
