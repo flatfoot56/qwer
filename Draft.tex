@@ -34,6 +34,11 @@
 \setlength\fboxsep{3pt} %  \fbox{} 
 \setlength\fboxrule{1pt} % \fbox{}
 \usepackage{wrapfig} % 
+%\newenvironment{abstract}[0]{\small\rm
+%	\begin{center}ABSTRACT
+%		\\ \vspace{8pt}
+%		\begin{minipage}{5.2in}\smalllineskip
+%			\hspace{1pc}}{\end{minipage}\end{center}\vspace{-1pt}}
 \newcommand{\prob}{\mathbb{P}}
 \newcommand{\norma}{\mathcal{N}}
 \newcommand{\expect}{\mathbb{E}}
@@ -46,11 +51,15 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{assumption}[theorem]{Assumption}
 \newtheorem{definition}[theorem]{Definition}
-\title{Optimal recommender system with strategic alternatives \\ Market Design. Term Project}
+\title{Optimal recommender system with strategic alternatives \\ Term Paper}
 \date{}
 \author{Danil Fedchenko}
 \begin{document} % 
 	\maketitle
+	\begin{abstract}
+		Recommender systems became an integral part of our lives. Many papers studied the design of an optimal system that can balance exploration and exploitation for the myopic short-living agents. In previous works, the quality of alternatives (the utility customers derive upon consuming) was supposed to be exogenous to the recommendation process. I would like to study the interaction between recommender policy and the quality of the provided service. I build a model in which the firm is operating on the platform and provides customers with the service of ex-ante unknown quality. The firm can make a private and costly investment to increase the quality. The platform observes agents’ experience and commits to recommendation policy. The model proposes a new perspective on the role of the recommender system. Apart from inducing exploration, here the system can also encourage the firm to invest in quality as well as can smooth negative shocks.
+	\end{abstract}
+	\newpage
 	\section{Introduction}
 	Suppose you came to New-York and would like to find a good restaurant to go out tonight. Or you are going to spend your upcoming vacation on the coast of Spain and you need to find a hotel. What would you do? Where would you search for?  Before the World Wide Web, people in such cases relied upon guide-books and brochures distributed by traveling agents. Those guides usually quickly became out-of-dated and were criticized for containing a misleading information. 
 	
@@ -105,7 +114,7 @@
 	
 	
 	
-	Finally, Papanstasiou et al. \cite{papanastasiou2017} extended ideas developed in \cite{kremer2014} and \cite{che2015}, and build a dynamic, stochastic model. In their model, agents also arrive sequentially to the platform and should choose between two alternatives that generate stochastically exogenous payoff. The platform in the paper designs a recommendation policy. Although the optimal policy turns out to have a complicated form, authors demonstrate that in this case the full revelation policy is not the best one, and the optimal policy involves information obfuscation.
+	Papanstasiou et al. \cite{papanastasiou2017} extended ideas developed in \cite{kremer2014} and \cite{che2015}, and build a dynamic, stochastic model. In their model, agents also arrive sequentially to the platform and should choose between two alternatives that generate stochastically exogenous payoff. The platform in the paper designs a recommendation policy. Although the optimal policy turns out to have a complicated form, authors demonstrate that in this case the full revelation policy is not the best one, and the optimal policy involves information obfuscation.
 	
 	
 	
@@ -180,18 +189,10 @@
  	\begin{assumption}
  		If the good is not recommended to the customer, then the customer does not consume it. While if the good is recommended the customer may or may not choose it.
  	\end{assumption}
- 	This assumption implies that without the platform the customer is unable to find the good. Think about \textit{TripAdvisor}, if it does not show you a restaurant, you will not know about the existence of this restaurant. At the same time, if \textit{TripAdvisor} shows you an option it is up to you whether to go there or not.
- 	\begin{assumption}
- 		The utility customers obtain in the bad state, $q > 0$ and hence it is always profitable for the platform to recommend the good to at least a small share of customers.
- 	\end{assumption}
- This assumption ensures that the platform can get the information about the state of the firm each period.
- \begin{assumption}
- 	$p \ge 0.5$
- \end{assumption}
-This assumption, on one hand, is pure technical, and simplifies an analysis of optimal policy, but on the other hand it seems reasonable that once the firm invests, the probability that investment will lead to an increase in quality is at least 50\%.
+ 	This assumption implies that without the platform the customer is unable to find the good. Think about \textit{TripAdvisor}, if it does not show you a restaurant, you will not know about the existence of this restaurant. At the same time, if \textit{TripAdvisor} shows you an option it is up to you whether to go there or not. 
 \section{Analysis}
-Although the recommender policy the platform employs can be a complicated function of all previous states, I start the analysis from the simplest policy. Namely, I firstly consider the policy that takes into account only the previous realization of the quality of the good.
-\subsection{One-round recommendation policy}
+Although the recommender policy the platform employs can be a complicated function of all previous states, I start the analysis from the simplest policy. Namely, I firstly consider the policy that takes into account only the previous realization of the quality of the good. Moreover, in the following subsection I assume that the customers blindly follow the recommendation the platform makes.
+\subsection{Nonstrategic customers}
 Suppose that the platform employs the recommender policy that is based only on the previous period realization of the quality of the good. In this case the policy consists of two shares $\{s^0, s^1\}$ such that $$s_t = \begin{cases}
 s^0, \text{ if }\mathcal{Q}_{t-1} = b\\
 s^1, \text{ if }\mathcal{Q}_{t-1} = g
@@ -249,7 +250,7 @@ The lemma and the corollary above suggest that the optimal policy should induce 
 The result means that either the firm invests at both states or does not invest at all.
 The next proposition characterize the policy that induce the firm to invest in quality.
 \begin{proposition}\label{prop1}
-	Given the recommender policy $\{s^0, s^1\}$, the firm exerts effort at both states if and only if $$s^1 - s^0 \ge \frac{c}{\delta^2 p}$$
+	Given the recommender policy $\{s^0, s^1\}$, the firm exerts effort at both states if and only if $$s^1 - s^0 \ge \frac{c}{\delta^2 p \mathcal{P}}$$
 \end{proposition}
 \begin{proof}
 	Suppose the firm does not invest at all, in this case the system \eqref{eq1} becomes
@@ -290,6 +291,10 @@ The next proposition characterize the policy that induce the firm to invest in q
 \end{proof}
 The result means that the difference in demand of customers that the platform provides the firm with should be high enough to make it optimal for the firm to invest in quality. Also, the straightforward corollary can be obtained
 \begin{corollary}
+	It is possible to incentivize the firm to invest only if $c \le \delta^2 p \mathcal{P}$.
+\end{corollary}
+Thereafter I will assume that the condition above condition holds.
+\begin{corollary}
 	It becomes harder to encourage firm to invest if either cost of investment $c$ is high, or the probability that investment results in quality increase $p$ is low, or the discount factor $\delta$ is low, ot the priced paid by customers $\mathcal{P}$ is low.
 \end{corollary}
 
@@ -297,8 +302,16 @@ The result means that the difference in demand of customers that the platform pr
 
 
 The next step is to choose the policy $\{s^0, s^1\}$ to maximize the platform's utility subject to the constraint imposed by the Proposition \ref{prop1}. The following theorem characterize the optimal one-round recommender policy.
-\begin{theorem}
-	If it is optimal to encourage the firm to invest, then the optimal one-round recommender policy is characterized by $$s^1 = \min \left\{ p + q(1-p) - \mathcal{P} + \frac{c}{\delta^2 p \mathcal{P}} - \frac{c}{\delta \mathcal{P}}, 1\right\}, s^0 = \max\left\{ p + q(1-p) - \mathcal{P} - \frac{c}{\delta \mathcal{P}}, 0\right\}$$
+\begin{theorem} \label{th1}
+	If it is optimal to encourage the firm to invest, then the optimal one-round recommender policy is characterized by $\{s^1, s^0\}$ such that:
+	\begin{itemize}
+		\item if $p+(1-p)q - \mathcal{P} - \frac{c}{\delta \mathcal{P}} < 0$ then $\left\{s^0 = 0, s^1 = \frac{c}{\delta^2 p \mathcal{P}} \right\}$
+		\item if $p+(1-p)q - \mathcal{P} - \frac{c}{\delta \mathcal{P}} \ge 0$ then
+		\begin{itemize}
+			\item if $p+(1-p)q - \mathcal{P} - \frac{c}{\delta \mathcal{P}} + \frac{c}{\delta^2 p \mathcal{P}} < 1$ then $$\begin{cases}s^0 = p+(1-p)q - \mathcal{P} - \frac{c}{\delta \mathcal{P}}\\ s^1 = p+(1-p)q - \mathcal{P} - \frac{c}{\delta \mathcal{P}} + \frac{c}{\delta^2 p \mathcal{P}} \end{cases}$$
+			\item if $p+(1-p)q - \mathcal{P} - \frac{c}{\delta \mathcal{P}} + \frac{c}{\delta^2 p \mathcal{P}} \ge 1$ then $\left\{s^0 = 1-\frac{c}{\delta^2 p \mathcal{P}}, s^1 =1 \right\}$
+		\end{itemize}
+	\end{itemize}
 \end{theorem} 
 \begin{proof}
 	Let $U_i$ be the expected discounted value of the platform if the state of the firm in the previous period was $i$. Then these values are solutions to the following system of equations. 
@@ -328,13 +341,14 @@ The next step is to choose the policy $\{s^0, s^1\}$ to maximize the platform's 
 	s^0 &= p + q(1-p) - \mathcal{P} - \frac{c}{\delta \mathcal{P}} \nonumber\\
 	s^1 &= p + q(1-p) - \mathcal{P} - \frac{c}{\delta \mathcal{P}} + \frac{c}{\delta^2 p \mathcal{P}}
 	\end{align}
-	We should consider the case $s^1 = 1$, however if $s^1$ obtained in \eqref{eq2} is less than 1, then in case $p \ge 0.5$ it can be shown that the platform's profit is greater for this $s^1$, comparing to $s^1 = 1$.
+	Keeping in mind that $s^0 = s^1 - \frac{c}{\delta^2 p \mathcal{P}}$ the objective function is a downward parabola, hence, if $p+q(1-p) - \mathcal{P} - \frac{c}{\delta \mathcal{P}} < 0$ (and using the assumption that $\frac{c}{\delta^2 p \mathcal{P}} < 1$) then $s^0 = 0$ and to keep the constraint that ensures that the firm exerts effort satisfied, $s^1 = \frac{c}{\delta^2 p \mathcal{P}}$. If $p+q(1-p) - \mathcal{P} - \frac{c}{\delta \mathcal{P}} \ge 0$ then two cases are possible: either $p+q(1-p) - \mathcal{P} - \frac{c}{\delta \mathcal{P}} + \frac{c}{\delta^2 p \mathcal{P}} < 1$ or $p+q(1-p) - \mathcal{P} - \frac{c}{\delta \mathcal{P}} + \frac{c}{\delta^2 p \mathcal{P}} \ge 1$. The former case implies an internal solution and $$\begin{cases}s^0 = p+(1-p)q - \mathcal{P} - \frac{c}{\delta \mathcal{P}}\\ s^1 = p+(1-p)q - \mathcal{P} - \frac{c}{\delta \mathcal{P}} + \frac{c}{\delta^2 p \mathcal{P}} \end{cases}$$
+	The latter case implies $s^1 = 1$ and consequently $s^0 = 1 - \frac{c}{\delta^2 p \mathcal{P}}$.
 \end{proof}
 As we can see, the optimal one-round recommender policy with the strategic firm differs from the first-best policy when the firm is not strategic. With strategic firm the platform has to "punish" and "reward" the firm by decreasing and increasing the recommended share comparing to the first-best case. Namely, $s^0_{FB} - s^0 = \frac{c}{\delta \mathcal{P}}$, so the amount of punishment decreases once $\delta \to 1$ or $\mathcal{P} \to 1$, and increases once $c \to 1$. Note that if $q > 1 - \frac{c}{\delta p \mathcal{P}} - \frac{\mathcal{P}}{p}$ then $s^0 < q$ which means that the share of customers $q - s^0$ who for sure could derive positive utility from using the good are not recommended doing so. This may suggest that it is not always optimal to induce the firm to invest in quality.
 
 
 
-In addition, the recommender policy above is clearly not incentive compatible: those customers whose outside option $r_i \in \left(p+q(1-p) - \mathcal{P}, s^1 \right)$ would rather choose the outside option than follow the recommendation. This is because by following recommendation, given that the firm is investing in quality, the expected utility of the customer is $p + q(1-p) - \mathcal{P}$ while the outside option yields more. But that means that the platform cannot induce the firm to invest in quality since the firm does not obtain enough profit. That is why, the optimal one-round recommender policy with strategic customers should be different from that obtained in this section.
+In addition, the recommender policy above is clearly not incentive compatible in all cases: those customers whose outside option $r_i \in \left(p+q(1-p) - \mathcal{P}, s^1 \right)$ would rather choose the outside option than follow the recommendation. This is because by following recommendation, given that the firm is investing in quality, the expected utility of the customer is $p + q(1-p) - \mathcal{P}$ while the outside option yields more. But that means that the platform cannot induce the firm to invest in quality since the firm does not obtain enough profit. That is why, the optimal one-round recommender policy with strategic customers should be different from that obtained in this section.
 
 
 \subsection{Strategic customers}
@@ -345,32 +359,72 @@ In this section, I relax the assumption that customers always follow the recomme
 
 To make some customers willing to follow the recommendation the platform may introduce personal discounts.
 \begin{definition}
-	The platform employs the personal discount system $d(r_i): [0, 1] \to [0, 1]$ if the price paid by the customer with the outside option $r_i$ is $d(r_i) \cdot \mathcal{P}$
+	The platform employs the personal discount system $d(r_i): [0, 1] \to [0, 1]$ if the price paid by the customer with the outside option $r_i$ is $(1-d(r_i)) \cdot \mathcal{P}$
 \end{definition}
 In other words, by offering a personal discounts the platform makes the good more attractive for  customers. This eventually allows the platform to meet the incentive compatibility constraint of the customers and, as a result, to render the recommender policy incentive compatible.
 \begin{theorem}
-	If it is optimal to encourage the firm to invest in quality then the best one-round recommender policy embraces recommendations $$s^1 = \min \left\{ p + q(1-p) - \mathcal{P} + \frac{c}{\delta^2 p \mathcal{P}} - \frac{c}{\delta \mathcal{P}}, 1\right\}, s^0 = \max\left\{ p + q(1-p) - \mathcal{P} - \frac{c}{\delta \mathcal{P}}, 0\right\}$$ and the personal discount system $$d(r_i) = \begin{cases}
-	1, &r_i \le p + (1-p)q - \mathcal{P}\\
-	\frac{p+(1-p)q - r_i}{\mathcal{P}}, &r_i > p + (1-p)q - \mathcal{P}
+	If it is optimal to encourage the firm to invest in quality then the best one-round recommender policy embraces recommendations $\{s^1, s^0\}$ such that:
+	\begin{itemize}
+		\item if $p+(1-p)q - \mathcal{P} - \frac{c(1+\delta p)}{2\delta p \mathcal{P}} < 0$ then $\left\{s^0 = 0, s^1 = \frac{c}{\delta^2 p \mathcal{P}} \right\}$
+		\item if  $p+(1-p)q - \mathcal{P} - \frac{c(1+\delta p)}{2\delta p \mathcal{P}} \ge 0$ then
+		\begin{itemize}
+			\item if $p+(1-p)q - \mathcal{P} - \frac{c}{2\delta \mathcal{P}} + \frac{c}{2\delta^2 p \mathcal{P}} < 1$ then $$\begin{cases}s^0 = p+(1-p)q - \mathcal{P} - \frac{c(1+\delta p)}{2\delta p \mathcal{P}}\\ s^1 = p+(1-p)q - \mathcal{P} - \frac{c}{2\delta \mathcal{P}} + \frac{c}{2\delta^2 p \mathcal{P}} \end{cases}$$
+			\item if $p+(1-p)q - \mathcal{P} - \frac{c}{2\delta \mathcal{P}} + \frac{c}{2\delta^2 p \mathcal{P}} \ge 1$ then $\left\{s^0 = 1-\frac{c}{\delta^2 p \mathcal{P}}, s^1 =1 \right\}$
+		\end{itemize}
+	\end{itemize}
+	
+	
+	
+	
+	
+	and the personal discount system $$d(r_i) = \begin{cases}
+	0, &r_i \le p + (1-p)q - \mathcal{P}, r_i > s^1\\
+	1-\frac{p+(1-p)q - r_i}{\mathcal{P}}, &p + (1-p)q - \mathcal{P} \le r_i \le s^1
 	\end{cases}$$
 \end{theorem}
 \begin{proof}
-	to be completed
+	If the firm invests in quality then each period the expected quality of the good is $$\expect[v] = p + (1-p)q$$
+	hence, those customers who are recommended to choose the good and have $r_i \le \expect[v]$ will follow the recommendation. The platform needs to incentivize only those whose $r_i \in (\expect[v], s^1)$. To do so, the platform offers those customers a personal price $\mathcal{P}_i  = p+(1-p)q - r_i = (1-d(r_i)) \mathcal{P}$, hence, for each agent the platform is losing $$\mathcal{P} - \mathcal{P}_i = \mathcal{P} -  p-(1-p)q + r_i$$ because of the personal discount
+	$$d(r_i) = 1 - \frac{p+(1-p)q - r_i}{\mathcal{P}},\ p+(1-p)q - \mathcal{P} \le r_i \le s^1$$
+	Again without loss of generality assuming that initially the firm is in the bad state, the platform is solving the following problem 
+	\begin{align*} \underset{s^1, s^0}{\max}\ &\frac{1-\delta p}{1-\delta}\left((p + q(1-p) - \mathcal{P})s^0 - \frac{(s^0)^2}{2}\right) + \frac{\delta p}{1-\delta}\left((p + q(1-p) - \mathcal{P})s^1 - \frac{(s^1)^2}{2}\right) - \\
+	&- \frac{1}{1-\delta} \begin{cases} \int_{p+(1-p)q - \mathcal{P}}^{s^1} (\mathcal{P} -  p-(1-p)q + r_i)dr_i, &s^1 \ge p+(1-p)q - \mathcal{P} \\ 0, &\text{ else }\end{cases} = \\
+	= \underset{s^1, s^0}{\max}\ &\frac{1-\delta p}{1-\delta}\left((p + q(1-p) - \mathcal{P})s^0 - \frac{(s^0)^2}{2}\right) + \frac{\delta p}{1-\delta}\left((p + q(1-p) - \mathcal{P})s^1 - \frac{(s^1)^2}{2}\right) - \\
+	&- \frac{1}{1-\delta} \begin{cases} \frac{(s^1 + \mathcal{P} - q (1 - p) - p)^2}{2}, &s^1 \ge p+(1-p)q - \mathcal{P} \\ 0, &\text{ else }\end{cases}\\
+	&\text{s.t. } 0\le s^0\le 1, 0 \le s^1 \le 1, s^1 - s^0 \ge \frac{c}{\delta^2 p \mathcal{P}}
+	\end{align*}
+	the last term of the objective function represents the platform cost on discounts for customers to encourage them following the recommendation. Clearly $s^1 - s^0 \ge \frac{c}{\delta^2 p \mathcal{P}}$ binds, using this, under assumption that the solution lies in the interior, by taking FOC one can obtain 
+	\begin{align*} s^1 &= p + q(1-p) - \mathcal{P} + \frac{c}{2 \delta^2 p \mathcal{P}} - \frac{c}{2 \delta \mathcal{P}}\\
+	 s^0 &= p + q(1-p) - \mathcal{P} - \frac{c}{2 \delta \mathcal{P}} \frac{1+\delta p}{\delta p}
+	 \end{align*}
+	 Similar to the proof of the theorem \ref{th1} one can obtain the corner solutions
 \end{proof}
+	 As we can see, for the interior solution the share of customers which are recommended the good after the good state $s^1$ (and hence $s^0$) is lower than in case when customers are not strategic. This happens since now the platform has to induce the customers to follow the recommendation and make personal discounts for them. Note that discounts are offered for those customers whose outside option exceeds the average product quality.
+\section{Discussion}
+The results presented above demonstrate that first of all, the optimal policy differs once the firm becomes strategic. The platform has to incentivize the firm to maintain the high quality of the service. To do so, the platform uses the demand the firm faces as a tool to regulate its profit. With the strategic firm the platform increases the demand by recommending the firm to customers if the realized quality of the service the firm provides is good, and decreases the demand by not recommending the firm to users if in the previous period consumers were not satisfied with the quality. However, to ensure that rational customers follow the recommendations the platform has to introduce personal discounts. This partly may be the reason why \textit{TripAdvisor} proposes personal discounts for customers who book tables through the platform (see Fig. \ref{fig2}).
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{restaurant}
+	\caption{\textit{TripAdvisor} offers personal discounts for booking some restaurants via the platform}\label{fig2}
+\end{figure}
+The platform faces the following trade-off here: on one hand, it is costly to give discounts for customers, but on the other hand if they do not follow the recommendation it will not become optimal for the firm to exert efforts, and, as a result, the platform loses in the long-run. This trade-off makes the platform to reduce shares of customers that are recommended the good, comparing to the case when the strategic nature of customers is not an issue (they are blindly following the recommendation).
+
+
 \section{Extensions}
-As for possible extensions, although in the model I consider the simplest class of recommender policies, it would be interesting to consider more general policies ($K$-round policy, $K > 1$). In this case the platform gets more tools to induce the firm to invest, hence, I think the expected social welfare losses from providing the firm with incentives for investing could be lower.
+As for possible extensions, firstly, it would be interesting to see how the policy changes if there are more than 1 firm. In this case, the platform may use the competition among firms and to switch stream of customers from one firm to another based on the previous users' satisfaction. Also, in my model has been assumed the fact that the platform knows the initial state of the firm. However, I would be particularly interested in question: if the new firm comes to the platform and the platform is not aware of its state how will the optimal recommendation policy deal with this?
 
 
 
-
-Also, I would be intrigued to see how the optimal policy changes if the firm could charge customers for consuming the good. In this case the firm can use the price as a signal of the quality of the good. 
-
+Secondly, in my model the effort the firm exerts affects only current quality of the product, it is interesting to see whether the quantitative results are robust to the case if the firm may make long-term investment, or the quality of the product may depreciate gradually.
 
 
 
-Finally, it is worth mentioning that the results are based on the assumption that customers are behavioral and always follow the recommendation. I would be interested to see how the policy changes if customers may be strategic. In this case, it would be harder for the platform to induce exploration since it should take into account incentives of customers. 
+Thirdly, another direction for future research may include to make the quality not binary but continuous, or to make the firm's decision more complex. The reason I use the simplest state space and the simplest action space is to make the model as simple as possible but still being able to preserve the strategic nature of the firm. Nevertheless, it is, indeed, interesting to check the robustness of my results in these, more complex, frameworks.
+
+
+Finally, although in the model I consider the simplest class of recommender policies, it would be interesting to consider more general policies ($K$-round policy, $K > 1$). In this case the platform gets more tools to induce the firm to invest, however, the problem will become harder and results may become intractable.
 \section{Conclusion}
-Recommender systems became very popular for last years. Several papers have studied the question of optimal design of these systems. While the optimality was mainly understood in terms of inducing exploration of new alternatives for myopic agents. This work is a small step towards another direction. I built a model that was supposed to present a different perspective on the role of the recommender system. Namely, I focused on firm's incentives to maintain the quality of the alternative, and how it can be affected by the policy implemented by the platform. Results demonstrate that the optimal policy should take into account the strategic nature of the firm, and the optimal one-round policy derived in this paper sheds light on how exactly the platform should do it. 
+Recommender systems became very popular for last years. Several papers have studied the question of optimal design of these systems. While the optimality was mainly understood in terms of inducing exploration of new alternatives for myopic agents. This work is a step towards another direction. I built a model that was supposed to present a different perspective on the role of the recommender system. Namely, I focused on firm's incentives to maintain the quality of the alternative, and how it can be affected by the policy implemented by the platform. Results demonstrate that the optimal policy should take into account the strategic nature of the firm, and the optimal one-round policy derived in this paper sheds light on how exactly the platform should do it. Furthermore, the model suggests that it is optimal for the platform to introduce personal discounts for customers to ensure that they follow the recommendation. These discounts actually can be observed in reality, for example, \textit{TripAdvisor} may offer you a personal discount for a bill you would pay in the particular restaurant if you booked the table via \textit{TripAdvisor}.
 
 
 Being very simple, the model I presented can be extended in a variety of directions, that was discussed in the extension section and which I am planing to explore during the future research.
