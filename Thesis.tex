@@ -1,0 +1,280 @@
+\documentclass[a4paper]{article}
+\usepackage[12pt]{extsizes} % 
+\usepackage{setspace}
+\doublespacing
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+%\usepackage{harvard}
+\usepackage[round]{natbib}
+\usepackage{pdfpages}
+\usepackage{tikz}
+\usepackage{makecell}
+\usepackage{amsthm}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usepackage{multirow}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{xcolor,colortbl}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage{breakcites}
+\interfootnotelinepenalty=10000
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+%\newenvironment{abstract}[0]{\small\rm
+%	\begin{center}ABSTRACT
+%		\\ \vspace{8pt}
+%		\begin{minipage}{5.2in}\smalllineskip
+%			\hspace{1pc}}{\end{minipage}\end{center}\vspace{-1pt}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathcal{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\summa}{\sum_{i=1}^n}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{definition}[theorem]{Definition}
+%\let\cite = \citeasnoun
+\title{To run with the hare and hunt with the hounds: Optimal recommendation system with competing sellers. \\ Master Thesis}
+\date{}
+\author{Danil Fedchenko}
+\begin{document} % 
+	\maketitle
+	\begin{abstract}
+		Many e-commerce platforms that connect buyers and sellers employ recommender systems to help customers find products and services. These systems may have several potential effects on strategies of competing sellers: on one hand, more people become aware of products, so sellers may sell more goods and benefit from the presence of the recommender system. On the other hand, at the same time, more people become aware of the competitor seller. The latter effect may intensify the price competition and may hurt sellers but, of course, benefit customers. However, many platforms charge firms for sales and as a result have the stakes in firms profits. Thus, by designing the recommender policy the platform should balance the pro-competitive care about customers and anti-competitive incentives to keep high prices. The main goal of this work is to study this trade-off in details. I am solving for an optimal recommender policy and investigate factors that may affect it.
+	\end{abstract}
+\newpage
+	\section{Introduction}
+	\section{Literature review}
+	\section{Model}
+	The model I consider is similar to that considered by \cite{levin2009quality}, the difference is that I introduce a new player -- a platform which employs a recommender system (I will use words ``platform'' and ``recommender system'' interchangeably).
+		
+	
+	There is a unit mass of heterogenous customers. Preferences of customer are characterized by the location of the customer on the unity interval. Two competing sellers (firms) which I will refer to $A$ and $B$, who locate at the extremes of the unit interval, are selling substitutable goods which they produce at equal marginal cost normalized to 0. Goods of each seller may have different quality which means that the customers with the same ``horizontal preference'' for the two sellers may derive different utility upon consuming goods of different sellers. Sellers are competing in prices which they set simultaneously. In addition, the sellers may costly disclose the information about the quality of their good prior to price setting. The recommender system observes prices and sellers' decisions regarding the quality disclosure, and makes recommendation to customers which seller to choose. In the baseline model I assume that the recommender system knows the exact location of the customer, lately this assumption is relaxed, and I consider the scenario when the recommender system receives a noisy signal regarding the customers' locations. Finally, the platform charges sellers a commission for sales according to a commission rate $\alpha$ which the platform can choose. 
+	
+	
+	
+	The solution concept is perfect Bayesian equilibrium, and all parties are assumed to be risk-neutral.
+	
+	
+	
+	The next three subsections describes formally all parties of my model.
+	
+	
+	
+	
+	
+	\subsection{Customers}
+	Customer who locates at $x \in [0, 1]$ derives a net utility $$V + q_A - p_A - x$$ if  he buys the good at a price $p_A$ from the seller $A$ who locates at a point $0$, and net utility $$V + q_B - p_B - (1-x)$$ if  he buys the good at a price $p_B$ from the seller $B$ who locates at a point $1$. $V$ is assumed to be higher than $\frac{3}{2}$ to ensure that the market is fully covered in equilibrium, $q_A, q_B \in [0, 1]$ are the qualities of the goods. The outside option for the customers is zero, so they follow the recommendation if the expected net utility from buying the good from the recommended seller is higher than 0.
+	
+	
+	
+	Customers do not know about the sellers unless the recommender system recommends them.
+	
+	
+	\subsection{Sellers}
+	
+	
+	Prior to price-setting sellers privately learns the quality of their good and should decide whether to disclose this information to the platform or not. Upon disclosure the sellers bear cost $c$. Moreover, the sellers pay the platform commission from sales. That is, the seller's $i$ profit is given by the following formula
+	$$\pi_i = (1-\alpha)p_i D_i - c d_i$$
+	where $$d_i = \begin{cases}
+	1, \text{ if sellers }i\text{ discloses }\\
+	0, \text{ otherwise }
+	\end{cases}$$ and $D_i$ is the demand on good $i$ which may be a function of prices and decisions regarding the information disclosure, and is determined by the recommender policy the platform employs.
+	
+	
+	
+	\subsection{Platform}
+	
+	The platform commits to the commission rate $\alpha$ and the recommender policy. The recommender policy specifies functions $r_A(x, p_A, p_B, d_A, d_B, q_A, q_B)$ and $r_B(x, p_A, p_B, d_A, d_B, q_A, q_B)$ which represents probabilities that the customer with location $x$ will be recommended the seller $A$ and $B$ respectively. The objective function of the platform is given by \begin{align}\label{pl_profit}
+	\pi_P = \alpha(p_A D_A + p_B D_B) + \gamma CS
+	\end{align}
+	
+	where $CS$ is a consumer surplus, $\gamma$ represents the platform's degree of consumer-orientedness. I assume that the maximum rate of commission the platform can charge the sellers is $\bar{\alpha} \in (0, 1)$, and $\gamma > \bar{\alpha}$.
+	
+	
+	The goal of the platform is to choose the commission rate $\alpha$ and the recommender policy in order to maximize \eqref{pl_profit}.
+	
+	\subsection{Timing}
+	The timing of the game looks as follows:
+	\begin{enumerate}
+		\item The platform commits to the commission rate $\alpha$ and the recommender policy.
+		\item The sellers privately observes $q_A, q_B$ and decide whether to disclose it to the platform.
+		\item The sellers simultaneously set prices.
+		\item The platform observes prices and whether the sellers disclosed quality, and recommends sellers to customers. After that the payoffs are realized and the game ends.
+	\end{enumerate}
+
+	\section{Results}
+	Firstly, I consider the case with observable qualities and without the recommender system. I need this comparison in order to demonstrate how and via which mechanisms the presence of the recommender system affects equilibrium behavior of sellers.
+	
+	
+	\subsection{Observable qualities. Without the platform}
+
+	\begin{lemma}\label{without}
+		If qualities $q_A$ and $q_B$ are observable then the demand for each good and equilibrium prices are defined as follows:
+		\begin{align*}
+		D_i = x_0 &= \frac{1}{2} - \frac{p_i - p_{-i}}{2} + \frac{q_i-q_{-i}}{2}\\
+		p_i &= 1 + \frac{q_i - q_{-i}}{3}
+		\end{align*}
+	\end{lemma}
+\begin{proof}
+	The proof will be completed.
+\end{proof}
+	The lemma above demonstrates that without the platform the seller with the higher quality sets a higher price, and if seller $i$ decides to undercut the competitor and sets the price $p_{-i} - \varepsilon$ then the gain in additional demand will be $\frac{\varepsilon}{2}$.
+	
+	
+	
+	In the next subsection I introduce the platform.
+	
+	
+	\subsection{Observable qualities. With the platform.}
+	For simplicity, I assume firstly that $\alpha$ is fixed.
+	\begin{proposition} \label{with}
+		If qualities $q_A$ and $q_B$ are observable then the recommender system induces the following demands for each good and equilibrium prices:
+		\begin{align*}
+		D_A &= \hat{x} = \frac{1}{2} - \frac{\gamma-\alpha}{2 \gamma}(p_A - p_B) + \frac{q_A - q_B}{2}\\
+		D_B &= 1 - D_A\\
+		p_i &= \frac{\gamma}{\gamma - \alpha} + \frac{\gamma(q_{i} -q_{-i})}{3(\gamma-\alpha)}
+		\end{align*}
+		and the optimal recommender policy implies:
+		\begin{itemize}
+			\item recommending the seller $A$ for those customers whose location $x \le \hat{x}$
+			\item recommending the seller $B$ otherwise
+		\end{itemize}
+	\end{proposition}
+	\begin{proof}
+		The proof will be completed.
+	\end{proof}
+	Comparing the results of the Proposition \ref{with} with Lemma \ref{without} several things are worth noting. First of all, with the recommender system the term $\frac{p_A-p_B}{2}$ in the expression for demand has an extra multiplier $\frac{\gamma-\alpha}{\gamma} \in (0, 1)$. The latter fact means that is the seller $A$ decides to undercut the competitor and sets a price $p_B - \varepsilon$, with the recommender system the resulting gain in demand will be $\frac{\gamma - \alpha}{\gamma} \frac{\varepsilon}{2}$ which is strictly below $\frac{\varepsilon}{2}$ the result we obtained for the case without the platform. That means that now the sellers have fewer incentives to undercut the competitor, i.e. the presence of recommender system which has stakes in sellers' profits softens competition. As a result, the equilibrium prices a higher. The picture below (Fig. \ref{fig1}) demonstrates graphically the impact of the recommender system. 
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\textwidth]{ImpactRS}
+		\caption{Impact of RS $(p_A < p_B)$}\label{fig1}
+	\end{figure}
+	As we can see, there exists a share of customers $\Delta = \frac{\alpha}{2 \gamma} (p_B - p_A)$ such that they strictly prefer the firm $A$ to the firm $B$ while are recommended the firm $B$. This happens since from the platform's standpoint the losses in consumer surplus are lower than gains driven by high-price sales. Note, also, that $\frac{\partial \Delta}{\partial \alpha} > 0$, $\frac{\partial \Delta}{\partial \gamma} < 0$ and $\lim_{\gamma \to \infty} \Delta = 0$. That is, the impact of the platform eliminates completely if $\gamma$ becomes very high, and the more the platform is profit-oriented (the higher is $\alpha$) the higher is $\Delta$.
+	\subsection{Qualities are not observable}
+	Here I consider the case when qualities $q_A, q_B$ are not observable to the platform unless the sellers decides to disclose it. In this subsection I derive the optimal recommender system of the platform. Following \cite{levin2009quality} I consider symmetric PBE in which the sellers disclose the quality if and only if the quality falls above some threshold $q^*$ and do no not disclose otherwise, and if the seller does not disclose, the beliefs of the platform regarding the quality do not depend on prices.  
+	
+	
+	
+	The optimal platform's policy can be found separately: firstly the platform may obtain the optimal recommendation (as a function of $\alpha$) treating the commission rate $\alpha$ as given, and then find an optimal commission rate. The next proposition characterize the optimal recommendation strategy given the commission rate $\alpha$.
+	\begin{proposition}\label{precise}
+		Given $\alpha$, the optimal recommender policy is given by $$\hat{x} = \frac{1}{2} - \frac{\gamma-\alpha}{2 \gamma}(p_A - p_B) + \frac{\tilde{q}_A - \tilde{q}_B}{2}$$
+		Equilibrium prices are $$p_i = \frac{\gamma}{\gamma - \alpha} + \frac{\gamma(\tilde{q}_{i} -\tilde{q}_{-i})}{3(\gamma-\alpha)}$$ where $$\tilde{q}_i = \begin{cases}
+		q_i, \text{ if firm }i\text{ discloses }\\
+		\frac{q^*}{2}, \text{ otherwise}
+		\end{cases}$$
+		and
+		\begin{align*}
+		q^* = -\frac{5}{3} + \frac{1}{3 \gamma} \sqrt{25 \gamma^2 + \frac{216 c \gamma (\gamma - \alpha)}{1 - \alpha}}
+		\end{align*}
+	\end{proposition} 
+\begin{proof}
+	Will be completed
+\end{proof}
+Comparing this result to the optimal recommendation strategy in case of unobservable quality, we note that instead of real qualities, in all formulas are used ``perceived'' qualities i.e. the exact qualities if the firm discloses and the conditional expectation of the quality given the fact that the firm does not disclose. The threshold $q^*$ is found as a quality that renders the seller indifferent between costly disclosure and non-disclosure. The following step would be to find an optimal commission rate $\alpha$ but prior to that let me analyse the equilibrium information disclosure and how the recommender system affects it.
+\begin{proposition}\label{thres}
+	\begin{enumerate}[(i)]
+		\item If $\gamma <1$ then $\frac{\partial q^*}{\partial \alpha} < 0$ i.e. sellers disclose more information if commissions increase
+		\item If $\gamma > 1$ then $\frac{\partial q^*}{\partial \alpha} > 0$ i.e. sellers disclose less information if commissions increase
+		\item If $\gamma = 1$ then $\frac{\partial q^*}{\partial \alpha} = 0$ i.e. amount of information disclosed does not depend on the commission rate
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Proof will be completed.
+\end{proof}
+The figure below (Fig. \ref{fig2}) demonstrate the threshold $q^*$ as a function of $\alpha$.
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{thres}
+	\caption{$q^*$ as a function of $\alpha$}\label{fig2}
+\end{figure}
+
+
+Let me explain the intuition behind the Proposition \ref{thres}. A choice of $\alpha$ has several potential effects on firms' strategies. On one hand, an increase in commission rate, other things equal, decreases sellers' profits since they should pay more to the platform. This makes it less attractive to disclose the information. On the other hand, an increase in commission increases the platform's stakes in sellers' profit, hence prices and sellers' profits go up. As a result, the latter effect makes the disclosure more attractive. The total effect is determined by the platform's degree of consumer-orientedness $\gamma$. If $\gamma > 1$ the first effect prevails, i.e. an increase in prices is not enough for sellers to offset losses from higher commissions. If $\gamma < 1$ the second effect dominates, and sellers benefit more from higher prices than lose from higher commissions. If $\gamma = 1$ the two effects completely offset each other.
+
+
+
+Finally, let me summarize the optimal recommender policy by finding an optimal commission rate $\alpha$.
+\begin{proposition}\label{opt_alpha}
+	\begin{enumerate}[(i)]
+		\item If $\gamma < 1$ then $\frac{\partial \pi}{\partial \alpha} > 0$, so the optimal recommendation policy implies the highest commission $\alpha = \bar{\alpha}$
+		\item If $\gamma > 1$ then $\frac{\partial \pi}{\partial \alpha} < 0$, so the optimal recommendation policy implies $\alpha = 0$
+	\end{enumerate}
+\end{proposition}
+\begin{proof} Will be completed.
+\end{proof}
+
+The Proposition \ref{opt_alpha} demonstrates that it turns out that the highest possible commission may be not always in the platform's best interest. If $\gamma$ is high enough it is not optimal for the platform to set commission. This happens since as we see from the Proposition \ref{thres}, if the platform charges commission, sellers will disclose less information but this brings losses in $CS$ and since $\gamma$ is high, these losses do not outweight direct benefits from high commissions. 
+
+
+
+
+
+
+It turns out that the optimality of the recommendation policy described in Proposition \ref{opt_alpha} strongly relies upon the assumption that the platform perfectly observes the customers' preferences (location on the line). In the next subsection this assumption is relaxed. In this scenario, there arise another effects that change the optimal recommender policy implemented by the platform.
+
+\subsection{Not precise recommendations}
+In this section I relax the assumption that the platform perfectly observes the customers' locations. A common way (see e.g. \cite{lewis1994supplying} ) to model this is to assume that prior to making a recommendation the platform can receive a noisy signal regarding the customer's location. I believe that this assumption is not very far away from reality: usually platforms collect data and implement some data-analysis tools to estimate people's preferences. Clearly, in most cases these estimates are not 100\% precise, so sometimes the platform receives a wrong signal regarding the customer's preferences.
+
+
+
+
+Formally, I assume that before making recommendation to a particular customer whose true location $x$ is equal to $x_0 \in [0, 1]$ the platform receives a signal $s$ such that $$\mathbb{P}(s=x_0|x=x_0) = \beta \in [0, 1]$$ and with probability $1-\beta$, $s \sim U(0, 1)$. I will refer to $\beta$ as the recommender system precision. In this case, as it is shown by \cite{li2018recommender} the conditional expectation regarding the true location is equal to $$\mathbb{E}[x|s=x_0] = \beta x_0 + \frac{1-\beta}{2}$$
+The result above is quite intuitive: the higher is precision the more weight the platform assigns to the signal, while when the precision is low the platform more frequently infers that the signal is not correct and prescribes to the customer an average location $\frac{1}{2}$. 
+
+
+The main goal of this subsection is to demonstrate how this recommender system's inaccuracy may affect the platform's optimal recommendation strategy and optimal commission rate. Moreover, I find an optimal precision for the recommendation system. Interesting, it turns out that it is not always optimal to have $\beta = 1$.
+
+
+\begin{proposition}\label{notprecise}
+	Given the commission rate $\alpha$ and precision $\beta$ the optimal recommender policy implies:
+	$$\hat{x} = \frac{1}{2} - \frac{\gamma - \alpha}{\gamma \beta} \frac{p_A-p_B}{2} + \frac{\tilde{q}_A - \tilde{q}_B}{2 \beta}$$
+	Equilibrium prices are
+	$$p_i = \frac{\gamma}{\gamma - \alpha} \beta + \frac{\gamma(\tilde{q}_i - \tilde{q}_{-i})}{3(\gamma - \alpha)}$$
+	where
+	$$\tilde{q}_i = \begin{cases}
+	q_i, \text{ if firm }i\text{ discloses }\\
+	\frac{q^*}{2}, \text{otherwise}
+	\end{cases}$$
+	and $$q^* = -\frac{6 \beta - 1}{3} + \frac{1}{3 \gamma} \sqrt{(6 \beta - 1)^2\gamma^2 + \frac{216 \beta c \gamma (\gamma - \alpha)}{1-\alpha}}$$
+\end{proposition}
+\begin{proof}
+	Will be completed.
+\end{proof}
+Note that for $\beta = 1$ i.e. for the highest precision of the recommender system, we get the exact result of the Proposition \ref{precise}. Several observations are worth noting from the Proposition above. First of all, low precision makes the impact of the recommender system less prominent. We have a multiplier $\frac{\gamma - \alpha}{2 \gamma \beta}$ before the term $(p_A - p_B)$ in the threshold which determines the demand for sellers. The lower is $\beta$ the stronger becomes incentives for the sellers to undercut the competitor. This can be explained in the following way: now there is a chance that the platform mistakes regarding the location of the customer, in this case, the platform makes a recommendation assuming that it is an average customer (location $\frac{1}{2}$). The latter increases the share of customers in the middle whom the sellers have the highest incentives to compete for.
+
+
+
+
+Interestingly, qualitatively the behavior of the threshold $q^*$ as a function of $\alpha$ does not depend on the fact that the recommender system is not precise. That is, the Proposition \ref{thres} is true even if $\beta < 1$.
+	\section{Discussion}
+	\section{Extensions}
+	\section{Conclusion}
+	\newpage
+	\bibliography{lib}{}
+	%\bibliographystyle{unsrt}
+	%\bibliographystyle{apalike}
+	\bibliographystyle{abbrvnat}
+\end{document}
