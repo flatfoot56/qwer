@@ -57,12 +57,14 @@
 %\let\cite = \citeasnoun
 \title{To run with the hare and hunt with the hounds: Optimal recommendation system with competing sellers. \\ Master Thesis}
 \date{}
-\author{Danil Fedchenko}
+\author{Danil Fedchenko\thanks{I am very grateful to Sergei Izmalkov for his help during the work on this project}}
 \begin{document} % 
 	\maketitle
 	\begin{abstract}
 		Many e-commerce platforms that connect buyers and sellers employ recommender systems to help customers find products and services. These systems may have several potential effects on strategies of competing sellers: on one hand, more people become aware of products, so sellers may sell more goods and benefit from the presence of the recommender system. On the other hand, at the same time, more people become aware of the competitor seller. The latter effect may intensify the price competition and may hurt sellers but, of course, benefit customers. However, many platforms charge firms for sales and as a result have the stakes in firms profits. Thus, by designing the recommender policy the platform should balance the pro-competitive care about customers and anti-competitive incentives to keep high prices. The main goal of this work is to study this trade-off in details. I am solving for an optimal recommender policy and investigate factors that may affect it.
 	\end{abstract}
+\newpage
+\tableofcontents
 \newpage
 	\section{Introduction}
 	\section{Literature review}
@@ -133,12 +135,25 @@
 	\begin{lemma}\label{without}
 		If qualities $q_A$ and $q_B$ are observable then the demand for each good and equilibrium prices are defined as follows:
 		\begin{align*}
-		D_i = x_0 &= \frac{1}{2} - \frac{p_i - p_{-i}}{2} + \frac{q_i-q_{-i}}{2}\\
+		D_A &= x_0 = \frac{1}{2} - \frac{p_A - p_{B}}{2} + \frac{q_A-q_{B}}{2}\\
+		D_B &= 1 - D_A\\
 		p_i &= 1 + \frac{q_i - q_{-i}}{3}
 		\end{align*}
 	\end{lemma}
 \begin{proof}
-	The proof will be completed.
+	The standard way to solve the Hotelling model is to define a marginal consumer $x_0$ i.e. a consumer who is indifferent between buying from sellers $A$ or $B$. Thus, $x_0$ is determined by the following equation: $$V+q_A-p_A - x_0 = V+q_B - p_B - (1-x_0)$$
+	hence $$x_0 = \frac{1}{2} - \frac{p_A - p_B}{2} + \frac{q_A - q_B}{2}$$
+	Sellers set prices $p_A, p_B$ simultaneously to solve the following problems:
+	$$p_A \cdot x_0 = p_A \left(\frac{1}{2} - \frac{p_A - p_B}{2} + \frac{q_A - q_B}{2}\right) \to \underset{p_A}{\max}$$
+	$$p_B \cdot (1-x_0) = p_B \left(\frac{1}{2} + \frac{p_A - p_B}{2} - \frac{q_A - q_B}{2}\right) \to \underset{p_B}{\max}$$
+	The system of first order conditions is given by:
+	\begin{align*}
+	\begin{cases}
+	p_A = \frac{1}{2} + \frac{p_B}{2} + \frac{q_A - q_B}{2}\\
+	p_B = \frac{1}{2} + \frac{p_A}{2} - \frac{q_A - q_B}{2}
+	\end{cases}
+	\end{align*}
+	Solving the system above yields $p_i = 1 + \frac{q_i - q_{-i}}{3}$
 \end{proof}
 	The lemma above demonstrates that without the platform the seller with the higher quality sets a higher price, and if seller $i$ decides to undercut the competitor and sets the price $p_{-i} - \varepsilon$ then the gain in additional demand will be $\frac{\varepsilon}{2}$.
 	
@@ -163,7 +178,35 @@
 		\end{itemize}
 	\end{proposition}
 	\begin{proof}
-		The proof will be completed.
+	 The optimal recommender strategy consists of two functions $r_A(x, p_A, p_B, q_A, q_B)$, $r_B(x, p_A, p_B, q_A, q_B)$ (which for simplicity I will denote as simply $r_A(x), r_B(x)$) which are the probabilities for the customer with location $x$ to be recommended the seller $A$ and $B$ respectively. Clearly these two functions should satisfy $$0 \le r_i(x) \le 1,\ \forall\ i \in \{A, B\},\ \forall\ x \in [0, 1] $$ $$0 \le r_A(x) + r_B(x) \le 1,\ \forall\ x \in [0, 1]$$ 
+	 Firstly, let me show that it is not optimal to have $r_A(x) + r_B(x) < 1$ for any $x$. Suppose on the contrary that $\exists\ x \in [0, 1], r_A(x)+r_B(x) < 1$. If for that customer any of expressions $V+q_A-p_A-x$, $V+q_B-p_B-(1-x)$ are positive then the platform can increase the probability of recommendation the seller whose good yields the customer positive utility (if both yields positive the good that yields more). Since the customer derives positive utility, $CS$ increases, this, in turn, increases the platform's objective function, hence $r_A(x) +r_B(x) < 1$ was not optimal. If both expressions $V+q_A-p_A-x$, $V+q_B-p_B-(1-x)$ are negative customer will not follow the recommendation no matter what are $r_A(x), r_B(x)$, so, without loss of generality we can restrict attention only to cases $r_A(x) + r_B(x) = 1$ i.e. to find only $r_A(x)$. 
+	 
+	 
+	 
+	 The objective of the recommender system is \begin{align*}
+	 \int_{0}^1 \alpha p_A r_A(x)dx + \int_{0}^1 \alpha p_B r_B(x)dx + \gamma \biggl( \int_{0}^1 (V+q_A-p_A-x)r_A(x)dx + \\+\int_{0}^1 (V+q_B-p_B-(1-x))r_B(x)dx \biggr) = \int_0^1 (\gamma V + \gamma q_A - (\gamma - \alpha)p_A - \gamma x) r_A(x)dx +\\+ \int_0^1 (\gamma V + \gamma q_B - (\gamma - \alpha)p_B - \gamma(1- x))(1- r_A(x))dx
+	 \end{align*}
+	 The platform maximizes the above function subject to the constraint $0 \le r_A(x) \le 1,\ \forall\ x \in [0, 1]$. Clearly, the objective function is maximized for $$r_A(x) = \begin{cases}
+	 1, \text{if the expression under the first integral is higher}\\
+	 0, \text{if the expression under the second integral is higher}
+	 \end{cases}$$
+	 That is, the seller $A$ is recommended to customers whose locations are to the left of $$\hat{x} = \frac{1}{2} - \frac{\gamma - \alpha}{\gamma} \frac{p_A - p_B}{2} + \frac{q_A - q_B}{2}$$
+	 and the seller $B$ is recommended otherwise. 
+	 
+	 
+	 
+	 
+	 Given the demand, 	sellers set prices $p_A, p_B$ simultaneously to solve the following problems:
+	 $$(1-\alpha)\cdot p_A \cdot \hat{x} = p_A \left(\frac{1}{2} - \frac{\gamma - \alpha}{\gamma} \frac{p_A - p_B}{2} + \frac{q_A - q_B}{2}\right) \to \underset{p_A}{\max}$$
+	 $$(1-\alpha)\cdot p_B \cdot (1-\hat{x}) = p_B \left(\frac{1}{2} + \frac{\gamma - \alpha}{\gamma} \frac{p_A - p_B}{2} - \frac{q_A - q_B}{2}\right) \to \underset{p_B}{\max}$$
+	 The system of first order conditions is given by:
+	 \begin{align*}
+	 \begin{cases}
+	 p_A = \frac{\gamma}{2(\gamma - \alpha)} + \frac{p_B}{2} + \frac{\gamma(q_A - q_B)}{2(\gamma - \alpha)}\\
+	 p_B = \frac{\gamma}{2(\gamma - \alpha)} + \frac{p_A}{2} - \frac{\gamma(q_A - q_B)}{2(\gamma - \alpha)}
+	 \end{cases}
+	 \end{align*}
+	 Solving the system above yields $p_i = \frac{\gamma}{\gamma - \alpha} + \frac{\gamma(q_i - q_{-i})}{3(\gamma - \alpha)}$
 	\end{proof}
 	Comparing the results of the Proposition \ref{with} with Lemma \ref{without} several things are worth noting. First of all, with the recommender system the term $\frac{p_A-p_B}{2}$ in the expression for demand has an extra multiplier $\frac{\gamma-\alpha}{\gamma} \in (0, 1)$. The latter fact means that is the seller $A$ decides to undercut the competitor and sets a price $p_B - \varepsilon$, with the recommender system the resulting gain in demand will be $\frac{\gamma - \alpha}{\gamma} \frac{\varepsilon}{2}$ which is strictly below $\frac{\varepsilon}{2}$ the result we obtained for the case without the platform. That means that now the sellers have fewer incentives to undercut the competitor, i.e. the presence of recommender system which has stakes in sellers' profits softens competition. As a result, the equilibrium prices a higher. The picture below (Fig. \ref{fig1}) demonstrates graphically the impact of the recommender system. 
 	
@@ -186,12 +229,22 @@
 		\frac{q^*}{2}, \text{ otherwise}
 		\end{cases}$$
 		and
-		\begin{align*}
+		\begin{align}\label{threshold}
 		q^* = -\frac{5}{3} + \frac{1}{3 \gamma} \sqrt{25 \gamma^2 + \frac{216 c \gamma (\gamma - \alpha)}{1 - \alpha}}
-		\end{align*}
+		\end{align}
 	\end{proposition} 
 \begin{proof}
-	Will be completed
+	From the Bayes rule it follows that if the seller does not disclose the information the platform forms beliefs that the quality is $\frac{q^*}{2}$. Given the platform's beliefs regarding the quality, the proof exactly repeats that of Proposition \ref{with}. It remains to find $q^*$. This threshold is found as the minimal quality that renders the seller indifferent between disclosing and not disclosing the information. That is, $q^*$ is determined as a solution to the following equation:
+	\begin{align*}
+	\mathbb{E} [\pi_i|q_i=q^*, \text{disclose}] - c = \mathbb{E} [\pi_i|q_i=q^*, \text{do not disclose}]
+	\end{align*}
+	\begin{align*}
+	&(1-\alpha)\int_{0}^{q^*} \left(\frac{\gamma}{\gamma - \alpha} + \frac{\gamma\left(q^* - \frac{q^*}{2}\right)}{3(\gamma - \alpha)} \right) \left(\frac{1}{2} - \frac{q^* - \frac{q^*}{2}}{6}\right)dq_B +\\ &+(1-\alpha)\int_{q^*}^{1} \left(\frac{\gamma}{\gamma - \alpha} + \frac{\gamma(q^* - q_B)}{3(\gamma - \alpha)} \right) \left(\frac{1}{2} - \frac{q^* - q_B}{6}\right)dq_B - c = \\
+	&=(1-\alpha)\int_{0}^{q^*} \left(\frac{\gamma}{\gamma - \alpha} + \frac{\gamma\left(\frac{q^*}{2} - \frac{q^*}{2}\right)}{3(\gamma - \alpha)} \right) \left(\frac{1}{2} - \frac{\frac{q^*}{2} - \frac{q^*}{2}}{6}\right)dq_B +\\
+	&+ (1-\alpha)\int_{q^*}^{1} \left(\frac{\gamma}{\gamma - \alpha} + \frac{\gamma(\frac{q^*}{2} - q_B)}{3(\gamma - \alpha)} \right) \left(\frac{1}{2} - \frac{\frac{q^*}{2} - q_B}{6}\right)dq_B
+	\end{align*}
+	Solving the equation above yields
+	$$q^* = -\frac{5}{3} + \frac{1}{3 \gamma} \sqrt{25 \gamma^2 + \frac{216 c \gamma (\gamma - \alpha)}{1 - \alpha}}$$
 \end{proof}
 Comparing this result to the optimal recommendation strategy in case of unobservable quality, we note that instead of real qualities, in all formulas are used ``perceived'' qualities i.e. the exact qualities if the firm discloses and the conditional expectation of the quality given the fact that the firm does not disclose. The threshold $q^*$ is found as a quality that renders the seller indifferent between costly disclosure and non-disclosure. The following step would be to find an optimal commission rate $\alpha$ but prior to that let me analyse the equilibrium information disclosure and how the recommender system affects it.
 \begin{proposition}\label{thres}
@@ -202,7 +255,11 @@ Comparing this result to the optimal recommendation strategy in case of unobserv
 	\end{enumerate}
 \end{proposition}
 \begin{proof}
-	Proof will be completed.
+	The proof is straightforward, differentiating \eqref{threshold} with respect to $\alpha$, one can get:
+	\begin{align*}
+	\frac{\partial q^*}{\partial \alpha} = - \frac{36 c (1-\gamma)}{\sqrt{25 \gamma^2 + \frac{216 c \gamma (\gamma - \alpha)}{1 - \alpha}}} 
+	\end{align*}
+	which immediately implies the result.
 \end{proof}
 The figure below (Fig. \ref{fig2}) demonstrate the threshold $q^*$ as a function of $\alpha$.
 	\begin{figure}[H]
@@ -223,7 +280,28 @@ Finally, let me summarize the optimal recommender policy by finding an optimal c
 		\item If $\gamma > 1$ then $\frac{\partial \pi}{\partial \alpha} < 0$, so the optimal recommendation policy implies $\alpha = 0$
 	\end{enumerate}
 \end{proposition}
-\begin{proof} Will be completed.
+\begin{proof} Given prices $p_A, p_B$ and qualities $q_A, q_B$, total benefit of the platform is equal to:
+	\begin{align*}
+	\alpha(p_A \hat{x} + p_B(1-\hat{x})) + \gamma \left(\int_{0}^{\hat{x}} (V + q_A - p_A - x)dx + \int_{\hat{x}}^1 (V + q_B - p_B -(1-x))dx\right) = \\
+	= 	\alpha(p_A \hat{x} + p_B(1-\hat{x})) + \gamma \left(V - \frac{1}{2}+(1-\hat{x})(q_B - p_B) + \hat{x}(q_A-p_A) - \hat{x}^2  \right)
+	\end{align*}
+	Where $\hat{x}$ is defined according to Proposition \ref{precise}. Hence, expected total benefit of the platform is
+	\begin{align*}
+	&\pi = \int_{0}^{q^*} \int_0^{q^*} \biggl( \frac{\alpha \gamma}{\gamma - \alpha} + \gamma \left(V - \frac{3}{4}+ \frac{q^*}{2} - \frac{\gamma}{\gamma - \alpha} \right)\biggr) dq_A dq_B +\\+
+	 &\int_0^{q^*} \int_{q^*}^1 \biggl[ \alpha \biggl( \left( \frac{\gamma}{\gamma - \alpha} + \frac{\gamma\left( \frac{q^*}{2} - q_B \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} + \frac{\frac{q^*}{2} - q_B}{6} \right) + \left( \frac{\gamma}{\gamma - \alpha} - \frac{\gamma\left( \frac{q^*}{2} - q_B \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} - \frac{\frac{q^*}{2} - q_B}{6} \right) \biggr)+\\
+	 &+\gamma \biggl(V - \frac{1}{2} + \left(\frac{1}{2} - \frac{\frac{q^*}{2} - q_B}{6} \right) \left( q_B - \frac{\gamma}{\gamma - \alpha} + \frac{\gamma \left( \frac{q^*}{2} - q_B \right)}{3 (\gamma - \alpha)} \right)  + \\
+	 &+ \left(\frac{1}{2} + \frac{\frac{q^*}{2} - q_B}{6} \right) \left(\frac{q^*}{2} - \frac{\gamma}{\gamma - \alpha} - \frac{\gamma \left( \frac{q^*}{2} - q_B \right)}{3(\gamma - \alpha)} \right)  - \left( \frac{1}{2} + \frac{\frac{q^*}{2} - q_B}{6} \right)^2 \biggr)  \biggr] dq_A dq_B +\\
+	 +
+	 &\int_{q^*}^{1} \int_{0}^{q^*} \biggl[ \alpha \biggl( \left( \frac{\gamma}{\gamma - \alpha} + \frac{\gamma\left(q_A - \frac{q^*}{2} \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} + \frac{q_A - \frac{q^*}{2}}{6} \right) + \left( \frac{\gamma}{\gamma - \alpha} - \frac{\gamma\left(q_A- \frac{q^*}{2} \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} - \frac{q_A -\frac{q^*}{2}}{6} \right) \biggr)+\\
+	 &+\gamma \biggl(V - \frac{1}{2} + \left(\frac{1}{2} - \frac{q_A-\frac{q^*}{2}}{6} \right) \left( \frac{q^*}{2} - \frac{\gamma}{\gamma - \alpha} + \frac{\gamma \left(q_A -  \frac{q^*}{2} \right)}{3 (\gamma - \alpha)} \right)  + \\
+	 &+ \left(\frac{1}{2} + \frac{q_A-\frac{q^*}{2}}{6} \right) \left(q_A - \frac{\gamma}{\gamma - \alpha} - \frac{\gamma \left(q_A- \frac{q^*}{2} \right)}{3(\gamma - \alpha)} \right)  - \left( \frac{1}{2} + \frac{q_A - \frac{q^*}{2}}{6} \right)^2 \biggr)  \biggr] dq_A dq_B + \\
+	 +
+	  &\int_{q^*}^{1} \int_{q^*}^{1} \biggl[ \alpha \biggl( \left( \frac{\gamma}{\gamma - \alpha} + \frac{\gamma\left(q_A - q_B \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} + \frac{q_A - q_B}{6} \right) + \left( \frac{\gamma}{\gamma - \alpha} - \frac{\gamma\left(q_A- q_B \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} - \frac{q_A -q_B}{6} \right) \biggr)+\\
+	 &+\gamma \biggl(V - \frac{1}{2} + \left(\frac{1}{2} - \frac{q_A-q_B}{6} \right) \left( q_B - \frac{\gamma}{\gamma - \alpha} + \frac{\gamma \left(q_A -  q_B \right)}{3 (\gamma - \alpha)} \right)  + \\
+	 &+ \left(\frac{1}{2} + \frac{q_A-q_B}{6} \right) \left(q_A - \frac{\gamma}{\gamma - \alpha} - \frac{\gamma \left(q_A- q_B \right)}{3(\gamma - \alpha)} \right)  - \left( \frac{1}{2} + \frac{q_A - q_B}{6} \right)^2 \biggr)  \biggr] dq_A dq_B = \\
+	 & = \frac{\gamma(216 V - q^{*3} - 161)}{216}
+	\end{align*}
+	Thus $$\frac{\partial \pi}{\partial \alpha} = -\frac{3 \gamma q^{*2}}{216} \frac{\partial q^*}{\partial \alpha}$$ and using the result of the Proposition \ref{thres} one may finally prove the result.
 \end{proof}
 
 The Proposition \ref{opt_alpha} demonstrates that it turns out that the highest possible commission may be not always in the platform's best interest. If $\gamma$ is high enough it is not optimal for the platform to set commission. This happens since as we see from the Proposition \ref{thres}, if the platform charges commission, sellers will disclose less information but this brings losses in $CS$ and since $\gamma$ is high, these losses do not outweight direct benefits from high commissions. 
@@ -241,7 +319,9 @@ In this section I relax the assumption that the platform perfectly observes the 
 
 
 
-Formally, I assume that before making recommendation to a particular customer whose true location $x$ is equal to $x_0 \in [0, 1]$ the platform receives a signal $s$ such that $$\mathbb{P}(s=x_0|x=x_0) = \beta \in [0, 1]$$ and with probability $1-\beta$, $s \sim U(0, 1)$. I will refer to $\beta$ as the recommender system precision. In this case, as it is shown by \cite{li2018recommender} the conditional expectation regarding the true location is equal to $$\mathbb{E}[x|s=x_0] = \beta x_0 + \frac{1-\beta}{2}$$
+Formally, I assume that before making recommendation to a particular customer whose true location $x$ is equal to $x_0 \in [0, 1]$ the platform receives a signal $s$ such that $$\mathbb{P}(s=x_0|x=x_0) = \beta \in [0, 1]$$ and with probability $1-\beta$, $s \sim U(0, 1)$. I will refer to $\beta$ as the recommender system precision. In this case, as it is shown by \cite{li2018recommender} the conditional expectation regarding the true location is equal to \begin{align}\label{signal}
+\mathbb{E}[x|s=x_0] = \beta x_0 + \frac{1-\beta}{2}
+\end{align}
 The result above is quite intuitive: the higher is precision the more weight the platform assigns to the signal, while when the precision is low the platform more frequently infers that the signal is not correct and prescribes to the customer an average location $\frac{1}{2}$. 
 
 
@@ -261,7 +341,7 @@ The main goal of this subsection is to demonstrate how this recommender system's
 	and $$q^* = -\frac{6 \beta - 1}{3} + \frac{1}{3 \gamma} \sqrt{(6 \beta - 1)^2\gamma^2 + \frac{216 \beta c \gamma (\gamma - \alpha)}{1-\alpha}}$$
 \end{proposition}
 \begin{proof}
-	Will be completed.
+	Using \eqref{signal} and repeating the proof of the Proposition \ref{with} one can obtain the expression for $\hat{x}$ and equilibrium prices. $q^*$ is found in the same way as in the Proposition \ref{precise}.
 \end{proof}
 Note that for $\beta = 1$ i.e. for the highest precision of the recommender system, we get the exact result of the Proposition \ref{precise}. Several observations are worth noting from the Proposition above. First of all, low precision makes the impact of the recommender system less prominent. We have a multiplier $\frac{\gamma - \alpha}{2 \gamma \beta}$ before the term $(p_A - p_B)$ in the threshold which determines the demand for sellers. The lower is $\beta$ the stronger becomes incentives for the sellers to undercut the competitor. This can be explained in the following way: now there is a chance that the platform mistakes regarding the location of the customer, in this case, the platform makes a recommendation assuming that it is an average customer (location $\frac{1}{2}$). The latter increases the share of customers in the middle whom the sellers have the highest incentives to compete for.
 
@@ -269,6 +349,65 @@ Note that for $\beta = 1$ i.e. for the highest precision of the recommender syst
 
 
 Interestingly, qualitatively the behavior of the threshold $q^*$ as a function of $\alpha$ does not depend on the fact that the recommender system is not precise. That is, the Proposition \ref{thres} is true even if $\beta < 1$.
+
+
+However, it turns out that depending on cost of information disclosure, the amounf of information disclosed in equilibrium depends differently on the recommender system precision.
+
+
+
+\begin{proposition}\label{thres_beta}
+	\begin{enumerate}[(i)]
+		\item If $c \le \frac{\gamma(1-\alpha)}{9(\gamma - \alpha)}$ then $q^* \in [0, 1]$ and $\frac{\partial q^*}{\partial \beta} \le 0$ i.e. sellers disclose more information if the recommender system is more precise
+		\item If $\frac{\gamma(1-\alpha)}{9(\gamma - \alpha)} < c \le \frac{13}{8}\frac{\gamma(1-\alpha)}{9(\gamma - \alpha)}$ then $q^* \in [0, 1]$ and $\frac{\partial q^*}{\partial \beta} > 0$ i.e. sellers disclose less information if the recommender system is more precise
+		\item If $c > \frac{13}{8}\frac{\gamma(1-\alpha)}{9(\gamma - \alpha)}$ then $\frac{\partial q^*}{\partial \beta} > 0$ and $q^* \in [0, 1] \iff 0 \le \beta \le \frac{\gamma(1-\alpha)}{72 c (\gamma - \alpha) - 12 \gamma (1-\alpha)}$ 
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	First of all, let us find a condition that guarantees that $q^* \le 1$. 
+	\begin{align*}
+	\sqrt{(6 \beta - 1)^2 \gamma^2 + \frac{216 \beta c \gamma (\gamma - \alpha)}{1-\alpha}} &\le 2\gamma (1+3 \beta)\\
+	-\gamma(1+12 \beta) + \frac{72 \beta c (\gamma - \alpha)}{1 - \alpha} &\le 0\\
+	\beta &\le \frac{\gamma(1-\alpha)}{72c (\gamma - \alpha) - 12 \gamma (1-\alpha)}
+	\end{align*}
+	Clearly, if $\frac{\gamma(1-\alpha)}{72c (\gamma - \alpha) - 12 \gamma (1-\alpha)} > 1$, $q^* \le 1$ for all $\beta$. Thus, 
+	\begin{align*}
+	\frac{\gamma(1-\alpha)}{72c (\gamma - \alpha) - 12 \gamma (1-\alpha)} &> 1\\
+	\frac{13}{72} \frac{\gamma(1-\alpha)}{\gamma - \alpha} &> c
+	\end{align*}
+	Differentiated the expression for $q^*$ with respect to $\beta$ yields:
+	\begin{align*}
+	\frac{\partial q^*}{\partial \beta} = -2 + \frac{2 \gamma (6 \beta - 1) + \frac{36 c (\gamma - \alpha)}{1-\alpha}}{ \sqrt{(6 \beta - 1)^2\gamma^2 + \frac{216 \beta c \gamma (\gamma - \alpha)}{1-\alpha}}}
+	\end{align*} 
+	\begin{align*}
+	-2 + \frac{2 \gamma (6 \beta - 1) + \frac{36 c (\gamma - \alpha)}{1-\alpha}}{ \sqrt{(6 \beta - 1)^2\gamma^2 + \frac{216 \beta c \gamma (\gamma - \alpha)}{1-\alpha}}} &\le 0 \iff\\
+	\iff \gamma(6 \beta - 1) + \frac{18c(\gamma - \alpha)}{1- \alpha} &\le \sqrt{(6 \beta - 1)^2\gamma^2 + \frac{216 \beta c \gamma (\gamma - \alpha)}{1-\alpha}} \iff\\
+	\iff 36 \gamma (6 \beta - 1)(1-\alpha) + 18^2 c(\gamma - \alpha) &\le 216 \beta \gamma (1-\alpha) \iff\\
+	\iff c &\le \frac{\gamma(1 - \alpha)}{9(\gamma - \alpha)}  
+	\end{align*} 
+	This completes the proof.
+\end{proof}
+
+
+What drives the result above? The recommender system's precision has several effects on sellers: on one hand, as we see from the Proposition \ref{notprecise} higher precision means softer competition and as a result higher prices, and hence more incentives for sellers to disclose the information. On the other hand, high $\beta$ renders the contribution of quality into demand lower (we have the term $\frac{\tilde{q}_i - \tilde{q}_{-i}}{2 \beta}$) in the demand for the seller's $i$ good. As a result, with high precision the impact of quality decreases, which makes sellers less willing to bear cost of disclosure. That is why, if cost of disclosure is high the latter effect dominates and improving the recommender system's precision adversely effects the amount of information disclosed in the equilibrium. If, on the other hand, cost of disclosure is small, higher precision increases the amount of disclosed information. 
+
+
+
+This ambiguous influence of the precision on the amount of information disclosed, qualitatively changes an impact of commission rate on the platform's total benefit. Assuming that the recommendation precision $\beta$ is an exogenous constant, the next proposition describes the optimal policy of the platform regarding commissions it charges sellers.
+
+
+
+\begin{proposition}\label{profit_beta}
+	\leavevmode 
+	\begin{itemize}
+		\item If $\beta \le 0.5$ and  $\gamma > 1$ then $\frac{\partial \pi }{\partial \alpha} > 0$ and the optimal commission is $\alpha = \bar{\alpha}$
+		\item  If $\beta \le 0.5$ and $\gamma < 1$ then $\frac{\partial \pi }{\partial \alpha} < 0$ and the optimal commission is $\alpha = 0$	
+		\item If $\beta > 0.5$ and  $\gamma > 1$ then $\frac{\partial \pi }{\partial \alpha} < 0$ and the optimal commission is $\alpha = 0$
+		\item If $\beta > 0.5$ and $\gamma < 1$ then $\frac{\partial \pi }{\partial \alpha} > 0$ and the optimal commission is $\alpha = \bar{\alpha}$
+	\end{itemize}
+\end{proposition}
+\begin{proof}
+	content...
+\end{proof}
 	\section{Discussion}
 	\section{Extensions}
 	\section{Conclusion}
