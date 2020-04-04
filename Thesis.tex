@@ -68,6 +68,43 @@
 \newpage
 	\section{Introduction}
 	\section{Literature review}
+	
+		This work is related to the strand of literature on recommender systems. The first prototype of modern recommender system has been created by Xerox Palo Alto Research Center in the late 1980-s early 1990-s and was described by  \cite{goldberg1992using}. This system has been called \textit{Tapestry} and has been designed in order to filter out a skyrocketing amount of the incoming emails. The system was trying to make the incoming stream of emails interesting for the particular person based on whether these emails were interesting for people whose interests are close to the interests of this person. Since that time many papers have been written that mainly explore the recommender systems from the Computer Science standpoint (see \cite{Beel2015r} for the recent survey). 
+	
+	
+	
+	
+	
+	One of the first papers which highlights the issue from the point of view of Economics is work by \cite{avery1999market}. \cite{avery1999market} considered the influence of the recommender system on choice regarding the consumption of good for the sequentially arriving agents.
+		
+		
+		
+	\cite{bergemann2006optimal} address the question of optimal pricing under the presence of recommender system.
+	
+	
+	In the two papers mentioned above the authors assumed the recommendation strategy to be given and mainly just consider the impact of the recommender system on other strategic agents. 
+	
+	
+	
+	One of the first works that focus on design of optimal recommendation policy is the work by \cite{kremer2014}. The authors build a simple model with two alternatives which generate deterministic but \textit{ex-ante} unknown payoff. One of the alternatives is \textit{a priori} better, in the sense that the expected reward it generates is higher. The finite number of consumers arrive sequentially and each chooses between either of two alternatives. After the choice is made the consumer leaves forever. The platform accumulates reviews and commits to the recommendation policy it uses to make recommendations to the newcomers. \cite{kremer2014}, firstly, neatly in simple terms demonstrate why the full revelation policy may be suboptimal\footnote{Maybe the appearance of this paper and similar to that in 2014 was the reason why \textit{Amazon} decided to switch their recommendation policy from the fully revealing one.}. Secondly, the optimal recommender policy is derived which has a threshold nature. That is, \textit{a priori} better alternative is recommended if its quality turns out to be higher than the certain threshold. Otherwise, the other alternative is recommended, and then once both alternatives were tried the best one is recommended until the end. 
+	
+	
+	
+	
+	Another relevant paper is that of \cite{che2015}. In the paper, a continuous flow of customers arrives, and each should choose between the good or an outside option. The quality of the good is exogenously predetermined but unknown. Customers who decide to consume the good send a noisy signal about its quality to the platform. The signal is noisy in the sense that even if the quality of the good is good the information about it reaches to the platform only with some probability (different from 1). The platform updates its beliefs about the quality and tailors a recommender policy contingent on the beliefs. Authors demonstrate that the full revelation policy is suboptimal and find the optimal policy which again has a threshold nature. Namely, once the platform receives the signal that the quality is good, it will recommend the good until the end. Otherwise, if no news arrives it is optimal to experiment with the risky alternative (recommend it) until the beliefs that its quality is good fall below the certain threshold. After that, the optimal policy prescribes to never recommend this alternative.
+	
+	
+	
+	
+	\cite{papanastasiou2017} extend ideas developed by \cite{kremer2014} and \cite{che2015}, and build a dynamic, stochastic model. In their model, agents also arrive sequentially to the platform and should choose between two alternatives that generate stochastically exogenous payoff. The platform in the paper designs a recommendation policy. Although the optimal policy turns out to have a complicated form, authors demonstrate that in this case the full revelation policy is not the best one, and the optimal policy involves information obfuscation.
+	
+	Three papers mentioned above although address the question on optimal recommender policy, do not take into account the strategic nature of recommended alternatives.
+	\cite{chen2016advertising} consider the informative role of recommender system on strategies of competing sellers and the equilibrium outcomes. They consider two sellers located at the extremes of Hotelling-like (\cite{harold1929stability}) linear city who are competing for the unit mass of customers, located in between. There is also a recommender system that receives a noisy information about each customer's location and can recommend one of the sellers to the customers. Although in this paper, the recommendation strategy is exogenous, the authors consider how the presence of the recommender system affects competition between sellers. In particular, they are looking at prices and advertising expenditure. The main finding of this paper is that the presence of the recommender system may fundamentally change the nature of competition. In particular, the authors demonstrate that with the recommender system prices and advertising expenditure switch from being strategic substitutes to strategic complements. This results in the fact that with recommender system sellers prefer to advertise less, relying more on advertising provided by the recommendation system (the authors called this effect \textit{advertising effect}). At the same time, prices with recommender system are lower (the authors called this effect \textit{competition effect}) which is the result of tougher competition. Interestingly, the total effect of recommender system on sellers profits becomes a result of an interplay between \textit{competition effect} and \textit{advertising effect}: for some values of parameters the sellers becomes worse-off with the presence of the recommender system, \textit{competition effect} dominates, while for other values the sellers benefit from ``free'' advertising provided by the platform.
+	
+	Another paper, which is closely related to the one mentioned previously is the paper by \cite{li2018recommender} (actually there are two quite different versions of this paper). In the two papers mentioned above, the qualities of goods were supposed to be equal and known \textit{ex-ante} to all parties which makes the type of differentiation considered to be purely horizontal.
+	
+	\cite{levin2009quality} add a vertical component, focusing on the sellers' decisions regarding the quality disclosure, although, in the framework without the recommender system. In the model which I consider, I firstly endogenise the recommendation strategy that the platform implements, and secondly, I am looking at the interplay between the recommendation policy and sellers' incentives to disclose the information about the goods' quality.
+	
 	\section{Model}
 	The model I consider is similar to that considered by \cite{levin2009quality}, the difference is that I introduce a new player -- a platform which employs a recommender system (I will use words ``platform'' and ``recommender system'' interchangeably).
 		
@@ -325,12 +362,13 @@ Formally, I assume that before making recommendation to a particular customer wh
 The result above is quite intuitive: the higher is precision the more weight the platform assigns to the signal, while when the precision is low the platform more frequently infers that the signal is not correct and prescribes to the customer an average location $\frac{1}{2}$. 
 
 
-The main goal of this subsection is to demonstrate how this recommender system's inaccuracy may affect the platform's optimal recommendation strategy and optimal commission rate. Moreover, I find an optimal precision for the recommendation system. Interesting, it turns out that it is not always optimal to have $\beta = 1$.
+The main goal of this subsection is to demonstrate how this recommender system's inaccuracy may affect the platform's optimal recommendation strategy and optimal commission rate.
 
 
 \begin{proposition}\label{notprecise}
 	Given the commission rate $\alpha$ and precision $\beta$ the optimal recommender policy implies:
 	$$\hat{x} = \frac{1}{2} - \frac{\gamma - \alpha}{\gamma \beta} \frac{p_A-p_B}{2} + \frac{\tilde{q}_A - \tilde{q}_B}{2 \beta}$$
+	i.e. those customers for whom signal regarding their location falls to the left of $\hat{x}$ are recommended the seller $A$, otherwise they are recommended the seller $B$.
 	Equilibrium prices are
 	$$p_i = \frac{\gamma}{\gamma - \alpha} \beta + \frac{\gamma(\tilde{q}_i - \tilde{q}_{-i})}{3(\gamma - \alpha)}$$
 	where
@@ -343,7 +381,7 @@ The main goal of this subsection is to demonstrate how this recommender system's
 \begin{proof}
 	Using \eqref{signal} and repeating the proof of the Proposition \ref{with} one can obtain the expression for $\hat{x}$ and equilibrium prices. $q^*$ is found in the same way as in the Proposition \ref{precise}.
 \end{proof}
-Note that for $\beta = 1$ i.e. for the highest precision of the recommender system, we get the exact result of the Proposition \ref{precise}. Several observations are worth noting from the Proposition above. First of all, low precision makes the impact of the recommender system less prominent. We have a multiplier $\frac{\gamma - \alpha}{2 \gamma \beta}$ before the term $(p_A - p_B)$ in the threshold which determines the demand for sellers. The lower is $\beta$ the stronger becomes incentives for the sellers to undercut the competitor. This can be explained in the following way: now there is a chance that the platform mistakes regarding the location of the customer, in this case, the platform makes a recommendation assuming that it is an average customer (location $\frac{1}{2}$). The latter increases the share of customers in the middle whom the sellers have the highest incentives to compete for.
+Note that for $\beta = 1$ i.e. for the highest precision of the recommender system, we get the exact result of the Proposition \ref{precise}. Several observations are worth noting from the Proposition above. First of all, low precision makes the impact of the recommender system less prominent. We have a multiplier $\frac{\gamma - \alpha}{2 \gamma \beta}$ before the term $(p_A - p_B)$ in the threshold which determines the demand for sellers. The lower is $\beta$ the stronger becomes incentives for the sellers to undercut the competitor. This can be explained in the following way: now there is a chance that the platform mistakes regarding the location of the customer, in this case, the platform makes a recommendation assuming that it is an average customer (location $\frac{1}{2}$). The latter increases the share of customers in the middle whom the sellers have the highest incentives to compete for. As a result, other things equal, equilibrium prices are lower, the less precise is the recommender system implemented by the platform.
 
 
 
@@ -351,7 +389,7 @@ Note that for $\beta = 1$ i.e. for the highest precision of the recommender syst
 Interestingly, qualitatively the behavior of the threshold $q^*$ as a function of $\alpha$ does not depend on the fact that the recommender system is not precise. That is, the Proposition \ref{thres} is true even if $\beta < 1$.
 
 
-However, it turns out that depending on cost of information disclosure, the amounf of information disclosed in equilibrium depends differently on the recommender system precision.
+However, it turns out that depending on cost of information disclosure, the amount of information disclosed in equilibrium depends differently on the recommender system precision.
 
 
 
@@ -406,8 +444,22 @@ This ambiguous influence of the precision on the amount of information disclosed
 	\end{itemize}
 \end{proposition}
 \begin{proof}
-	content...
+ First of all, we need to find the platform's expected profit. Given prices $p_A, p_B$ and qualities $q_A, q_B$, total benefit of the platform is equal to:
+ \begin{align}\label{profit}
+ \alpha(p_A \hat{x} + p_B(1-\hat{x})) + \gamma \biggl(\int_{0}^{\hat{x}} \biggl[ (\beta +(1-\beta)\hat{x})(V + q_A - p_A - x) + \nonumber \\+ (1-\beta)(1-\hat{x})(V + q_B - p_B - (1-x))\biggr]dx + \int_{\hat{x}}^1 \biggl[(1-\beta) \hat{x}(V+q_A-p_A-x) + \nonumber\\
+ +(\beta + (1-\beta)(1-\hat{x}))(V + q_B - p_B -(1-x)) \biggr] dx\biggr) = \\
+ = 	\alpha(p_A \hat{x} + p_B(1-\hat{x})) + \gamma \left(V - \frac{1}{2}+(1-\hat{x})(q_B - p_B) + \hat{x}(q_A-p_A) + \beta \hat{x} - \beta \hat{x}^2  \right)\nonumber
+ \end{align}
+ Where $\hat{x}$ is defined according to Proposition \ref{notprecise}. For those customers located to the left of $\hat{x}$ the probability of being recommended a seller $A$ is $\beta + (1-\beta) \hat{x}$. Since with probability $\beta$ the platform receives the true location of customer and with probability $(1-\beta) \hat{x}$ the platform receives a signal from the interval $[0, \hat{x}]$. In the following way, one can obtain probabilities of being recommended seller $B$ for those customers located to the left of $\hat{x}$ as well as probabilities of being recommended sellers $A$ and $B$ for the customers located to the right of $\hat{x}$. Finally, we obtain an expression in \eqref{profit}. Then, in the same way as in the Proposition \ref{opt_alpha} one can obtain the expression for the profit:
+ \begin{align*}
+ \pi = \frac{\gamma(54 \beta^2(1+4V) - (1-q^{*3})(1-2\beta) - 216 \beta^3)}{216 \beta^2}
+ \end{align*}
+ Thus, \begin{align*}
+ \frac{\partial \pi }{\partial \alpha} = \frac{\gamma q^{*2}(1-2\beta)}{72 \beta^2} \frac{\partial q^*}{\partial \alpha}
+ \end{align*}
+ Using the result of the Proposition \ref{thres} we finally obtain the result we were to prove.
 \end{proof}
+In contrast to the case with precise recommendation system (Proposition \ref{precise}), if the platform's precision is not very high (lower than 0.5), it may be optimal to charge maximal commission even in case when $\gamma > 1$. This happens since with very low precision the weight of quality for the recommendation becomes higher, as a result, sellers have incentives to reveal quality even with high commissions. In the similar fashion can be explained the fact that for low precision not very consumer-oriented recommender system (with $\gamma < 1$) prefers to set $\alpha = 0$: low precision adversely affects the consumer surplus, the situation deteriorates if in addition sellers decide not to disclose the information. Consequently, it is optimal for the platform to set $\alpha = 0$.
 	\section{Discussion}
 	\section{Extensions}
 	\section{Conclusion}
