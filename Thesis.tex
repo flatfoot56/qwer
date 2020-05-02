@@ -8,6 +8,7 @@
 \usepackage{setspace,amsmath}
 \usepackage{mathtools}
 \usepackage{pgfplots}
+\usepackage[toc,page]{appendix}
 \usepackage{titlesec}
 %\usepackage{harvard}
 \usepackage[round]{natbib}
@@ -59,7 +60,7 @@
 %\let\cite = \citeasnoun
 \title{To run with the hare and hunt with the hounds: Optimal recommendation system with competing sellers. \\ Master Thesis}
 \date{}
-\author{Danil Fedchenko\thanks{I am very grateful to: Sergei Izmalkov for constant help and support during the work on this project; Marta Troya Martinez for many valuable comments and suggestions. \newline Any remaining errors are mine.}}
+\author{Danil Fedchenko}%\thanks{I am very grateful to: Sergei Izmalkov for constant help and support during the work on this project; Marta Troya Martinez for many valuable comments and suggestions. \newline Any remaining errors are mine.}}
 \begin{document} 
 	\maketitle
 	\begin{abstract}
@@ -71,61 +72,82 @@
 	\section{Introduction}
 	
 	
-		Suppose you came to New-York and would like to find a good restaurant to go out tonight. Or you are going to spend your upcoming vacation on the coast of Spain and you need to find a hotel. Or you would like to buy something using your favorite online retailer. What would you do? What will be the first thing you interact with?  Before the World Wide Web, to find hotels or restaurants people relied upon guide-books and brochures distributed by travel agents. Those guides usually quickly became out-of-date and were criticized for containing misleading information. 
+		Suppose you came to New York and would like to find a good restaurant to go out tonight. Or you are going to spend your upcoming vacation on the coast of Spain and you need to find a hotel. Or you would like to buy something at your favorite online retailer. How would you proceed? What will be the first thing you interact with?  Before the World Wide Web, to find hotels or restaurants people relied upon guide-books and brochures distributed by travel agents. Those guides, once printed, usually quickly became out-of-date in the constantly changing environment, and could be criticized for containing misleading information. 
 	
 	
 	
 	
 	
-	After the advent of the Internet, finding up-to-date information has become much easier. To make this process even easier Internet platforms began to appear. These platforms aggregated customers' reviews on products and service providers. Some of those platforms simply collect the reviews and present a rating that is just an average measure of consumers' satisfaction (weighted or simple mean of rates). Examples include \textit{Yelp} for restaurants, home and car services, or \textit{SiteJabber} for online businesses.
+	After the advent of the Internet, finding up-to-date information has become much easier. To make this process even easier Internet platforms began appearing. These platforms aggregate customers' reviews on products and service providers. Some of those platforms simply collect the reviews and present a rating that is just an average measure of consumers' satisfaction (weighted or simple mean of rates). Examples include \textit{Yelp} for restaurants, home and car services, or \textit{SiteJabber} for online businesses.
 	
 	
 	
 	
 	
-Other platforms came further and began to not only collect the reviews but also to make individual recommendations based on these reviews. Usually, these recommendations take a form of ranking of several alternatives that are ranked according to the secret propriety algorithm that the particular platform employs. The most widely known examples of such a kind of platforms include: \textit{TripAdvisor} which presents a ranking on Hotels and Restaurants based on previous users' experience; \textit{Trustpilot} which is one of the most popular review services for a large variety of businesses; \textit{Glassdoor} that uses reviews of employees to rank companies by workers' satisfaction; and many other examples. 
+Other platforms came further and began to not only collect the reviews but also to make individual recommendations based on these reviews. Usually, these recommendations take a form of ranking of several alternatives, ranked according to the secret propriety algorithm that the particular platform employs. The most widely known examples of such a kind of platforms include: \textit{TripAdvisor} which presents a ranking on Hotels and Restaurants based on previous users' experience; \textit{Trustpilot} which is one of the most popular review services for a large variety of businesses; \textit{Glassdoor} that uses reviews of employees to rank companies by workers' satisfaction; and many other examples. 
 	
 	
 	
 	
-In the rows of examples, the special attention should be paid to online retailers such as \textit{Amazon}, \textit{eBay}, \textit{AliExpress} and many others. These platforms stand at the forefront of online Economics, generating huge amounts of money\footnote{e.g. \textit{Amazon}'s gross merchandise value (total value of goods sold on the platform) in 2019 fiscal year account for \$335 billion.} and completely transforming the shopping experience for people all other the world. These platforms play roles of intermediaries between buyers and sellers, helping the buyers to find the goods they need. And this process clearly includes making recommendations which seller to display you when you are searching for something.	
+In the rows of examples, we should pay the special attention to online retailers such as \textit{Amazon}, \textit{eBay}, \textit{AliExpress} and many others. These platforms stand at the forefront of online Economics, generating huge amounts of money\footnote{e.g. \textit{Amazon}'s gross merchandise value (total value of goods sold on the platform) in 2019 fiscal year was \$335 billion.} and completely transforming the shopping experience for people all other the world. These platforms play roles of intermediaries between buyers and sellers, helping the buyers to find the goods they need. And this process clearly includes making recommendations: which seller to display the buyer when he or her is searching for something.	
 	
 	
-	All these services discussed above use some variety of what is called \textit{recommender system} which may be defined as any system which uses information about past users' experience in order to make the recommendations to the newcomers. These recommendations may be direct or indirect (e.g. the platform can provide a ranking of alternatives, this is not the direct recommendation to choose the top-ranked alternative, however, users understand that the platform thinks that this alternative is the best fit for them, so the platform implicitly recommends this alternative). 
+	All these services discussed above use some variety of what is called \textit{recommender system} which may be defined as any system which uses information about past users' experience in order to make recommendations to newcomers. These recommendations may be direct or indirect (e.g. the platform can provide a ranking of alternatives, this is not the direct recommendation to choose the top-ranked alternative, however, users understand that the platform thinks that this alternative is the best fit for them, so the platform implicitly recommends this alternative). 
 	
 	
 	
 	
 	
-I argue, that nowadays the recommender systems are one of \textbf{the key elements} of online Economics. Any Internet or mobile service you can think of almost for sure uses some form of a recommender system. That is why it is crucially important to understand how to recommend optimally and what factors should be taken into account once the service is designing its recommender system.
+I argue, that nowadays the recommender systems are one of \textbf{the key elements} of online Economics. Any Internet or mobile service you can think of, almost for sure uses some form of a recommender system. That is why it is crucially important to understand how to recommend optimally and what factors should be taken into account once the service is designing its recommender system.
 	
 
-For example, consider a retailer (such as \textit{Amazon} or \textit{eBay}), these retailers charge sellers commissions for each sale. These commissions usually take the form of a percentage commission. That means that the retailer obtains a higher profit if the price of the deal is higher. So, one of the questions that could potentially arise then is: should, in this case, the recommender system which \textit{Amazon} employs out of two sellers who sell (almost) substitutable goods recommend the one who has a higher price? Or suppose that \textit{eBay} is thinking on the commission rate it charges, %(now it is about 8\%),
- should the commission be set at the highest possible level that guarantees that sellers do not refrain from using the platform? What if, at the same time, the quality of goods may differ and the sellers may have an option to spend some resources on disclosing this quality (e.g. to make the detailed description or take high-resolution photos). Clearly the higher is the commission the less willing are the sellers to spend money on quality disclosure: cost does not outweigh benefits. But if sellers do not disclose the information this may adversely affect the customers' satisfaction since this may create a mismatch between buyers and sellers: people end up with the good which does not fit them well. Thus, thinking about commission rate the platform should take this aspect into account. Additionally, suppose that the recommendation system is not precise i.e. it sometimes makes mistakes on figuring out the customer's preferences. How does this inaccuracy affect the behavior (price setting) of competing sellers and how does it interact with their incentives to disclose the quality of their goods? What should be the optimal commissions and recommender policy in this case? Although in this work I am touching upon all questions mentioned above, the main objective of this paper is to understand what should be the optimal recommendation strategy and commission rate the platform charges the competitive sellers, with the particular emphasis on the interaction with sellers' incentives to disclose private information about their goods. 
+For example, consider a retailer (such as \textit{Amazon} or \textit{eBay}), these retailers charge sellers commissions for each sale. These commissions usually take the form of a percentage commission \footnote{e.g. \textit{eBay} charges 8\% for each sale}. That means that the retailer obtains a higher profit if the price of the deal is higher. So, one of the questions that could potentially arise then is: should, in this case, the recommender system which \textit{Amazon} employs out of two sellers who sell (almost) substitutable goods recommend the one who has a higher price? Or suppose that \textit{eBay} is thinking on the commission rate it charges, %(now it is about 8\%),
+ should the commission be set at the highest possible level that guarantees that sellers do not refrain from using the platform? What if, at the same time, the quality of goods may differ and the sellers may have an option to spend some resources on disclosing this quality (e.g. to make the detailed description or take high-resolution photos). Clearly the higher is the commission the less willing are the sellers to spend money on quality disclosure: cost does not outweigh benefits. But if sellers do not disclose the information this may adversely affect the customers' satisfaction since this may create a mismatch between buyers and sellers: people end up with the good which does not fit them well. Thus, thinking about commission rate the platform should take this aspect into account. Additionally, suppose that the recommendation system is not precise i.e. it sometimes makes mistakes on figuring out the customer's preferences. How does this inaccuracy affect the behavior (price setting) of competing sellers and how does it interact with their incentives to disclose the quality of their goods? What should be the optimal commissions and recommender policy in this case? Thus, in this work I am focusing on the following questions:
+ \begin{itemize}
+ 	\item How does the presence of the recommender system which has stakes in sellers' profits affect competition and equilibrium behavior of sellers?
+ 	\item How does the rate of commission the platform charges sellers affect sellers' incentives to disclose information about their goods? What is the optimal rate of commission from the platform's standpoint?
+ 	\item How does the recommender system's precision affect competition and equilibrium behavior? And what should be the optimal precision?
+ \end{itemize}
  
-	
-	
-	To address these questions I build a theoretical one-period model. I consider a unit mass of heterogeneous customers whose preferences are summarized by the point on this unit line. At the extremes of the unit interval, there are two sellers. Customers demand one good and derive utility upon consuming the good but bear ``transportation'' cost by purchasing. This cost although has nothing to do with transportation can be interpreted in several possible ways. For example, it can be think of as cost of the outside option, opportunity cost of the customer: the utility the customer should refrain from in order to consume the good; or as the measure of quality of fit: how well the product fits the particular customer. The latter allows to treat the location of the customer as the customer's taste regarding the two goods offered by sellers: closer the customer is to the seller $A$ -- better the good of seller $A$ fits this customer, other things being equal. Moreover, I suppose that the qualities of goods offered by sellers can be different. In other words, all customers regardless of their location get the same additional value upon consuming the good with higher quality. I assume that these qualities are \textit{ex-ante} privately known only to the corresponding sellers who can costly disclose this information before setting prices. As I mentioned earlier, the cost of disclosure may include time and monetary cost of making a detailed description of the good, or taking many high-resolution photos of the item. The main player in this interaction is the recommender system (the platform) who beforehand receives (possibly noisy) signal regarding each customer's location and then may recommend any of the two sellers to this customer. This feature of my model has clear real-life interpretation: the signal which reveals the location can be interpreted as the result of some fancy machine-learning algorithm the majority of platform nowadays use in order to assess, to estimate the true preferences, tastes of the customer. The platform also sets a commission rate (percentage) it charges the sellers for each sale. However, I explicitly assume that the platform cares not only about the profit (commissions) but also about customers i.e. consumer surplus directly enters the platform's objective function. I suppose that this assumption is not very far away from reality: clearly, if the platform cares only about the profit and this adversely affects customers' satisfaction and happiness from using the service, in the long-run people simply will refuse using it or switch to the competitive platforms. The latter suggests that for the long-run sustainability the platform should pay some attention to the consumer surplus. 
-	
-	
-	
-	Also, I argue that the model I consider, as a whole, fits well the research questions I am addressing. The recommender systems usually help when customers are horizontally differentiated: there can be 10 restaurants of top quality, but you may love only one of them simply because it fits your tastes better (e.g. you just like Indian food). In this case, a good recommender system should recommend you precisely this restaurant out of ten. If, on the contrary, everybody agreed that restaurant $A$ is in all respects worse than the restaurant $B$, nobody would need the recommender system.
+ 
+ 	
+	To address these questions I build a theoretical one-period model. I consider a unit mass of heterogeneous customers whose preferences are summarized by the point on this unit line. At the extremes of the unit interval, there are two sellers. Customers demand one good and derive utility upon consuming the good but bear ``transportation'' cost by purchasing. This cost can be interpreted as the measure of quality of fit: how well the product fits the particular customer. The latter allows to treat the location of the customer as the customer's taste regarding the two goods offered by sellers: closer the customer is to the seller $A$ -- better the good of seller $A$ fits this customer, other things being equal. 
 	
 	
 	
 	
-In the work, I find the optimal recommendation policy and investigate the effect of the presence of the recommender system on equilibrium behavior of sellers. I demonstrate that the recommender system which has stakes in the sellers' profits softens competition. The latter effect leads to higher prices. The amount of information about the quality of goods, disclosed in equilibrium is determined in the interplay between two effects: on one hand, higher commission directly decreases profits and, hence, incentives of sellers to disclose the information; on the other hand, the higher commission increases platform's stakes in profits and softens competition which results in higher prices and higher profits. The total value of these two effects is determined by the degree of consumer-orientedness of the platform: if it is high enough, increase in prices does not outweigh direct losses, so the total effect on the amount of disclosed information is negative; in the opposite case total effect is positive and an increase in commission increases the amount of information disclosed.
+	Moreover, I suppose that the qualities of goods offered by sellers can be different. In other words, all customers regardless of their location get the same additional value upon consuming the good with higher quality. I assume that these qualities are \textit{ex-ante} privately known only to the corresponding sellers who can costly disclose this information before setting prices. This cost of disclosure can be interpreted in several ways. First of all, as I mentioned earlier, the cost of disclosure may represent actual time and monetary cost of making a detailed description of the good, or taking many high-resolution photos of the item. For those readers who are not convinced that it can be costly for sellers to disclose the information, I can offer another interpretation. Following \cite{levin2009quality} and \cite{hirshleifer2002disclosure}, we can interpret this cost as the share of naive customers who do not update their beliefs about the quality of the good if a seller does not disclose it. In this case, even if physically the information disclosure is costless, the seller may not disclose the information if quality is low in order not to lower the perception of quality for these naive consumers.
+	 
 	
 	
 	
 	
-In the extension of the baseline model, I allow for the not perfectly precise recommender system. Namely, I assume that the signal, the platform receives reveals the true location of the customer only with some probability $\beta$, and with probability $1 - \beta$ the signal follows a uniform distribution. This has several consequences: first of all, now the platform adjusts its recommender strategy incorporating this inaccuracy. This adjustment manifests itself in the way how the platform treats and processes the signal regarding the location, now the platform takes into consideration that the signal could potentially be wrong. In this case, the best prediction of the customer's location the platform could made is simply average location. The latter effectively increases the share of customers in the middle of the unity interval, increasing incentives for sellers to undercut the competitor and to get access to this increased demand. Thus, the direct effect of the platform's inaccuracy intensifies the competition between sellers. This decreases the sellers' profits and as a result, decreases sellers' incentives to reveal the quality. At the same time, the recommender system's inaccuracy increases the attention the platform pays to the quality of the good when it makes recommendations: since the platform assumes that horizontal component (location) may be measured imprecisely, making a recommendation it begins to put more weights on vertical component (quality) which, if disclosed, is precise. The latter effect increases the sellers' returns on quality disclosure making the latter more profitable. Eventually, the total effect also depends on parameters: if the cost of disclosure is high enough, the first effect dominates and improving the recommender system precision decreases the amount of information the sellers disclose, for the low cost of disclosure the second effect prevails and increasing the platform's precision increases the amount of information disclosed. 
+	The main player in this interaction is the recommender system (the platform) who beforehand receives (possibly noisy) signal regarding each customer's location and then may recommend any of the two sellers to this customer. I assume that prior to interaction with the platform, customers are unaware of sellers and become aware only if the platform recommends the particular seller to the particular customer. The signal which the platform receives regarding the location of customers has clear real-life interpretation: it can be interpreted as the result of some fancy machine-learning algorithm the majority of platform nowadays use in order to assess, to estimate the true preferences, tastes of the customer. 
+	
+	
+	
+	
+	The platform also sets a commission rate (percentage) it charges the sellers for each sale. However, I explicitly assume that the platform cares not only about the profit (commissions) but also about customers i.e. consumer surplus directly enters the platform's objective function. I suppose that this assumption is not very far away from reality: clearly, if the platform cares only about the profit and this adversely affects customers' satisfaction and happiness from using the service, in the long-run people simply will refuse using it or switch to the competitive platforms. The latter suggests that for the long-run sustainability the platform should pay some attention to the consumer surplus. Or, if the substantial part of the platform's profit comes from advertising, the platform is interested in high stream of visitors. That is why, the platform should take into account users' satisfaction. 
+	
+	
+	
+	Also, I argue that the model I consider, as a whole, fits well the research questions I am addressing. The recommender systems usually help when customers are horizontally differentiated: there can be 10 restaurants of top quality, but you may love only one of them simply because it fits your tastes better (e.g. you just like Indian food). In this case, the recommender system creates value if it recommends you this precise restaurant. If, on the contrary, everybody agreed that restaurant $A$ is in all respects worse than the restaurant $B$, nobody would need the recommender system.
+	
+	
+	
+	
+In the work, I find the optimal recommendation policy and investigate the effect of the presence of the recommender system on equilibrium behavior of sellers. I demonstrate that the recommender system which has stakes in the sellers' profits softens competition i.e. sellers are less willing to undercut the competitor. The latter effect leads to higher prices. The amount of information about the quality of goods, disclosed in equilibrium is determined in the interplay between two effects: on one hand, higher commission directly decreases profits and, hence, incentives of sellers to disclose the information; on the other hand, the higher commission increases platform's stakes in profits and softens competition which results in higher prices and higher profits. The sign of the cumulative effect is determined by the degree of consumer-orientedness of the platform: if it is high enough, increase in prices does not outweigh direct losses, so the total effect on the amount of disclosed information is negative; in the opposite case total effect is positive and an increase in commission increases the amount of information disclosed.
+	
+	
+	
+	
+In the extension of the baseline model, I allow for the not perfectly precise recommender system, or in other words, I allow for some noise in evaluating customers' location. Namely, I assume that the signal, the platform receives reveals the true location of the customer only with some probability $\beta$, and with probability $1 - \beta$ the signal follows a uniform distribution. This has several consequences: first of all, clearly the platform should adjust its recommender strategy incorporating this inaccuracy. This adjustment manifests itself in the way how the platform treats and processes the signal regarding the location, now the platform takes into consideration that the signal could potentially be wrong. In this case, the best prediction of the customer's location the platform could made is simply an average location (since I model customers' location as uniform $(0, 1)$ random variable, an average location is $\frac{1}{2}$) . The latter effectively increases the share of customers in the middle of the unit interval, increasing incentives for sellers to undercut the competitor and to get access to this increased demand. Thus, the direct effect of the signal's inaccuracy intensifies the competition between sellers. This decreases the sellers' profits and as a result, decreases sellers' incentives to reveal the quality. At the same time, the recommender system's inaccuracy increases the attention the platform pays to the quality of the good when it makes recommendations: since the platform assumes that horizontal component (location) may be measured imprecisely, making a recommendation it begins to put more weights on vertical component (quality) which, if disclosed, is precise. The latter effect increases the sellers' returns on quality disclosure making the latter more profitable. Eventually, the combined effect of recommender system's inaccuracy on the amount of information disclosed by sellers depends on the value of cost parameter: if the cost of disclosure is high enough, the direct negative effect caused by more intensive competition outweighs the positive effect brought about by the increased return on disclosure and, hence, improving the recommender system precision decreases the amount of information the sellers disclose; for the low cost of disclosure the opposite is true, i.e. increasing the platform's precision increases the amount of information disclosed. 
 	
 	
 	
 	
 	
-However, it turns out that increasing the precision of the recommender system up to 1 is not the optimal thing to do. The last thing I show in this work is that there exists some optimal level of $\beta \in (0, 1)$. This can be explained as follows: making a recommender system a bit imprecise, intensifies competition and lowers prices, at the same time if precision is not too low, the direct negative effect on consumer surplus is not very high. As a result, I show that some noise in the platform's evaluation of the customers' preferences can be beneficial for the platform.
+However, it turns out that it is not optimal for the platform to increase the precision of the recommender system up to 1. The last thing I show in this work is that there exists some optimal level of $\beta \in (0, 1)$. This can be explained as follows: making a recommender system a bit imprecise, intensifies competition and lowers prices, at the same time if precision is not too low, the direct negative effect on consumer surplus is not very high. As a result, I show that the platform benefits from some noise in the platform's evaluation of the customers' preferences.
 
 
 
@@ -137,25 +159,20 @@ The rest of the paper is organized as follows: the next section presents the lit
 	
 	\section{Literature review}
 	
-		This work is related to the strand of literature on recommender systems. The first prototype of modern recommender system has been created by Xerox Palo Alto Research Center in the late 1980-s early 1990-s and was described by  \cite{goldberg1992using}. This system has been called \textit{Tapestry} and has been designed in order to filter out a skyrocketing amount of the incoming emails. The system was trying to make the incoming stream of emails interesting for the particular person based on whether these emails were interesting for people whose interests are close to the interests of this person. Since that time many papers have been written that mainly explore the recommender systems from the Computer Science standpoint (see \cite{Beel2015r} for the recent survey). 
+		This work is related to the strand of literature on recommender systems. The first prototype of modern recommender system has been created by Xerox Palo Alto Research Center in the late 1980-s early 1990-s and was described by  \cite{goldberg1992using}. This system has been called \textit{Tapestry} and has been designed to filter out a skyrocketing amount of the incoming emails. The system was trying to make the incoming stream of emails interesting for a particular person based on whether these emails were interesting for people whose interests are close to the interests of this person. Since that time many papers have been written that mainly explore the recommender systems from the Computer Science standpoint (see \cite{Beel2015r} for the recent survey). Computer Science literature mainly focuses on how to use data in order to estimate users' preferences which would allow making more precise and tailored recommendations. At the same time, Economists usually assume that we have already learned how to estimate preferences, and try to explore how utilization of such systems may affect the behavior of economic agents, or how to use these systems more effectively.
 	
 	
 	
 	
 	
-One of the first papers which highlight the issue from the point of view of Economics is work by \cite{avery1999market}. \cite{avery1999market} considered the influence of the recommender system on a choice regarding the consumption of good for the sequentially arriving agents. The model they consider include sequentially arriving agents who can either consume the good and leave a review for the next agents or he can wait until somebody else will try the good and report the review. The main focus of the work is on finding a socially optimal mechanism, in particular, the authors propose a mechanism which includes monetary transfers to some agents to induce them to try the good.   
+One of the first papers which highlight the issue from the point of view of Economics is work by \cite{avery1999market}. \cite{avery1999market} considered the influence of the recommender system on a choice regarding the consumption of good for the sequentially arriving agents. The model they consider include sequentially arriving agents each of whom can either consume the good and leave a review for the next agents or he can wait until somebody else will try the good and report the review. The main focus of the work is on finding a socially optimal mechanism, in particular, the authors propose a mechanism which includes monetary transfers to some agents to induce them to try the good.   
 		
 		
 		
-\cite{bergemann2006optimal} address the question of optimal pricing under the presence of a recommender system. They consider the seller with a recommender system who is competing for a unit mass of heterogeneous buyers with the competitive fringe of sellers who do not deploy the recommender system. The seller with the recommender system uses reviews from past customers to make recommendations to the newcomers. The authors consider several types of equilibria concluding that the presence of the recommender system creates additional value by reducing uncertainty for agents about the quality of the good.
+\cite{bergemann2006optimal} address the question of optimal pricing under the presence of a recommender system. They consider the seller with a recommender system who is competing for a unit mass of heterogeneous buyers with the competitive fringe of sellers who do not deploy the recommender system. The seller with the recommender system uses reviews from past customers to make recommendations to the newcomers. The authors consider several types of equilibria concluding that the presence of the recommender system creates additional value by reducing uncertainty for agents about the quality of the good. In addition, they demonstrate that if the recommender system is effective in reducing uncertainty, then it is optimal for the seller to differentiate (otherwise symmetric) goods by segmenting the market into two categories: large group of buyers-experimenters who get the good at a lower price in exchange for reviews, and small groups of inflexible buyers who are paying a higher price and get the access to these reviews. 
 
 
-In the two papers mentioned above the authors assumed the recommendation strategy to be given and mainly just consider the impact of the recommender system on other strategic agents. 
-
-	
-	
-	
-	One of the first works that addresses the question of optimal design of the recommendation policy is the work by \cite{kremer2014}. The authors build a simple model with two alternatives which generate deterministic but \textit{ex-ante} unknown payoff. One of the alternatives is \textit{a priori} better, in the sense that the expected reward it generates is higher. The finite number of consumers arrive sequentially and each chooses between either of two alternatives. After the choice is made the consumer leaves forever. The platform accumulates reviews and commits to the recommendation policy it uses to make recommendations to the newcomers. \cite{kremer2014}, firstly, neatly in simple terms demonstrate why the full revelation policy may be suboptimal\footnote{Maybe the appearance of this paper and similar to that in 2014 was the reason why \textit{Amazon} decided to switch their recommendation policy from the fully revealing one.}. Secondly, the optimal recommender policy is derived which has a threshold nature. That is, \textit{a priori} better alternative is recommended if its quality turns out to be higher than the certain threshold. Otherwise, the other alternative is recommended, and then once both alternatives were tried the best one is recommended until the end. 
+In the two papers ( \cite{avery1999market}, \cite{bergemann2006optimal}) mentioned above the authors assumed the recommendation strategy to be given and mainly just consider the impact of the recommender system on other strategic agents. One of the first works that addresses the question of optimal design of the recommendation policy is the work by \cite{kremer2014}. The authors build a simple model with two alternatives which generate deterministic but \textit{ex-ante} unknown payoff. One of the alternatives is \textit{a priori} better, in the sense that the expected reward it generates is higher. The finite number of consumers arrive sequentially and each chooses between either of two alternatives. After the choice is made the consumer leaves forever. The platform accumulates reviews and commits to the recommendation policy it uses to make recommendations to the newcomers. \cite{kremer2014}, firstly, neatly in simple terms demonstrate why the full revelation policy may be suboptimal\footnote{Maybe the appearance of this paper and similar to that in 2014 was the reason why \textit{Amazon} decided to switch their recommendation policy from the fully revealing one.}. Secondly, the optimal recommender policy is derived which has a threshold nature. That is, \textit{a priori} better alternative is recommended if its quality turns out to be higher than the certain threshold. Otherwise, the other alternative is recommended, and then once both alternatives were tried the best one is recommended until the end. 
 	
 	
 	
@@ -167,33 +184,68 @@ In the two papers mentioned above the authors assumed the recommendation strateg
 	
 	\cite{papanastasiou2017} extend ideas developed by \cite{kremer2014} and \cite{che2015}, and build a dynamic, stochastic model. In their model, agents also arrive sequentially to the platform and should choose between two alternatives that generate stochastically exogenous payoff. The platform in the paper designs a recommendation policy. Although the optimal policy turns out to have a complicated form, authors demonstrate that in this case the full revelation policy is not the best one, and the optimal policy involves information obfuscation.
 	
-Three papers mentioned above although address the question on optimal recommender policy, do not take into account the strategic nature of recommended alternatives.
+Three papers mentioned above although address the question on optimal recommender policy, do not take into account the strategic nature of recommended alternatives. While the latter may be crucially important for implications since in the vast majority of real cases, recommended alternatives (e.g. restaurants/hotels/sellers) are strategic agents who can adjust their behavior to the recommendation policy. It follows that the platform should take into account the strategic nature of recommended alternatives designing its recommender policy.
 \cite{chen2016advertising} consider the informative role of recommender system on strategies of competing sellers and the equilibrium outcomes. They consider two sellers located at the extremes of Hotelling-like (\cite{harold1929stability}) linear city who are competing for the unit mass of customers, located in between. There is also a recommender system that receives noisy information about each customer's location and can recommend one of the sellers to the customers. Although in this paper, the recommendation strategy is exogenously given and fixed, the authors consider how the presence of the recommender system affects competition between sellers. In particular, they are looking at prices and advertising expenditure. The main finding of this paper is that the presence of the recommender system may fundamentally change the nature of competition. In particular, the authors demonstrate that with the recommender system prices and advertising expenditure switch from being strategic substitutes to strategic complements. This results in the fact that with recommender system sellers prefer to advertise less, relying more on advertising provided by the recommendation system (the authors called this effect \textit{advertising effect}). At the same time, prices with recommender system are lower (the authors called this effect \textit{competition effect}) which is the result of tougher competition. Interestingly, the total effect of recommender system on sellers profits becomes a result of an interplay between \textit{competition effect} and \textit{advertising effect}: for some values of parameters the sellers become worse-off with the presence of the recommender system, \textit{competition effect} dominates, while for other values the sellers benefit from ``free'' advertising provided by the platform.
 
 	
 Another paper, which is closely related to the one mentioned previously is the paper by \cite{li2018recommender} (actually there are two quite different versions of this paper). In the first one, considering the same set-up as \cite{chen2016advertising}, the authors do not allow sellers to advertise themselves, assuming the shares of informed and uninformed customer to be exogenous. The authors demonstrate that the presence of the recommender system, on one hand, increase the share of informed customers and hence increases demand on goods, but on the other hand, it intensifies competition by making demand more elastic. \cite{li2018recommender} refer to these two effects as \textit{demand effect} and \textit{substitution effect} respectively. In a similar way as in \cite{chen2016advertising}, the authors demonstrate that the total effect of the recommender system on sellers becomes a result of interaction between these two effects. Also, in this paper the authors make the first attempt to endogenise the recommender policy, showing that the recommender system may increase its profit by changing the recommendation strategy. In the second version of the paper, the authors elaborate on this, formulating the recommender system's objective and finding an optimal recommender policy the recommender system should implement. In the two (in fact, three) papers mentioned above, the qualities of goods were supposed to be equal and known \textit{ex-ante} to all parties which makes the type of differentiation considered to be purely horizontal.
 	
-\cite{levin2009quality} add a vertical component to the standard Hotelling model, focusing on the sellers' decisions regarding the quality disclosure, although, in the framework without the recommender system. In the model which I consider, I firstly endogenise the recommendation strategy that the platform implements, and secondly, I am looking at the interplay between the recommendation policy and sellers' incentives to disclose the information about the goods' quality.	
+\cite{levin2009quality} add a vertical component to the standard Hotelling model, focusing on the sellers' decisions regarding the quality disclosure, although, in the framework without the recommender system. The authors are focusing on information disclosure and the welfare analysis,  considering two modes of competition: duopoly and cartel. The main findings are that under cartel sellers disclose more information than under duopoly; comparing cartel regime to the duopoly one, social welfare may increase or decrease depending on the value of cost of disclosure; and finally, the authors demonstrate that equilibrium disclosure both under duopoly and cartel is socially excessive (i.e. sellers disclose more information than is socially optimal). 
+
+
+
+
+As you could see, the economic literature on recommending systems was evolving by the following scenario: firstly people explore how the presence of (passive) recommender system affect the common economic environment and behavior of economic agents (e.g. \cite{avery1999market}, \cite{bergemann2006optimal}); then the question of optimal recommender policy arose and people explored it under assumption of non-strategic alternatives (e.g. \cite{kremer2014}, \cite{che2015}, \cite{papanastasiou2017}); eventually, people started exploring the question of optimal recommender policy with strategic alternatives (e.g. \cite{li2018recommender}, \cite{chen2016advertising}). The model which I consider is closer to the latest stage of development of the recommender system literature i.e. I am addressing the question of optimal recommender policy with strategic alternatives. Moreover, employing the theoretical framework introduced by \cite{levin2009quality}, I am looking at the interplay between the recommendation policy and sellers' incentives to disclose the information about the goods' quality.	
 	\section{Model}
 The model I consider is similar to that considered by \cite{levin2009quality}, the difference is that I introduce a new player -- a platform which employs a recommender system (I will use words ``platform'' and ``recommender system'' interchangeably).
 		
 	
-There is a unit mass of heterogeneous customers. Preferences of customer are characterized by the location of the customer on the unity interval. Two competing sellers (firms) which I will refer to $A$ and $B$, who locate at the extremes of the unit interval, are selling substitutable goods which they produce at equal marginal cost normalized to 0. Goods of each seller may have a different quality which means that the customers with the same ``horizontal preference'' for the two sellers may derive different utility upon consuming goods of different sellers. Sellers are competing in prices which they set simultaneously. In addition, the sellers may costly disclose the information about the quality of their good to the platform prior to price setting. The recommender system observes prices and sellers' decisions regarding the quality disclosure and makes a recommendation to customers which seller to choose. In the baseline model, I assume that the recommender system knows the exact location of the customer, lately, this assumption is relaxed, and I consider the scenario when the recommender system receives a noisy signal regarding the customers' locations. Finally, the platform charges sellers a commission for sales according to a commission rate $\alpha$ which the platform can choose. 
+There is a unit mass of heterogeneous customers. Preferences of customer are characterized by the location of the customer on the unit interval. Two competing sellers (firms) whom I will refer to as $A$ and $B$, who locate at the extremes of the unit interval, are selling substitutable goods which they produce at equal marginal cost normalized to 0. Goods of each seller may have a different quality which means that customers with the same ``horizontal preferences'' for the two sellers may derive different utility upon consuming goods of different sellers. Sellers are competing in prices which they set simultaneously. In addition, the sellers may costly disclose the information about the quality of their good to the platform and to the other seller prior to price setting. The recommender system observes prices and sellers' decisions regarding the quality disclosure and makes a recommendation to customers which seller to choose. In the baseline model, I assume that the recommender system knows the exact location of the customer, lately, this assumption is relaxed, and I consider the scenario when the recommender system receives a noisy signal regarding the customers' locations. Finally, the platform charges sellers a commission for sales according to a commission rate $\alpha$ which the platform can choose. 
 	
 	
 The solution concept is the perfect Bayesian equilibrium, and all parties are assumed to be risk-neutral.
 
 
+The timing of the game looks as follows:
+\begin{enumerate}
+	\item The platform commits to the commission rate $\alpha$.
+	\item The sellers privately observes qualities of their goods $q_A, q_B$ and simultaneously decide whether to disclose them.
+	\item The sellers simultaneously set prices (observing each other's decisions from the Step 2).
+	\item The platform observes prices and whether the sellers disclosed quality, and recommends sellers to customers. After that, the payoffs are realized and the game ends.
+\end{enumerate}
+
+
+
 
 The next three subsections describe formally all parties of my model.
 
+
+
+\subsection{Sellers}
+
+Qualities of goods are \textit{ex-ante} unknown and assumed to be $i.i.d.\ U(0, 1)$. Prior to price-setting sellers privately learn these qualities (each seller learns only the quality of his own good) and should decide whether to disclose this information to the platform (and to the other seller) or not. Upon disclosure, the sellers bear cost $c$. Moreover, the sellers pay the platform commission from sales. That is, the seller's $i$ profit is given by the following formula
+$$\pi_i = (1-\alpha)p_i D_i - c d_i$$
+where $$d_i = \begin{cases}
+1, \text{ if seller }i\text{ discloses }\\
+0, \text{ otherwise }
+\end{cases}$$ and $D_i$ is the demand on good $i$ which may be a function of prices and decisions regarding the information disclosure, and is determined by the recommender policy the platform employs.
 	
-	
-	
+
+
+	\subsection{Platform}
+
+The platform announces the commission rate $\alpha$, and after observing sellers' prices and qualities (if disclosed), should design the recommender policy. The recommender policy specifies functions $r_A(x, p_A, p_B, d_A, d_B, \mathbb{E}[q_A|d_A], \mathbb{E}[q_B|d_B])$ and \newline
+$r_B(x, p_A, p_B, d_A, d_B, \mathbb{E}[q_A|d_A], \mathbb{E}[q_B|d_B])$ which represents probabilities that the customer with location $x$ will be recommended the seller $A$ and $B$ respectively. The objective function of the platform is given by \begin{align}\label{pl_profit}
+\pi_P = \mathbb{E}\left[\alpha(p_A D_A + p_B D_B) + \gamma CS\right],
+\end{align}
+where expectation is taken over unknown qualities $q_A, q_B$; $CS$ is a consumer surplus, $\gamma$ represents the platform's degree of consumer-orientedness. I assume that the maximum rate of commission the platform can charge the sellers is $\bar{\alpha} \in (0, 1)$, and $\gamma > \bar{\alpha}$. I need the latter assumption $\gamma > \bar{\alpha}$ since if it does not hold it might be optimal for the platform to completely disregard the consumer surplus and induce as high price as possible to extract the whole consumer surplus. Although the assumption of maximal commission is for convenience it can be justified by assuming that sellers have non-zero outside option, so the platform cannot extract the whole revenue. That is, $\bar{\alpha}$ can be thought of as a maximum commission rate the platform can charge that still guarantees that sellers are willing to sell their goods through the platform.
+
+
+The goal of the platform is to choose the commission rate $\alpha$ and the recommender policy in order to maximize \eqref{pl_profit}.
 	
 	
 	\subsection{Customers}
-Customer who locates at $x \in [0, 1]$ derives a net utility $$V + q_A - p_A - x$$ if  he buys the good at a price $p_A$ from the seller $A$ who locates at a point $0$, and net utility $$V + q_B - p_B - (1-x)$$ if  he buys the good at a price $p_B$ from the seller $B$ who locates at a point $1$. $V$ is assumed to be higher than $\frac{3}{2}$ to ensure that the market is fully covered in equilibrium, $q_A, q_B \in (0, 1)$ are the qualities of the goods. These qualities are \textit{ex-ante} known only to corresponding sellers, and are $i.i.d.\  U(0, 1)$. The outside option for the customers is zero, so they follow the recommendation if the expected net utility from buying the good from the recommended seller is higher than 0.
+Customer who locates at $x \in [0, 1]$ derives a net utility $$U(x, A) =  V + q_A - p_A - x$$ if  he buys the good at a price $p_A$ from the seller $A$ who locates at a point $0$, and net utility $$U(x, B) = V + q_B - p_B - (1-x)$$ if  he buys the good at a price $p_B$ from the seller $B$ who locates at a point $1$. $V$ is common knowledge and is assumed to be higher than $\max \left\{\frac{7\gamma + 2\bar{\alpha}}{6(\gamma - \bar{\alpha})},  \frac{3 \gamma - \bar{\alpha}}{2(\gamma - \bar{\alpha})} \right\}$ to ensure that all customers are willing to buy in equilibrium, $q_A, q_B \in (0, 1)$ are the qualities of the goods. These qualities are \textit{ex-ante} known only to corresponding sellers, and are $i.i.d.\  U(0, 1)$. The outside option for the customers is zero, so they follow the recommendation if the expected net utility from buying the good from the recommended seller is higher than 0.
 
 
 
@@ -201,42 +253,13 @@ Customers do not know about the sellers (hence cannot sell) unless the recommend
 
 	
 	
-	\subsection{Sellers}
 	
-	
-Prior to price-setting sellers privately learns the quality of their good and should decide whether to disclose this information to the platform or not. Upon disclosure, the sellers bear cost $c$. Moreover, the sellers pay the platform commission from sales. That is, the seller's $i$ profit is given by the following formula
-$$\pi_i = (1-\alpha)p_i D_i - c d_i$$
-where $$d_i = \begin{cases}
-1, \text{ if sellers }i\text{ discloses }\\
-0, \text{ otherwise }
-\end{cases}$$ and $D_i$ is the demand on good $i$ which may be a function of prices and decisions regarding the information disclosure, and is determined by the recommender policy the platform employs.
-
-	
-	
-	
-	\subsection{Platform}
-	
-The platform commits to the commission rate $\alpha$ and the recommender policy. The recommender policy specifies functions $r_A(x, p_A, p_B, d_A, d_B, \mathbb{E}q_A, \mathbb{E}q_B)$ and $r_B(x, p_A, p_B, d_A, d_B, \mathbb{E} q_A, \mathbb{E} q_B)$ which represents probabilities that the customer with location $x$ will be recommended the seller $A$ and $B$ respectively. The objective function of the platform is given by \begin{align}\label{pl_profit}
-\pi_P = \mathbb{E}\left[\alpha(p_A D_A + p_B D_B) + \gamma CS\right]
-\end{align}
-
-where expectation is taken over unknown qualities $q_A, q_B$; $CS$ is a consumer surplus, $\gamma$ represents the platform's degree of consumer-orientedness. I assume that the maximum rate of commission the platform can charge the sellers is $\bar{\alpha} \in (0, 1)$, and $\gamma > \bar{\alpha}$. Usually in real life there are several competing platforms, so the platform cannot increase the commission up to 100\% since in this case sellers will just switch to the competitive online retail platform. So, $\bar{\alpha}$ can be think of as a maximum commission rate the platform can charge that still guarantees that sellers are willing to sell their goods through the platform.
 
 
-The goal of the platform is to choose the commission rate $\alpha$ and the recommender policy in order to maximize \eqref{pl_profit}.
-
 	
-	\subsection{Timing}
-The timing of the game looks as follows:
-\begin{enumerate}
-	\item The platform commits to the commission rate $\alpha$ and the recommender policy.
-	\item The sellers privately observes $q_A, q_B$ and decide whether to disclose it to the platform.
-	\item The sellers simultaneously set prices.
-	\item The platform observes prices and whether the sellers disclosed quality, and recommends sellers to customers. After that, the payoffs are realized and the game ends.
-\end{enumerate}
 
 \section{Results}
-Firstly, I consider the case with observable to buyers qualities and without the recommender system. I need this comparison in order to demonstrate how and via which mechanisms the presence of the recommender system affects the equilibrium behavior of sellers.
+In the next subsection I relax the assumption that customers do not know about sellers, and consider the case with observable to buyers qualities and without the recommender system. Then I will turn back to the baseline model in which only the recommender system knows about sellers. I need this comparison in order to demonstrate how and via which mechanisms the presence of the recommender system affects the equilibrium behavior of sellers. Although, one may argue that the information structures in these two scenarios are different and the comparison is not fully valid. However, since I will mainly focus on sellers' strategies, it does not matter from the seller perspective how the demand for his good has been induced. That is why, I argue that it is still worth looking at the comparison between the two aforementioned cases. 
 
 	
 	
@@ -273,7 +296,7 @@ Firstly, I consider the case with observable to buyers qualities and without the
 	
 	
 	\subsection{Observable qualities. With the platform.}
-	For simplicity, I assume firstly that $\alpha$ is fixed.
+	For simplicity, I assume firstly that $\alpha$ is fixed. Then I will solve for optimal $\alpha$ as well.
 	\begin{proposition} \label{with}
 		If qualities $q_A$ and $q_B$ are observable then the recommender system induces the following demands for each good and equilibrium prices:
 		\begin{align*}
@@ -316,9 +339,40 @@ Firstly, I consider the case with observable to buyers qualities and without the
 	 p_B = \frac{\gamma}{2(\gamma - \alpha)} + \frac{p_A}{2} - \frac{\gamma(q_A - q_B)}{2(\gamma - \alpha)}
 	 \end{cases}
 	 \end{align*}
-	 Solving the system above yields $p_i = \frac{\gamma}{\gamma - \alpha} + \frac{\gamma(q_i - q_{-i})}{3(\gamma - \alpha)}$
+	 Solving the system above yields $p_i = \frac{\gamma}{\gamma - \alpha} + \frac{\gamma(q_i - q_{-i})}{3(\gamma - \alpha)}$.
+	 
+	 
+	 
+	 
+	 Finally, let me demonstrate that given the assumption that $V \ge \max \left\{\frac{7\gamma + 2\bar{\alpha}}{6(\gamma - \bar{\alpha})},  \frac{3 \gamma - \bar{\alpha}}{2(\gamma - \bar{\alpha})} \right\}$ all customers are willing to follow the recommendation and buy the good in the equilibrium. Given the equilibrium prices $$\hat{x} = \frac{1}{2} + \frac{q_A-q_B}{6}$$ hence to ensure that the customer with location $\hat{x}$ the following condition should be satisfied: \begin{align*}
+	 V+q_A - \frac{1}{2} - \frac{q_A-q_B}{6} - \frac{\gamma}{\gamma - \alpha} - \frac{\gamma(q_A-q_B)}{2(\gamma- \alpha)} \ge 0 \iff\\
+	 \iff V - \frac{1}{2} -\frac{\gamma}{\gamma - \alpha} + \frac{2 \gamma - 5 \alpha}{6(\gamma - \alpha)}q_A + \frac{4 \gamma - \alpha}{6(\gamma - \alpha)}q_B \ge 0
+	 \end{align*}
+	 $\frac{4 \gamma - \alpha}{6(\gamma - \alpha)} >0$, moreover, if $\gamma > \frac{5}{2} \bar{\alpha}$ then $\frac{2 \gamma - 5  \alpha}{6(\gamma - \alpha)} > 0$ and hence
+	 \begin{align*}
+	 V - \frac{1}{2} -\frac{\gamma}{\gamma - \alpha} + \frac{2 \gamma - 5 \alpha}{6(\gamma - \alpha)}q_A + \frac{4 \gamma - \alpha}{6(\gamma - \alpha)}q_B \ge V - \frac{1}{2} - \frac{\gamma}{\gamma - \alpha} \ge 0 \Leftarrow V \ge \frac{3 \gamma - \bar{\alpha}}{2(\gamma - \bar{\alpha})}
+	 \end{align*}
+	 If, on the other hand, $\gamma < \frac{5}{2} \bar{\alpha}$ then $\frac{2 \gamma - 5  \alpha}{6(\gamma - \alpha)}$ can be negative which means that
+	 \begin{align*}
+	 V - \frac{1}{2} -\frac{\gamma}{\gamma - \alpha} + \frac{2 \gamma - 5 \alpha}{6(\gamma - \alpha)}q_A + \frac{4 \gamma - \alpha}{6(\gamma - \alpha)}q_B \ge V - \frac{1}{2}- \frac{\gamma}{\gamma - \alpha} - \frac{5 \alpha - 2 \gamma}{6(\gamma - \alpha)} \ge 0 \Leftarrow \\
+	 \Leftarrow V \ge \frac{7 \gamma + 2 \bar{\alpha}}{6(\gamma - \bar{\alpha})}
+	 \end{align*}
+	 Similarly, we need to check that 
+	 \begin{align*}
+	 V+q_B - \left(1-\frac{1}{2} - \frac{q_A - q_B}{6} \right) - \frac{\gamma}{\gamma - \alpha} - \frac{\gamma(q_A-q_B)}{3(\gamma - \alpha)} \ge 0 \iff\\
+	 \iff V - \frac{1}{2} - \frac{\gamma}{\gamma-\alpha} + \frac{3 \gamma - 5 \alpha}{6(\gamma - \alpha)}q_B + \frac{3 \gamma - \alpha}{6(\gamma - \alpha)}q_A \ge 0
+	 \end{align*}
+	 The last term is non-negative, moreover if $\gamma > \frac{5}{3} \bar{\alpha}$ the penultimate term is also non-negative, hence
+	 \begin{align*}
+	V - \frac{1}{2} - \frac{\gamma}{\gamma-\alpha} + \frac{3 \gamma - 5 \alpha}{6(\gamma - \alpha)}q_B + \frac{3 \gamma - \alpha}{6(\gamma - \alpha)}q_A \ge 0 \Leftarrow V \ge \frac{3 \gamma - \bar{\alpha}}{2(\gamma - \bar{\alpha})}
+	 \end{align*}
+	 If, on the other hand, $\gamma < \frac{5}{2} \bar{\alpha}$ then $\frac{3 \gamma - 5 \alpha}{6(\gamma - \alpha)}$ can be negative. In this case, 
+	 \begin{align*}
+	 	V - \frac{1}{2} - \frac{\gamma}{\gamma-\alpha} + \frac{3 \gamma - 5 \alpha}{6(\gamma - \alpha)}q_B + \frac{3 \gamma - \alpha}{6(\gamma - \alpha)}q_A \ge 0 \Leftarrow  V \ge \frac{3 \gamma + \bar{\alpha}}{3(\gamma-\bar{\alpha})}  
+	 \end{align*}
+	 Since $$\frac{7 \gamma + 2 \bar{\alpha}}{6(\gamma - \bar{\alpha})} - \frac{3 \gamma + \bar{\alpha}}{3(\gamma - \bar{\alpha})} = \frac{\gamma}{6(\gamma - \bar{\alpha})} > 0$$ it follows that $V \ge \max \left\{\frac{7\gamma + 2\bar{\alpha}}{6(\gamma - \bar{\alpha})},  \frac{3 \gamma - \bar{\alpha}}{2(\gamma - \bar{\alpha})} \right\}$ is a sufficient condition to guarantee that all customers derive non-negative utility in equilibrium.
 	\end{proof}
-Comparing the results of the Proposition \ref{with} with Lemma \ref{without} several things are worth noting. First of all, with the recommender system the term $\frac{p_A-p_B}{2}$ in the expression for demand has an extra multiplier $\frac{\gamma-\alpha}{\gamma} \in (0, 1)$. The latter fact means that is the seller $A$ decides to undercut the competitor and sets a price $p_B - \varepsilon$, with the recommender system the resulting gain in demand will be $\frac{\gamma - \alpha}{\gamma} \frac{\varepsilon}{2}$ which is strictly below $\frac{\varepsilon}{2}$ the result we obtained for the case without the platform. That means that now the sellers have fewer incentives to undercut the competitor, i.e. the presence of a recommender system which has stakes in sellers' profits softens competition. As a result, the equilibrium prices a higher. The picture below (Fig. \ref{fig1}) demonstrates graphically the impact of the recommender system. 
+Comparing the results of the Proposition \ref{with} with Lemma \ref{without} several things are worth noting. First of all, with the recommender system the term $\frac{p_A-p_B}{2}$ in the expression for demand has an extra multiplier $\frac{\gamma-\alpha}{\gamma} \in (0, 1)$. The latter fact means that is the seller $A$ decides to undercut the competitor and sets a price $p_B - \varepsilon$, with the recommender system the resulting gain in demand will be $\frac{\gamma - \alpha}{\gamma} \frac{\varepsilon}{2}$ which is strictly below $\frac{\varepsilon}{2}$ the result we obtained for the case without the platform. That means that now the sellers have fewer incentives to undercut the competitor, i.e. the presence of a recommender system which has stakes in sellers' profits softens competition. As a result, the equilibrium prices a higher. The picture below (Fig. \ref{fig1}) demonstrates graphically the impact of the recommender system (for simplicity I assumed that $q_A = q_B$). Clearly, if $q_A=q_B$ \textit{in equilibrium} $\hat{x} = x_0 = \frac{1}{2}$ but returns on deviation in these two cases are different because of the influence of the recommender system. 
 	
 \begin{figure}[H]
 	\centering
@@ -349,7 +403,7 @@ Comparing the results of the Proposition \ref{with} with Lemma \ref{without} sev
 \end{figure}
 	As we can see, there exists a share of customers $\Delta = \frac{\alpha}{2 \gamma} (p_B - p_A)$ such that they strictly prefer the firm $A$ to the firm $B$ while are recommended the firm $B$. This happens since from the platform's standpoint the losses in consumer surplus are lower than gains driven by high-price sales. Note, also, that $\frac{\partial \Delta}{\partial \alpha} > 0$, $\frac{\partial \Delta}{\partial \gamma} < 0$ and $\lim_{\gamma \to \infty} \Delta = 0$. That is, the impact of the platform eliminates completely if $\gamma$ becomes very high, and the more the platform is profit-oriented (the higher is $\alpha$) the higher is $\Delta$.
 	\subsection{Qualities are not observable}
-Here I consider the case when qualities $q_A, q_B$ are not observable to the platform unless the sellers decide to disclose it. In this subsection, I derive the optimal recommender system of the platform. Following \cite{levin2009quality} I consider symmetric PBE in which the sellers disclose the quality if and only if the quality falls above some threshold $q^*$ and do not disclose otherwise, and if the seller does not disclose, the beliefs of the platform regarding the quality do not depend on prices.  
+Here I consider the case when qualities $q_A, q_B$ are not observable to the platform unless the sellers decide to disclose it. In this subsection, I derive the optimal recommender system of the platform. Following \cite{levin2009quality} I consider symmetric PBE in which the sellers disclose the quality if and only if the quality is above some threshold $q^*$ and do not disclose otherwise, and if the seller does not disclose, the beliefs of the platform regarding the quality do not depend on prices. I will also assume that if the seller which is recommended to some customer does not disclose the quality, the beliefs of the platform regarding this seller's product translate into beliefs of this customer. For example, the platform can present the quality of the good as the position in ranking (or number of stars), and customers are supposed to trust the platform's ranking. In other words, I assume that if \textit{Amazon} tells you that some seller has $4.5$ stars out of $5$, you trust this information and make your purchasing decision as if the quality is really $4.5/5$.
 
 
 
@@ -412,28 +466,8 @@ Finally, let me summarize the optimal recommender policy by finding an optimal c
 		\item If $\gamma > 1$ then $\frac{\partial \pi}{\partial \alpha} < 0$, so the optimal recommendation policy implies $\alpha = 0$
 	\end{enumerate}
 \end{proposition}
-\begin{proof} Given prices $p_A, p_B$ and qualities $q_A, q_B$, total benefit of the platform is equal to:
-	\begin{align*}
-	\alpha(p_A \hat{x} + p_B(1-\hat{x})) + \gamma \left(\int_{0}^{\hat{x}} (V + q_A - p_A - x)dx + \int_{\hat{x}}^1 (V + q_B - p_B -(1-x))dx\right) = \\
-	= 	\alpha(p_A \hat{x} + p_B(1-\hat{x})) + \gamma \left(V - \frac{1}{2}+(1-\hat{x})(q_B - p_B) + \hat{x}(q_A-p_A) - \hat{x}^2  \right)
-	\end{align*}
-	Where $\hat{x}$ is defined according to Proposition \ref{precise}. Hence, expected total benefit of the platform is
-	\begin{align*}
-	&\pi = \int_{0}^{q^*} \int_0^{q^*} \biggl( \frac{\alpha \gamma}{\gamma - \alpha} + \gamma \left(V - \frac{3}{4}+ \frac{q^*}{2} - \frac{\gamma}{\gamma - \alpha} \right)\biggr) dq_A dq_B +\\+
-	 &\int_0^{q^*} \int_{q^*}^1 \biggl[ \alpha \biggl( \left( \frac{\gamma}{\gamma - \alpha} + \frac{\gamma\left( \frac{q^*}{2} - q_B \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} + \frac{\frac{q^*}{2} - q_B}{6} \right) + \left( \frac{\gamma}{\gamma - \alpha} - \frac{\gamma\left( \frac{q^*}{2} - q_B \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} - \frac{\frac{q^*}{2} - q_B}{6} \right) \biggr)+\\
-	 &+\gamma \biggl(V - \frac{1}{2} + \left(\frac{1}{2} - \frac{\frac{q^*}{2} - q_B}{6} \right) \left( q_B - \frac{\gamma}{\gamma - \alpha} + \frac{\gamma \left( \frac{q^*}{2} - q_B \right)}{3 (\gamma - \alpha)} \right)  + \\
-	 &+ \left(\frac{1}{2} + \frac{\frac{q^*}{2} - q_B}{6} \right) \left(\frac{q^*}{2} - \frac{\gamma}{\gamma - \alpha} - \frac{\gamma \left( \frac{q^*}{2} - q_B \right)}{3(\gamma - \alpha)} \right)  - \left( \frac{1}{2} + \frac{\frac{q^*}{2} - q_B}{6} \right)^2 \biggr)  \biggr] dq_A dq_B +\\
-	 +
-	 &\int_{q^*}^{1} \int_{0}^{q^*} \biggl[ \alpha \biggl( \left( \frac{\gamma}{\gamma - \alpha} + \frac{\gamma\left(q_A - \frac{q^*}{2} \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} + \frac{q_A - \frac{q^*}{2}}{6} \right) + \left( \frac{\gamma}{\gamma - \alpha} - \frac{\gamma\left(q_A- \frac{q^*}{2} \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} - \frac{q_A -\frac{q^*}{2}}{6} \right) \biggr)+\\
-	 &+\gamma \biggl(V - \frac{1}{2} + \left(\frac{1}{2} - \frac{q_A-\frac{q^*}{2}}{6} \right) \left( \frac{q^*}{2} - \frac{\gamma}{\gamma - \alpha} + \frac{\gamma \left(q_A -  \frac{q^*}{2} \right)}{3 (\gamma - \alpha)} \right)  + \\
-	 &+ \left(\frac{1}{2} + \frac{q_A-\frac{q^*}{2}}{6} \right) \left(q_A - \frac{\gamma}{\gamma - \alpha} - \frac{\gamma \left(q_A- \frac{q^*}{2} \right)}{3(\gamma - \alpha)} \right)  - \left( \frac{1}{2} + \frac{q_A - \frac{q^*}{2}}{6} \right)^2 \biggr)  \biggr] dq_A dq_B + \\
-	 +
-	  &\int_{q^*}^{1} \int_{q^*}^{1} \biggl[ \alpha \biggl( \left( \frac{\gamma}{\gamma - \alpha} + \frac{\gamma\left(q_A - q_B \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} + \frac{q_A - q_B}{6} \right) + \left( \frac{\gamma}{\gamma - \alpha} - \frac{\gamma\left(q_A- q_B \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} - \frac{q_A -q_B}{6} \right) \biggr)+\\
-	 &+\gamma \biggl(V - \frac{1}{2} + \left(\frac{1}{2} - \frac{q_A-q_B}{6} \right) \left( q_B - \frac{\gamma}{\gamma - \alpha} + \frac{\gamma \left(q_A -  q_B \right)}{3 (\gamma - \alpha)} \right)  + \\
-	 &+ \left(\frac{1}{2} + \frac{q_A-q_B}{6} \right) \left(q_A - \frac{\gamma}{\gamma - \alpha} - \frac{\gamma \left(q_A- q_B \right)}{3(\gamma - \alpha)} \right)  - \left( \frac{1}{2} + \frac{q_A - q_B}{6} \right)^2 \biggr)  \biggr] dq_A dq_B = \\
-	 & = \frac{\gamma(216 V - q^{*3} - 161)}{216}
-	\end{align*}
-	Thus $$\frac{\partial \pi}{\partial \alpha} = -\frac{3 \gamma q^{*2}}{216} \frac{\partial q^*}{\partial \alpha}$$ and using the result of the Proposition \ref{thres} one may finally prove the result.
+\begin{proof} 
+	See Appendix.
 \end{proof}
 
 The Proposition \ref{opt_alpha} demonstrates that it turns out that the highest possible commission may be not always in the platform's best interest. If $\gamma$ is high enough it is not optimal for the platform to set commission. This happens since as we see from the Proposition \ref{thres}, if the platform charges commission, sellers will disclose less information but this brings losses in $CS$ and since $\gamma$ is high, these losses do not outweigh direct benefits from high commissions. 
@@ -451,7 +485,7 @@ In this section I relax the assumption that the platform perfectly observes the 
 
 
 
-Formally, I assume that before making recommendation to a particular customer whose true location $x$ is equal to $x_0 \in [0, 1]$ the platform receives a signal $s$ such that $$\mathbb{P}(s=x_0|x=x_0) = \beta \in [0, 1]$$ and with probability $1-\beta$, $s \sim U(0, 1)$. I will refer to $\beta$ as the recommender system precision. In this case, it can be shown (see  \cite{li2018recommender} for example) that the conditional expectation regarding the true location is equal to \begin{align}\label{signal}
+Formally, I assume that before making recommendation to a particular customer whose true location $x$ is equal to $x_0 \in [0, 1]$ the platform receives a signal $s$ such that $$\mathbb{P}(s=x_0|x=x_0) = \beta \in [0, 1]$$ and with probability $1-\beta$, $s \sim U(0, 1)$. $\beta$ is common knowledge and I will refer to it as the recommender system precision. In this case, it can be shown (see  \cite{li2018recommender} for example) that the conditional expectation regarding the true location is equal to \begin{align}\label{signal}
 \mathbb{E}[x|s=x_0] = \beta x_0 + \frac{1-\beta}{2}
 \end{align}
 The result above is quite intuitive: the higher is precision the more weight the platform assigns to the signal, while when the precision is low the platform more frequently infers that the signal is not correct and prescribes to the customer an average location $\frac{1}{2}$. 
@@ -604,6 +638,32 @@ Making the recommendation system too inaccurate is also not optimal for the plat
 	\section{Extensions}
 	\section{Conclusion}
 	\newpage
+\appendix
+\section*{Appendix}
+	\textbf{Proof of Proposition \ref{opt_alpha}}
+	\begin{proof} Given prices $p_A, p_B$ and qualities $q_A, q_B$, total benefit of the platform is equal to:
+		\begin{align*}
+		\alpha(p_A \hat{x} + p_B(1-\hat{x})) + \gamma \left(\int_{0}^{\hat{x}} (V + q_A - p_A - x)dx + \int_{\hat{x}}^1 (V + q_B - p_B -(1-x))dx\right) = \\
+		= 	\alpha(p_A \hat{x} + p_B(1-\hat{x})) + \gamma \left(V - \frac{1}{2}+(1-\hat{x})(q_B - p_B) + \hat{x}(q_A-p_A) - \hat{x}^2  \right)
+		\end{align*}
+		Where $\hat{x}$ is defined according to Proposition \ref{precise}. Hence, expected total benefit of the platform is
+		\begin{align*}
+		&\pi = \int_{0}^{q^*} \int_0^{q^*} \biggl( \frac{\alpha \gamma}{\gamma - \alpha} + \gamma \left(V - \frac{3}{4}+ \frac{q^*}{2} - \frac{\gamma}{\gamma - \alpha} \right)\biggr) dq_A dq_B +\\+
+		&\int_0^{q^*} \int_{q^*}^1 \biggl[ \alpha \biggl( \left( \frac{\gamma}{\gamma - \alpha} + \frac{\gamma\left( \frac{q^*}{2} - q_B \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} + \frac{\frac{q^*}{2} - q_B}{6} \right) + \left( \frac{\gamma}{\gamma - \alpha} - \frac{\gamma\left( \frac{q^*}{2} - q_B \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} - \frac{\frac{q^*}{2} - q_B}{6} \right) \biggr)+\\
+		&+\gamma \biggl(V - \frac{1}{2} + \left(\frac{1}{2} - \frac{\frac{q^*}{2} - q_B}{6} \right) \left( q_B - \frac{\gamma}{\gamma - \alpha} + \frac{\gamma \left( \frac{q^*}{2} - q_B \right)}{3 (\gamma - \alpha)} \right)  + \\
+		&+ \left(\frac{1}{2} + \frac{\frac{q^*}{2} - q_B}{6} \right) \left(\frac{q^*}{2} - \frac{\gamma}{\gamma - \alpha} - \frac{\gamma \left( \frac{q^*}{2} - q_B \right)}{3(\gamma - \alpha)} \right)  - \left( \frac{1}{2} + \frac{\frac{q^*}{2} - q_B}{6} \right)^2 \biggr)  \biggr] dq_A dq_B +\\
+		+
+		&\int_{q^*}^{1} \int_{0}^{q^*} \biggl[ \alpha \biggl( \left( \frac{\gamma}{\gamma - \alpha} + \frac{\gamma\left(q_A - \frac{q^*}{2} \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} + \frac{q_A - \frac{q^*}{2}}{6} \right) + \left( \frac{\gamma}{\gamma - \alpha} - \frac{\gamma\left(q_A- \frac{q^*}{2} \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} - \frac{q_A -\frac{q^*}{2}}{6} \right) \biggr)+\\
+		&+\gamma \biggl(V - \frac{1}{2} + \left(\frac{1}{2} - \frac{q_A-\frac{q^*}{2}}{6} \right) \left( \frac{q^*}{2} - \frac{\gamma}{\gamma - \alpha} + \frac{\gamma \left(q_A -  \frac{q^*}{2} \right)}{3 (\gamma - \alpha)} \right)  + \\
+		&+ \left(\frac{1}{2} + \frac{q_A-\frac{q^*}{2}}{6} \right) \left(q_A - \frac{\gamma}{\gamma - \alpha} - \frac{\gamma \left(q_A- \frac{q^*}{2} \right)}{3(\gamma - \alpha)} \right)  - \left( \frac{1}{2} + \frac{q_A - \frac{q^*}{2}}{6} \right)^2 \biggr)  \biggr] dq_A dq_B + \\
+		+
+		&\int_{q^*}^{1} \int_{q^*}^{1} \biggl[ \alpha \biggl( \left( \frac{\gamma}{\gamma - \alpha} + \frac{\gamma\left(q_A - q_B \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} + \frac{q_A - q_B}{6} \right) + \left( \frac{\gamma}{\gamma - \alpha} - \frac{\gamma\left(q_A- q_B \right) }{3(\gamma - \alpha)} \right)\left(\frac{1}{2} - \frac{q_A -q_B}{6} \right) \biggr)+\\
+		&+\gamma \biggl(V - \frac{1}{2} + \left(\frac{1}{2} - \frac{q_A-q_B}{6} \right) \left( q_B - \frac{\gamma}{\gamma - \alpha} + \frac{\gamma \left(q_A -  q_B \right)}{3 (\gamma - \alpha)} \right)  + \\
+		&+ \left(\frac{1}{2} + \frac{q_A-q_B}{6} \right) \left(q_A - \frac{\gamma}{\gamma - \alpha} - \frac{\gamma \left(q_A- q_B \right)}{3(\gamma - \alpha)} \right)  - \left( \frac{1}{2} + \frac{q_A - q_B}{6} \right)^2 \biggr)  \biggr] dq_A dq_B = \\
+		& = \frac{\gamma(216 V - q^{*3} - 161)}{216}
+		\end{align*}
+		Thus $$\frac{\partial \pi}{\partial \alpha} = -\frac{3 \gamma q^{*2}}{216} \frac{\partial q^*}{\partial \alpha}$$ and using the result of the Proposition \ref{thres} one may finally prove the result.
+	\end{proof}
 	\bibliography{lib}{}
 	%\bibliographystyle{unsrt}
 	%\bibliographystyle{apalike}
