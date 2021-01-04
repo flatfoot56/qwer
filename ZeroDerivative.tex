@@ -1,0 +1,244 @@
+\documentclass[a4paper]{article}
+\usepackage[12pt]{extsizes} % 
+\usepackage{setspace}
+\doublespacing
+\usepackage[utf8]{inputenc}
+\usepackage{setspace,amsmath}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+%\usepackage{harvard}
+\usepackage[round]{natbib}
+\usepackage{pdfpages}
+\usepackage{tikz}
+\usepackage{makecell}
+\usepackage{amsthm}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usepackage{multirow}
+\usetikzlibrary{angles,quotes}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{xcolor,colortbl}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage{breakcites}
+\interfootnotelinepenalty=10000
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs} % 
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\addto\captionsrussian{\renewcommand{\figurename}{Fig.}}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+	{\hbox{$\mathsurround=0pt #1$}}{}}
+\usepackage{graphicx}  % 
+\graphicspath{{images/}{images2/}}  % 
+\setlength\fboxsep{3pt} %  \fbox{} 
+\setlength\fboxrule{1pt} % \fbox{}
+\usepackage{wrapfig} % 
+%\newenvironment{abstract}[0]{\small\rm
+%	\begin{center}ABSTRACT
+%		\\ \vspace{8pt}
+%		\begin{minipage}{5.2in}\smalllineskip
+%			\hspace{1pc}}{\end{minipage}\end{center}\vspace{-1pt}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\norma}{\mathcal{N}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\summa}{\sum_{i=1}^n}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, footskip=10mm]{geometry} % 
+\usepackage{tikz} % 
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{definition}[theorem]{Definition}
+%\let\cite = \citeasnoun
+\title{Zero derivative and local risk aversion}
+\date{}
+\author{Danil Fedchenko}
+\begin{document} % 
+	\maketitle
+	\begin{abstract}
+	Consider a random variable $\varepsilon$ such that $\expect[\varepsilon] = 0$. Denote $\pi(t)$ a risk premium, an expected-utility maximizer with Bernoulli utility $u(x)$ is willing to pay to avoid risk $t \varepsilon$ (i.e. $u(x-\pi(t)) = \int u(x+t\varepsilon)dF(\varepsilon)$). As \cite{segal1990first} stated, $\pi'(0) = 0$. This is true, however, only if $u'(x) \neq 0$. In this note I show that an attitude toward risk of an individual with $u'(x) = 0$ in some cases is similar to being what \cite{segal1990first} called of order 1. Which in particular implies that such an individual may find optimal to buy full insurance even for a small positive risk in the neighborhood of the points where $u'(x) = 0$.
+	\end{abstract}
+	\newpage
+	\section{Introduction}
+	Consider an individual with expected utility preferences represented by strictly increasing, continuous Bernoulli utility function $u(x)$. Suppose this individual for some $t \in \mathbb{R}$ faces a lottery $t \eps$ represented by a random variable $\varepsilon$ such that $\expect[\varepsilon] = 0$. Define a risk premium $\pi(t)$ implicitly as $x-\pi(t) \sim x+t\eps$ or equivalently $u(x - \pi(t)) = \int u(x + t \eps)\ dF(\eps)$ (from now on whenever I write $\int$, I assume the integral exists). It is easy to show that as long as $u'(x) \neq 0$, $\pi'(0) = 0$. Indeed, 
+	\begin{align*}
+	\pi(t) &= x - u^{-1}\left( \int u(x + t \varepsilon) dF(\varepsilon) \right),\ u^{-1} \text{ exists since }u(x)\text{ is strictly increasing and continuous}\\
+	\frac{\partial \pi(t)}{\partial t} &= -\left(u^{-1}\left( \int u(x + t \varepsilon) dF(\varepsilon) \right) \right)' \int u'(x+t \varepsilon)\varepsilon dF(\varepsilon) = \\
+	&=-\frac{\int u'(x+t \varepsilon)\varepsilon dF(\varepsilon)}{u'\left(u^{-1}\left( \int u(x + t \varepsilon) dF(\varepsilon) \right)\right)}\ ,\ \ \  \text{if }u'\left(u^{-1}\left( \int u(x + t \varepsilon) dF(\varepsilon) \right)\right) \neq 0\\
+	\frac{\partial \pi(t)}{\partial t}\bigg|_{t=0} &= -\frac{u'(x)}{u'(x)} \expect[\eps] = -\expect[\eps] = 0, \text{ if } u'(x) \neq 0
+	\end{align*}
+This in particular implies that for small enough $t$ $$\pi(t) \approx -\frac{t^2 \expect[\eps^2]}{2}\frac{u''(x)}{u'(x)}$$ and hence it approaches zero faster than $t$ which, in turn, implies that for small $t$ an individual is almost risk neutral. This assertion, however, heavily relies upon the assumption $u'(x) \neq 0$ which is known sometimes to be violated even for strictly increasing functions ($u(x) = x^3$ at $x=0$ is probably the most famous example). 
+In this paper I partially characterize $\frac{\partial \pi(t)}{\partial t}\bigg|_{t=0}$ at points where $u'(x) = 0$, and show that it is not equal to zero in general. Applying this to the optimal insurance problem, as \cite{segal1990first} show, means that an expected utility maximizer may find optimal to buy full insurance even for small risk and even if insurance includes positive loading. I illustrate this result by deriving a slope of indifference curves (provided that it is non zero and finite) of the individual near the certainty line on the state-contingent  \cite{yaari1978some}-type diagram. It turns out that the slope differs from the case where $u'(x) \neq 0$.
+\section{Order of Risk Aversion}
+\cite{segal1990first} define an attitude toward risk of individual being of order 1 if for \textit{every} non-degenerate random variable $\eps$ such that $\expect[\eps] = 0$, $\frac{\partial \pi(t)}{\partial t} \bigg|_{t = 0^+} \neq 0$, and of order 2 if $\frac{\partial \pi(t)}{\partial t} \bigg|_{t = 0^+} = 0$. 
+In the next proposition I derive $\frac{\partial \pi(t)}{\partial t} \bigg|_{t = 0}$ (assuming that it exists, is non-zero and finite) at the points where for some $k\ge 1$ first $k-1$ derivatives of the Bernoulli utility function $u(x)$ exist and equal to zero.
+	\begin{proposition}\label{derivative}
+		If $\exists\ x^* \in \mathbb{R}$ and $k \ge 2$ such that $\forall\ i = \{1, \dots, k-1  \}$: $u^{(i)}(x^*) = 0$, $u'(x) > 0$ for $x \in (x^*-\delta, x^*+\delta)\setminus \{x^*\}$ for some small $\delta>0$, and there exists $u^{(k)}(x^*) \neq 0$. Then if there exists finite and non-zero $\expect[\eps^k]$, and at $x^*$ there exists finite, non-zero $\frac{\partial \pi(t)}{\partial t} \bigg|_{t = 0}$ then :
+		\begin{align}
+			\left( \frac{\partial \pi(t)}{\partial t} \bigg|_{t = 0} \right)^k = (-1)^k\ \expect[\varepsilon^k]
+		\end{align}
+	Provided that \begin{align}\label{limsup}
+	\forall\ i = \{2,\dots, k-1\}:\ \bigg|\lim_{t\to0} \inf \frac{\partial^{(i)} \pi(t)}{\partial t^{(i)}}\bigg| < \infty, \bigg|\lim_{t\to0} \sup \frac{\partial^{(i)} \pi(t)}{\partial t^{(i)}}\bigg| < \infty
+\end{align} for $k>2$.
+	\end{proposition}
+\begin{proof}
+	\begin{align*}
+		\pi(t) &= x^* - u^{-1}\left( \int u(x^* + t \varepsilon) dF(\varepsilon) \right)\\
+		\frac{\partial \pi(t)}{\partial t} &= -\left(u^{-1}\left( \int u(x^* + t \varepsilon) dF(\varepsilon) \right) \right)' \int u'(x^*+t \varepsilon)\varepsilon dF(\varepsilon) = \\
+		&=-\frac{\int u'(x^*+t \varepsilon)\varepsilon dF(\varepsilon)}{u'\left(u^{-1}\left( \int u(x^* + t \varepsilon) dF(\varepsilon) \right)\right)}\ ,\ \ \  \text{if }u'\left(u^{-1}\left( \int u(x^* + t \varepsilon) dF(\varepsilon) \right)\right) \neq 0
+	\end{align*}
+As $t \to 0$ since $u'(x^*) = 0$, both numerator and denominator approach zero.
+Using the L'Hospital rule we get:
+\begin{align*}
+		\frac{\partial \pi(t)}{\partial t} \bigg|_{t = 0} = \lim_{t \to 0} -\frac{\int u''(x^*+t \varepsilon) \varepsilon^2 dF(\varepsilon)}{u''\left(u^{-1}\left( \int u(x^* + t \varepsilon) dF(\varepsilon) \right)\right) \underbrace{\left(u^{-1}\left( \int u(x^* + t \varepsilon) dF(\varepsilon) \right) \right)'}_{-\frac{\partial \pi(t)}{\partial t} \bigg|_{t = 0}}}
+\end{align*}
+If $u''(x^*) \neq 0$ (i.e. $k=2$) then $\left( \frac{\partial \pi(t)}{\partial t} \bigg|_{t = 0} \right)^2 = \expect[\varepsilon^2]$. If $k>2$ then one should apply L'Hospital rule once again. That is,
+\begin{align*}
+	\frac{\partial \pi(t)}{\partial t} \bigg|_{t = 0} = \lim_{t \to 0} -\frac{\int u'''(x^*+t \varepsilon) \varepsilon^3 dF(\varepsilon)}{u'''\left(u^{-1}\left( \int u(x^* + t \varepsilon) dF(\varepsilon) \right)\right) \left( \frac{\partial \pi(t)}{\partial t} \bigg|_{t = 0}\right)^2 - u''\left(u^{-1}\left( \int u(x^* + t \varepsilon) dF(\varepsilon) \right)\right) \frac{\partial^2\pi(t)}{\partial t^2} }
+\end{align*}
+Since $u''(x^*) = 0$ and \eqref{limsup} implies  $$\lim_{t \to 0} u''\left(u^{-1}\left( \int u(x^* + t \varepsilon) dF(\varepsilon) \right)\right) \frac{\partial^2\pi(t)}{\partial t^2} = 0,$$ if $k=3$ then we have $$\left( \frac{\partial \pi(t)}{\partial t} \bigg|_{t=0}\right)^3 = -\expect[\eps^3] $$ which is what we sought to prove. If $k>3$ we should proceed in the same way, i.e. by applying L'Hospital rule $k-3$ times we get what we wanted to prove.
+\end{proof}
+Although, the proposition above does not tell us whether $\frac{\partial \pi(t)}{\partial t} \bigg|_{t = 0} \neq 0$, so we cannot conclude that the individual's attitude toward risk is necessary of order 1 (according to \cite{segal1990first}). We will see in Section 4 that, in general neither $\frac{\partial \pi(t)}{\partial t}\bigg|_{t=0} \neq 0$ nor $\frac{\partial \pi(t)}{\partial t}\bigg|_{t=0} = 0$, so the individual's attitude toward risk is neither of order 1 nor of order 2. Nevertheless, if it happens to be $\expect[\eps^k] \neq 0$ and $\frac{\partial \pi(t)}{\partial t}\bigg|_{t=0} \neq 0$, optimal behavior of such an individual regarding the choice of insurance is similar to that of the one whose attitude toward risk is of order 1.
+\section{Optimal Insurance}
+Discussing the optimal insurance problem consider the lottery $x^*+t \eps $ where $\expect[\eps] > 0$. Then, the following proposition is an analogue to the Proposition 1 of \cite{segal1990first}.
+\begin{proposition}\label{LRA}
+	If $\exists\ x^* \in \mathbb{R}$ and $k \ge 2$ such that $\forall\ i = \{1, \dots, k-1  \}$: $u^{(i)}(x^*) = 0$, there exist non-zero left and right derivatives $u^{(k)}_{+}(x^*)$ and $u^{(k)}_{-}(x^*)$, and $u(x)$ is $k$ times differentiable on $(x^*-\delta, x^*+\delta)\setminus\{x^*\}$ for some $\delta>0$. If $\eps$ possesses all finite moments, and in particular, there exist $\expect[ \eps^k |\eps\ge0]$, $\expect[ \eps^k |\eps<0]$ and \begin{align}\label{condition}
+		u^{(k)}_{+}(x^*) \cdot \expect[ \eps^k | \eps\ge0]\prob(\eps\ge0) + u^{(k)}_{-}(x^*) \cdot \expect[ \eps^k | \eps<0]\prob(\eps<0) < 0,
+		\end{align}
+	then for sufficiently small $t > 0$ \textbf{an individual strictly prefers a certain outcome $x^*$ to the lottery $x^*+t\eps$.}
+\end{proposition}
+\begin{proof}
+	\begin{align*}
+		\int u(x^*+t\eps)dF(\eps) = \int \left( u(x^*) +  \bigg[u^{(k)}_{+}(x^*)\mathbb{I}[\eps\ge0]  + u^{(k)}_{-}(x^*)\mathbb{I}[\eps<0] \bigg] \frac{t^k \eps^k }{k!} +o_p(t^k \eps^k)\right)dF(\eps) = \\
+	= u(x^*) + \frac{(u^{(k)}_{+}(x^*) \expect[\eps^k|\eps\ge 0]\prob(\eps\ge0)+u^{(k)}_{-}(x^*) \expect[\eps^k|\eps< 0]\prob(\eps<0))t^k}{k!} + \expect[o_p(t^k \eps^k)] < u(x^*)
+	\end{align*}
+where the first equality follows from Taylor formula and the fact that $\forall\ i = \{1, \dots, k-1  \}$: $u^{(i)}(x^*) = 0$, and the last inequality follows from \eqref{condition}. Note that for the $k$ times differentiable $u(x)$, \eqref{condition} becomes $u^{(k)}(x^*)\cdot\expect[\eps^k] < 0$
+\end{proof}
+The result above means that the expected-utility maximizer under some conditions exhibits local risk aversion at the vicinity of the points where his strictly increasing Bernoulli utility function fails to have positive derivatives up to the order $k$. In other words, this individual prefers a certain outcome to the lottery with small positive expected value. This result stands in contrast to the well-known result that the expected-utility maximizer with increasing Bernoulli utility function $u(x)$ is locally risk neutral as long as $u'(x) > 0$. That is, for $t$ small enough he would strictly prefer the lottery with positive mean to the certain outcome.
+
+
+
+
+Let me illustrate the proposition \ref{LRA} by deriving slopes of the individual's indifference curves at a certainty line on the state-contingent diagram. 
+Consider an individual whose expected utility preferences represented by strictly increasing and continuous Bernoulli utility function $u(x)$. Suppose there are two states of nature, the first happens with probability $p$ and the second with probability $1-p$. At state $i \in \{1, 2\}$ the individual gets $x_i$. Then the following proposition holds:
+\begin{proposition}\label{slope}
+	If $\exists\ x^* \in \mathbb{R}$ and $k \ge 2$ such that $\forall\ i = \{1, \dots, k-1  \}$: $u^{(i)}(x^*) = 0$, $u'(x) > 0$ for $x \in (x^*-\delta, x^*+\delta)\setminus \{x^*\}$ for some small $\delta>0$. If there exist left and right derivatives $u_{+}^{(k)}(x^*) \neq 0$, $u_{-}^{(k)}(x^*) \neq 0$ such that \footnote{$$sign(x) = \begin{cases}
+			-1, x <0\\
+			0, x=0\\
+			1, x>0
+		\end{cases}$$}$\text{sign}(u_{+}^{(k)}(x^*) \cdot u_{-}^{(k)}(x^*)) = (-1)^{k+1}$
+	
+	
+	Then consider an indifference curve $x_2(x_1)$ implicitly given by 
+	\begin{align}\label{ind}
+		\{ (x_1, x_2): pu(x_1)+(1-p)u(x_2) = u(x^*) \}
+	\end{align}
+then if there exist finite, non-zero $\frac{d x_2}{d x_1} \bigg|_{x_1=x^*+0}$,  $\frac{d x_2}{d x_1} \bigg|_{x_1=x^*-0}$:
+	\begin{align}
+		\frac{d x_2}{d x_1} \bigg|_{x_1=x^*+0} = -\sqrt[k]{\frac{p}{1-p} \bigg|  \frac{u^{(k)}_{+}(x^*)}{u^{(k)}_{-}(x^*)} \bigg|  }\\
+		\frac{d x_2}{d x_1} \bigg|_{x_1=x^*-0} = -\sqrt[k]{\frac{p}{1-p} \bigg|  \frac{u^{(k)}_{-}(x^*)}{u^{(k)}_{+}(x^*)} \bigg|  }
+	\end{align}
+Provided that 
+\begin{align}\label{der}
+\forall\ i = \{1, \dots, k-1\}:\ \bigg| \lim_{x_1 \to x^* \pm 0} \sup \frac{d^{(i)}x_2(x_1)}{dx_1^{(i)}}\bigg| < \infty, \bigg| \lim_{x_1 \to x^* \pm 0} \inf \frac{d^{(i)}x_2(x_1)}{dx_1^{(i)}}\bigg| < \infty
+\end{align}
+\end{proposition}
+\begin{proof}
+	From \eqref{ind}, implicit function theorem and the fact that $u'(x) > 0$ for $x \in (x^*-\delta, x^*+\delta)\setminus \{x^*\}$ it follows that
+	\begin{align*}
+		\lim_{x_1 \to x^*+0} \frac{dx_2}{dx_1} = \lim_{x_1 \to x^*+0} -\frac{p}{1-p} \frac{u'(x_1)}{u'(x_2(x_1))}
+	\end{align*}
+Since $x_2(x^*) = x^*$ and $u'(x^*) = 0$ both numerator and denominator approach zero as $x_1 \to x^*+0$. Then if $	\frac{d x_2}{d x_1} \bigg|_{x_1=x^*+0}$ exists we can use L'Hospital rule, i.e.
+\begin{align*}
+		\lim_{x_1 \to x^*+0} \frac{dx_2}{dx_1} = -\frac{p}{1-p} \frac{u''_{+}(x_1)}{u''_{-}(x_2(x_1)) \left(\frac{dx_2}{dx_1}\right)\bigg|_{x^*+0}}
+	\end{align*}
+We have left second derivative in the denominator since from the fact that $u(x)$ is strictly increasing it follows that the indifference curve should be downward slopping. Meaning that if $x_1$ approaches $x^*$ from above, $x_2(x_1)$ approaches $x^*$ from below.
+
+
+
+If $k = 2$ and $u''_{+}(x^*) \cdot u''_{-}(x^*) < 0$ then $$	\frac{d x_2}{d x_1} \bigg|_{x_1=x^*+0} = -\sqrt{\frac{p}{1-p} \bigg|  \frac{u''_{+}(x^*)}{u''_{-}(x^*)} \bigg|  }$$
+Minus sign again follows from downward slopping indifference curve. Left derivative can be found in exactly the same way.
+
+
+If $k > 2$ then apply the L'Hospital rule once again. We get 
+\begin{align*}
+	\lim_{x_1 \to x^*+0} \frac{dx_2}{dx_1} = -\frac{p}{1-p} \frac{u'''_{+}(x_1)}{u'''_{-}(x_2(x_1)) \left(\frac{dx_2}{dx_1}\right)^2\bigg|_{x^*+0} + u''_{-}(x_2(x_1))\left(\frac{d^2x_2}{dx_1^2}\right)\bigg|_{x^*+0} }
+\end{align*}
+From \eqref{der} and $u''(x^*) = 0$ it follows that $$\lim_{x_1 \to x^*+0} u''_{-}(x_2(x_1))\left(\frac{d^2x_2}{dx_1^2}\right)\bigg|_{x^*+0} = 0$$
+If $k = 3$ and $u'''_{+}(x^*) \cdot u'''_{-}(x^*) > 0$ then $$	\frac{d x_2}{d x_1} \bigg|_{x_1=x^*+0} = -\sqrt[3]{\frac{p}{1-p} \bigg|  \frac{u'''_{+}(x^*)}{u'''_{-}(x^*)} \bigg|  }$$
+which is what we sought to prove. If $k>3$ then one should apply the L'Hospital rule as many times as it requires to get rid of indeterminacies in numerator and denominator. Which eventually leads to what we wanted to prove.
+\end{proof}
+In contrast to the result above it is known that in case of differentiable Bernoulli utility, slope of an expected-utility maximizer's indifference curve at certainty points where $u'(x) \neq 0$ is equal to $-\frac{p}{1-p}$. If this individual is offered to buy insurance which would cost $\gamma$ for every insured unit and pay $\$\ 1$ in case of the bad event occurs, then the individual's budget constraint would have a slope $-\frac{\gamma}{1-\gamma}$. This in particular explains why such expected-utility maximizer never buys full insurance unless it is actuarially fair (i.e. $\gamma = p$). At the same time, as we see from the Proposition \ref{slope} an individual with $k$ times differentiable Bernoulli utility with first $k-1$ zero derivatives at some $x$ has slope of the indifference curve at $(x, x)$ given by $-\sqrt[k]{\frac{p}{1-p}}$. Which means that there exists a range of positive loading $\gamma > p$ such that the expected utility maximizer would find optimal to buy full insurance. In terms of Proposition \ref{LRA}, this range corresponds to the range of lotteries with positive expectation satisfying condition \eqref{condition}. The next section illustrates Propositions \ref{LRA} and \ref{slope} by concrete examples.
+\section{Examples}
+Without loss of generality, for simplicity restrict attention to $x^* = 0$. In all examples I assume that there are two states of the world: the first occurs with a given probability $p$ and the second with a probability $1-p$, and in state $i\in\{1, 2\}$ the individual receives $x_i$.
+\subsection{Ex. 1}
+Consider $u(x) = x^3$, this is what first comes to mind when we are talking about a strictly increasing function with zero first $k$ derivatives at some point. First of all, let us derive a risk premium $\pi(t)$ for the lottery $x+t\eps$ at $x = 0$:
+\begin{align}
+	-\pi(t)^3 = \int t^3 \eps^3 dF(\eps)\\
+	\pi(t) = -t \sqrt[3]{\expect[\eps^3]}
+\end{align}
+Note that if $\expect[\eps^3] = 0$ then $\frac{\partial \pi(t)}{\partial t}\bigg|_{t=0} = 0$ while if $\expect[\eps^3] \neq 0$, $\frac{\partial \pi(t)}{\partial t}\bigg|_{t=0} \neq 0$ which demonstrates that in general, the individual's attitude toward risk is neither of order 1 nor of order 2.
+So, if $\expect[\eps^3] \neq 0$, $\frac{\partial \pi(t)}{\partial t}\bigg|_{t=0} = -\sqrt[3]{\expect[\eps^3]}$ exactly as Proposition \ref{derivative} claims.
+
+
+
+
+The indifference curve corresponding to the utility level $u(0) = 0$ is given by:
+\begin{align*}
+	px_1^3 + (1-p)x_2^3 = 0\\
+	x_2 = -\sqrt[3]{\frac{p}{1-p}} x_1
+\end{align*}
+As Proposition \ref{slope} states, $\frac{dx_2}{dx_1}\bigg|_{x_1=0} = -\sqrt[3]{\frac{p}{1-p}}$.
+Consider the plot on the Fig \ref{fig1}. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{pic1}
+	\caption{}\label{fig1}
+\end{figure}
+
+A blue line represents the indifference curve. Suppose that the individual initially faces the lottery $(x_1, p; x_2, 1-p)$ but in addition is offered to buy $t \ge 0$ units of insurance each at a cost $\gamma$, which would pay him $\$ 1$ in (bad) state 1. A green line is the budget line which represents lotteries with insurance for all possible $t$. An orange line represents the line of constant, zero expectation, that is, each point on this line represents the lottery with zero expected payoff. Since the slope of this line is lower (in absolute value) than the slope of the green line, we have insurance with positive loading ($\gamma > p$). At the same, since the individual's utility increases as we are moving to the north-east, it is clear that the individual strictly prefers the lottery $(0, p; 0, 1-p)$ (that is, full insurance) to any other point on the green line. Clearly, the situation above is possible only if 
+\begin{align}\label{negative moment}
+	\frac{p}{1-p} < \frac{\gamma}{1-\gamma}< \sqrt[3]{\frac{p}{1-p}} \Rightarrow \begin{cases}
+		\gamma(1-p) - (1-\gamma)p > 0\\
+		-(1-\gamma)^3p+\gamma^3(1-p)<0
+		\end{cases}
+\end{align}
+Note that the two conditions in \eqref{negative moment} are equivalent to 
+\begin{align*}
+	\begin{cases}
+			\expect[\eps] >0\\
+	\expect[\eps^3] < 0
+	\end{cases}
+\end{align*}
+where $\eps = (-(1-\gamma), p; \gamma, (1-p))$.These two conditions are exactly what Proposition \ref{LRA} requires for the individual with positive $u'''(0)$ being locally risk averse!
+\subsection{Ex. 2}
+Consider $$u(x) = \begin{cases}
+	x^2, &x \ge 0\\-x^2, &x < 0
+\end{cases}$$
+this example is interesting since $u(x)$ does not have a second derivative at $x^* = 0$. However, there exist finite left and right second derivatives, $u''_{+}(x^*) = 2, u''_{-}(x^*) = -2$. An indifference curve corresponding to the utility level 0 is given by:
+\begin{align*}
+	-px_1^2 + (1-p)x_2^2 = 0,\ \text{if } x_1 \le 0, x_2 \ge 0\\
+	px_1^2-(1-p)x_2^2 = 0,\ \text{if } x_1 > 0, x_2 < 0\\
+\end{align*}
+$$	x_2 = -\sqrt{\frac{p}{1-p}}x_1$$
+So, we have the same situation as in Ex.1. That is, $$\frac{p}{1-p}<\frac{\gamma}{1-\gamma}<\sqrt{\frac{p}{1-p}}$$ guarantees local risk aversion. This condition again implies that $$\begin{cases}
+	\gamma(1-p)-p(1-\gamma)>0\\
+	\gamma^2(1-p) - (1-\gamma)^2p < 0
+\end{cases} \iff \begin{cases}
+\expect[\eps]>0\\
+\expect[ \eps^k | \eps\ge0]\prob(\eps\ge0) -\expect[ \eps^k | \eps<0]\prob(\eps<0) < 0
+\end{cases}$$
+where $\eps = (-(1-\gamma), p; \gamma, (1-p))$. Since $u''_{-}(0) = -2, u''_{+}(0)=2$, the second condition above is equivalent to \eqref{condition} requirement in Proposition \ref{LRA} for the individual being locally risk averse.
+\section{Conclusion}
+	\newpage
+	\bibliography{lib}{}
+	%\bibliographystyle{unsrt}
+	%\bibliographystyle{apalike}
+	\bibliographystyle{abbrvnat}
+	\end{document}
